@@ -1,0 +1,188 @@
+{
+  "eras": ["GRANDIA", "CHRONO", "MANA", "SIDE"],
+  "adventures": [
+    {
+      "id": "G",
+      "era": "GRANDIA",
+      "order": 1,
+      "type": "CORE",
+      "name": "Grandia",
+      "edition": "HD Collection",
+      "platform": ["SWITCH", "PS5", "PS4"],
+      "unlocks": [
+        {
+          "id": "G2",
+          "era": "GRANDIA",
+          "order": 2,
+          "type": "CORE",
+          "name": "Grandia II",
+          "edition": "HD Collection",
+          "platform": ["SWITCH", "PS5", "PS4"],
+          "unlocks": [
+            {
+              "id": "GX",
+              "era": "GRANDIA",
+              "order": 3,
+              "type": "CORE",
+              "name": "Grandia Xtreme",
+              "edition": "Original",
+              "platform": ["PS2"],
+              "unlocks": [
+                {
+                  "id": "G3",
+                  "era": "GRANDIA",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "Grandia III",
+                  "edition": "Original",
+                  "platform": ["PS2"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CT",
+      "era": "CHRONO",
+      "order": 5,
+      "type": "CORE",
+      "name": "Chrono Trigger",
+      "edition": "Steam Edition",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "CC",
+          "era": "CHRONO",
+          "order": 6,
+          "type": "CORE",
+          "name": "Chrono Cross",
+          "edition": "The Radical Dreamers Edition",
+          "platform": ["SWITCH", "PS4", "PC"],
+          "unlocks": [
+            {
+              "id": "RD",
+              "era": "CHRONO",
+              "order": 7,
+              "type": "SIDE",
+              "name": "Radical Dreamers",
+              "edition": "Included",
+              "platform": ["SWITCH", "PS4", "PC"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AoM",
+      "era": "MANA",
+      "order": 8,
+      "type": "CORE",
+      "name": "Adventures of Mana",
+      "edition": "Remake",
+      "platform": ["PSVITA"],
+      "unlocks": [
+        {
+          "id": "SoMR",
+          "era": "MANA",
+          "order": 9,
+          "type": "CORE",
+          "name": "Secret of Mana",
+          "edition": "Remake",
+          "platform": ["PS4", "PSVITA", "PC"],
+          "unlocks": [
+            {
+              "id": "ToMR",
+              "era": "MANA",
+              "order": 10,
+              "type": "CORE",
+              "name": "Trials of Mana",
+              "edition": "Remake",
+              "platform": ["SWITCH", "PS4", "PC"],
+              "unlocks": [
+                {
+                  "id": "LoMR",
+                  "era": "MANA",
+                  "order": 11,
+                  "type": "CORE",
+                  "name": "Legend of Mana",
+                  "edition": "HD Remaster",
+                  "platform": ["SWITCH", "PS4", "PC"],
+                  "unlocks": [
+                    {
+                      "id": "SwM",
+                      "era": "MANA",
+                      "order": 12,
+                      "type": "CORE",
+                      "name": "Sword of Mana",
+                      "edition": "Original",
+                      "platform": ["GBA"],
+                      "unlocks": [
+                        {
+                          "id": "CoM",
+                          "era": "MANA",
+                          "order": 13,
+                          "type": "SIDE",
+                          "name": "Children of Mana",
+                          "edition": "Original",
+                          "platform": ["DS"],
+                          "unlocks": [
+                            {
+                              "id": "DoM",
+                              "era": "MANA",
+                              "order": 14,
+                              "type": "CORE",
+                              "name": "Dawn of Mana",
+                              "edition": "Original",
+                              "platform": ["PS2"],
+                              "unlocks": [
+                                {
+                                  "id": "HoM",
+                                  "era": "MANA",
+                                  "order": 15,
+                                  "type": "SIDE",
+                                  "name": "Heroes of Mana",
+                                  "edition": "Original",
+                                  "platform": ["DS"],
+                                  "unlocks": [
+                                    {
+                                      "id": "VoM",
+                                      "era": "MANA",
+                                      "order": 16,
+                                      "type": "CORE",
+                                      "name": "Visions of Mana",
+                                      "edition": "Original",
+                                      "platform": ["PS5", "PS4", "PC"],
+                                      "unlocks": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CoMana",
+      "era": "SIDE",
+      "order": 17,
+      "type": "SIDE",
+      "name": "Collection of Mana",
+      "edition": "Collection",
+      "platform": ["SWITCH"],
+      "unlocks": []
+    }
+  ]
+}
