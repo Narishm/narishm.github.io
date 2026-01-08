@@ -1,3 +1,165 @@
 {
-  "eras": ["None"]
+  "eras": ["1P5", "2P5", "2P8", "3N4", "SIDE"],
+  "adventures": [
+    {
+      "id": "KH1",
+      "era": "1P5",
+      "order": 1,
+      "type": "CORE",
+      "name": "Kingdom Hearts",
+      "edition": "Final Mix",
+      "platform": ["PS5"],
+      "unlocks": [
+        {
+          "id": "RCOM",
+          "era": "1P5",
+          "order": 2,
+          "type": "CORE",
+          "name": "Re:Chain of Memories",
+          "edition": "1.5 Remix",
+          "platform": ["PS5"],
+          "unlocks": [
+            {
+              "id": "358B2M",
+              "era": "1P5",
+              "order": 3,
+              "type": "MOVIE",
+              "name": "358/2 Days",
+              "edition": "1.5 Remix",
+              "platform": ["PS5"],
+              "unlocks": [
+                {
+                  "id": "358B2",
+                  "era": "1P5",
+                  "order": 4,
+                  "type": "ALTERNATE",
+                  "name": "358/2 Days",
+                  "edition": "Original",
+                  "platform": ["DS"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "KH2",
+      "era": "2P5",
+      "order": 5,
+      "type": "CORE",
+      "name": "Kingdom Hearts II",
+      "edition": "2.5 Remix",
+      "platform": ["PS5"],
+      "unlocks": [
+        {
+          "id": "BBS",
+          "era": "2P5",
+          "order": 6,
+          "type": "CORE",
+          "name": "Birth by Sleep",
+          "edition": "2.5 Remix",
+          "platform": ["PS5"],
+          "unlocks": [
+            {
+              "id": "RCM",
+              "era": "2P5",
+              "order": 7,
+              "type": "MOVIE",
+              "name": "Re:coded",
+              "edition": "2.5 Remix",
+              "platform": ["PS5"],
+              "unlocks": [
+                {
+                  "id": "RC",
+                  "era": "2P5",
+                  "order": 8,
+                  "type": "ALTERNATE",
+                  "name": "Re:coded",
+                  "edition": "Original",
+                  "platform": ["DS"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "3D",
+      "era": "2P8",
+      "order": 9,
+      "type": "CORE",
+      "name": "Dream Drop Distance",
+      "edition": "2.8 Remix",
+      "platform": ["PS5"],
+      "unlocks": [
+        {
+          "id": "XBC",
+          "era": "2P8",
+          "order": 10,
+          "type": "MOVIE",
+          "name": "χ Back Cover",
+          "edition": "2.8 Remix",
+          "platform": ["PS5"],
+          "unlocks": [
+            {
+              "id": "02BBS",
+              "era": "2P8",
+              "order": 11,
+              "type": "PROLOGUE",
+              "name": "0.2 Birth by Sleep – A Fragmentary Passage",
+              "edition": "2.8 Remix",
+              "platform": ["PS5"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "KH3",
+      "era": "3N4",
+      "order": 12,
+      "type": "CORE",
+      "name": "Kingdom Hearts III",
+      "edition": "Original",
+      "platform": ["PS5"],
+      "unlocks": [
+        {
+          "id": "RM",
+          "era": "3N4",
+          "order": 13,
+          "type": "EXPANSION",
+          "name": "Re Mind",
+          "edition": "DLC",
+          "platform": ["PS5"],
+          "unlocks": [
+            {
+              "id": "KH4",
+              "era": "3N4",
+              "order": 14,
+              "type": "CORE",
+              "name": "Kingdom Hearts IV",
+              "edition": "Original",
+              "platform": ["PS5"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MoM",
+      "era": "SIDE",
+      "order": 15,
+      "type": "SIDE",
+      "name": "Melody of Memory",
+      "edition": "Original",
+      "platform": ["PS5"],
+      "unlocks": []
+    }
+  ]
 }
