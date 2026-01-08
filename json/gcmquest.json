@@ -2,25 +2,25 @@
   "eras": ["GRANDIA", "CHRONO", "MANA", "SIDE"],
   "adventures": [
     {
-      "id": "G",
+      "id": "GR1",
       "era": "GRANDIA",
       "order": 1,
       "type": "CORE",
       "name": "Grandia",
       "edition": "HD Collection",
-      "platform": ["SWITCH", "PS5", "PS4"],
+      "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "G2",
+          "id": "GR2",
           "era": "GRANDIA",
           "order": 2,
           "type": "CORE",
           "name": "Grandia II",
           "edition": "HD Collection",
-          "platform": ["SWITCH", "PS5", "PS4"],
+          "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "GX",
+              "id": "GRX",
               "era": "GRANDIA",
               "order": 3,
               "type": "CORE",
@@ -29,7 +29,7 @@
               "platform": ["PS2"],
               "unlocks": [
                 {
-                  "id": "G3",
+                  "id": "GR3",
                   "era": "GRANDIA",
                   "order": 4,
                   "type": "CORE",
@@ -60,7 +60,7 @@
           "type": "CORE",
           "name": "Chrono Cross",
           "edition": "The Radical Dreamers Edition",
-          "platform": ["SWITCH", "PS4", "PC"],
+          "platform": ["PS4"],
           "unlocks": [
             {
               "id": "RD",
@@ -68,8 +68,8 @@
               "order": 7,
               "type": "SIDE",
               "name": "Radical Dreamers",
-              "edition": "Included",
-              "platform": ["SWITCH", "PS4", "PC"],
+              "edition": "Movie",
+              "platform": ["PS4"],
               "unlocks": []
             }
           ]
@@ -77,7 +77,7 @@
       ]
     },
     {
-      "id": "AoM",
+      "id": "AOM",
       "era": "MANA",
       "order": 8,
       "type": "CORE",
@@ -86,7 +86,7 @@
       "platform": ["PSVITA"],
       "unlocks": [
         {
-          "id": "SoMR",
+          "id": "SOMR",
           "era": "MANA",
           "order": 9,
           "type": "CORE",
@@ -95,7 +95,7 @@
           "platform": ["PS4", "PSVITA", "PC"],
           "unlocks": [
             {
-              "id": "ToMR",
+              "id": "TOMR",
               "era": "MANA",
               "order": 10,
               "type": "CORE",
@@ -104,7 +104,7 @@
               "platform": ["SWITCH", "PS4", "PC"],
               "unlocks": [
                 {
-                  "id": "LoMR",
+                  "id": "LOMR",
                   "era": "MANA",
                   "order": 11,
                   "type": "CORE",
@@ -113,7 +113,7 @@
                   "platform": ["SWITCH", "PS4", "PC"],
                   "unlocks": [
                     {
-                      "id": "SwM",
+                      "id": "SOM",
                       "era": "MANA",
                       "order": 12,
                       "type": "CORE",
