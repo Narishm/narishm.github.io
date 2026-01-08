@@ -1,0 +1,112 @@
+{
+  "eras": ["LIFE1", "LIFE2", "EXTRALIFE"],
+  "adventures": [
+    {
+      "id": "HL1",
+      "era": "LIFE1",
+      "order": 1,
+      "type": "CORE",
+      "name": "Half-Life",
+      "edition": "Steam (Updated)",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "HLOF",
+          "era": "LIFE1",
+          "order": 2,
+          "type": "CORE",
+          "name": "Half-Life: Opposing Force",
+          "edition": "Original",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "HLBS",
+              "era": "LIFE1",
+              "order": 3,
+              "type": "CORE",
+              "name": "Half-Life: Blue Shift",
+              "edition": "Original",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "HLBEFORE",
+                  "era": "LIFE1",
+                  "order": 4,
+                  "type": "SIDE",
+                  "name": "Half-Life: Before",
+                  "edition": "Mod",
+                  "platform": ["STEAM"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HL2",
+      "era": "LIFE2",
+      "order": 5,
+      "type": "CORE",
+      "name": "Half-Life 2",
+      "edition": "Steam (Includes Episodes)",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "HLEP1",
+          "era": "LIFE2",
+          "order": 6,
+          "type": "CORE",
+          "name": "Half-Life 2",
+          "edition": "Episode One",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "HLEP2",
+              "era": "LIFE2",
+              "order": 7,
+              "type": "CORE",
+              "name": "Half-Life 2",
+              "edition": "Episode Two",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "HL2LC",
+                  "era": "LIFE2",
+                  "order": 8,
+                  "type": "SIDE",
+                  "name": "Half-Life 2: Lost Coast",
+                  "edition": "Tech Demo",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "HL2DF",
+                      "era": "LIFE2",
+                      "order": 9,
+                      "type": "SIDE",
+                      "name": "Half-Life 2: DownFall",
+                      "edition": "Mod",
+                      "platform": ["STEAM"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BM",
+      "era": "EXTRALIFE",
+      "order": 10,
+      "type": "SIDE",
+      "name": "Black Mesa",
+      "edition": "Remake",
+      "platform": ["STEAM"],
+      "unlocks": []
+    }
+  ]
+}

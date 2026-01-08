@@ -1,0 +1,305 @@
+{
+  "eras": ["SC1","SC2","LOST"],
+  "adventures": [
+    {
+      "id": "SC1R",
+      "era": "SC1",
+      "order": 1,
+      "type": "CORE",
+      "name": "StarCraft",
+      "edition": "Remastered",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "SC1TC",
+          "era": "SC1",
+          "order": 2,
+          "type": "CAMPAIGN",
+          "name": "Rebel Yell",
+          "edition": "StarCraft Terran Campaign",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "SC1ZC",
+              "era": "SC1",
+              "order": 3,
+              "type": "CAMPAIGN",
+              "name": "The Overmind",
+              "edition": "StarCraft Zerg Campaign",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "SC1PC",
+                  "era": "SC1",
+                  "order": 4,
+                  "type": "CAMPAIGN",
+                  "name": "The Fall",
+                  "edition": "StarCraft Protoss Campaign",
+                  "platform": ["PC"],
+                  "unlocks": [
+                    {
+                      "id": "BWPC",
+                      "era": "SC1",
+                      "order": 5,
+                      "type": "CAMPAIGN",
+                      "name": "The Stand",
+                      "edition": "Brood War Protoss Campaign",
+                      "platform": ["PC"],
+                      "unlocks": [
+                        {
+                          "id": "BWTC",
+                          "era": "SC1",
+                          "order": 6,
+                          "type": "CAMPAIGN",
+                          "name": "The Iron Fist",
+                          "edition": "Brood War Terran Campaign",
+                          "platform": ["PC"],
+                          "unlocks": [
+                            {
+                              "id": "BWZC",
+                              "era": "SC1",
+                              "order": 7,
+                              "type": "CAMPAIGN",
+                              "name": "Queen of Blades",
+                              "edition": "Brood War Zerg Campaign",
+                              "platform": ["PC"],
+                              "unlocks": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SC2",
+      "era": "SC2",
+      "order": 8,
+      "type": "CORE",
+      "name": "StarCraft II",
+      "edition": "Collection",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "WOL",
+          "era": "SC2",
+          "order": 9,
+          "type": "CAMPAIGN",
+          "name": "Wings of Liberty",
+          "edition": "StarCraft II Terran Campaign",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "HOTS",
+              "era": "SC2",
+              "order": 10,
+              "type": "CAMPAIGN",
+              "name": "Heart of the Swarm",
+              "edition": "StarCraft II Zerg Campaign",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "LOTV",
+                  "era": "SC2",
+                  "order": 11,
+                  "type": "CAMPAIGN",
+                  "name": "Legacy of the Void",
+                  "edition": "StarCraft II Protoss Campaign",
+                  "platform": ["PC"],
+                  "unlocks": [
+                    {
+                      "id": "NCO",
+                      "era": "SC2",
+                      "order": 12,
+                      "type": "CAMPAIGN",
+                      "name": "Nova Covert Ops",
+                      "edition": "StarCraft II Ghost Campaign",
+                      "platform": ["PC"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PRE",
+      "era": "LOST",
+      "order": 13,
+      "type": "EXPANSION",
+      "name": "Precursor",
+      "edition": "Expansion",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "INS",
+      "era": "LOST",
+      "order": 14,
+      "type": "EXPANSION",
+      "name": "Insurrection",
+      "edition": "Expansion",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "INSTC",
+          "era": "LOST",
+          "order": 15,
+          "type": "CAMPAIGN",
+          "name": "Terran Campaign",
+          "edition": "Expansion",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "INSPC",
+              "era": "LOST",
+              "order": 16,
+              "type": "CAMPAIGN",
+              "name": "Protoss Campaign",
+              "edition": "Expansion",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "INSZC",
+                  "era": "LOST",
+                  "order": 17,
+                  "type": "CAMPAIGN",
+                  "name": "Zerg Campaign",
+                  "edition": "Expansion",
+                  "platform": ["PC"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "RET",
+      "era": "LOST",
+      "order": 18,
+      "type": "EXPANSION",
+      "name": "Retribution",
+      "edition": "Expansion",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "RETPC",
+          "era": "LOST",
+          "order": 19,
+          "type": "CAMPAIGN",
+          "name": "The Legacy of Kharadun Protoss Campaign",
+          "edition": "Expansion",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "RETTC",
+              "era": "LOST",
+              "order": 20,
+              "type": "CAMPAIGN",
+              "name": "Strongarm Terran Campaign",
+              "edition": "Expansion",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "RETZC",
+                  "era": "LOST",
+                  "order": 21,
+                  "type": "CAMPAIGN",
+                  "name": "Dynamic Evolution Zerg Campaign",
+                  "edition": "Expansion",
+                  "platform": ["PC"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ENS",
+      "era": "LOST",
+      "order": 22,
+      "type": "EXPANSION",
+      "name": "Enslavers",
+      "edition": "Expansion",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "ENS2",
+          "era": "LOST",
+          "order": 23,
+          "type": "EXPANSION",
+          "name": "Enslavers II",
+          "edition": "Expansion",
+          "platform": ["PC"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "STUK",
+      "era": "LOST",
+      "order": 24,
+      "type": "EXPANSION",
+      "name": "Stukov Series",
+      "edition": "Expansion",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "MERC",
+          "era": "LOST",
+          "order": 25,
+          "type": "EXPANSION",
+          "name": "Mercenaries",
+          "edition": "Expansion",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "DEC",
+              "era": "LOST",
+              "order": 26,
+              "type": "EXPANSION",
+              "name": "Deception",
+              "edition": "Expansion",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "MER2",
+                  "era": "LOST",
+                  "order": 27,
+                  "type": "EXPANSION",
+                  "name": "Mercenaries II",
+                  "edition": "Expansion",
+                  "platform": ["PC"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SC64",
+      "era": "LOST",
+      "order": 28,
+      "type": "BONUS",
+      "name": "StarCraft 64",
+      "edition": "Expansion",
+      "platform": ["N64"],
+      "unlocks": []
+    }
+  ]
+}

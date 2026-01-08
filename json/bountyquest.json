@@ -1,0 +1,163 @@
+{
+  "eras": ["M1", "M2", "M3", "M4", "M5", "MP", "MS"],
+  "adventures": [
+    {
+      "id": "MET",
+      "era": "M1",
+      "order": 1,
+      "type": "CORE",
+      "name": "Metroid",
+      "edition": "Original",
+      "platform": ["NES", "SWITCH"],
+      "unlocks": [
+        {
+          "id": "MZM",
+          "era": "M1",
+          "order": 2,
+          "type": "ALTERNATE",
+          "name": "Metroid: Zero Mission",
+          "edition": "Remake",
+          "platform": ["GBA"],
+          "unlocks": []
+        },
+        {
+          "id": "ROS",
+          "era": "M2",
+          "order": 3,
+          "type": "CORE",
+          "name": "Metroid II: Return of Samus",
+          "edition": "Original",
+          "platform": ["GB"],
+          "unlocks": [
+            {
+              "id": "MSR",
+              "era": "M2",
+              "order": 4,
+              "type": "ALTERNATE",
+              "name": "Metroid: Samus Returns",
+              "edition": "Remake",
+              "platform": ["3DS"],
+              "unlocks": []
+            },
+            {
+              "id": "AM2R",
+              "era": "M2",
+              "order": 5,
+              "type": "ALTERNATE",
+              "name": "AM2R",
+              "edition": "Another Metroid 2 Remake",
+              "platform": ["PC"],
+              "unlocks": []
+            },
+            {
+              "id": "SM",
+              "era": "M3",
+              "order": 6,
+              "type": "CORE",
+              "name": "Super Metroid",
+              "edition": "Original",
+              "platform": ["SNES", "SWITCH"],
+              "unlocks": [
+                {
+                  "id": "MF",
+                  "era": "M4",
+                  "order": 7,
+                  "type": "CORE",
+                  "name": "Metroid Fusion",
+                  "edition": "Original",
+                  "platform": ["GBA", "SWITCH"],
+                  "unlocks": [
+                    {
+                      "id": "DREAD",
+                      "era": "M5",
+                      "order": 8,
+                      "type": "CORE",
+                      "name": "Metroid Dread",
+                      "edition": "Original",
+                      "platform": ["SWITCH"],
+                      "unlocks": [
+                        {
+                          "id": "MDREADDM",
+                          "era": "M5",
+                          "order": 9,
+                          "type": "ALTERNATE",
+                          "name": "Metroid Dread",
+                          "edition": "Dread Mode",
+                          "platform": ["SWITCH"],
+                          "unlocks": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PRIME1R",
+      "era": "MP",
+      "order": 10,
+      "type": "CORE",
+      "name": "Metroid Prime",
+      "edition": "Remastered",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "PRIME2",
+          "era": "MP",
+          "order": 11,
+          "type": "CORE",
+          "name": "Metroid Prime 2: Echoes",
+          "edition": "Original",
+          "platform": ["GCN"],
+          "unlocks": [
+            {
+              "id": "PRIME3",
+              "era": "MP",
+              "order": 12,
+              "type": "CORE",
+              "name": "Metroid Prime 3: Corruption",
+              "edition": "Original",
+              "platform": ["WII"],
+              "unlocks": [
+                {
+                  "id": "PRIME4",
+                  "era": "MP",
+                  "order": 13,
+                  "type": "CORE",
+                  "name": "Metroid Prime 4: Beyond",
+                  "edition": "Original",
+                  "platform": ["SWITCH"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MOM",
+      "era": "MS",
+      "order": 14,
+      "type": "SIDE",
+      "name": "Metroid: Other M",
+      "edition": "Original",
+      "platform": ["WII"],
+      "unlocks": []
+    },
+    {
+      "id": "MPH",
+      "era": "MS",
+      "order": 15,
+      "type": "SIDE",
+      "name": "Metroid Prime Hunters",
+      "edition": "Original",
+      "platform": ["NDS"],
+      "unlocks": []
+    }
+  ]
+}

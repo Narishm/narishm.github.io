@@ -1,0 +1,59 @@
+{
+  "eras": ["DEUS"],
+  "adventures": [
+    {
+      "id": "DX1",
+      "era": "DEUS",
+      "order": 1,
+      "type": "CORE",
+      "name": "Deus Ex",
+      "edition": "Game of the Year Edition",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "DXIW",
+          "era": "DEUS",
+          "order": 2,
+          "type": "CORE",
+          "name": "Deus Ex: Invisible War",
+          "edition": "Original",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "DXHR",
+              "era": "DEUS",
+              "order": 3,
+              "type": "CORE",
+              "name": "Deus Ex: Human Revolution",
+              "edition": "Director's Cut",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "DXF",
+                  "era": "DEUS",
+                  "order": 4,
+                  "type": "SIDE",
+                  "name": "Deus Ex: The Fall",
+                  "edition": "Original",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "DXMD",
+                      "era": "DEUS",
+                      "order": 5,
+                      "type": "CORE",
+                      "name": "Deus Ex: Mankind Divided",
+                      "edition": "Original",
+                      "platform": ["STEAM"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

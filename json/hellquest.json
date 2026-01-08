@@ -1,0 +1,121 @@
+{
+  "eras": ["TRISTRAM","SANTUARY","HEAVEN","HELL","LOST"],
+  "adventures": [
+    {
+      "id": "D1",
+      "era": "TRISTRAM",
+      "order": 1,
+      "type": "CORE",
+      "name": "Diablo",
+      "edition": "Classic",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "HF",
+          "era": "TRISTRAM",
+          "order": 2,
+          "type": "EXPANSION",
+          "name": "Hellfire",
+          "edition": "Expansion",
+          "platform": ["PC"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "D2R",
+      "era": "SANTUARY",
+      "order": 3,
+      "type": "CORE",
+      "name": "Diablo II: Resurrected",
+      "edition": "Remaster",
+      "platform": ["PC","PS4","PS5","XB1","XBSX","Switch"],
+      "unlocks": [
+        {
+          "id": "LOD",
+          "era": "SANTUARY",
+          "order": 4,
+          "type": "EXPANSION",
+          "name": "Lord of Destruction",
+          "edition": "Expansion",
+          "platform": ["PC","PS4","PS5","XB1","XBSX","Switch"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "D3",
+      "era": "HEAVEN",
+      "order": 5,
+      "type": "CORE",
+      "name": "Diablo III",
+      "edition": "Base Game",
+      "platform": ["PC","PS3","PS4","XB360","XB1","Switch"],
+      "unlocks": [
+        {
+          "id": "ROS",
+          "era": "HEAVEN",
+          "order": 6,
+          "type": "EXPANSION",
+          "name": "Reaper of Souls",
+          "edition": "Expansion",
+          "platform": ["PC","PS3","PS4","XB360","XB1"],
+          "unlocks": [
+            {
+              "id": "ROTN",
+              "era": "HEAVEN",
+              "order": 7,
+              "type": "DLC",
+              "name": "Rise of the Necromancer",
+              "edition": "DLC",
+              "platform": ["PC","PS4","XB1"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D4",
+      "era": "HELL",
+      "order": 8,
+      "type": "CORE",
+      "name": "Diablo IV",
+      "edition": "Base Game",
+      "platform": ["PC","PS4","PS5","XB1","XBSX"],
+      "unlocks": [
+        {
+          "id": "VOH",
+          "era": "HELL",
+          "order": 9,
+          "type": "EXPANSION",
+          "name": "Vessel of Hatred",
+          "edition": "Expansion",
+          "platform": ["PC","PS4","PS5","XB1","XBSX"],
+          "unlocks": [
+            {
+              "id": "LOH",
+              "era": "HELL",
+              "order": 10,
+              "type": "EXPANSION",
+              "name": "Lord of Hatred",
+              "edition": "Expansion",
+              "platform": ["PC","PS4","PS5","XB1","XBSX"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DI",
+      "era": "LOST",
+      "order": 11,
+      "type": "SPINOFF",
+      "name": "Diablo Immortal",
+      "edition": "Live Service",
+      "platform": ["Mobile","PC"],
+      "unlocks": []
+    }
+  ]
+}

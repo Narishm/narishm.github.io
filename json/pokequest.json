@@ -1,0 +1,741 @@
+{
+  "eras": ["GEN1", "GEN2", "GEN3", "GEN4", "GEN5", "GEN6", "GEN7", "GEN8", "GEN9", "SIDE"],
+  "adventures": [
+    {
+      "id": "PB",
+      "era": "GEN1",
+      "order": 1,
+      "type": "CORE",
+      "name": "Pokémon Blue",
+      "edition": "GameBoy",
+      "platform": ["GB"],
+      "unlocks": [
+        {
+          "id": "PLG",
+          "era": "GEN1",
+          "order": 2,
+          "type": "ALTERNATE",
+          "name": "Pokémon LeafGreen",
+          "edition": "GBA",
+          "platform": ["GBA"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PR",
+      "era": "GEN1",
+      "order": 3,
+      "type": "CORE",
+      "name": "Pokémon Red",
+      "edition": "GameBoy",
+      "platform": ["GB"],
+      "unlocks": [
+        {
+          "id": "PFR",
+          "era": "GEN1",
+          "order": 4,
+          "type": "ALTERNATE",
+          "name": "Pokémon FireRed",
+          "edition": "GBA",
+          "platform": ["GBA"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PYE",
+      "era": "GEN1",
+      "order": 5,
+      "type": "CORE",
+      "name": "Pokémon Yellow",
+      "edition": "GBC",
+      "platform": ["GBC"],
+      "unlocks": [
+        {
+          "id": "PGP",
+          "era": "GEN1",
+          "order": 6,
+          "type": "ALTERNATE",
+          "name": "Pokémon Let's Go, Pikachu!",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "PGE",
+          "era": "GEN1",
+          "order": 7,
+          "type": "ALTERNATE",
+          "name": "Pokémon Let's Go, Eevee!",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PG",
+      "era": "GEN2",
+      "order": 8,
+      "type": "CORE",
+      "name": "Pokémon Gold",
+      "edition": "GBC",
+      "platform": ["GBC"],
+      "unlocks": [
+        {
+          "id": "PHG",
+          "era": "GEN2",
+          "order": 9,
+          "type": "ALTERNATE",
+          "name": "Pokémon HeartGold",
+          "edition": "DS",
+          "platform": ["DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PS",
+      "era": "GEN2",
+      "order": 10,
+      "type": "CORE",
+      "name": "Pokémon Silver",
+      "edition": "GBC",
+      "platform": ["GBC"],
+      "unlocks": [
+        {
+          "id": "PSS",
+          "era": "GEN2",
+          "order": 11,
+          "type": "ALTERNATE",
+          "name": "Pokémon SoulSilver",
+          "edition": "DS",
+          "platform": ["DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PC",
+      "era": "GEN2",
+      "order": 12,
+      "type": "CORE",
+      "name": "Pokémon Crystal",
+      "edition": "GBC",
+      "platform": ["GBC"],
+      "unlocks": []
+    },
+    {
+      "id": "PSA",
+      "era": "GEN3",
+      "order": 13,
+      "type": "CORE",
+      "name": "Pokémon Sapphire",
+      "edition": "GBA",
+      "platform": ["GBA"],
+      "unlocks": [
+        {
+          "id": "PASA",
+          "era": "GEN3",
+          "order": 14,
+          "type": "ALTERNATE",
+          "name": "Pokémon Alpha Sapphire",
+          "edition": "3DS",
+          "platform": ["3DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PRU",
+      "era": "GEN3",
+      "order": 15,
+      "type": "CORE",
+      "name": "Pokémon Ruby",
+      "edition": "GBA",
+      "platform": ["GBA"],
+      "unlocks": [
+        {
+          "id": "PORU",
+          "era": "GEN3",
+          "order": 16,
+          "type": "ALTERNATE",
+          "name": "Pokémon Omega Ruby",
+          "edition": "3DS",
+          "platform": ["3DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PEM",
+      "era": "GEN3",
+      "order": 17,
+      "type": "CORE",
+      "name": "Pokémon Emerald",
+      "edition": "GBA",
+      "platform": ["GBA"],
+      "unlocks": []
+    },
+    {
+      "id": "PD",
+      "era": "GEN4",
+      "order": 18,
+      "type": "CORE",
+      "name": "Pokémon Diamond",
+      "edition": "DS",
+      "platform": ["DS"],
+      "unlocks": [
+        {
+          "id": "PBD",
+          "era": "GEN4",
+          "order": 19,
+          "type": "ALTERNATE",
+          "name": "Pokémon Brilliant Diamond",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PP",
+      "era": "GEN4",
+      "order": 20,
+      "type": "CORE",
+      "name": "Pokémon Pearl",
+      "edition": "DS",
+      "platform": ["DS"],
+      "unlocks": [
+        {
+          "id": "PSP",
+          "era": "GEN4",
+          "order": 21,
+          "type": "ALTERNATE",
+          "name": "Pokémon Shining Pearl",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PPL",
+      "era": "GEN4",
+      "order": 22,
+      "type": "CORE",
+      "name": "Pokémon Platinum",
+      "edition": "DS",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "PBL",
+      "era": "GEN5",
+      "order": 23,
+      "type": "CORE",
+      "name": "Pokémon Black",
+      "edition": "DS",
+      "platform": ["DS"],
+      "unlocks": [
+        {
+          "id": "PBL2",
+          "era": "GEN5",
+          "order": 24,
+          "type": "SEQUEL",
+          "name": "Pokémon Black 2",
+          "edition": "DS",
+          "platform": ["DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PW",
+      "era": "GEN5",
+      "order": 25,
+      "type": "CORE",
+      "name": "Pokémon White",
+      "edition": "DS",
+      "platform": ["DS"],
+      "unlocks": [
+        {
+          "id": "PW2",
+          "era": "GEN5",
+          "order": 26,
+          "type": "SEQUEL",
+          "name": "Pokémon White 2",
+          "edition": "DS",
+          "platform": ["DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PX",
+      "era": "GEN6",
+      "order": 27,
+      "type": "CORE",
+      "name": "Pokémon X",
+      "edition": "3DS",
+      "platform": ["3DS"],
+      "unlocks": []
+    },
+    {
+      "id": "PY",
+      "era": "GEN6",
+      "order": 28,
+      "type": "CORE",
+      "name": "Pokémon Y",
+      "edition": "3DS",
+      "platform": ["3DS"],
+      "unlocks": []
+    },
+    {
+      "id": "PSU",
+      "era": "GEN7",
+      "order": 29,
+      "type": "CORE",
+      "name": "Pokémon Sun",
+      "edition": "3DS",
+      "platform": ["3DS"],
+      "unlocks": [
+        {
+          "id": "PUSU",
+          "era": "GEN7",
+          "order": 30,
+          "type": "ALTERNATE",
+          "name": "Pokémon Ultra Sun",
+          "edition": "3DS",
+          "platform": ["3DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PMO",
+      "era": "GEN7",
+      "order": 31,
+      "type": "CORE",
+      "name": "Pokémon Moon",
+      "edition": "3DS",
+      "platform": ["3DS"],
+      "unlocks": [
+        {
+          "id": "PUMO",
+          "era": "GEN7",
+          "order": 32,
+          "type": "ALTERNATE",
+          "name": "Pokémon Ultra Moon",
+          "edition": "3DS",
+          "platform": ["3DS"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PSW",
+      "era": "GEN8",
+      "order": 33,
+      "type": "CORE",
+      "name": "Pokémon Sword",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "PSWIOA",
+          "era": "GEN8",
+          "order": 34,
+          "type": "DLC",
+          "name": "The Isle of Armor",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "PSWTCT",
+          "era": "GEN8",
+          "order": 35,
+          "type": "DLC",
+          "name": "The Crown Tundra",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PSH",
+      "era": "GEN8",
+      "order": 36,
+      "type": "CORE",
+      "name": "Pokémon Shield",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "PSHIOA",
+          "era": "GEN8",
+          "order": 37,
+          "type": "DLC",
+          "name": "The Isle of Armor",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "PSHTCT",
+          "era": "GEN8",
+          "order": 38,
+          "type": "DLC",
+          "name": "The Crown Tundra",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PSC",
+      "era": "GEN9",
+      "order": 39,
+      "type": "CORE",
+      "name": "Pokémon Scarlet",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "PSCTTM",
+          "era": "GEN9",
+          "order": 40,
+          "type": "DLC",
+          "name": "The Teal Mask",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "PSCTID",
+          "era": "GEN9",
+          "order": 41,
+          "type": "DLC",
+          "name": "The Indigo Disk",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "PSCMM",
+          "era": "GEN9",
+          "order": 42,
+          "type": "DLC",
+          "name": "Mochi Mayhem",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PVI",
+      "era": "GEN9",
+      "order": 43,
+      "type": "CORE",
+      "name": "Pokémon Violet",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "PVITTM",
+          "era": "GEN9",
+          "order": 44,
+          "type": "DLC",
+          "name": "The Teal Mask",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "PVITID",
+          "era": "GEN9",
+          "order": 45,
+          "type": "DLC",
+          "name": "The Indigo Disk",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "PVIMM",
+          "era": "GEN9",
+          "order": 46,
+          "type": "DLC",
+          "name": "Mochi Mayhem",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PLA",
+      "era": "SIDE",
+      "order": 47,
+      "type": "SIDE",
+      "name": "Pokémon Legends: Arceus",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": []
+    },
+    {
+      "id": "PLZA",
+      "era": "SIDE",
+      "order": 48,
+      "type": "SIDE",
+      "name": "Pokémon Legends: Z-A",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": []
+    },
+    {
+      "id": "PCO",
+      "era": "SIDE",
+      "order": 49,
+      "type": "SIDE",
+      "name": "Pokémon Colosseum",
+      "edition": "GameCube",
+      "platform": ["GAMECUBE"],
+      "unlocks": []
+    },
+    {
+      "id": "PXDGOD",
+      "era": "SIDE",
+      "order": 50,
+      "type": "SIDE",
+      "name": "Pokémon XD: Gale of Darkness",
+      "edition": "GameCube",
+      "platform": ["GAMECUBE"],
+      "unlocks": []
+    },
+    {
+      "id": "PCQ",
+      "era": "SIDE",
+      "order": 51,
+      "type": "SIDE",
+      "name": "Pokémon Conquest",
+      "edition": "DS",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "PRRT",
+      "era": "SIDE",
+      "order": 52,
+      "type": "SIDE",
+      "name": "Pokémon Mystery Dungeon: Red Rescue Team",
+      "edition": "GBA",
+      "platform": ["GBA"],
+      "unlocks": [
+        {
+          "id": "PBRT",
+          "era": "SIDE",
+          "order": 53,
+          "type": "SIDE",
+          "name": "Pokémon Mystery Dungeon: Blue Rescue Team",
+          "edition": "DS",
+          "platform": ["DS"],
+          "unlocks": [
+            {
+              "id": "PMDRTDX",
+              "era": "SIDE",
+              "order": 54,
+              "type": "ALTERNATE",
+              "name": "Pokémon Mystery Dungeon: Rescue Team DX",
+              "edition": "Switch",
+              "platform": ["SWITCH"],
+              "unlocks": []
+            },
+            {
+              "id": "PMDEOT",
+              "era": "SIDE",
+              "order": 55,
+              "type": "SIDE",
+              "name": "Pokémon Mystery Dungeon: Explorers of Time",
+              "edition": "DS",
+              "platform": ["DS"],
+              "unlocks": [
+                {
+                  "id": "PMDEOD",
+                  "era": "SIDE",
+                  "order": 56,
+                  "type": "SIDE",
+                  "name": "Pokémon Mystery Dungeon: Explorers of Darkness",
+                  "edition": "DS",
+                  "platform": ["DS"],
+                  "unlocks": [
+                    {
+                      "id": "PMDEOS",
+                      "era": "SIDE",
+                      "order": 57,
+                      "type": "SIDE",
+                      "name": "Pokémon Mystery Dungeon: Explorers of Sky",
+                      "edition": "DS",
+                      "platform": ["DS"],
+                      "unlocks": []
+                    },
+                    {
+                      "id": "PMDGTI",
+                      "era": "SIDE",
+                      "order": 58,
+                      "type": "SIDE",
+                      "name": "Pokémon Mystery Dungeon: Gates to Infinity",
+                      "edition": "3DS",
+                      "platform": ["3DS"],
+                      "unlocks": [
+                        {
+                          "id": "PSMD",
+                          "era": "SIDE",
+                          "order": 59,
+                          "type": "SIDE",
+                          "name": "Pokémon Super Mystery Dungeon",
+                          "edition": "3DS",
+                          "platform": ["3DS"],
+                          "unlocks": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PRR",
+      "era": "SIDE",
+      "order": 60,
+      "type": "SIDE",
+      "name": "Pokémon Ranger",
+      "edition": "DS",
+      "platform": ["DS"],
+      "unlocks": [
+        {
+          "id": "PRSOA",
+          "era": "SIDE",
+          "order": 61,
+          "type": "SIDE",
+          "name": "Pokémon Ranger: Shadows of Almia",
+          "edition": "DS",
+          "platform": ["DS"],
+          "unlocks": [
+            {
+              "id": "PRGA",
+              "era": "SIDE",
+              "order": 62,
+              "type": "SIDE",
+              "name": "Pokémon Ranger: Guardian Signs",
+              "edition": "DS",
+              "platform": ["DS"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PDP",
+      "era": "SIDE",
+      "order": 63,
+      "type": "SIDE",
+      "name": "Pokémon Detective Pikachu",
+      "edition": "3DS",
+      "platform": ["3DS"],
+      "unlocks": [
+        {
+          "id": "PDPR",
+          "era": "SIDE",
+          "order": 64,
+          "type": "SEQUEL",
+          "name": "Pokémon Detective Pikachu Returns",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PSN",
+      "era": "SIDE",
+      "order": 65,
+      "type": "SIDE",
+      "name": "Pokémon Snap",
+      "edition": "N64",
+      "platform": ["N64"],
+      "unlocks": [
+        {
+          "id": "NPMS",
+          "era": "SIDE",
+          "order": 66,
+          "type": "SEQUEL",
+          "name": "New Pokémon Snap",
+          "edition": "Switch",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "PU",
+      "era": "SIDE",
+      "order": 67,
+      "type": "ROMHACK",
+      "name": "Pokémon Uranium",
+      "edition": "RomHack",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "PGZ",
+      "era": "SIDE",
+      "order": 68,
+      "type": "ROMHACK",
+      "name": "Pokémon Glazed",
+      "edition": "RomHack",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "PUB",
+      "era": "SIDE",
+      "order": 69,
+      "type": "ROMHACK",
+      "name": "Pokémon Unbound",
+      "edition": "RomHack",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "PTO",
+      "era": "SIDE",
+      "order": 70,
+      "type": "SIDE",
+      "name": "Pokkén Tournament",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": []
+    },
+    {
+      "id": "PTCG",
+      "era": "SIDE",
+      "order": 71,
+      "type": "SIDE",
+      "name": "Pokémon Trading Card Game",
+      "edition": "GB",
+      "platform": ["GB"],
+      "unlocks": []
+    }
+  ]
+}

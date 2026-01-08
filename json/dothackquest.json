@@ -1,0 +1,132 @@
+{
+  "eras": ["WORLDR1", "WORLDR2"],
+  "adventures": [
+    {
+      "id": "DHI",
+      "era": "WORLDR1",
+      "order": 1,
+      "type": "CORE",
+      "name": ".hack//INFECTION",
+      "edition": "Part 1",
+      "platform": ["PS2"],
+      "unlocks": [
+        {
+          "id": "DHL1",
+          "era": "WORLDR1",
+          "order": 2,
+          "type": "BONUS",
+          "name": ".hack//Liminality",
+          "edition": "Vol. 1: In the case of Mai Minase",
+          "platform": ["DVD"],
+          "unlocks": []
+        },
+        {
+          "id": "DHM",
+          "era": "WORLDR1",
+          "order": 3,
+          "type": "CORE",
+          "name": ".hack//MUTATION",
+          "edition": "Part 2",
+          "platform": ["PS2"],
+          "unlocks": [
+            {
+              "id": "DHL2",
+              "era": "WORLDR1",
+              "order": 4,
+              "type": "BONUS",
+              "name": ".hack//Liminality",
+              "edition": "Vol. 2: In the case of Yuki Aihara",
+              "platform": ["DVD"],
+              "unlocks": []
+            },
+            {
+              "id": "DHO",
+              "era": "WORLDR1",
+              "order": 5,
+              "type": "CORE",
+              "name": ".hack//OUTBREAK",
+              "edition": "Part 3",
+              "platform": ["PS2"],
+              "unlocks": [
+                {
+                  "id": "DHL3",
+                  "era": "WORLDR1",
+                  "order": 6,
+                  "type": "BONUS",
+                  "name": ".hack//Liminality",
+                  "edition": "Vol. 3: In the case of Kyoko Tohno",
+                  "platform": ["DVD"],
+                  "unlocks": []
+                },
+                {
+                  "id": "DHQ",
+                  "era": "WORLDR1",
+                  "order": 7,
+                  "type": "CORE",
+                  "name": ".hack//QUARANTINE",
+                  "edition": "Part 4",
+                  "platform": ["PS2"],
+                  "unlocks": [
+                    {
+                      "id": "DHL4",
+                      "era": "WORLDR1",
+                      "order": 8,
+                      "type": "BONUS",
+                      "name": ".hack//Liminality",
+                      "edition": "Vol. 4: Trismegistus",
+                      "platform": ["DVD"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DHGU1",
+      "era": "WORLDR2",
+      "order": 9,
+      "type": "CORE",
+      "name": ".hack//G.U. Rebirth",
+      "edition": "Last Recode (Vol. 1)",
+      "platform": ["PS4", "STEAM", "SWITCH"],
+      "unlocks": [
+        {
+          "id": "DHGU2",
+          "era": "WORLDR2",
+          "order": 10,
+          "type": "CORE",
+          "name": ".hack//G.U. Reminisce",
+          "edition": "Last Recode (Vol. 2)",
+          "platform": ["PS4", "STEAM", "SWITCH"],
+          "unlocks": [
+            {
+              "id": "DHGU3",
+              "era": "WORLDR2",
+              "order": 11,
+              "type": "CORE",
+              "name": ".hack//G.U. Redemption",
+              "edition": "Last Recode (Vol. 3)",
+              "platform": ["PS4", "STEAM", "SWITCH"],
+              "unlocks": [
+                {
+                  "id": "DHGU4",
+                  "era": "WORLDR2",
+                  "order": 12,
+                  "type": "CORE",
+                  "name": ".hack//G.U. Reconnection",
+                  "edition": "Last Recode (Vol. 4)",
+                  "platform": ["PS4", "STEAM", "SWITCH"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

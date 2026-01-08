@@ -1,0 +1,362 @@
+{
+  "eras": ["WAR1","WAR2","WAR3","WOW","FWAR"],
+  "adventures": [
+    {
+      "id": "WAR1R",
+      "era": "WAR1",
+      "order": 1,
+      "type": "CORE",
+      "name": "Orcs and Humans",
+      "edition": "Remastered",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "WAR1HC",
+          "era": "WAR1",
+          "order": 2,
+          "type": "CAMPAIGN",
+          "name": "Human Campaign",
+          "edition": "Orcs and Humans",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "WAR1OC",
+              "era": "WAR1",
+              "order": 3,
+              "type": "CAMPAIGN",
+              "name": "Orc Campaign",
+              "edition": "Orcs and Humans",
+              "platform": ["PC"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "WAR2R",
+      "era": "WAR2",
+      "order": 4,
+      "type": "CORE",
+      "name": "Warcraft II",
+      "edition": "Remastered",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "TODOC",
+          "era": "WAR2",
+          "order": 5,
+          "type": "CAMPAIGN",
+          "name": "Orc Campaign",
+          "edition": "Tides of Darkness",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "TODHC",
+              "era": "WAR2",
+              "order": 6,
+              "type": "CAMPAIGN",
+              "name": "Human Campaign",
+              "edition": "Tides of Darkness",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "BTDPOC",
+                  "era": "WAR2",
+                  "order": 7,
+                  "type": "CAMPAIGN",
+                  "name": "Orc Campaign",
+                  "edition": "Beyond the Dark Portal",
+                  "platform": ["PC"],
+                  "unlocks": [
+                    {
+                      "id": "BOTPHC",
+                      "era": "WAR2",
+                      "order": 8,
+                      "type": "CAMPAIGN",
+                      "name": "Human Campaign",
+                      "edition": "Beyond the Dark Portal",
+                      "platform": ["PC"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "WAR3R",
+      "era": "WAR3",
+      "order": 9,
+      "type": "CORE",
+      "name": "Warcraft III",
+      "edition": "Reforged",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "ROCPC",
+          "era": "WAR3",
+          "order": 10,
+          "type": "CAMPAIGN",
+          "name": "Exodus of the Horde",
+          "edition": "Reign of Chaos Prologue Campaign",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "ROCHC",
+              "era": "WAR3",
+              "order": 11,
+              "type": "CAMPAIGN",
+              "name": "The Scourge of Lordaeron",
+              "edition": "Reign of Chaos Human Campaign",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "ROCUC",
+                  "era": "WAR3",
+                  "order": 12,
+                  "type": "CAMPAIGN",
+                  "name": "Path of the Damned",
+                  "edition": "Reign of Chaos Undead Campaign",
+                  "platform": ["PC"],
+                  "unlocks": [
+                    {
+                      "id": "ROCOC",
+                      "era": "WAR3",
+                      "order": 13,
+                      "type": "CAMPAIGN",
+                      "name": "The Invasion of Kalimdor",
+                      "edition": "Reign of Chaos Orc Campaign",
+                      "platform": ["PC"],
+                      "unlocks": [
+                        {
+                          "id": "ROCNC",
+                          "era": "WAR3",
+                          "order": 14,
+                          "type": "CAMPAIGN",
+                          "name": "Eternity's End",
+                          "edition": "Reign of Chaos Night Elf Campaign",
+                          "platform": ["PC"],
+                          "unlocks": [
+                            {
+                              "id": "TFTSC",
+                              "era": "WAR3",
+                              "order": 15,
+                              "type": "CAMPAIGN",
+                              "name": "Terror of the Tides",
+                              "edition": "The Frozen Throne Sentinels Campaign",
+                              "platform": ["PC"],
+                              "unlocks": [
+                                {
+                                  "id": "TFTAC",
+                                  "era": "WAR3",
+                                  "order": 16,
+                                  "type": "CAMPAIGN",
+                                  "name": "Curse of the Blood Elves",
+                                  "edition": "The Frozen Throne Alliance Campaign",
+                                  "platform": ["PC"],
+                                  "unlocks": [
+                                    {
+                                      "id": "TFTUC",
+                                      "era": "WAR3",
+                                      "order": 17,
+                                      "type": "CAMPAIGN",
+                                      "name": "Legacy of the Damned",
+                                      "edition": "The Frozen Throne Scourge Campaign",
+                                      "platform": ["PC"],
+                                      "unlocks": [
+                                        {
+                                          "id": "TFTBC",
+                                          "era": "WAR3",
+                                          "order": 18,
+                                          "type": "CAMPAIGN",
+                                          "name": "The Founding of Durotar",
+                                          "edition": "The Frozen Throne Bonus Campaign",
+                                          "platform": ["PC"],
+                                          "unlocks": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "WOW",
+      "era": "WOW",
+      "order": 19,
+      "type": "CORE",
+      "name": "World of Warcraft",
+      "edition": "Review",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "BC",
+          "era": "WOW",
+          "order": 20,
+          "type": "EXPANSION",
+          "name": "The Burning Crusade",
+          "edition": "Review",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "WRATH",
+              "era": "WOW",
+              "order": 21,
+              "type": "EXPANSION",
+              "name": "Wrath of the Lich King",
+              "edition": "Review",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "CATA",
+                  "era": "WOW",
+                  "order": 22,
+                  "type": "EXPANSION",
+                  "name": "Cataclysm",
+                  "edition": "Review",
+                  "platform": ["PC"],
+                  "unlocks": [
+                    {
+                      "id": "MISTS",
+                      "era": "WOW",
+                      "order": 23,
+                      "type": "EXPANSION",
+                      "name": "Mists of Pandaria",
+                      "edition": "Review",
+                      "platform": ["PC"],
+                      "unlocks": [
+                        {
+                          "id": "WARLORDS",
+                          "era": "WOW",
+                          "order": 24,
+                          "type": "EXPANSION",
+                          "name": "Warlords of Draenor",
+                          "edition": "Review",
+                          "platform": ["PC"],
+                          "unlocks": [
+                            {
+                              "id": "LEGION",
+                              "era": "WOW",
+                              "order": 25,
+                              "type": "EXPANSION",
+                              "name": "Legion",
+                              "edition": "Review",
+                              "platform": ["PC"],
+                              "unlocks": [
+                                {
+                                  "id": "BFA",
+                                  "era": "WOW",
+                                  "order": 26,
+                                  "type": "EXPANSION",
+                                  "name": "Battle for Azeroth",
+                                  "edition": "Review",
+                                  "platform": ["PC"],
+                                  "unlocks": [
+                                    {
+                                      "id": "SL",
+                                      "era": "WOW",
+                                      "order": 27,
+                                      "type": "EXPANSION",
+                                      "name": "Shadowlands",
+                                      "edition": "Review",
+                                      "platform": ["PC"],
+                                      "unlocks": [
+                                        {
+                                          "id": "DF",
+                                          "era": "WOW",
+                                          "order": 28,
+                                          "type": "EXPANSION",
+                                          "name": "Dragonflight",
+                                          "edition": "Review",
+                                          "platform": ["PC"],
+                                          "unlocks": [
+                                            {
+                                              "id": "TWW",
+                                              "era": "WOW",
+                                              "order": 29,
+                                              "type": "EXPANSION",
+                                              "name": "The War Within",
+                                              "edition": "Review",
+                                              "platform": ["PC"],
+                                              "unlocks": [
+                                                {
+                                                  "id": "MIDNIGHT",
+                                                  "era": "WOW",
+                                                  "order": 30,
+                                                  "type": "EXPANSION",
+                                                  "name": "Midnight",
+                                                  "edition": "Review",
+                                                  "platform": ["PC"],
+                                                  "unlocks": [
+                                                    {
+                                                      "id": "TLT",
+                                                      "era": "WOW",
+                                                      "order": 31,
+                                                      "type": "EXPANSION",
+                                                      "name": "The Last Titan",
+                                                      "edition": "Review",
+                                                      "platform": ["PC"],
+                                                      "unlocks": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LOTC",
+      "era": "FWAR",
+      "order": 32,
+      "type": "BONUS",
+      "name": "Lord of the Clans",
+      "edition": "Demo",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "WAR2DS",
+      "era": "FWAR",
+      "order": 33,
+      "type": "BONUS",
+      "name": "Warcraft II: The Dark Saga",
+      "edition": "The Dark Saga",
+      "platform": ["PS1"],
+      "unlocks": []
+    }
+  ]
+}

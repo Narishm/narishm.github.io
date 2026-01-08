@@ -1,0 +1,302 @@
+{
+  "eras": ["ORIGIN", "EZIO", "KENWAY", "CLASSIC", "RPG", "MODERN", "CHRON", "SIDE"],
+  "adventures": [
+    {
+      "id": "AC1",
+      "era": "ORIGIN",
+      "order": 1,
+      "type": "CORE",
+      "name": "Assassin's Creed",
+      "edition": "Director's Cut Edition",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "ACLINE",
+      "era": "EZIO",
+      "order": 2,
+      "type": "SIDE",
+      "name": "Assassin's Creed: Lineage",
+      "edition": "Film",
+      "platform": ["MOVIE"],
+      "unlocks": [
+        {
+          "id": "AC2",
+          "era": "EZIO",
+          "order": 3,
+          "type": "CORE",
+          "name": "Assassin's Creed II",
+          "edition": "The Ezio Collection",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "ACBRO",
+              "era": "EZIO",
+              "order": 4,
+              "type": "CORE",
+              "name": "Assassin's Creed: Brotherhood",
+              "edition": "The Ezio Collection",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "ACREV",
+                  "era": "EZIO",
+                  "order": 5,
+                  "type": "CORE",
+                  "name": "Assassin's Creed: Revelations",
+                  "edition": "The Ezio Collection",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "ACEMB",
+                      "era": "EZIO",
+                      "order": 6,
+                      "type": "SIDE",
+                      "name": "Assassin's Creed: Embers",
+                      "edition": "Film",
+                      "platform": ["MOVIE"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "AC3",
+      "era": "KENWAY",
+      "order": 7,
+      "type": "CORE",
+      "name": "Assassin's Creed III",
+      "edition": "Remastered",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "ACTKOW",
+          "era": "KENWAY",
+          "order": 8,
+          "type": "SIDE",
+          "name": "Assassin's Creed III",
+          "edition": "Tyranny of King Washington",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "ACLIB",
+              "era": "KENWAY",
+              "order": 9,
+              "type": "SIDE",
+              "name": "Assassin's Creed III: Liberation",
+              "edition": "Remastered",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "AC4",
+                  "era": "KENWAY",
+                  "order": 10,
+                  "type": "CORE",
+                  "name": "Assassin's Creed IV: Black Flag",
+                  "edition": "Gold Edition",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "ACFCRY",
+                      "era": "KENWAY",
+                      "order": 11,
+                      "type": "SIDE",
+                      "name": "Assassin's Creed IV: Freedom Cry",
+                      "edition": "Standalone",
+                      "platform": ["STEAM"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ACRG",
+      "era": "CLASSIC",
+      "order": 12,
+      "type": "CORE",
+      "name": "Assassin's Creed Rogue",
+      "edition": "Original",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "ACUN",
+          "era": "CLASSIC",
+          "order": 13,
+          "type": "CORE",
+          "name": "Assassin's Creed Unity",
+          "edition": "Original",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "ACDEADK",
+              "era": "CLASSIC",
+              "order": 14,
+              "type": "SIDE",
+              "name": "Assassin's Creed Unity",
+              "edition": "Dead Kings",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "ACSYN",
+                  "era": "CLASSIC",
+                  "order": 15,
+                  "type": "CORE",
+                  "name": "Assassin's Creed Syndicate",
+                  "edition": "Gold Edition",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "ACJTR",
+                      "era": "CLASSIC",
+                      "order": 16,
+                      "type": "SIDE",
+                      "name": "Assassin's Creed Syndicate",
+                      "edition": "Jack the Ripper",
+                      "platform": ["STEAM"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ACORIG",
+      "era": "RPG",
+      "order": 17,
+      "type": "CORE",
+      "name": "Assassin's Creed Origins",
+      "edition": "Original",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "ACODY",
+          "era": "RPG",
+          "order": 18,
+          "type": "CORE",
+          "name": "Assassin's Creed Odyssey",
+          "edition": "Gold Edition",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "ACVAL",
+              "era": "RPG",
+              "order": 19,
+              "type": "CORE",
+              "name": "Assassin's Creed Valhalla",
+              "edition": "Complete Edition",
+              "platform": ["STEAM"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ACMIR",
+      "era": "MODERN",
+      "order": 20,
+      "type": "CORE",
+      "name": "Assassin's Creed Mirage",
+      "edition": "Original",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "ACSHD",
+          "era": "MODERN",
+          "order": 21,
+          "type": "CORE",
+          "name": "Assassin's Creed Shadows",
+          "edition": "Original",
+          "platform": ["STEAM"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "ACCCHN",
+      "era": "CHRON",
+      "order": 22,
+      "type": "CORE",
+      "name": "Assassin's Creed Chronicles: China",
+      "edition": "Original",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "ACCIND",
+          "era": "CHRON",
+          "order": 23,
+          "type": "CORE",
+          "name": "Assassin's Creed Chronicles: India",
+          "edition": "Original",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "ACCRUS",
+              "era": "CHRON",
+              "order": 24,
+              "type": "CORE",
+              "name": "Assassin's Creed Chronicles: Russia",
+              "edition": "Original",
+              "platform": ["STEAM"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ACALTCH",
+      "era": "SIDE",
+      "order": 25,
+      "type": "SIDE",
+      "name": "Assassin's Creed: Altaïr's Chronicles",
+      "edition": "Handheld",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "ACBLDL",
+      "era": "SIDE",
+      "order": 26,
+      "type": "SIDE",
+      "name": "Assassin's Creed: Bloodlines",
+      "edition": "Handheld",
+      "platform": ["PSP"],
+      "unlocks": []
+    },
+    {
+      "id": "ACDISC",
+      "era": "SIDE",
+      "order": 27,
+      "type": "SIDE",
+      "name": "Assassin's Creed II: Discovery",
+      "edition": "Handheld",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "ACMOV",
+      "era": "SIDE",
+      "order": 28,
+      "type": "SIDE",
+      "name": "Assassin's Creed",
+      "edition": "Movie (2016)",
+      "platform": ["MOVIE"],
+      "unlocks": []
+    }
+  ]
+}

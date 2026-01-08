@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dark Month Calendar (First Event Description => image/CODE.png)</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --text:#e8eaed;
+      --muted:#9aa0a6;
+      --border:rgba(255,255,255,.10);
+      --accent:#8ab4f8;
+      --danger:#f28b82;
+      --radius:14px;
+      --topbarH:64px;
+
+      --cellBase:rgba(15,22,32,.55);
+      --cellHover:rgba(15,22,32,.72);
+      --overlayDark:rgba(0,0,0,.65);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; margin:0; }
+    body{
+      background:
+        radial-gradient(1200px 800px at 30% 0%, rgba(138,180,248,.10), transparent 60%),
+        radial-gradient(1200px 800px at 80% 20%, rgba(242,139,130,.08), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      overflow:hidden;
+    }
+
+    .app{ height:100%; display:grid; grid-template-rows:var(--topbarH) 1fr; }
+
+    header{
+      display:flex; align-items:center; gap:10px;
+      padding:0 14px;
+      border-bottom:1px solid var(--border);
+      background:rgba(15,22,32,.85);
+      backdrop-filter:blur(10px);
+    }
+
+    .brand{ display:flex; align-items:center; gap:10px; min-width:180px; }
+    .logo{
+      width:34px;height:34px;border-radius:10px;
+      background:linear-gradient(135deg, rgba(138,180,248,.25), rgba(242,139,130,.18));
+      border:1px solid var(--border);
+      display:grid;place-items:center;
+      font-weight:800;
+    }
+    .title{ font-size:14px; font-weight:700; letter-spacing:.2px; }
+
+    .btn{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      color:var(--text);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      cursor:pointer;
+      display:inline-flex; align-items:center; gap:8px;
+      transition:background .12s ease, transform .06s ease;
+    }
+    .btn:hover{ background:rgba(255,255,255,.06); }
+    .btn:active{ transform:translateY(1px); }
+    .btn.icon{ width:38px;height:38px;padding:0;justify-content:center; }
+
+    .monthTitle{ font-size:18px; font-weight:800; padding:6px 10px; border-radius:10px; }
+    .spacer{ flex:1; }
+    .loading{ margin-left:8px; font-size:12px; color:var(--muted); }
+
+    .pill{
+      display:flex; align-items:center; gap:10px;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      max-width:46vw;
+      overflow:hidden; white-space:nowrap; text-overflow:ellipsis;
+      font-size:12px; color:var(--muted);
+    }
+    .pill code{ color:var(--text); }
+
+    main{ height:100%; overflow:auto; }
+    .wrap{ min-height:100%; padding:14px; }
+
+    .calendar{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:rgba(15,22,32,.60);
+      backdrop-filter:blur(8px);
+    }
+
+    .dow{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      background:rgba(10,15,22,.85);
+      border-bottom:1px solid var(--border);
+      position:sticky; top:0; z-index:2;
+    }
+    .dow div{
+      padding:10px 12px;
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      border-right:1px solid var(--border);
+    }
+    .dow div:last-child{ border-right:none; }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(7,1fr);
+      grid-auto-rows:minmax(130px,1fr);
+      background:rgba(10,15,22,.35);
+    }
+
+    .day{
+      border-right:1px solid var(--border);
+      border-bottom:1px solid var(--border);
+      padding:10px;
+      position:relative;
+      overflow:hidden;
+
+      /* IMPORTANT: background-color only so background-image persists */
+      background-color:var(--cellBase);
+      transition:background-color .12s ease;
+    }
+    .day:hover{ background-color:var(--cellHover); }
+    .day:nth-child(7n){ border-right:none; }
+    .day.dim{ opacity:.55; }
+
+    .dayHeader{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      position:relative; z-index:1;
+    }
+    .num{
+      font-size:12px;
+      color:var(--muted);
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.25);
+    }
+    .todayRing{
+      outline:2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+      outline-offset:-2px;
+      border-radius:10px;
+    }
+
+    .events{
+      margin-top:10px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      position:relative; z-index:1;
+    }
+    .event{
+      border:1px solid var(--border);
+      border-radius:10px;
+      padding:6px 8px;
+      background:rgba(0,0,0,.25);
+      font-size:12px;
+      line-height:1.2;
+      display:flex;
+      gap:8px;
+      align-items:flex-start;
+    }
+    .event .time{
+      color:var(--muted);
+      min-width:46px;
+      font-variant-numeric:tabular-nums;
+    }
+    .event .name{
+      color:var(--text);
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      flex:1;
+    }
+
+    .error{
+      margin:12px 0 0;
+      padding:10px 12px;
+      border:1px solid rgba(242,139,130,.40);
+      background:rgba(242,139,130,.10);
+      border-radius:12px;
+      color:var(--text);
+      font-size:13px;
+      white-space:pre-wrap;
+    }
+    .hint{
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.4;
+    }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="brand">
+      <div class="logo">31</div>
+      <div class="title">Calendar</div>
+    </div>
+
+    <button class="btn" id="todayBtn">Today</button>
+    <button class="btn icon" id="prevBtn" aria-label="Previous">◀</button>
+    <button class="btn icon" id="nextBtn" aria-label="Next">▶</button>
+    <button class="btn" id="refreshBtn" title="Refresh now">Refresh</button>
+
+    <div class="monthTitle" id="monthTitle"></div>
+    <div class="loading" id="loading"></div>
+
+    <div class="spacer"></div>
+
+    <div class="pill" title="Calendar source">
+      src: <code id="srcLabel"></code>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="calendar">
+        <div class="dow" id="dow"></div>
+        <div class="grid" id="grid"></div>
+      </div>
+
+      <div class="error" id="errorBox" style="display:none"></div>
+
+      <div class="hint">
+        Background rule: for each day, use the <b>description</b> of the <b>first event that overlaps that day</b>
+        as the code, and load <code id="thumbRule"></code>.
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+  /***********************
+   * CONFIG
+   ***********************/
+  const CALENDAR_SHARE_LINK = "https://calendar.google.com/calendar/u/0?cid=bmFyaXNobUBnbWFpbC5jb20";
+  const GOOGLE_API_KEY = "AIzaSyBoy744z7CH_M5IETsfw8VFZ4-LmCh_vFI";
+
+  // Images are always: image/<CODE>.png
+  const IMAGE_BASE_URL = "images/"; // <-- your folder
+  const IMAGE_EXTENSION = ".png";
+
+  // Auto-refresh (so edits in Google Calendar propagate)
+  const AUTO_REFRESH_MINUTES = 5; // set 0 to disable
+
+  // Week start: Sunday=0, Monday=1
+  const WEEK_START = 0;
+
+  // If true, events that are "just a background code" (summary empty or summary==code) won't show in list
+  const HIDE_CODE_ONLY_EVENTS_IN_LIST = false;
+
+  /***********************
+   * DOM + helpers
+   ***********************/
+  const DOW_SUN = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  const DOW_MON = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+  const DOW = WEEK_START === 1 ? DOW_MON : DOW_SUN;
+
+  const dowEl = document.getElementById("dow");
+  const gridEl = document.getElementById("grid");
+  const monthTitleEl = document.getElementById("monthTitle");
+  const errorBox = document.getElementById("errorBox");
+  const loadingEl = document.getElementById("loading");
+  const srcLabel = document.getElementById("srcLabel");
+
+  document.getElementById("thumbRule").textContent = `${IMAGE_BASE_URL}<CODE>${IMAGE_EXTENSION}`;
+
+  function pad(n){ return String(n).padStart(2,"0"); }
+  function ymd(d){ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
+  function monthTitle(d){ return d.toLocaleString(undefined, { month:"long", year:"numeric" }); }
+
+  function showError(msg){ errorBox.style.display="block"; errorBox.textContent=msg; }
+  function clearError(){ errorBox.style.display="none"; errorBox.textContent=""; }
+  function setLoading(on, text="Loading…"){ loadingEl.textContent = on ? text : ""; }
+
+  /***********************
+   * Decode cid -> calendarId
+   ***********************/
+  function padBase64(b64) {
+    const mod = b64.length % 4;
+    return mod ? b64 + "=".repeat(4 - mod) : b64;
+  }
+  function decodeCidToCalendarId(cid) {
+    try {
+      const normalized = cid.replace(/-/g, "+").replace(/_/g, "/");
+      return atob(padBase64(normalized));
+    } catch { return null; }
+  }
+  function extractCalendarIdFromShareLink(urlStr) {
+    try {
+      const u = new URL(urlStr);
+      const cid = u.searchParams.get("cid");
+      return cid ? decodeCidToCalendarId(cid) : null;
+    } catch { return null; }
+  }
+
+  /***********************
+   * Description -> CODE
+   ***********************/
+  function normalizeDescription(desc) {
+    // strip HTML, take first line, trim
+    const s = String(desc || "");
+    const noHtml = s.replace(/<[^>]+>/g, "");
+    const firstLine = noHtml.split(/\r?\n/)[0];
+    return firstLine.trim();
+  }
+
+  // Safety: allow simple codes only; prevents someone putting weird paths into description
+  // If you truly need other characters, loosen this regex.
+  function isSafeCode(code) {
+    return /^[A-Za-z0-9_-]+$/.test(code);
+  }
+
+  function codeToImageUrl(code) {
+    // Keep case as-is (important on case-sensitive servers)
+    return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
+  }
+
+  function applyDayBackground(dayEl, imageUrl) {
+    dayEl.style.backgroundImage =
+      `linear-gradient(var(--overlayDark), var(--overlayDark)), url("${imageUrl}")`;
+    dayEl.style.backgroundSize = "cover";
+    dayEl.style.backgroundPosition = "center";
+    dayEl.style.backgroundRepeat = "no-repeat";
+  }
+  function clearDayBackground(dayEl) {
+    dayEl.style.backgroundImage = "";
+    dayEl.style.backgroundSize = "";
+    dayEl.style.backgroundPosition = "";
+    dayEl.style.backgroundRepeat = "";
+  }
+
+  /***********************
+   * Google Calendar API
+   ***********************/
+  async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO) {
+    const base = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`;
+    let pageToken = null;
+    const all = [];
+
+    while (true) {
+      const url = new URL(base);
+      url.searchParams.set("key", GOOGLE_API_KEY);
+      url.searchParams.set("timeMin", timeMinISO);
+      url.searchParams.set("timeMax", timeMaxISO);
+      url.searchParams.set("singleEvents", "true"); // expand recurring
+      url.searchParams.set("orderBy", "startTime");
+      url.searchParams.set("maxResults", "2500");
+      if (pageToken) url.searchParams.set("pageToken", pageToken);
+
+      const res = await fetch(url.toString());
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error?.message || "Calendar API error");
+
+      if (Array.isArray(data.items)) all.push(...data.items);
+      pageToken = data.nextPageToken;
+      if (!pageToken) break;
+    }
+    return all;
+  }
+
+  /***********************
+   * Month grid
+   ***********************/
+  let cursor = new Date();
+  cursor.setDate(1);
+
+  function startOfGrid(monthDate) {
+    const first = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+    const day = first.getDay(); // 0=Sun
+    const offset = WEEK_START === 1 ? (day === 0 ? 6 : day - 1) : day;
+    const start = new Date(first);
+    start.setDate(first.getDate() - offset);
+    start.setHours(0,0,0,0);
+    return start;
+  }
+
+  function endOfGrid(start) {
+    const end = new Date(start);
+    end.setDate(start.getDate() + 42);
+    end.setHours(0,0,0,0);
+    return end;
+  }
+
+  function renderDow() {
+    if (dowEl.children.length) return;
+    for (const name of DOW) {
+      const div = document.createElement("div");
+      div.textContent = name;
+      dowEl.appendChild(div);
+    }
+  }
+
+  function renderGridSkeleton(monthDate) {
+    gridEl.innerHTML = "";
+    const today = new Date();
+    const gridStart = startOfGrid(monthDate);
+
+    for (let i = 0; i < 42; i++) {
+      const d = new Date(gridStart);
+      d.setDate(gridStart.getDate() + i);
+
+      const dayEl = document.createElement("div");
+      dayEl.className = "day";
+      if (d.getMonth() !== monthDate.getMonth()) dayEl.classList.add("dim");
+
+      if (d.getFullYear() === today.getFullYear() &&
+          d.getMonth() === today.getMonth() &&
+          d.getDate() === today.getDate()) {
+        dayEl.classList.add("todayRing");
+      }
+
+      const header = document.createElement("div");
+      header.className = "dayHeader";
+
+      const num = document.createElement("div");
+      num.className = "num";
+      num.textContent = d.getDate();
+
+      header.appendChild(num);
+      dayEl.appendChild(header);
+
+      const events = document.createElement("div");
+      events.className = "events";
+      dayEl.appendChild(events);
+
+      dayEl.dataset.date = ymd(d);
+      gridEl.appendChild(dayEl);
+    }
+  }
+
+  /***********************
+   * Event overlap grouping
+   * Build: dayKey -> events that overlap that day (multi-day safe)
+   ***********************/
+  function startOfDayLocal(d) {
+    const x = new Date(d);
+    x.setHours(0,0,0,0);
+    return x;
+  }
+
+  function coveredDayKeys(ev) {
+    let start, endExclusive;
+
+    // All-day: end.date is exclusive
+    if (ev?.start?.date) {
+      start = new Date(ev.start.date + "T00:00:00");
+      endExclusive = ev?.end?.date ? new Date(ev.end.date + "T00:00:00")
+                                   : new Date(start.getTime() + 24*60*60*1000);
+    }
+    // Timed: end.dateTime is exclusive
+    else if (ev?.start?.dateTime) {
+      start = new Date(ev.start.dateTime);
+      endExclusive = ev?.end?.dateTime ? new Date(ev.end.dateTime)
+                                       : new Date(start.getTime() + 60*60*1000);
+    } else {
+      return [];
+    }
+
+    // last moment included = endExclusive - 1ms
+    const startDay = startOfDayLocal(start);
+    const lastTouched = new Date(endExclusive.getTime() - 1);
+    const endDay = startOfDayLocal(lastTouched);
+
+    const keys = [];
+    for (let d = new Date(startDay); d <= endDay; d.setDate(d.getDate() + 1)) {
+      keys.push(ymd(d));
+    }
+    return keys;
+  }
+
+  function isAllDay(ev){ return !!ev?.start?.date; }
+  function startMillis(ev){
+    if (ev?.start?.dateTime) return new Date(ev.start.dateTime).getTime();
+    if (ev?.start?.date) return new Date(ev.start.date + "T00:00:00").getTime();
+    return Number.POSITIVE_INFINITY;
+  }
+
+  // First-event-of-day sort: all-day first, then earliest start time, then summary
+  function sortEventsForDay(list) {
+    return list.sort((a,b) => {
+      const ad = isAllDay(a), bd = isAllDay(b);
+      if (ad !== bd) return ad ? -1 : 1;
+      const sa = startMillis(a), sb = startMillis(b);
+      if (sa !== sb) return sa - sb;
+      return String(a?.summary||"").localeCompare(String(b?.summary||""));
+    });
+  }
+
+  function eventTimeLabelForDay(ev, dayKey) {
+    const startsOnDay = (ev?.start?.date && ev.start.date === dayKey)
+                     || (ev?.start?.dateTime && ymd(new Date(ev.start.dateTime)) === dayKey);
+
+    if (isAllDay(ev)) return startsOnDay ? "All" : "↔";
+    if (ev?.start?.dateTime) {
+      if (!startsOnDay) return "↔";
+      const d = new Date(ev.start.dateTime);
+      return d.toLocaleTimeString(undefined, { hour:"2-digit", minute:"2-digit" });
+    }
+    return "";
+  }
+
+  function isCodeOnlyEvent(ev, code) {
+    // Optional heuristic to hide marker-only entries:
+    // If summary is empty OR equals code, consider it “just a background marker”.
+    const summary = String(ev?.summary || "").trim();
+    if (!summary) return true;
+    if (code && summary === code) return true;
+    return false;
+  }
+
+  /***********************
+   * Render month
+   ***********************/
+  function renderMonth(events) {
+    // Build overlap map
+    const byDay = new Map(); // dayKey -> list of events overlapping that day
+
+    for (const ev of events) {
+      for (const k of coveredDayKeys(ev)) {
+        if (!byDay.has(k)) byDay.set(k, []);
+        byDay.get(k).push(ev);
+      }
+    }
+
+    for (const cell of gridEl.querySelectorAll(".day")) {
+      const dayKey = cell.dataset.date;
+      const eventsEl = cell.querySelector(".events");
+      eventsEl.innerHTML = "";
+      clearDayBackground(cell);
+
+      const list = byDay.get(dayKey) ? [...byDay.get(dayKey)] : [];
+      sortEventsForDay(list);
+
+      // Background: first overlapping event's description => image/<CODE>.png
+      let codeForDay = null;
+      if (list.length > 0) {
+        const firstEvent = list[0];
+        const code = normalizeDescription(firstEvent?.description || "");
+        if (code && isSafeCode(code)) {
+          codeForDay = code;
+          applyDayBackground(cell, codeToImageUrl(code));
+        }
+      }
+
+      const displayList = (HIDE_CODE_ONLY_EVENTS_IN_LIST && codeForDay)
+        ? list.filter(ev => !isCodeOnlyEvent(ev, codeForDay))
+        : list;
+
+      const maxShow = 4;
+      displayList.slice(0, maxShow).forEach(ev => {
+        const row = document.createElement("div");
+        row.className = "event";
+
+        const time = document.createElement("div");
+        time.className = "time";
+        time.textContent = eventTimeLabelForDay(ev, dayKey);
+
+        const name = document.createElement("div");
+        name.className = "name";
+        name.textContent = (ev.summary || "").trim() || "(No title)";
+
+        row.appendChild(time);
+        row.appendChild(name);
+        eventsEl.appendChild(row);
+      });
+
+      if (displayList.length > maxShow) {
+        const more = document.createElement("div");
+        more.className = "event";
+        more.style.borderStyle = "dashed";
+        more.style.opacity = "0.9";
+
+        const t = document.createElement("div");
+        t.className = "time";
+        t.textContent = "";
+
+        const n = document.createElement("div");
+        n.className = "name";
+        n.textContent = `+${displayList.length - maxShow} more`;
+
+        more.appendChild(t);
+        more.appendChild(n);
+        eventsEl.appendChild(more);
+      }
+    }
+  }
+
+  /***********************
+   * Main refresh
+   ***********************/
+  let inFlight = false;
+
+  async function refreshMonth() {
+    if (inFlight) return;
+    inFlight = true;
+
+    clearError();
+    renderDow();
+
+    monthTitleEl.textContent = monthTitle(cursor);
+    renderGridSkeleton(cursor);
+
+    const calendarId = extractCalendarIdFromShareLink(CALENDAR_SHARE_LINK);
+    if (!calendarId) {
+      showError("Could not decode calendarId from the cid link.");
+      inFlight = false;
+      return;
+    }
+    srcLabel.textContent = calendarId;
+
+    if (!GOOGLE_API_KEY || GOOGLE_API_KEY.includes("PASTE_YOUR_API_KEY_HERE")) {
+      showError(
+        "Paste your Google API key into GOOGLE_API_KEY.\n" +
+        "Google Calendar API must be enabled.\n\n" +
+        "If your calendar is private, API-key-only won’t work (needs OAuth)."
+      );
+      inFlight = false;
+      return;
+    }
+
+    const start = startOfGrid(cursor);
+    const end = endOfGrid(start);
+
+    setLoading(true, "Fetching events…");
+    try {
+      const events = await fetchAllEvents(calendarId, start.toISOString(), end.toISOString());
+      renderMonth(events);
+    } catch (e) {
+      showError(
+        "Google Calendar API error: " + (e?.message || String(e)) +
+        "\n\nCommon causes:\n" +
+        "- Calendar isn’t public/readable via API key\n" +
+        "- Calendar API not enabled\n" +
+        "- API key restrictions\n" +
+        "- Private calendar (needs OAuth)\n\n" +
+        "Tip: serve via http://localhost (not file://)."
+      );
+    } finally {
+      setLoading(false);
+      inFlight = false;
+    }
+  }
+
+  /***********************
+   * Controls
+   ***********************/
+  document.getElementById("todayBtn").addEventListener("click", () => {
+    cursor = new Date();
+    cursor.setDate(1);
+    refreshMonth();
+  });
+  document.getElementById("prevBtn").addEventListener("click", () => {
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth() - 1, 1);
+    refreshMonth();
+  });
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth() + 1, 1);
+    refreshMonth();
+  });
+  document.getElementById("refreshBtn").addEventListener("click", refreshMonth);
+
+  if (AUTO_REFRESH_MINUTES > 0) {
+    setInterval(refreshMonth, AUTO_REFRESH_MINUTES * 60 * 1000);
+  }
+
+  refreshMonth();
+</script>
+</body>
+</html>

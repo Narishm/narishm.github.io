@@ -1,0 +1,91 @@
+{
+  "eras": ["MYST", "SIDE"],
+  "adventures": [
+    {
+      "id": "MYSTME",
+      "era": "MYST",
+      "order": 1,
+      "type": "CORE",
+      "name": "Myst",
+      "edition": "Masterpiece Edition",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "RMYST",
+          "era": "SIDE",
+          "order": 2,
+          "type": "ALTERNATE",
+          "name": "realMyst",
+          "edition": "Interactive 3D Edition",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "RIVEN",
+              "era": "MYST",
+              "order": 3,
+              "type": "CORE",
+              "name": "Riven",
+              "edition": "Original (1997)",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "RIVEN3D",
+                  "era": "SIDE",
+                  "order": 4,
+                  "type": "ALTERNATE",
+                  "name": "Riven",
+                  "edition": "Riven 3D (Remake)",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "MYST3",
+                      "era": "MYST",
+                      "order": 5,
+                      "type": "CORE",
+                      "name": "Myst III: Exile",
+                      "edition": "Original",
+                      "platform": ["STEAM"],
+                      "unlocks": [
+                        {
+                          "id": "MYST4",
+                          "era": "MYST",
+                          "order": 6,
+                          "type": "CORE",
+                          "name": "Myst IV: Revelation",
+                          "edition": "Original",
+                          "platform": ["STEAM"],
+                          "unlocks": [
+                            {
+                              "id": "MYST5",
+                              "era": "MYST",
+                              "order": 7,
+                              "type": "CORE",
+                              "name": "Myst V: End of Ages",
+                              "edition": "Original",
+                              "platform": ["STEAM"],
+                              "unlocks": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "URUCC",
+      "era": "SIDE",
+      "order": 8,
+      "type": "SIDE",
+      "name": "URU: Complete Chronicles",
+      "edition": "Complete Chronicles",
+      "platform": ["STEAM"],
+      "unlocks": []
+    }
+  ]
+}

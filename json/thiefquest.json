@@ -1,0 +1,48 @@
+{
+  "eras": ["THIEF"],
+  "adventures": [
+    {
+      "id": "TH1G",
+      "era": "THIEF",
+      "order": 1,
+      "type": "CORE",
+      "name": "Thief Gold",
+      "edition": "Definitive",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "TH2",
+          "era": "THIEF",
+          "order": 2,
+          "type": "CORE",
+          "name": "Thief II: The Metal Age",
+          "edition": "Original",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "TH3",
+              "era": "THIEF",
+              "order": 3,
+              "type": "CORE",
+              "name": "Thief: Deadly Shadows",
+              "edition": "Original",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "TH4",
+                  "era": "THIEF",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "Thief",
+                  "edition": "2014",
+                  "platform": ["STEAM"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

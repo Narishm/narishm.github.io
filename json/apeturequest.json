@@ -1,0 +1,37 @@
+{
+  "eras": ["POR"],
+  "adventures": [
+    {
+      "id": "POR1",
+      "era": "POR",
+      "order": 1,
+      "type": "CORE",
+      "name": "Portal",
+      "edition": "Original",
+      "platform": ["STEAM", "X360", "PS3", "SWITCH"],
+      "unlocks": [
+        {
+          "id": "POR2",
+          "era": "POR",
+          "order": 2,
+          "type": "CORE",
+          "name": "Portal 2",
+          "edition": "Original",
+          "platform": ["STEAM", "X360", "PS3", "SWITCH"],
+          "unlocks": [
+            {
+              "id": "PORC",
+              "era": "POR",
+              "order": 3,
+              "type": "SIDE",
+              "name": "Portal 2",
+              "edition": "Co-op Campaign",
+              "platform": ["STEAM", "X360", "PS3", "SWITCH"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1067 @@
+{
+  "eras": ["NES", "SNES", "PS1", "HD", "MODERN", "MMO", "SIDE"],
+  "adventures": [
+    {
+      "id": "FF1",
+      "era": "NES",
+      "order": 1,
+      "type": "MAIN",
+      "name": "Final Fantasy",
+      "edition": "Pixel Remaster",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF1NES",
+          "era": "NES",
+          "order": 2,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy",
+          "edition": "NES",
+          "platform": ["NES"],
+          "unlocks": []
+        },
+        {
+          "id": "FF1DOS",
+          "era": "NES",
+          "order": 3,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy",
+          "edition": "Dawn of Souls",
+          "platform": ["GBA"],
+          "unlocks": []
+        },
+        {
+          "id": "FF120",
+          "era": "NES",
+          "order": 4,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy",
+          "edition": "20th Anniversary",
+          "platform": ["PSP"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "FF2",
+      "era": "NES",
+      "order": 5,
+      "type": "MAIN",
+      "name": "Final Fantasy II",
+      "edition": "Pixel Remaster",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF2DOS",
+          "era": "NES",
+          "order": 6,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy II",
+          "edition": "Dawn of Souls",
+          "platform": ["GBA"],
+          "unlocks": [
+            {
+              "id": "SORDOS",
+              "era": "NES",
+              "order": 7,
+              "type": "SEQUEL",
+              "name": "Final Fantasy II Dawn of Souls",
+              "edition": "Soul of Rebirth",
+              "platform": ["GBA"],
+              "unlocks": []
+            }
+          ]
+        },
+        {
+          "id": "FF220",
+          "era": "NES",
+          "order": 8,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy II",
+          "edition": "20th Anniversary",
+          "platform": ["PSP"],
+          "unlocks": [
+            {
+              "id": "SOR20",
+              "era": "NES",
+              "order": 9,
+              "type": "SEQUEL",
+              "name": "Final Fantasy II 20th Anniversary",
+              "edition": "Soul of Rebirth",
+              "platform": ["PSP"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF3",
+      "era": "NES",
+      "order": 10,
+      "type": "MAIN",
+      "name": "Final Fantasy III",
+      "edition": "Pixel Remaster",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF33D",
+          "era": "NES",
+          "order": 11,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy III",
+          "edition": "3D Remake",
+          "platform": ["STEAM"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "FF4",
+      "era": "SNES",
+      "order": 12,
+      "type": "CORE",
+      "name": "Final Fantasy IV",
+      "edition": "Pixel Remaster",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF4SNES",
+          "era": "SNES",
+          "order": 13,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy II(IV)",
+          "edition": "SNES",
+          "platform": ["SNES"],
+          "unlocks": []
+        },
+        {
+          "id": "FF4ADV",
+          "era": "SNES",
+          "order": 14,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy IV",
+          "edition": "Advance",
+          "platform": ["GBA"],
+          "unlocks": []
+        },
+        {
+          "id": "FF4CC",
+          "era": "SNES",
+          "order": 15,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy IV",
+          "edition": "The Complete Collection",
+          "platform": ["PSP"],
+          "unlocks": [
+            {
+              "id": "FF4CCINT",
+              "era": "SNES",
+              "order": 16,
+              "type": "SEQUEL",
+              "name": "Interlude ",
+              "edition": "The Complete Collection",
+              "platform": ["PSP"],
+              "unlocks": []
+            },
+            {
+              "id": "FF4CCAY",
+              "era": "SNES",
+              "order": 17,
+              "type": "SEQUEL",
+              "name": "The After Years",
+              "edition": "The Complete Collection",
+              "platform": ["PSP"],
+              "unlocks": []
+            }
+          ]
+        },
+        {
+          "id": "FF43D",
+          "era": "SNES",
+          "order": 18,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy IV",
+          "edition": "3D Remake",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "FF43DAY",
+              "era": "SNES",
+              "order": 19,
+              "type": "SEQUEL",
+              "name": "The After Years",
+              "edition": "3D Remake",
+              "platform": ["STEAM"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF5",
+      "era": "SNES",
+      "order": 20,
+      "type": "CORE",
+      "name": "Final Fantasy V",
+      "edition": "Pixel Remaster",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF5ADV",
+          "era": "SNES",
+          "order": 21,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy V",
+          "edition": "Advance",
+          "platform": ["GBA"],
+          "unlocks": []
+        },
+        {
+          "id": "FF5FJF",
+          "era": "SNES",
+          "order": 22,
+          "type": "CHALLENGE",
+          "name": "Final Fantasy V",
+          "edition": "Four Job Fiesta",
+          "platform": ["PS4", "PS5", "STEAM"],
+          "unlocks": []
+        },
+        {
+          "id": "FF5LOTC",
+          "era": "SNES",
+          "order": 23,
+          "type": "VIDEO",
+          "name": "Final Fantasy V",
+          "edition": "Legend of the Crystals",
+          "platform": [],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "FF6",
+      "era": "SNES",
+      "order": 24,
+      "type": "CORE",
+      "name": "Final Fantasy VI",
+      "edition": "Pixel Remaster",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF6SNES",
+          "era": "SNES",
+          "order": 25,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy III(VI)",
+          "edition": "SNES",
+          "platform": ["SNES"],
+          "unlocks": []
+        },
+        {
+          "id": "FF6ADV",
+          "era": "SNES",
+          "order": 26,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy VI",
+          "edition": "Advance DX",
+          "platform": ["GBA"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "FF7",
+      "era": "PS1",
+      "order": 27,
+      "type": "CORE",
+      "name": "Final Fantasy VII",
+      "edition": "Steam",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "FF7SAC",
+          "era": "PS1",
+          "order": 28,
+          "type": "MOD",
+          "name": "Final Fantasy VII",
+          "edition": "Shinra Archaeology Cut",
+          "platform": ["STEAM"],
+          "unlocks": []
+        },
+        {
+          "id": "CCFF7R",
+          "era": "PS1",
+          "order": 29,
+          "type": "PREQUEL",
+          "name": "Crisis Core: Final Fantasy VII",
+          "edition": "Reunion",
+          "platform": ["PS4", "PS5", "STEAM"],
+          "unlocks": []
+        },
+        {
+          "id": "DOCFF7",
+          "era": "PS1",
+          "order": 30,
+          "type": "SEQUEL",
+          "name": "Dirge of Cerberus: Final Fantasy VII",
+          "edition": "PS2",
+          "platform": ["PS2"],
+          "unlocks": []
+        },
+        {
+          "id": "FF7ECX",
+          "era": "PS1",
+          "order": 31,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy VII",
+          "edition": "Ever Crisis (The First Soldier)",
+          "platform": ["STEAM"],
+          "unlocks": []
+        },
+        {
+          "id": "FF7ACC",
+          "era": "PS1",
+          "order": 32,
+          "type": "VIDEO",
+          "name": "Final Fantasy VII",
+          "edition": "Advent Children Complete",
+          "platform": [],
+          "unlocks": []
+        },
+        {
+          "id": "FF7R",
+          "era": "PS1",
+          "order": 33,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy VII",
+          "edition": "Remake",
+          "platform": ["PS4", "PS5"],
+          "unlocks": [
+            {
+              "id": "FF7RI",
+              "era": "PS1",
+              "order": 34,
+              "type": "ALTERNATE",
+              "name": "Final Fantasy VII",
+              "edition": "Intergrade",
+              "platform": ["PS5", "STEAM"],
+              "unlocks": []
+            },
+            {
+              "id": "FF7RH",
+              "era": "PS1",
+              "order": 35,
+              "type": "DIFFICULTY",
+              "name": "Final Fantasy VII",
+              "edition": "Hard Mode",
+              "platform": ["PS4", "PS5"],
+              "unlocks": []
+            },
+            {
+              "id": "FF7R2",
+              "era": "PS1",
+              "order": 36,
+              "type": "ALTERNATE",
+              "name": "Final Fantasy VII",
+              "edition": "Rebirth",
+              "platform": ["PS5"],
+              "unlocks": [
+                {
+                  "id": "FF7R2H",
+                  "era": "PS1",
+                  "order": 37,
+                  "type": "DIFFICULTY",
+                  "name": "Final Fantasy VII",
+                  "edition": "Hard Mode",
+                  "platform": ["PS5"],
+                  "unlocks": []
+                },
+                {
+                  "id": "FF7R3",
+                  "era": "PS1",
+                  "order": 38,
+                  "type": "ALTERNATE",
+                  "name": "Final Fantasy VII",
+                  "edition": "?",
+                  "platform": ["PS5"],
+                  "unlocks": [
+                    {
+                      "id": "FF7R3H",
+                      "era": "PS1",
+                      "order": 39,
+                      "type": "DIFFICULTY",
+                      "name": "Final Fantasy VII",
+                      "edition": "Hard Mode",
+                      "platform": ["PS5"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF8",
+      "era": "PS1",
+      "order": 40,
+      "type": "CORE",
+      "name": "Final Fantasy VIII",
+      "edition": "Remastered",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "FF9",
+      "era": "PS1",
+      "order": 41,
+      "type": "CORE",
+      "name": "Final Fantasy IX",
+      "edition": "Steam",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "FF9MOG",
+          "era": "PS1",
+          "order": 42,
+          "type": "MOD",
+          "name": "Final Fantasy IX",
+          "edition": "Moguri Mod",
+          "platform": ["STEAM"],
+          "unlocks": []
+        },
+        {
+          "id": "FF9ANI",
+          "era": "PS1",
+          "order": 43,
+          "type": "VIDEO",
+          "name": "Final Fantasy IX",
+          "edition": "Animated Series",
+          "platform": [],
+          "unlocks": []
+        },
+        {
+          "id": "FF9RUM",
+          "era": "PS1",
+          "order": 44,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy IX",
+          "edition": "Remaster (Rumored)",
+          "platform": [],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "FFX",
+      "era": "HD",
+      "order": 45,
+      "type": "CORE",
+      "name": "Final Fantasy X",
+      "edition": "HD Remaster",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FFXEC",
+          "era": "HD",
+          "order": 46,
+          "type": "VIDEO",
+          "name": "Final Fantasy X",
+          "edition": "Eternal Calm",
+          "platform": ["PS4", "PS5", "STEAM"],
+          "unlocks": [
+            {
+              "id": "FFX2",
+              "era": "HD",
+              "order": 47,
+              "type": "SEQUEL",
+              "name": "Final Fantasy X-2",
+              "edition": "HD Remaster",
+              "platform": ["PS4", "PS5", "STEAM"],
+              "unlocks": [
+                {
+                  "id": "FFXLM",
+                  "era": "HD",
+                  "order": 48,
+                  "type": "SEQUEL",
+                  "name": "Final Fantasy X-2",
+                  "edition": "Last Mission",
+                  "platform": ["PS4", "PS5", "STEAM"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF12",
+      "era": "HD",
+      "order": 49,
+      "type": "CORE",
+      "name": "Final Fantasy XII",
+      "edition": "The Zodiac Age",
+      "platform": ["PS4", "PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF12PS2",
+          "era": "HD",
+          "order": 50,
+          "type": "ALTERNATE",
+          "name": "Final Fantasy XII",
+          "edition": "PS2",
+          "platform": ["PS2"],
+          "unlocks": []
+        },
+        {
+          "id": "VSTORY",
+          "era": "HD",
+          "order": 51,
+          "type": "SPINOFF",
+          "name": "Vagrant Story",
+          "edition": "PS1 Original",
+          "platform": ["PS1"],
+          "unlocks": []
+        },
+        {
+          "id": "FFTIC",
+          "era": "HD",
+          "order": 52,
+          "type": "SPINOFF",
+          "name": "Final Fantasy Tactics",
+          "edition": "The Ivalice Chronicles",
+          "platform": [],
+          "unlocks": [
+            {
+              "id": "FFTPS1",
+              "era": "HD",
+              "order": 53,
+              "type": "ALTERNATE",
+              "name": "Final Fantasy Tactics",
+              "edition": "PS1 Original",
+              "platform": ["PS1"],
+              "unlocks": []
+            },
+            {
+              "id": "FFTWOTL",
+              "era": "HD",
+              "order": 54,
+              "type": "ALTERNATE",
+              "name": "Final Fantasy Tactics",
+              "edition": "The War of the Lions",
+              "platform": ["PSP"],
+              "unlocks": []
+            }
+          ]
+        },
+        {
+          "id": "FF12RW",
+          "era": "HD",
+          "order": 55,
+          "type": "SPINOFF",
+          "name": "Final Fantasy XII",
+          "edition": "Revenant Wings",
+          "platform": ["DS"],
+          "unlocks": []
+        },
+        {
+          "id": "FFTA",
+          "era": "HD",
+          "order": 56,
+          "type": "SPINOFF",
+          "name": "Final Fantasy Tactics Advance",
+          "edition": "GBA",
+          "platform": ["GBA"],
+          "unlocks": [
+            {
+              "id": "FFTA2",
+              "era": "HD",
+              "order": 57,
+              "type": "SPINOFF",
+              "name": "Final Fantasy Tactics A2",
+              "edition": "Grimoire of the Rift",
+              "platform": ["DS"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF13",
+      "era": "HD",
+      "order": 58,
+      "type": "CORE",
+      "name": "Final Fantasy XIII",
+      "edition": "Steam",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "FF132",
+          "era": "HD",
+          "order": 59,
+          "type": "SEQUEL",
+          "name": "Final Fantasy XIII-2",
+          "edition": "Steam",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "FF13LR",
+              "era": "HD",
+              "order": 60,
+              "type": "SEQUEL",
+              "name": "Lightning Returns: Final Fantasy XIII",
+              "edition": "Steam",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "FFT0",
+                  "era": "HD",
+                  "order": 61,
+                  "type": "SPINOFF",
+                  "name": "Final Fantasy Type-0",
+                  "edition": "HD",
+                  "platform": ["PS5"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF16",
+      "era": "MODERN",
+      "order": 62,
+      "type": "CORE",
+      "name": "Final Fantasy XVI",
+      "edition": "Base Game",
+      "platform": ["PS5"],
+      "unlocks": [
+        {
+          "id": "FF16FM",
+          "era": "MODERN",
+          "order": 65,
+          "type": "DIFFICULTY",
+          "name": "Final Fantasy XVI",
+          "edition": "Final Fantasy Mode",
+          "platform": ["PS5"],
+          "unlocks": []
+        },
+        {
+          "id": "FF16UM",
+          "era": "MODERN",
+          "order": 66,
+          "type": "DIFFICULTY",
+          "name": "Final Fantasy XVI",
+          "edition": "Ultimaniac Mode",
+          "platform": ["PS5"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "FF11",
+      "era": "MMO",
+      "order": 67,
+      "type": "CORE",
+      "name": "Final Fantasy XI",
+      "edition": "Story Review",
+      "platform": [],
+      "unlocks": [
+        {
+          "id": "FF11ROZ",
+          "era": "MMO",
+          "order": 68,
+          "type": "EXPANSION",
+          "name": "Final Fantasy XI",
+          "edition": "Rise of the Zilart",
+          "platform": [],
+          "unlocks": [
+            {
+              "id": "FF11COP",
+              "era": "MMO",
+              "order": 69,
+              "type": "EXPANSION",
+              "name": "Final Fantasy XI",
+              "edition": "Chains of Promathia",
+              "platform": [],
+              "unlocks": [
+                {
+                  "id": "FF11TAU",
+                  "era": "MMO",
+                  "order": 70,
+                  "type": "EXPANSION",
+                  "name": "Final Fantasy XI",
+                  "edition": "Treasures of Aht Urhgan",
+                  "platform": [],
+                  "unlocks": [
+                    {
+                      "id": "FF11WOTG",
+                      "era": "MMO",
+                      "order": 71,
+                      "type": "EXPANSION",
+                      "name": "Final Fantasy XI",
+                      "edition": "Wings of the Goddess",
+                      "platform": [],
+                      "unlocks": [
+                        {
+                          "id": "FF11SOAD",
+                          "era": "MMO",
+                          "order": 72,
+                          "type": "EXPANSION",
+                          "name": "Final Fantasy XI",
+                          "edition": "Seekers of Adoulin",
+                          "platform": [],
+                          "unlocks": [
+                            {
+                              "id": "FF11ACP",
+                              "era": "MMO",
+                              "order": 73,
+                              "type": "EXPANSION",
+                              "name": "Final Fantasy XI",
+                              "edition": "A Crystalline Prophecy",
+                              "platform": [],
+                              "unlocks": [
+                                {
+                                  "id": "FF11MKD",
+                                  "era": "MMO",
+                                  "order": 74,
+                                  "type": "EXPANSION",
+                                  "name": "Final Fantasy XI",
+                                  "edition": "A Moogle Kupo d'Etat",
+                                  "platform": [],
+                                  "unlocks": [
+                                    {
+                                      "id": "FF11ASA",
+                                      "era": "MMO",
+                                      "order": 75,
+                                      "type": "EXPANSION",
+                                      "name": "Final Fantasy XI",
+                                      "edition": "A Shantotto Ascension",
+                                      "platform": [],
+                                      "unlocks": [
+                                        {
+                                          "id": "FF11VAB",
+                                          "era": "MMO",
+                                          "order": 76,
+                                          "type": "EXPANSION",
+                                          "name": "Final Fantasy XI",
+                                          "edition": "Vision of Abyssea",
+                                          "platform": [],
+                                          "unlocks": [
+                                            {
+                                              "id": "FF11SAB",
+                                              "era": "MMO",
+                                              "order": 77,
+                                              "type": "EXPANSION",
+                                              "name": "Final Fantasy XI",
+                                              "edition": "Scars of Abyssea",
+                                              "platform": [],
+                                              "unlocks": [
+                                                {
+                                                  "id": "FF11HAB",
+                                                  "era": "MMO",
+                                                  "order": 78,
+                                                  "type": "EXPANSION",
+                                                  "name": "Final Fantasy XI",
+                                                  "edition": "Heroes of Abyssea",
+                                                  "platform": [],
+                                                  "unlocks": [
+                                                    {
+                                                      "id": "FF11ROV",
+                                                      "era": "MMO",
+                                                      "order": 79,
+                                                      "type": "EXPANSION",
+                                                      "name": "Final Fantasy XI",
+                                                      "edition": "Rhapsodies of Vana'diel",
+                                                      "platform": [],
+                                                      "unlocks": [
+                                                        {
+                                                          "id": "FF11TVR",
+                                                          "era": "MMO",
+                                                          "order": 80,
+                                                          "type": "EXPANSION",
+                                                          "name": "Final Fantasy XI",
+                                                          "edition": "The Voracious Resurgence",
+                                                          "platform": [],
+                                                          "unlocks": []
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FF14ARR",
+      "era": "MMO",
+      "order": 82,
+      "type": "EXPANSION",
+      "name": "Final Fantasy XIV",
+      "edition": "A Realm Reborn",
+      "platform": ["PS5", "STEAM"],
+      "unlocks": [
+        {
+          "id": "FF14HW",
+          "era": "MMO",
+          "order": 83,
+          "type": "EXPANSION",
+          "name": "Final Fantasy XIV",
+          "edition": "Heavensward",
+          "platform": ["PS5", "STEAM"],
+          "unlocks": [
+            {
+              "id": "FF14SB",
+              "era": "MMO",
+              "order": 84,
+              "type": "EXPANSION",
+              "name": "Final Fantasy XIV",
+              "edition": "Stormblood",
+              "platform": ["PS5", "STEAM"],
+              "unlocks": [
+                {
+                  "id": "FF14SHB",
+                  "era": "MMO",
+                  "order": 85,
+                  "type": "EXPANSION",
+                  "name": "Final Fantasy XIV",
+                  "edition": "Shadowbringers",
+                  "platform": ["PS5", "STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "FF14EW",
+                      "era": "MMO",
+                      "order": 86,
+                      "type": "EXPANSION",
+                      "name": "Final Fantasy XIV",
+                      "edition": "Endwalker",
+                      "platform": ["PS5", "STEAM"],
+                      "unlocks": [
+                        {
+                          "id": "FF14DT",
+                          "era": "MMO",
+                          "order": 87,
+                          "type": "EXPANSION",
+                          "name": "Final Fantasy XIV",
+                          "edition": "Dawntrail",
+                          "platform": ["PS5", "STEAM"],
+                          "unlocks": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FFMQ",
+      "era": "SIDE",
+      "order": 88,
+      "type": "SPINOFF",
+      "name": "Final Fantasy Mystic Quest",
+      "edition": "SNES",
+      "platform": ["SNES"],
+      "unlocks": []
+    },
+    {
+      "id": "FFCC",
+      "era": "SIDE",
+      "order": 89,
+      "type": "SPINOFF",
+      "name": "Final Fantasy Crystal Chronicles",
+      "edition": "Remastered",
+      "platform": ["PS5"],
+      "unlocks": [
+        {
+          "id": "FFCCROF",
+          "era": "SIDE",
+          "order": 90,
+          "type": "SPINOFF",
+          "name": "Final Fantasy Crystal Chronicles",
+          "edition": "Ring of Fates",
+          "platform": ["DS"],
+          "unlocks": [
+            {
+              "id": "FFCCMLK",
+              "era": "SIDE",
+              "order": 91,
+              "type": "SPINOFF",
+              "name": "Final Fantasy Crystal Chronicles",
+              "edition": "My Life as a King",
+              "platform": ["Wii"],
+              "unlocks": [
+                {
+                  "id": "FFCCEOT",
+                  "era": "SIDE",
+                  "order": 92,
+                  "type": "SPINOFF",
+                  "name": "Final Fantasy Crystal Chronicles",
+                  "edition": "Echoes of Time",
+                  "platform": ["DS"],
+                  "unlocks": [
+                    {
+                      "id": "FFCCMLD",
+                      "era": "SIDE",
+                      "order": 93,
+                      "type": "SPINOFF",
+                      "name": "Final Fantasy Crystal Chronicles",
+                      "edition": "My Life as a Darklord",
+                      "platform": ["Wii"],
+                      "unlocks": [
+                        {
+                          "id": "FFCCCB",
+                          "era": "SIDE",
+                          "order": 94,
+                          "type": "SPINOFF",
+                          "name": "Final Fantasy Crystal Chronicles",
+                          "edition": "Crystal Bearers",
+                          "platform": ["Wii"],
+                          "unlocks": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "WOFF",
+      "era": "SIDE",
+      "order": 95,
+      "type": "SPINOFF",
+      "name": "World of Final Fantasy",
+      "edition": "Switch",
+      "platform": ["SWITCH"],
+      "unlocks": []
+    },
+    {
+      "id": "TSW",
+      "era": "SIDE",
+      "order": 96,
+      "type": "VIDEO",
+      "name": "Final Fantasy",
+      "edition": "The Spirits Within",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "FFSOP",
+      "era": "SIDE",
+      "order": 97,
+      "type": "SPINOFF",
+      "name": "Stranger of Paradise: Final Fantasy Origin",
+      "edition": "PS5",
+      "platform": ["PS5"],
+      "unlocks": []
+    },
+    {
+      "id": "DISS",
+      "era": "SIDE",
+      "order": 98,
+      "type": "SPINOFF",
+      "name": "Dissidia Final Fantasy",
+      "edition": "PSP",
+      "platform": ["PSP"],
+      "unlocks": [
+        {
+          "id": "DISS012",
+          "era": "SIDE",
+          "order": 99,
+          "type": "SEQUEL",
+          "name": "Dissidia 012 Final Fantasy",
+          "edition": "PSP",
+          "platform": ["PSP"],
+          "unlocks": [
+            {
+              "id": "DISSNT",
+              "era": "SIDE",
+              "order": 100,
+              "type": "ALTERNATE",
+              "name": "Dissidia Final Fantasy NT",
+              "edition": "PS5",
+              "platform": ["PS5"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "THFBL",
+      "era": "SIDE",
+      "order": 101,
+      "type": "SPINOFF",
+      "name": "Theatrhythm Final Bar Line",
+      "edition": "PS5",
+      "platform": ["PS5"],
+      "unlocks": [
+        {
+          "id": "TH3DS",
+          "era": "SIDE",
+          "order": 102,
+          "type": "ALTERNATE",
+          "name": "Theatrhythm Final Fantasy",
+          "edition": "3DS",
+          "platform": ["3DS"],
+          "unlocks": [
+            {
+              "id": "THCC",
+              "era": "SIDE",
+              "order": 103,
+              "type": "ALTERNATE",
+              "name": "Theatrhythm Final Fantasy",
+              "edition": "Curtain Call",
+              "platform": ["3DS"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "FFEC",
+      "era": "SIDE",
+      "order": 104,
+      "type": "SPINOFF",
+      "name": "Final Fantasy VII Ever Crisis",
+      "edition": "Steam",
+      "platform": ["STEAM"],
+      "unlocks": []
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "eras": ["TES", "SIDE"],
+  "adventures": [
+    {
+      "id": "TES1",
+      "era": "TES",
+      "order": 1,
+      "type": "CORE",
+      "name": "The Elder Scrolls: Arena",
+      "edition": "Original",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "TES2U",
+          "era": "TES",
+          "order": 2,
+          "type": "CORE",
+          "name": "The Elder Scrolls II: Daggerfall",
+          "edition": "Daggerfall Unity",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "TES3",
+              "era": "TES",
+              "order": 3,
+              "type": "CORE",
+              "name": "The Elder Scrolls III: Morrowind",
+              "edition": "Game of the Year Edition",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "TES4R",
+                  "era": "TES",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "The Elder Scrolls IV: Oblivion",
+                  "edition": "Remastered",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "TES5",
+                      "era": "TES",
+                      "order": 5,
+                      "type": "CORE",
+                      "name": "The Elder Scrolls V: Skyrim",
+                      "edition": "Special Edition",
+                      "platform": ["STEAM"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "TESRG",
+      "era": "SIDE",
+      "order": 6,
+      "type": "SIDE",
+      "name": "The Elder Scrolls Adventures: Redguard",
+      "edition": "Original",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "TESBS",
+      "era": "SIDE",
+      "order": 7,
+      "type": "SIDE",
+      "name": "The Elder Scrolls Legends: Battlespire",
+      "edition": "Original",
+      "platform": ["STEAM"],
+      "unlocks": []
+    }
+  ]
+}

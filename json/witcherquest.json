@@ -1,0 +1,70 @@
+{
+  "eras": ["WITCH"],
+  "adventures": [
+    {
+      "id": "W1",
+      "era": "WITCH",
+      "order": 1,
+      "type": "CORE",
+      "name": "The Witcher",
+      "edition": "Enhanced Edition",
+      "platform": ["STEAM"],
+      "unlocks": [
+        {
+          "id": "W2",
+          "era": "WITCH",
+          "order": 2,
+          "type": "CORE",
+          "name": "The Witcher 2: Assassins of Kings",
+          "edition": "Enhanced Edition",
+          "platform": ["STEAM"],
+          "unlocks": [
+            {
+              "id": "W3",
+              "era": "WITCH",
+              "order": 3,
+              "type": "CORE",
+              "name": "The Witcher 3: Wild Hunt",
+              "edition": "Complete Edition",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "W3HOS",
+                  "era": "WITCH",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "The Witcher 3: Wild Hunt",
+                  "edition": "Hearts of Stone",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "W3BAW",
+                      "era": "WITCH",
+                      "order": 5,
+                      "type": "CORE",
+                      "name": "The Witcher 3: Wild Hunt",
+                      "edition": "Blood and Wine",
+                      "platform": ["STEAM"],
+                      "unlocks": [
+                        {
+                          "id": "W4",
+                          "era": "WITCH",
+                          "order": 6,
+                          "type": "CORE",
+                          "name": "The Witcher 4",
+                          "edition": "TBA",
+                          "platform": [],
+                          "unlocks": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

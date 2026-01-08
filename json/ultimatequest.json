@@ -1,0 +1,229 @@
+{
+  "eras": ["EARLY", "AVA", "7SI", "NEW", "SIDE"],
+  "adventures": [
+    {
+      "id": "ULT1",
+      "era": "EARLY",
+      "order": 1,
+      "type": "CORE",
+      "name": "Ultima I: The First Age of Darkness",
+      "edition": "Original",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "ULT2",
+          "era": "EARLY",
+          "order": 2,
+          "type": "CORE",
+          "name": "Ultima II: The Revenge of the Enchantress",
+          "edition": "Original",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "ULT3",
+              "era": "EARLY",
+              "order": 3,
+              "type": "CORE",
+              "name": "Ultima III: Exodus",
+              "edition": "Original",
+              "platform": ["PC"],
+              "unlocks": [
+                {
+                  "id": "ULT4",
+                  "era": "AVA",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "Ultima IV: Quest of the Avatar",
+                  "edition": "Original",
+                  "platform": ["PC"],
+                  "unlocks": [
+                    {
+                      "id": "ULT5",
+                      "era": "AVA",
+                      "order": 5,
+                      "type": "CORE",
+                      "name": "Ultima V: Warriors of Destiny",
+                      "edition": "Original",
+                      "platform": ["PC"],
+                      "unlocks": [
+                        {
+                          "id": "ULT6",
+                          "era": "AVA",
+                          "order": 6,
+                          "type": "CORE",
+                          "name": "Ultima VI: The False Prophet",
+                          "edition": "Original",
+                          "platform": ["PC"],
+                          "unlocks": [
+                            {
+                              "id": "ULT7",
+                              "era": "7SI",
+                              "order": 7,
+                              "type": "CORE",
+                              "name": "Ultima VII: The Black Gate",
+                              "edition": "Original",
+                              "platform": ["PC"],
+                              "unlocks": [
+                                {
+                                  "id": "ULT7FOV",
+                                  "era": "7SI",
+                                  "order": 8,
+                                  "type": "CORE",
+                                  "name": "Ultima VII: The Black Gate",
+                                  "edition": "Forge of Virtue",
+                                  "platform": ["PC"],
+                                  "unlocks": [
+                                    {
+                                      "id": "ULT7SI",
+                                      "era": "7SI",
+                                      "order": 9,
+                                      "type": "CORE",
+                                      "name": "Ultima VII Part Two: Serpent Isle",
+                                      "edition": "Original",
+                                      "platform": ["PC"],
+                                      "unlocks": [
+                                        {
+                                          "id": "ULT7SS",
+                                          "era": "7SI",
+                                          "order": 10,
+                                          "type": "CORE",
+                                          "name": "Ultima VII Part Two: Serpent Isle",
+                                          "edition": "The Silver Seed",
+                                          "platform": ["PC"],
+                                          "unlocks": [
+                                            {
+                                              "id": "ULT8",
+                                              "era": "NEW",
+                                              "order": 11,
+                                              "type": "CORE",
+                                              "name": "Ultima VIII: Pagan",
+                                              "edition": "Original",
+                                              "platform": ["PC"],
+                                              "unlocks": [
+                                                {
+                                                  "id": "ULT9",
+                                                  "era": "NEW",
+                                                  "order": 12,
+                                                  "type": "CORE",
+                                                  "name": "Ultima IX: Ascension",
+                                                  "edition": "Original",
+                                                  "platform": ["PC"],
+                                                  "unlocks": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "UWSAV",
+      "era": "SIDE",
+      "order": 13,
+      "type": "SIDE",
+      "name": "Worlds of Ultima: The Savage Empire",
+      "edition": "Original",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "UWMAR",
+          "era": "SIDE",
+          "order": 14,
+          "type": "SIDE",
+          "name": "Worlds of Ultima: Martian Dreams",
+          "edition": "Original",
+          "platform": ["PC"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "UW1",
+      "era": "SIDE",
+      "order": 15,
+      "type": "SIDE",
+      "name": "Ultima Underworld: The Stygian Abyss",
+      "edition": "Original",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "UW2",
+          "era": "SIDE",
+          "order": 16,
+          "type": "SIDE",
+          "name": "Ultima Underworld II: Labyrinth of Worlds",
+          "edition": "Original",
+          "platform": ["PC"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "ROV1",
+      "era": "SIDE",
+      "order": 17,
+      "type": "SIDE",
+      "name": "Ultima: Runes of Virtue",
+      "edition": "Original",
+      "platform": ["GB"],
+      "unlocks": [
+        {
+          "id": "ROV2",
+          "era": "SIDE",
+          "order": 18,
+          "type": "SIDE",
+          "name": "Ultima: Runes of Virtue II",
+          "edition": "Original",
+          "platform": ["GB", "SNES"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "ULT4NES",
+      "era": "SIDE",
+      "order": 19,
+      "type": "SIDE",
+      "name": "Ultima: Quest of the Avatar",
+      "edition": "NES Version",
+      "platform": ["NES"],
+      "unlocks": []
+    },
+    {
+      "id": "ULT5NES",
+      "era": "SIDE",
+      "order": 20,
+      "type": "SIDE",
+      "name": "Ultima V: Warriors of Destiny",
+      "edition": "NES Version",
+      "platform": ["NES"],
+      "unlocks": []
+    },
+    {
+      "id": "ULT7SNES",
+      "era": "SIDE",
+      "order": 21,
+      "type": "SIDE",
+      "name": "Ultima: The Black Gate",
+      "edition": "SNES Version",
+      "platform": ["SNES"],
+      "unlocks": []
+    }
+  ]
+}

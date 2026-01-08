@@ -1,0 +1,47 @@
+{
+  "eras": ["GRANDIA"],
+  "adventures": [
+    {
+      "id": "GRD1",
+      "era": "GRANDIA",
+      "order": 1,
+      "type": "CORE",
+      "name": "Grandia",
+      "edition": "HD Collection (Switch)",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "GRD2",
+          "era": "GRANDIA",
+          "order": 2,
+          "type": "CORE",
+          "name": "Grandia II",
+          "edition": "HD Collection (Switch)",
+          "platform": ["SWITCH"],
+          "unlocks": [
+            {
+              "id": "GRDX",
+              "era": "GRANDIA",
+              "order": 3,
+              "type": "BONUS",
+              "name": "Grandia Xtreme",
+              "edition": "Standalone",
+              "platform": ["PS2"],
+              "unlocks": []
+            },
+            {
+              "id": "GRD3",
+              "era": "GRANDIA",
+              "order": 4,
+              "type": "CORE",
+              "name": "Grandia III",
+              "edition": "Standalone",
+              "platform": ["PS2"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

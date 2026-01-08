@@ -1,0 +1,35 @@
+{
+  "eras": ["FACTORY"],
+  "adventures": [
+    {
+      "id": "FSA",
+      "era": "FACTORY",
+      "order": 1,
+      "type": "CORE",
+      "name": "Factorio",
+      "edition": "Space Age",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "DSP",
+      "era": "FACTORY",
+      "order": 2,
+      "type": "CORE",
+      "name": "Dyson Sphere Program",
+      "edition": "Base Game",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "SAT",
+      "era": "FACTORY",
+      "order": 3,
+      "type": "CORE",
+      "name": "Satisfactory",
+      "edition": "Base Game",
+      "platform": ["PC"],
+      "unlocks": []
+    }
+  ]
+}
