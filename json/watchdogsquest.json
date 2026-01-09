@@ -1,0 +1,68 @@
+{
+  "eras": ["MAIN"],
+  "adventures": [
+    {
+      "id": "WD",
+      "era": "MAIN",
+      "order": 1,
+      "type": "CORE",
+      "name": "Watch Dogs",
+      "edition": "Original",
+      "platform": ["PS4", "PC"],
+      "unlocks": [
+        {
+          "id": "BBLD",
+          "era": "MAIN",
+          "order": 2,
+          "type": "DLC",
+          "name": "Bad Blood",
+          "edition": "DLC",
+          "platform": ["PS4", "PC"],
+          "unlocks": []
+        },
+        {
+          "id": "WD2",
+          "era": "MAIN",
+          "order": 3,
+          "type": "CORE",
+          "name": "Watch Dogs 2",
+          "edition": "Original",
+          "platform": ["PS4", "PC"],
+          "unlocks": [
+            {
+              "id": "NC",
+              "era": "MAIN",
+              "order": 4,
+              "type": "DLC",
+              "name": "No Compromise",
+              "edition": "DLC",
+              "platform": ["PS4", "PC"],
+              "unlocks": []
+            },
+            {
+              "id": "LEG",
+              "era": "MAIN",
+              "order": 5,
+              "type": "CORE",
+              "name": "Legion",
+              "edition": "Original",
+              "platform": ["PS5", "PS4", "PC"],
+              "unlocks": [
+                {
+                  "id": "BL",
+                  "era": "MAIN",
+                  "order": 6,
+                  "type": "DLC",
+                  "name": "Bloodline",
+                  "edition": "DLC",
+                  "platform": ["PS5", "PS4", "PC"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
