@@ -1,0 +1,223 @@
+{
+  "eras": ["ARCADE", "NES", "HANDHELD", "3D", "MODERN", "SIDE"],
+  "adventures": [
+    {
+      "id": "NGARC",
+      "era": "ARCADE",
+      "order": 1,
+      "type": "CORE",
+      "name": "Ninja Gaiden (Arcade)",
+      "edition": "Original",
+      "platform": ["ARCADE"],
+      "unlocks": []
+    },
+    {
+      "id": "NG1",
+      "era": "NES",
+      "order": 2,
+      "type": "CORE",
+      "name": "Ninja Gaiden",
+      "edition": "Original",
+      "platform": ["NES"],
+      "unlocks": [
+        {
+          "id": "NG2",
+          "era": "NES",
+          "order": 3,
+          "type": "CORE",
+          "name": "Ninja Gaiden II: The Dark Sword of Chaos",
+          "edition": "Original",
+          "platform": ["NES"],
+          "unlocks": [
+            {
+              "id": "NG3",
+              "era": "NES",
+              "order": 4,
+              "type": "CORE",
+              "name": "Ninja Gaiden III: The Ancient Ship of Doom",
+              "edition": "Original",
+              "platform": ["NES"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NGSH",
+      "era": "HANDHELD",
+      "order": 5,
+      "type": "SIDE",
+      "name": "Ninja Gaiden Shadow",
+      "edition": "Original",
+      "platform": ["GB"],
+      "unlocks": []
+    },
+    {
+      "id": "NGDS",
+      "era": "HANDHELD",
+      "order": 6,
+      "type": "CORE",
+      "name": "Dragon Sword",
+      "edition": "Original",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "NG04",
+      "era": "3D",
+      "order": 7,
+      "type": "CORE",
+      "name": "Ninja Gaiden",
+      "edition": "Original",
+      "platform": ["XBOX"],
+      "unlocks": [
+        {
+          "id": "NGII",
+          "era": "3D",
+          "order": 8,
+          "type": "CORE",
+          "name": "Ninja Gaiden II",
+          "edition": "Original",
+          "platform": ["X360"],
+          "unlocks": [
+            {
+              "id": "NG3D",
+              "era": "3D",
+              "order": 9,
+              "type": "CORE",
+              "name": "Ninja Gaiden 3",
+              "edition": "Original",
+              "platform": ["PS3"],
+              "unlocks": [
+                {
+                  "id": "NG4",
+                  "era": "3D",
+                  "order": 10,
+                  "type": "CORE",
+                  "name": "Ninja Gaiden 4",
+                  "edition": "Original",
+                  "platform": ["PS5"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NGS",
+      "era": "3D",
+      "order": 11,
+      "type": "CORE",
+      "name": "Sigma",
+      "edition": "Master Collection",
+      "platform": ["PS4"],
+      "unlocks": [
+        {
+          "id": "NGS2",
+          "era": "3D",
+          "order": 12,
+          "type": "CORE",
+          "name": "Sigma 2",
+          "edition": "Master Collection",
+          "platform": ["PS4"],
+          "unlocks": [
+            {
+              "id": "NG3RE",
+              "era": "3D",
+              "order": 13,
+              "type": "CORE",
+              "name": "Razor’s Edge",
+              "edition": "Master Collection",
+              "platform": ["PS4"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NGB",
+      "era": "3D",
+      "order": 14,
+      "type": "SIDE",
+      "name": "Black",
+      "edition": "Enhanced",
+      "platform": ["XBOX"],
+      "unlocks": [
+        {
+          "id": "NG2B",
+          "era": "3D",
+          "order": 15,
+          "type": "SIDE",
+          "name": "2 Black",
+          "edition": "Remaster",
+          "platform": ["PS5"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "NGRB",
+      "era": "MODERN",
+      "order": 16,
+      "type": "SIDE",
+      "name": "Ragebound",
+      "edition": "Original",
+      "platform": ["PS5"],
+      "unlocks": []
+    },
+    {
+      "id": "NGT",
+      "era": "SIDE",
+      "order": 17,
+      "type": "COLLECTION",
+      "name": "Ninja Gaiden Trilogy",
+      "edition": "Collection",
+      "platform": ["SNES"],
+      "unlocks": []
+    },
+    {
+      "id": "YNGZ",
+      "era": "SIDE",
+      "order": 18,
+      "type": "SIDE",
+      "name": "Yaiba: Ninja Gaiden Z",
+      "edition": "Original",
+      "platform": ["PS3"],
+      "unlocks": []
+    },
+    {
+      "id": "NGMS",
+      "era": "SIDE",
+      "order": 19,
+      "type": "SIDE",
+      "name": "Ninja Gaiden",
+      "edition": "Master System",
+      "platform": ["SMS"],
+      "unlocks": []
+    },
+    {
+      "id": "NGSP",
+      "era": "SIDE",
+      "order": 20,
+      "type": "SIDE",
+      "name": "Sigma Plus",
+      "edition": "Vita",
+      "platform": ["VITA"],
+      "unlocks": []
+    },
+    {
+      "id": "NGS2P",
+      "era": "SIDE",
+      "order": 21,
+      "type": "SIDE",
+      "name": "Sigma 2 Plus",
+      "edition": "Vita",
+      "platform": ["VITA"],
+      "unlocks": []
+    }
+  ]
+}
