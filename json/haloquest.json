@@ -1,0 +1,130 @@
+{
+  "eras": ["CLASSIC", "MODERN", "RTS", "SIDE"],
+  "adventures": [
+    {
+      "id": "REACH",
+      "era": "CLASSIC",
+      "order": 1,
+      "type": "CORE",
+      "name": "Halo: Reach",
+      "edition": "MCC",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "HCE",
+      "era": "CLASSIC",
+      "order": 2,
+      "type": "CORE",
+      "name": "Halo: Combat Evolved",
+      "edition": "MCC",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "H2",
+          "era": "CLASSIC",
+          "order": 3,
+          "type": "CORE",
+          "name": "Halo 2",
+          "edition": "MCC",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "H3",
+              "era": "CLASSIC",
+              "order": 4,
+              "type": "CORE",
+              "name": "Halo 3",
+              "edition": "MCC",
+              "platform": ["PC"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ODST",
+      "era": "CLASSIC",
+      "order": 5,
+      "type": "SIDE",
+      "name": "Halo 3: ODST",
+      "edition": "MCC",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "H4",
+      "era": "MODERN",
+      "order": 6,
+      "type": "CORE",
+      "name": "Halo 4",
+      "edition": "MCC",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "H5",
+          "era": "MODERN",
+          "order": 7,
+          "type": "CORE",
+          "name": "Halo 5: Guardians",
+          "edition": "Original",
+          "platform": ["XONE"],
+          "unlocks": [
+            {
+              "id": "HINF",
+              "era": "MODERN",
+              "order": 8,
+              "type": "CORE",
+              "name": "Halo Infinite",
+              "edition": "Original",
+              "platform": ["PC"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "HW",
+      "era": "RTS",
+      "order": 9,
+      "type": "CORE",
+      "name": "Halo Wars",
+      "edition": "Definitive",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "HW2",
+          "era": "RTS",
+          "order": 10,
+          "type": "CORE",
+          "name": "Halo Wars 2",
+          "edition": "Original",
+          "platform": ["PC"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "SA",
+      "era": "SIDE",
+      "order": 11,
+      "type": "SIDE",
+      "name": "Spartan Assault",
+      "edition": "Original",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "SS",
+      "era": "SIDE",
+      "order": 12,
+      "type": "SIDE",
+      "name": "Spartan Strike",
+      "edition": "Original",
+      "platform": ["PC"],
+      "unlocks": []
+    }
+  ]
+}
