@@ -1,0 +1,341 @@
+{
+  "eras": ["BANJO1", "BANJO2", "BANJO3", "SPYRO1", "SPYRO2", "SPYRO3", "CRASH1", "CRASH2", "CRASHR", "CROSS"],
+  "adventures": [
+    {
+      "id": "BK",
+      "era": "BANJO1",
+      "order": 1,
+      "type": "CORE",
+      "name": "Banjo-Kazooie",
+      "edition": "Original",
+      "platform": ["N64"],
+      "unlocks": [
+        {
+          "id": "BT",
+          "era": "BANJO1",
+          "order": 2,
+          "type": "CORE",
+          "name": "Banjo-Tooie",
+          "edition": "Original",
+          "platform": ["N64"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "BGR",
+      "era": "BANJO2",
+      "order": 3,
+      "type": "SIDE",
+      "name": "Grunty’s Revenge",
+      "edition": "Original",
+      "platform": ["GBA"],
+      "unlocks": []
+    },
+    {
+      "id": "BP",
+      "era": "BANJO2",
+      "order": 4,
+      "type": "SIDE",
+      "name": "Banjo-Pilot",
+      "edition": "Original",
+      "platform": ["GBA"],
+      "unlocks": []
+    },
+    {
+      "id": "BNB",
+      "era": "BANJO3",
+      "order": 5,
+      "type": "CORE",
+      "name": "Nuts & Bolts",
+      "edition": "Original",
+      "platform": ["X360"],
+      "unlocks": []
+    },
+    {
+      "id": "SD",
+      "era": "SPYRO1",
+      "order": 6,
+      "type": "CORE",
+      "name": "Spyro the Dragon",
+      "edition": "Reignited",
+      "platform": ["SWITCH", "PS4", "PC"],
+      "unlocks": [
+        {
+          "id": "SRR",
+          "era": "SPYRO1",
+          "order": 7,
+          "type": "CORE",
+          "name": "Ripto’s Rage!",
+          "edition": "Reignited",
+          "platform": ["SWITCH", "PS4", "PC"],
+          "unlocks": [
+            {
+              "id": "SYD",
+              "era": "SPYRO1",
+              "order": 8,
+              "type": "CORE",
+              "name": "Year of the Dragon",
+              "edition": "Reignited",
+              "platform": ["SWITCH", "PS4", "PC"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EDF",
+      "era": "SPYRO2",
+      "order": 9,
+      "type": "CORE",
+      "name": "Enter the Dragonfly",
+      "edition": "Original",
+      "platform": ["PS2"],
+      "unlocks": [
+        {
+          "id": "AHT",
+          "era": "SPYRO2",
+          "order": 10,
+          "type": "CORE",
+          "name": "A Hero’s Tail",
+          "edition": "Original",
+          "platform": ["PS2"],
+          "unlocks": [
+            {
+              "id": "SL",
+              "era": "SPYRO2",
+              "order": 11,
+              "type": "SIDE",
+              "name": "Shadow Legacy",
+              "edition": "Original",
+              "platform": ["DS"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SOI",
+      "era": "SPYRO2",
+      "order": 12,
+      "type": "SIDE",
+      "name": "Season of Ice",
+      "edition": "Original",
+      "platform": ["GBA"],
+      "unlocks": [
+        {
+          "id": "SOF",
+          "era": "SPYRO2",
+          "order": 13,
+          "type": "SIDE",
+          "name": "Season of Flame",
+          "edition": "Original",
+          "platform": ["GBA"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "NB",
+      "era": "SPYRO3",
+      "order": 14,
+      "type": "CORE",
+      "name": "The Legend of Spyro: A New Beginning",
+      "edition": "Original",
+      "platform": ["PS2"],
+      "unlocks": [
+        {
+          "id": "EN",
+          "era": "SPYRO3",
+          "order": 15,
+          "type": "CORE",
+          "name": "The Eternal Night",
+          "edition": "Original",
+          "platform": ["PS2"],
+          "unlocks": [
+            {
+              "id": "DOTD",
+              "era": "SPYRO3",
+              "order": 16,
+              "type": "CORE",
+              "name": "Dawn of the Dragon",
+              "edition": "Original",
+              "platform": ["WII", "PS3", "PS2"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CB1",
+      "era": "CRASH1",
+      "order": 17,
+      "type": "CORE",
+      "name": "Crash Bandicoot",
+      "edition": "N. Sane",
+      "platform": ["SWITCH", "PS4", "PC"],
+      "unlocks": [
+        {
+          "id": "CSB",
+          "era": "CRASH1",
+          "order": 18,
+          "type": "CORE",
+          "name": "Cortex Strikes Back",
+          "edition": "N. Sane",
+          "platform": ["SWITCH", "PS4", "PC"],
+          "unlocks": [
+            {
+              "id": "WARP",
+              "era": "CRASH1",
+              "order": 19,
+              "type": "CORE",
+              "name": "Warped",
+              "edition": "N. Sane",
+              "platform": ["SWITCH", "PS4", "PC"],
+              "unlocks": [
+                {
+                  "id": "IAT",
+                  "era": "CRASH1",
+                  "order": 20,
+                  "type": "CORE",
+                  "name": "It’s About Time",
+                  "edition": "Original",
+                  "platform": ["SWITCH", "PS5", "PS4", "PC"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "WOC",
+      "era": "CRASH2",
+      "order": 21,
+      "type": "CORE",
+      "name": "The Wrath of Cortex",
+      "edition": "Original",
+      "platform": ["GC", "PS2"],
+      "unlocks": [
+        {
+          "id": "TWINS",
+          "era": "CRASH2",
+          "order": 22,
+          "type": "CORE",
+          "name": "Twinsanity",
+          "edition": "Original",
+          "platform": ["PS2"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "TIT",
+      "era": "CRASH2",
+      "order": 23,
+      "type": "CORE",
+      "name": "Crash of the Titans",
+      "edition": "Original",
+      "platform": ["WII", "PS2", "PSP"],
+      "unlocks": [
+        {
+          "id": "MOM",
+          "era": "CRASH2",
+          "order": 24,
+          "type": "CORE",
+          "name": "Mind Over Mutant",
+          "edition": "Original",
+          "platform": ["WII", "PS2", "PSP"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "HA",
+      "era": "CRASH2",
+      "order": 25,
+      "type": "SIDE",
+      "name": "The Huge Adventure",
+      "edition": "Original",
+      "platform": ["GBA"],
+      "unlocks": [
+        {
+          "id": "NTR",
+          "era": "CRASH2",
+          "order": 26,
+          "type": "SIDE",
+          "name": "N-Tranced",
+          "edition": "Original",
+          "platform": ["GBA"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "BB",
+      "era": "CRASH2",
+      "order": 27,
+      "type": "SIDE",
+      "name": "Boom Bang!",
+      "edition": "Original",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "CTRNF",
+      "era": "CRASHR",
+      "order": 28,
+      "type": "SIDE",
+      "name": "Crash Team Racing",
+      "edition": "Nitro-Fueled",
+      "platform": ["SWITCH", "PS4"],
+      "unlocks": [
+        {
+          "id": "CNK",
+          "era": "CRASHR",
+          "order": 29,
+          "type": "SIDE",
+          "name": "Nitro Kart",
+          "edition": "Original",
+          "platform": ["GC", "PS2"],
+          "unlocks": [
+            {
+              "id": "CTTR",
+              "era": "CRASHR",
+              "order": 30,
+              "type": "SIDE",
+              "name": "Tag Team Racing",
+              "edition": "Original",
+              "platform": ["GC", "PS2", "PSP"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SPOR",
+      "era": "CROSS",
+      "order": 31,
+      "type": "SIDE",
+      "name": "Spyro Orange: The Cortex Conspiracy",
+      "edition": "Original",
+      "platform": ["GBA"],
+      "unlocks": []
+    },
+    {
+      "id": "CPP",
+      "era": "CROSS",
+      "order": 32,
+      "type": "SIDE",
+      "name": "Crash Bandicoot Purple: Ripto’s Rampage",
+      "edition": "Original",
+      "platform": ["GBA"],
+      "unlocks": []
+    }
+  ]
+}
