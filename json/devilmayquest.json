@@ -1,0 +1,69 @@
+{
+  "eras": ["DMC"],
+  "adventures": [
+    {
+      "id": "DMC1",
+      "era": "DMC",
+      "order": 1,
+      "type": "CORE",
+      "name": "Devil May Cry",
+      "edition": "HD Collection",
+      "platform": ["PS4"],
+      "unlocks": [
+        {
+          "id": "DMC2",
+          "era": "DMC",
+          "order": 2,
+          "type": "CORE",
+          "name": "Devil May Cry 2",
+          "edition": "HD Collection",
+          "platform": ["PS4"],
+          "unlocks": [
+            {
+              "id": "DMC3",
+              "era": "DMC",
+              "order": 3,
+              "type": "CORE",
+              "name": "Dante’s Awakening",
+              "edition": "Special Edition",
+              "platform": ["SWITCH"],
+              "unlocks": [
+                {
+                  "id": "DMC4",
+                  "era": "DMC",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "Devil May Cry 4",
+                  "edition": "Special Edition",
+                  "platform": ["PS4"],
+                  "unlocks": [
+                    {
+                      "id": "DMC5",
+                      "era": "DMC",
+                      "order": 5,
+                      "type": "CORE",
+                      "name": "Devil May Cry 5",
+                      "edition": "Special Edition",
+                      "platform": ["PS5"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DMCR",
+      "era": "DMC",
+      "order": 6,
+      "type": "CORE",
+      "name": "DmC: Devil May Cry",
+      "edition": "Definitive Edition",
+      "platform": ["PS4"],
+      "unlocks": []
+    }
+  ]
+}
