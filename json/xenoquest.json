@@ -1,0 +1,122 @@
+{
+  "eras": ["GEARS", "SAGA", "BLADE"],
+  "adventures": [
+    {
+      "id": "XG",
+      "era": "GEARS",
+      "order": 1,
+      "type": "CORE",
+      "name": "Xenogears",
+      "edition": "Original",
+      "platform": ["PS1"],
+      "unlocks": []
+    },
+    {
+      "id": "XS1",
+      "era": "SAGA",
+      "order": 2,
+      "type": "CORE",
+      "name": "Der Wille zur Macht",
+      "edition": "Xenosaga Episode I",
+      "platform": ["PS2"],
+      "unlocks": [
+        {
+          "id": "XS2",
+          "era": "SAGA",
+          "order": 3,
+          "type": "CORE",
+          "name": "Jenseits von Gut und Böse",
+          "edition": "Xenosaga Episode II",
+          "platform": ["PS2"],
+          "unlocks": [
+            {
+              "id": "XS3",
+              "era": "SAGA",
+              "order": 4,
+              "type": "CORE",
+              "name": "Also sprach Zarathustra",
+              "edition": "Xenosaga Episode III",
+              "platform": ["PS2"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "XCDE",
+      "era": "BLADE",
+      "order": 5,
+      "type": "CORE",
+      "name": "Xenoblade Chronicles",
+      "edition": "Definitive Edition",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "FC",
+          "era": "BLADE",
+          "order": 6,
+          "type": "SIDE",
+          "name": "Future Connected",
+          "edition": "Included",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        },
+        {
+          "id": "XCXDE",
+          "era": "BLADE",
+          "order": 7,
+          "type": "CORE",
+          "name": "Xenoblade Chronicles X",
+          "edition": "Definitive Edition",
+          "platform": ["SWITCH"],
+          "unlocks": [
+            {
+              "id": "XC2",
+              "era": "BLADE",
+              "order": 8,
+              "type": "CORE",
+              "name": "Xenoblade Chronicles 2",
+              "edition": "Original",
+              "platform": ["SWITCH"],
+              "unlocks": [
+                {
+                  "id": "TTGC",
+                  "era": "BLADE",
+                  "order": 9,
+                  "type": "DLC",
+                  "name": "Torna ~ The Golden Country",
+                  "edition": "Standalone Expansion",
+                  "platform": ["SWITCH"],
+                  "unlocks": [
+                    {
+                      "id": "XC3",
+                      "era": "BLADE",
+                      "order": 10,
+                      "type": "CORE",
+                      "name": "Xenoblade Chronicles 3",
+                      "edition": "Original",
+                      "platform": ["SWITCH"],
+                      "unlocks": [
+                        {
+                          "id": "FR",
+                          "era": "BLADE",
+                          "order": 11,
+                          "type": "DLC",
+                          "name": "Future Redeemed",
+                          "edition": "Expansion Pass (Wave 4)",
+                          "platform": ["SWITCH"],
+                          "unlocks": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
