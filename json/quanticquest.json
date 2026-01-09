@@ -1,0 +1,55 @@
+{
+  "eras": ["EARLY", "MODERN"],
+  "adventures": [
+    {
+      "id": "OTNS",
+      "era": "EARLY",
+      "order": 1,
+      "type": "CORE",
+      "name": "Omikron: The Nomad Soul",
+      "edition": "Original",
+      "platform": ["GOG"],
+      "unlocks": []
+    },
+    {
+      "id": "FIPR",
+      "era": "EARLY",
+      "order": 2,
+      "type": "CORE",
+      "name": "Fahrenheit",
+      "edition": "Remastered",
+      "platform": ["GOG"],
+      "unlocks": []
+    },
+    {
+      "id": "HR",
+      "era": "MODERN",
+      "order": 3,
+      "type": "CORE",
+      "name": "Heavy Rain",
+      "edition": "PS4 Collection",
+      "platform": ["PS4"],
+      "unlocks": []
+    },
+    {
+      "id": "BTS",
+      "era": "MODERN",
+      "order": 4,
+      "type": "CORE",
+      "name": "Beyond: Two Souls",
+      "edition": "PS4 Collection",
+      "platform": ["PS4"],
+      "unlocks": []
+    },
+    {
+      "id": "DBH",
+      "era": "MODERN",
+      "order": 5,
+      "type": "CORE",
+      "name": "Detroit: Become Human",
+      "edition": "PS4",
+      "platform": ["PS4"],
+      "unlocks": []
+    }
+  ]
+}
