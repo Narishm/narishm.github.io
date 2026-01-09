@@ -1,0 +1,68 @@
+{
+  "eras": ["SHEP", "ANDRO", "NEXT"],
+  "adventures": [
+    {
+      "id": "ME1",
+      "era": "SHEP",
+      "order": 1,
+      "type": "CORE",
+      "name": "Mass Effect",
+      "edition": "Legendary Edition",
+      "platform": ["PS4", "PC"],
+      "unlocks": [
+        {
+          "id": "PS",
+          "era": "SHEP",
+          "order": 2,
+          "type": "DLC",
+          "name": "Pinnacle Station",
+          "edition": "DLC",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "ME2",
+              "era": "SHEP",
+              "order": 3,
+              "type": "CORE",
+              "name": "Mass Effect 2",
+              "edition": "Legendary Edition",
+              "platform": ["PS4", "PC"],
+              "unlocks": [
+                {
+                  "id": "ME3",
+                  "era": "SHEP",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "Mass Effect 3",
+                  "edition": "Legendary Edition",
+                  "platform": ["PS4", "PC"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MEA",
+      "era": "ANDRO",
+      "order": 5,
+      "type": "CORE",
+      "name": "Andromeda",
+      "edition": "Original",
+      "platform": ["PS4", "PC"],
+      "unlocks": []
+    },
+    {
+      "id": "ME4",
+      "era": "NEXT",
+      "order": 6,
+      "type": "CORE",
+      "name": "Mass Effect 4",
+      "edition": "Announced",
+      "platform": [],
+      "unlocks": []
+    }
+  ]
+}
