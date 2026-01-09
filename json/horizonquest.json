@@ -1,0 +1,36 @@
+{
+  "eras": ["MAIN", "SIDE"],
+  "adventures": [
+    {
+      "id": "HZD",
+      "era": "MAIN",
+      "order": 1,
+      "type": "CORE",
+      "name": "Horizon Zero Dawn",
+      "edition": "Remastered",
+      "platform": ["PS5", "PC"],
+      "unlocks": [
+        {
+          "id": "HFW",
+          "era": "MAIN",
+          "order": 2,
+          "type": "CORE",
+          "name": "Horizon Forbidden West",
+          "edition": "Complete",
+          "platform": ["PS5", "PC"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "LHA",
+      "era": "SIDE",
+      "order": 3,
+      "type": "SIDE",
+      "name": "LEGO Horizon Adventures",
+      "edition": "Original",
+      "platform": ["SWITCH", "PS5", "PC"],
+      "unlocks": []
+    }
+  ]
+}
