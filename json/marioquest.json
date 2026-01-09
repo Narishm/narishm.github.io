@@ -1,0 +1,321 @@
+{
+  "eras": ["CLASSIC", "NEW", "MODERN", "LAND", "3D", "SIDE"],
+  "adventures": [
+    {
+      "id": "VSSMB",
+      "era": "CLASSIC",
+      "order": 1,
+      "type": "SIDE",
+      "name": "Vs. Super Mario Bros.",
+      "edition": "Original",
+      "platform": ["ARCADE"],
+      "unlocks": []
+    },
+    {
+      "id": "SMB",
+      "era": "CLASSIC",
+      "order": 2,
+      "type": "CORE",
+      "name": "Super Mario Bros.",
+      "edition": "Original",
+      "platform": ["NES"],
+      "unlocks": [
+        {
+          "id": "LL",
+          "era": "CLASSIC",
+          "order": 3,
+          "type": "CORE",
+          "name": "The Lost Levels",
+          "edition": "Original",
+          "platform": ["FDS"],
+          "unlocks": [
+            {
+              "id": "SMB2",
+              "era": "CLASSIC",
+              "order": 4,
+              "type": "CORE",
+              "name": "Super Mario Bros. 2",
+              "edition": "Original",
+              "platform": ["NES"],
+              "unlocks": [
+                {
+                  "id": "SMB3",
+                  "era": "CLASSIC",
+                  "order": 5,
+                  "type": "CORE",
+                  "name": "Super Mario Bros. 3",
+                  "edition": "Original",
+                  "platform": ["NES"],
+                  "unlocks": [
+                    {
+                      "id": "SMW",
+                      "era": "CLASSIC",
+                      "order": 6,
+                      "type": "CORE",
+                      "name": "Super Mario World",
+                      "edition": "Original",
+                      "platform": ["SNES"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "NSMB",
+      "era": "NEW",
+      "order": 7,
+      "type": "CORE",
+      "name": "New Super Mario Bros.",
+      "edition": "Original",
+      "platform": ["DS"],
+      "unlocks": [
+        {
+          "id": "NSMBW",
+          "era": "NEW",
+          "order": 8,
+          "type": "CORE",
+          "name": "New Super Mario Bros. Wii",
+          "edition": "Original",
+          "platform": ["WII"],
+          "unlocks": [
+            {
+              "id": "NSMB2",
+              "era": "NEW",
+              "order": 9,
+              "type": "CORE",
+              "name": "New Super Mario Bros. 2",
+              "edition": "Original",
+              "platform": ["3DS"],
+              "unlocks": [
+                {
+                  "id": "NSMBUDX",
+                  "era": "NEW",
+                  "order": 10,
+                  "type": "CORE",
+                  "name": "New Super Mario Bros. U Deluxe",
+                  "edition": "Original",
+                  "platform": ["SWITCH"],
+                  "unlocks": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SMM",
+      "era": "MODERN",
+      "order": 11,
+      "type": "SIDE",
+      "name": "Super Mario Maker",
+      "edition": "Original",
+      "platform": ["WIIU"],
+      "unlocks": [
+        {
+          "id": "SMM2",
+          "era": "MODERN",
+          "order": 12,
+          "type": "SIDE",
+          "name": "Super Mario Maker 2",
+          "edition": "Original",
+          "platform": ["SWITCH"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "SMBWON",
+      "era": "MODERN",
+      "order": 13,
+      "type": "CORE",
+      "name": "Super Mario Bros. Wonder",
+      "edition": "Original",
+      "platform": ["SWITCH"],
+      "unlocks": []
+    },
+    {
+      "id": "SML",
+      "era": "LAND",
+      "order": 14,
+      "type": "CORE",
+      "name": "Super Mario Land",
+      "edition": "Original",
+      "platform": ["GB"],
+      "unlocks": [
+        {
+          "id": "SML2",
+          "era": "LAND",
+          "order": 15,
+          "type": "CORE",
+          "name": "Super Mario Land 2: 6 Golden Coins",
+          "edition": "Original",
+          "platform": ["GB"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "SM64",
+      "era": "3D",
+      "order": 16,
+      "type": "CORE",
+      "name": "Super Mario 64",
+      "edition": "Original",
+      "platform": ["N64"],
+      "unlocks": [
+        {
+          "id": "SMS",
+          "era": "3D",
+          "order": 17,
+          "type": "CORE",
+          "name": "Super Mario Sunshine",
+          "edition": "Original",
+          "platform": ["GC"],
+          "unlocks": [
+            {
+              "id": "SMG",
+              "era": "3D",
+              "order": 18,
+              "type": "CORE",
+              "name": "Super Mario Galaxy",
+              "edition": "Original",
+              "platform": ["WII"],
+              "unlocks": [
+                {
+                  "id": "SMG2",
+                  "era": "3D",
+                  "order": 19,
+                  "type": "CORE",
+                  "name": "Super Mario Galaxy 2",
+                  "edition": "Original",
+                  "platform": ["WII"],
+                  "unlocks": [
+                    {
+                      "id": "SM3DL",
+                      "era": "3D",
+                      "order": 20,
+                      "type": "CORE",
+                      "name": "Super Mario 3D Land",
+                      "edition": "Original",
+                      "platform": ["3DS"],
+                      "unlocks": [
+                        {
+                          "id": "SM3DW",
+                          "era": "3D",
+                          "order": 21,
+                          "type": "CORE",
+                          "name": "Super Mario 3D World",
+                          "edition": "Original",
+                          "platform": ["WIIU"],
+                          "unlocks": [
+                            {
+                              "id": "BF",
+                              "era": "3D",
+                              "order": 22,
+                              "type": "DLC",
+                              "name": "Bowser’s Fury",
+                              "edition": "DLC",
+                              "platform": ["SWITCH"],
+                              "unlocks": [
+                                {
+                                  "id": "SMO",
+                                  "era": "3D",
+                                  "order": 23,
+                                  "type": "CORE",
+                                  "name": "Super Mario Odyssey",
+                                  "edition": "Original",
+                                  "platform": ["SWITCH"],
+                                  "unlocks": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SMAW",
+      "era": "SIDE",
+      "order": 24,
+      "type": "SIDE",
+      "name": "Super Mario All-Stars + Super Mario World",
+      "edition": "Collection",
+      "platform": ["SNES"],
+      "unlocks": []
+    },
+    {
+      "id": "SMBDX",
+      "era": "SIDE",
+      "order": 25,
+      "type": "SIDE",
+      "name": "Super Mario Bros. Deluxe",
+      "edition": "Port",
+      "platform": ["GBC"],
+      "unlocks": []
+    },
+    {
+      "id": "SM64DS",
+      "era": "SIDE",
+      "order": 26,
+      "type": "SIDE",
+      "name": "Super Mario 64 DS",
+      "edition": "Remake",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "SMA",
+      "era": "SIDE",
+      "order": 27,
+      "type": "SIDE",
+      "name": "Super Mario Advance",
+      "edition": "GBA Remake",
+      "platform": ["GBA"],
+      "unlocks": []
+    },
+    {
+      "id": "SMA2",
+      "era": "SIDE",
+      "order": 28,
+      "type": "SIDE",
+      "name": "Super Mario Advance 2",
+      "edition": "GBA Port",
+      "platform": ["GBA"],
+      "unlocks": []
+    },
+    {
+      "id": "SMA4",
+      "era": "SIDE",
+      "order": 29,
+      "type": "SIDE",
+      "name": "Super Mario Advance 4",
+      "edition": "GBA Remake",
+      "platform": ["GBA"],
+      "unlocks": []
+    },
+    {
+      "id": "SMM3DS",
+      "era": "SIDE",
+      "order": 30,
+      "type": "SIDE",
+      "name": "Super Mario Maker for Nintendo 3DS",
+      "edition": "Original",
+      "platform": ["3DS"],
+      "unlocks": []
+    }
+  ]
+}
