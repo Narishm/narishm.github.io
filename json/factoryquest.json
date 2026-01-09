@@ -30,6 +30,16 @@
       "edition": "Base Game",
       "platform": ["PC"],
       "unlocks": []
+    },
+    {
+      "id": "STAR",
+      "era": "FACTORY",
+      "order": 4,
+      "type": "CORE",
+      "name": "StarRupture",
+      "edition": "Base Game",
+      "platform": ["PC"],
+      "unlocks": []
     }
   ]
 }
