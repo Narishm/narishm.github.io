@@ -1,0 +1,201 @@
+{
+  "eras": ["CLASSIC", "SANDS", "SIDE", "REBOOT", "MODERN", "FUTURE"],
+  "adventures": [
+    {
+      "id": "PERSIA",
+      "era": "CLASSIC",
+      "order": 1,
+      "type": "CORE",
+      "name": "Prince of Persia",
+      "edition": "Original",
+      "platform": ["PC"],
+      "unlocks": [
+        {
+          "id": "PERSIA2",
+          "era": "CLASSIC",
+          "order": 2,
+          "type": "CORE",
+          "name": "Prince of Persia 2: The Shadow and the Flame",
+          "edition": "Original",
+          "platform": ["PC"],
+          "unlocks": [
+            {
+              "id": "PERSIA3D",
+              "era": "CLASSIC",
+              "order": 3,
+              "type": "CORE",
+              "name": "Prince of Persia 3D",
+              "edition": "Original",
+              "platform": ["PC"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SOT",
+      "era": "SANDS",
+      "order": 4,
+      "type": "CORE",
+      "name": "The Sands of Time",
+      "edition": "Original",
+      "platform": ["PS2", "PC"],
+      "unlocks": [
+        {
+          "id": "WW",
+          "era": "SANDS",
+          "order": 5,
+          "type": "CORE",
+          "name": "Warrior Within",
+          "edition": "Original",
+          "platform": ["PS2", "PC"],
+          "unlocks": [
+            {
+              "id": "TT",
+              "era": "SANDS",
+              "order": 6,
+              "type": "CORE",
+              "name": "The Two Thrones",
+              "edition": "Original",
+              "platform": ["PS2", "PC"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BOP",
+      "era": "SIDE",
+      "order": 7,
+      "type": "SIDE",
+      "name": "Battles of Prince of Persia",
+      "edition": "Original",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "REV",
+      "era": "SIDE",
+      "order": 8,
+      "type": "SIDE",
+      "name": "Revelations",
+      "edition": "Port",
+      "platform": ["PSP"],
+      "unlocks": []
+    },
+    {
+      "id": "RS",
+      "era": "SIDE",
+      "order": 9,
+      "type": "SIDE",
+      "name": "Rival Swords",
+      "edition": "Port",
+      "platform": ["WII", "PSP"],
+      "unlocks": []
+    },
+    {
+      "id": "TFS",
+      "era": "SIDE",
+      "order": 10,
+      "type": "CORE",
+      "name": "The Forgotten Sands",
+      "edition": "Original",
+      "platform": ["WII", "PS3", "PC"],
+      "unlocks": []
+    },
+    {
+      "id": "TFSDS",
+      "era": "SIDE",
+      "order": 11,
+      "type": "SIDE",
+      "name": "The Forgotten Sands",
+      "edition": "Handheld",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "TFSP",
+      "era": "SIDE",
+      "order": 12,
+      "type": "SIDE",
+      "name": "The Forgotten Sands",
+      "edition": "Handheld",
+      "platform": ["PSP"],
+      "unlocks": []
+    },
+    {
+      "id": "PERSIAR",
+      "era": "REBOOT",
+      "order": 13,
+      "type": "CORE",
+      "name": "Prince of Persia",
+      "edition": "2008 Reboot",
+      "platform": ["PS3", "PC"],
+      "unlocks": [
+        {
+          "id": "EPI",
+          "era": "REBOOT",
+          "order": 14,
+          "type": "DLC",
+          "name": "Epilogue",
+          "edition": "DLC",
+          "platform": ["PS3"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "TFK",
+      "era": "REBOOT",
+      "order": 15,
+      "type": "SIDE",
+      "name": "The Fallen King",
+      "edition": "Spin-off",
+      "platform": ["DS"],
+      "unlocks": []
+    },
+    {
+      "id": "RPOP",
+      "era": "MODERN",
+      "order": 16,
+      "type": "CORE",
+      "name": "The Rogue Prince of Persia",
+      "edition": "1.0",
+      "platform": ["SWITCH2", "SWITCH", "PS5", "PC"],
+      "unlocks": []
+    },
+    {
+      "id": "TLC",
+      "era": "MODERN",
+      "order": 17,
+      "type": "CORE",
+      "name": "The Lost Crown",
+      "edition": "Original",
+      "platform": ["SWITCH", "PS5", "PS4", "PC"],
+      "unlocks": [
+        {
+          "id": "MOD",
+          "era": "MODERN",
+          "order": 18,
+          "type": "DLC",
+          "name": "Mask of Darkness",
+          "edition": "DLC",
+          "platform": ["SWITCH", "PS5", "PS4", "PC"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "SOTR",
+      "era": "FUTURE",
+      "order": 19,
+      "type": "CORE",
+      "name": "The Sands of Time Remake",
+      "edition": "Remake",
+      "platform": [],
+      "unlocks": []
+    }
+  ]
+}
