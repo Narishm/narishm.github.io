@@ -1,5 +1,5 @@
 {
-  "eras": ["DMC"],
+  "eras": ["DMC", "GOWG", "GOWN", "GOWS", "DARK", "BAYO"],
   "adventures": [
     {
       "id": "DMC1",
@@ -63,6 +63,206 @@
       "name": "DmC: Devil May Cry",
       "edition": "Definitive Edition",
       "platform": ["PS4"],
+      "unlocks": []
+    },
+    {
+      "id": "GOW1",
+      "era": "GOWG",
+      "order": 7,
+      "type": "CORE",
+      "name": "God of War",
+      "edition": "Collection",
+      "platform": ["PS3"],
+      "unlocks": [
+        {
+          "id": "GOW2",
+          "era": "GOWG",
+          "order": 8,
+          "type": "CORE",
+          "name": "God of War II",
+          "edition": "Collection",
+          "platform": ["PS3"],
+          "unlocks": [
+            {
+              "id": "GOW3",
+              "era": "GOWG",
+              "order": 9,
+              "type": "CORE",
+              "name": "God of War III",
+              "edition": "Remastered",
+              "platform": ["PS4"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "GOW18",
+      "era": "GOWN",
+      "order": 10,
+      "type": "CORE",
+      "name": "God of War (2018)",
+      "edition": "Original",
+      "platform": ["PS4"],
+      "unlocks": [
+        {
+          "id": "GOWR",
+          "era": "GOWN",
+          "order": 11,
+          "type": "CORE",
+          "name": "Ragnarök",
+          "edition": "Original",
+          "platform": ["PS5"],
+          "unlocks": []
+        }
+      ]
+    },
+    {
+      "id": "COO",
+      "era": "GOWS",
+      "order": 12,
+      "type": "CORE",
+      "name": "Chains of Olympus",
+      "edition": "Original",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "GOS",
+      "era": "GOWS",
+      "order": 13,
+      "type": "CORE",
+      "name": "Ghost of Sparta",
+      "edition": "Original",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "ASC",
+      "era": "GOWS",
+      "order": 14,
+      "type": "CORE",
+      "name": "Ascension",
+      "edition": "Original",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "DS1",
+      "era": "DARK",
+      "order": 15,
+      "type": "CORE",
+      "name": "Darksiders",
+      "edition": "Warmastered",
+      "platform": ["PS4"],
+      "unlocks": [
+        {
+          "id": "DS2",
+          "era": "DARK",
+          "order": 16,
+          "type": "CORE",
+          "name": "Darksiders II",
+          "edition": "Deathinitive",
+          "platform": ["PS5"],
+          "unlocks": [
+            {
+              "id": "AT",
+              "era": "DARK",
+              "order": 17,
+              "type": "DLC",
+              "name": "Argul’s Tomb",
+              "edition": "DLC",
+              "platform": ["PS5"],
+              "unlocks": [
+                {
+                  "id": "AF",
+                  "era": "DARK",
+                  "order": 18,
+                  "type": "DLC",
+                  "name": "The Abyssal Forge",
+                  "edition": "DLC",
+                  "platform": ["PS5"],
+                  "unlocks": [
+                    {
+                      "id": "DLB",
+                      "era": "DARK",
+                      "order": 19,
+                      "type": "DLC",
+                      "name": "The Demon Lord Belial",
+                      "edition": "DLC",
+                      "platform": ["PS5"],
+                      "unlocks": [
+                        {
+                          "id": "DS3",
+                          "era": "DARK",
+                          "order": 20,
+                          "type": "CORE",
+                          "name": "Darksiders III",
+                          "edition": "Original",
+                          "platform": ["PS4"],
+                          "unlocks": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DSG",
+      "era": "DARK",
+      "order": 21,
+      "type": "CORE",
+      "name": "Darksiders Genesis",
+      "edition": "Original",
+      "platform": ["PS4"],
+      "unlocks": []
+    },
+    {
+      "id": "BAYO1",
+      "era": "BAYO",
+      "order": 22,
+      "type": "CORE",
+      "name": "Bayonetta",
+      "edition": "Original",
+      "platform": ["SWITCH"],
+      "unlocks": [
+        {
+          "id": "BAYO2",
+          "era": "BAYO",
+          "order": 23,
+          "type": "CORE",
+          "name": "Bayonetta 2",
+          "edition": "Original",
+          "platform": ["SWITCH"],
+          "unlocks": [
+            {
+              "id": "BAYO3",
+              "era": "BAYO",
+              "order": 24,
+              "type": "CORE",
+              "name": "Bayonetta 3",
+              "edition": "Original",
+              "platform": ["SWITCH"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BOCLD",
+      "era": "BAYO",
+      "order": 25,
+      "type": "SIDE",
+      "name": "Cereza and the Lost Demon",
+      "edition": "Original",
+      "platform": ["SWITCH"],
       "unlocks": []
     }
   ]
