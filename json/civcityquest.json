@@ -61,7 +61,7 @@
       "order": 6,
       "type": "CORE",
       "name": "Civilization",
-      "edition": "Original",
+      "edition": "Win 3.1",
       "platform": ["DOSBOX"],
       "unlocks": [
         {
@@ -70,7 +70,7 @@
           "order": 7,
           "type": "CORE",
           "name": "Civilization II",
-          "edition": "Gold Edition",
+          "edition": "Gold Edition (Win 3.1)",
           "platform": ["DOSBOX"],
           "unlocks": [
             {
@@ -132,9 +132,19 @@
       ]
     },
     {
-      "id": "CBE",
+      "id": "SMAC",
       "era": "CIV",
       "order": 13,
+      "type": "SIDE",
+      "name": "Alpha Centauri",
+      "edition": "Planetary Pack",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "CBE",
+      "era": "CIV",
+      "order": 14,
       "type": "SIDE",
       "name": "Beyond Earth",
       "edition": "The Collection",
@@ -144,7 +154,7 @@
     {
       "id": "POP",
       "era": "POP",
-      "order": 14,
+      "order": 15,
       "type": "CORE",
       "name": "Populous",
       "edition": "Original",
@@ -153,7 +163,7 @@
         {
           "id": "POP2",
           "era": "POP",
-          "order": 15,
+          "order": 16,
           "type": "CORE",
           "name": "Trials of the Olympian Gods",
           "edition": "Original",
@@ -162,10 +172,10 @@
             {
               "id": "PTB",
               "era": "POP",
-              "order": 16,
+              "order": 17,
               "type": "CORE",
               "name": "The Beginning",
-              "edition": "Original",
+              "edition": "Original + Undiscovered Worlds",
               "platform": ["GOG"],
               "unlocks": []
             }
