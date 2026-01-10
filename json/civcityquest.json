@@ -1,0 +1,177 @@
+{
+  "eras": ["CITY", "CIV", "POP"],
+  "adventures": [
+    {
+      "id": "SC",
+      "era": "CITY",
+      "order": 1,
+      "type": "CORE",
+      "name": "SimCity",
+      "edition": "Original",
+      "platform": ["SNES"],
+      "unlocks": [
+        {
+          "id": "SC2K",
+          "era": "CITY",
+          "order": 2,
+          "type": "CORE",
+          "name": "SimCity 2000",
+          "edition": "Special Edition",
+          "platform": ["GOG"],
+          "unlocks": [
+            {
+              "id": "SC3K",
+              "era": "CITY",
+              "order": 3,
+              "type": "CORE",
+              "name": "SimCity 3000",
+              "edition": "Unlimited",
+              "platform": ["GOG"],
+              "unlocks": [
+                {
+                  "id": "SC4",
+                  "era": "CITY",
+                  "order": 4,
+                  "type": "CORE",
+                  "name": "SimCity 4",
+                  "edition": "Deluxe Edition",
+                  "platform": ["GOG"],
+                  "unlocks": [
+                    {
+                      "id": "SC13",
+                      "era": "CITY",
+                      "order": 5,
+                      "type": "CORE",
+                      "name": "SimCity",
+                      "edition": "Complete Edition",
+                      "platform": ["EA"],
+                      "unlocks": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CIV1",
+      "era": "CIV",
+      "order": 6,
+      "type": "CORE",
+      "name": "Civilization",
+      "edition": "Original",
+      "platform": ["DOSBOX"],
+      "unlocks": [
+        {
+          "id": "CIV2GE",
+          "era": "CIV",
+          "order": 7,
+          "type": "CORE",
+          "name": "Civilization II",
+          "edition": "Gold Edition",
+          "platform": ["DOSBOX"],
+          "unlocks": [
+            {
+              "id": "CIV3",
+              "era": "CIV",
+              "order": 8,
+              "type": "CORE",
+              "name": "Civilization III",
+              "edition": "Complete",
+              "platform": ["STEAM"],
+              "unlocks": [
+                {
+                  "id": "CIV4",
+                  "era": "CIV",
+                  "order": 9,
+                  "type": "CORE",
+                  "name": "Civilization IV",
+                  "edition": "Complete",
+                  "platform": ["STEAM"],
+                  "unlocks": [
+                    {
+                      "id": "CIV5",
+                      "era": "CIV",
+                      "order": 10,
+                      "type": "CORE",
+                      "name": "Civilization V",
+                      "edition": "Complete",
+                      "platform": ["STEAM"],
+                      "unlocks": [
+                        {
+                          "id": "CIV6",
+                          "era": "CIV",
+                          "order": 11,
+                          "type": "CORE",
+                          "name": "Civilization VI",
+                          "edition": "Anthology",
+                          "platform": ["EPIC"],
+                          "unlocks": [
+                            {
+                              "id": "CIV7",
+                              "era": "CIV",
+                              "order": 12,
+                              "type": "CORE",
+                              "name": "Civilization VII",
+                              "edition": "Standard",
+                              "platform": ["STEAM"],
+                              "unlocks": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CBE",
+      "era": "CIV",
+      "order": 13,
+      "type": "SIDE",
+      "name": "Beyond Earth",
+      "edition": "The Collection",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "POP",
+      "era": "POP",
+      "order": 14,
+      "type": "CORE",
+      "name": "Populous",
+      "edition": "Original",
+      "platform": ["GOG"],
+      "unlocks": [
+        {
+          "id": "POP2",
+          "era": "POP",
+          "order": 15,
+          "type": "CORE",
+          "name": "Trials of the Olympian Gods",
+          "edition": "Original",
+          "platform": ["GOG"],
+          "unlocks": [
+            {
+              "id": "PTB",
+              "era": "POP",
+              "order": 16,
+              "type": "CORE",
+              "name": "The Beginning",
+              "edition": "Original",
+              "platform": ["GOG"],
+              "unlocks": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
