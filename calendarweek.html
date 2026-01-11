@@ -716,7 +716,7 @@ async function refreshWeek(){
 
       const list=byDay.get(dayKey) || [];
 
-      // Thumbnail: first overlapping event's description => images/<CODE>.png
+      // Thumbnail: first overlapping event's description => img/<CODE>.png
       let thumbUrl=null;
       if(list.length){
         const sortedForBg = sortEventsForDay([...list]);
