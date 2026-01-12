@@ -234,6 +234,9 @@
       padding: 0 18px;
       overflow:hidden;
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
+
+      /* set per-row in JS: url("img/tomato.png") etc, or none */
+      --barPattern: none;
     }
 
     .bar::before{
@@ -255,10 +258,14 @@
       content:"";
       position:absolute;
       inset: var(--borderSize);
+
+      /* ✅ NEW: texture layer (matches Google color name images in /img/) */
       background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
+        var(--barPattern) center / cover no-repeat,
         var(--barColor, var(--barDefault));
+
       clip-path: polygon(
         var(--slant) 0%,
         100% 0%,
@@ -275,7 +282,7 @@
       width:100%;
       display:flex;
       align-items:center;
-      justify-content:center;     /* <-- centered group */
+      justify-content:center;
       gap: 16px;
     }
 
@@ -307,7 +314,6 @@
 
     /********************************
      * RIGHT BOX (THUMBNAIL)
-     * Always paint dark-blue base, then layer thumb on top.
      ********************************/
     .arrowR{
       position:relative;
@@ -439,6 +445,30 @@ const COLOR_ID_MAP = {
 function pickEventColor(ev){
   const id = String(ev?.colorId || "");
   return COLOR_ID_MAP[id] || getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446";
+}
+
+/***********************
+ * ✅ NEW: Google colorId -> Google UI color name
+ * (so you can use img/tomato.png, img/banana.png, etc)
+ ***********************/
+const COLOR_ID_TO_NAME = {
+  "1":  "lavender",
+  "2":  "sage",
+  "3":  "grape",
+  "4":  "flamingo",
+  "5":  "banana",
+  "6":  "tangerine",
+  "7":  "peacock",
+  "8":  "graphite",
+  "9":  "blueberry",
+  "10": "basil",
+  "11": "tomato"
+};
+function pickEventPatternUrl(ev){
+  const id = String(ev?.colorId || "");
+  const name = COLOR_ID_TO_NAME[id];
+  if(!name) return null;
+  return IMAGE_BASE_URL + encodeURIComponent(name) + IMAGE_EXTENSION;
 }
 
 /***********************
@@ -587,12 +617,6 @@ function stripLeadingIndexPrefix(title){
 /***********************
  * Time formatting
  ***********************/
-function getTzAbbr(date){
-  try{
-    const parts=new Intl.DateTimeFormat(undefined,{timeZoneName:"short"}).formatToParts(date);
-    return parts.find(p=>p.type==="timeZoneName")?.value || "";
-  } catch { return ""; }
-}
 function formatTimeOneLine(date){
   const raw=new Intl.DateTimeFormat(undefined,{hour:"numeric",minute:"2-digit"}).format(date);
   return raw.replace(":00","").toUpperCase();
@@ -608,7 +632,7 @@ function startsOnDay(ev, dayKey){
  ***********************/
 function clearList(){ listEl.innerHTML=""; }
 
-function makeRow(day, title, timeText, rowIndex, barColor, thumbUrl){
+function makeRow(day, title, timeText, rowIndex, barColor, barPatternUrl, thumbUrl){
   const row=document.createElement("div");
   row.className="row " + (rowIndex % 2 === 0 ? "shift-left" : "shift-right");
 
@@ -634,6 +658,7 @@ function makeRow(day, title, timeText, rowIndex, barColor, thumbUrl){
   const bar=document.createElement("div");
   bar.className="bar";
   bar.style.setProperty("--barColor", barColor);
+  bar.style.setProperty("--barPattern", barPatternUrl ? `url("${barPatternUrl.replace(/"/g, '\\"')}")` : "none");
 
   const inner=document.createElement("div");
   inner.className="barInner";
@@ -727,23 +752,25 @@ async function refreshWeek(){
         }
       }
 
-      // Featured: title/color/time
+      // Featured: title/color/time + ✅ bar pattern
       const featured=list.length ? pickFeaturedEventForDay(list) : null;
 
       let title="rest day";
       let timeText="";
       let barColor=getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446";
+      let barPatternUrl=null;
 
       if(featured){
         title=stripLeadingIndexPrefix(String(featured.summary||"").trim() || "untitled");
         barColor = pickEventColor(featured);
+        barPatternUrl = pickEventPatternUrl(featured); // ✅ texture based on colorId
 
         if(featured.start?.dateTime && startsOnDay(featured, dayKey)){
           timeText = formatTimeOneLine(new Date(featured.start.dateTime));
         }
       }
 
-      listEl.appendChild(makeRow(dayDef, title, timeText, i, barColor, thumbUrl));
+      listEl.appendChild(makeRow(dayDef, title, timeText, i, barColor, barPatternUrl, thumbUrl));
     }
   } catch(e){
     showError(
