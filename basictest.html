@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calendar Color → Background</title>
+
+  <!-- Put your apiKey + calendarShareLink in here:
+       window.GCAL_CONFIG = { apiKey: "...", calendarShareLink: "..." }
+  -->
+  <script src="js/config.js"></script>
+
+  <style>
+    html, body { height:100%; margin:0; }
+    body{
+      /* Fallback if image missing */
+      background-color:#111;
+      background-position: 0 0;
+      background-repeat: repeat;
+      background-size: auto;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:#fff;
+    }
+    .hud{
+      position:fixed;
+      left:16px;
+      bottom:16px;
+      padding:10px 12px;
+      border-radius:12px;
+      background: rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(6px);
+      max-width:min(720px, calc(100vw - 32px));
+      line-height:1.25;
+      font-size:14px;
+      white-space:pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="hud" id="hud">Loading…</div>
+
+<script>
+/* ========= config ========= */
+const cfg = window.GCAL_CONFIG || {};
+const API_KEY = cfg.apiKey;
+const SHARE_LINK = cfg.calendarShareLink;
+
+const IMAGE_BASE = "img/";
+const IMAGE_EXT  = ".png";
+
+/* If Google doesn't return event.colorId (common!), we fall back */
+const FALLBACK_COLOR_NAME = cfg.defaultColorName || "tomato";
+const FALLBACK_HEX = "#2a3446";
+
+/* Google event colorId -> “named” colors you used for files */
+const COLOR_ID_TO_NAME = {
+  "1":"lavender",
+  "2":"sage",
+  "3":"grape",
+  "4":"flamingo",
+  "5":"banana",
+  "6":"tangerine",
+  "7":"peacock",
+  "8":"graphite",
+  "9":"blueberry",
+  "10":"basil",
+  "11":"tomato"
+};
+
+/* Google Calendar “month view style” hexes (optional fallback) */
+const COLOR_ID_TO_HEX = {
+  "1":  "#7986CB",
+  "2":  "#33B679",
+  "3":  "#8E24AA",
+  "4":  "#E67C73",
+  "5":  "#F6BF26",
+  "6":  "#F4511E",
+  "7":  "#039BE5",
+  "8":  "#616161",
+  "9":  "#3F51B5",
+  "10": "#0B8043",
+  "11": "#D50000"
+};
+
+const hud = document.getElementById("hud");
+
+/* ========= helpers ========= */
+function padBase64(b64){ const mod=b64.length%4; return mod ? b64 + "=".repeat(4-mod) : b64; }
+function decodeCidToCalendarId(cid){
+  try { return atob(padBase64(cid.replace(/-/g,"+").replace(/_/g,"/"))); }
+  catch { return null; }
+}
+function extractCalendarIdFromShareLink(urlStr){
+  try {
+    const u = new URL(urlStr);
+    const cid = u.searchParams.get("cid");
+    return cid ? decodeCidToCalendarId(cid) : null;
+  } catch { return null; }
+}
+
+async function fetchEvents(calendarId, timeMinISO, timeMaxISO){
+  const base = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`;
+  const url = new URL(base);
+  url.searchParams.set("key", API_KEY);
+  url.searchParams.set("timeMin", timeMinISO);
+  url.searchParams.set("timeMax", timeMaxISO);
+  url.searchParams.set("singleEvents","true");
+  url.searchParams.set("orderBy","startTime");
+  url.searchParams.set("maxResults","2500");
+
+  const res = await fetch(url.toString());
+  const data = await res.json();
+  if(!res.ok) throw new Error(data?.error?.message || "Calendar API error");
+  return Array.isArray(data.items) ? data.items : [];
+}
+
+function eventStartMillis(ev){
+  if(ev?.start?.dateTime) return new Date(ev.start.dateTime).getTime();
+  if(ev?.start?.date) return new Date(ev.start.date + "T00:00:00").getTime();
+  return Number.POSITIVE_INFINITY;
+}
+
+function pickFirstUpcoming(events){
+  const now = Date.now();
+  const sorted = [...events].sort((a,b)=>eventStartMillis(a)-eventStartMillis(b));
+  return sorted.find(ev => eventStartMillis(ev) >= now) || sorted[0] || null;
+}
+
+function setBackgroundByName(name, hexFallback){
+  const safe = String(name || "").trim();
+  const imgUrl = IMAGE_BASE + encodeURIComponent(safe) + IMAGE_EXT;
+
+  // Set a fallback color first, then set the image.
+  document.body.style.backgroundColor = hexFallback || FALLBACK_HEX;
+  document.body.style.backgroundImage = `url(${JSON.stringify(imgUrl)})`;
+  document.body.style.backgroundRepeat = "repeat";
+  document.body.style.backgroundSize = "auto";
+  document.body.style.backgroundPosition = "0 0";
+}
+
+function fmt(ev){
+  if(!ev) return "(no event)";
+  const title = String(ev.summary || "(untitled)");
+  const when = ev.start?.dateTime || ev.start?.date || "";
+  return `${title}\n${when}`;
+}
+
+/* ========= main ========= */
+(async function main(){
+  try{
+    if(!window.GCAL_CONFIG) throw new Error("Missing js/config.js (window.GCAL_CONFIG not found).");
+    if(!API_KEY || !SHARE_LINK) throw new Error("js/config.js must provide { apiKey, calendarShareLink }.");
+
+    const calendarId = extractCalendarIdFromShareLink(SHARE_LINK);
+    if(!calendarId) throw new Error("Could not decode calendarId from the cid link.");
+
+    // Look ahead 30 days (adjust however you want)
+    const now = new Date();
+    const end = new Date(now.getTime() + 30*24*60*60*1000);
+
+    const events = await fetchEvents(calendarId, now.toISOString(), end.toISOString());
+    const featured = pickFirstUpcoming(events);
+
+    const colorId = String(featured?.colorId || "");
+    const nameFromId = COLOR_ID_TO_NAME[colorId] || "";
+    const hexFromId  = COLOR_ID_TO_HEX[colorId]  || FALLBACK_HEX;
+
+    // If no event.colorId, we use your config fallback name
+    const finalName = nameFromId || FALLBACK_COLOR_NAME;
+
+    setBackgroundByName(finalName, hexFromId);
+
+    hud.textContent =
+      `Featured event:\n${fmt(featured)}\n\n` +
+      `event.colorId: ${colorId || "(none)"}\n` +
+      `bg image: ${finalName}${IMAGE_EXT}\n` +
+      `hex fallback: ${hexFromId}`;
+
+  } catch (e){
+    hud.textContent =
+      "Error:\n" + (e?.message || String(e)) +
+      "\n\nNotes:\n- Calendar must be public for API-key-only.\n- Open via http(s) (not file://) to avoid fetch/CORS issues.";
+  }
+})();
+</script>
+
+</body>
+</html>
