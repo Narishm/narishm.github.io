@@ -235,7 +235,7 @@
       overflow:hidden;
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
 
-      /* set per-row in JS: url("img/tomato.png") etc, or none */
+      /* set per-row in JS: url("img/07.png") etc, or none */
       --barPattern: none;
     }
 
@@ -259,11 +259,11 @@
       position:absolute;
       inset: var(--borderSize);
 
-      /* ✅ NEW: texture layer (matches Google color name images in /img/) */
+      /* Texture tiles; base color still behind it */
       background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
-        var(--barPattern) center / cover no-repeat,
+        var(--barPattern) 0 0 / auto repeat,
         var(--barColor, var(--barDefault));
 
       clip-path: polygon(
@@ -275,7 +275,7 @@
       z-index:1;
     }
 
-    /* ✅ Center the middle text group */
+    /* Center the middle text group */
     .barInner{
       position:relative;
       z-index:2;
@@ -417,59 +417,20 @@ const GOOGLE_API_KEY = cfg.apiKey;
 const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
 
 /***********************
- * THUMBNAIL RULE (matches month view)
- * img/<CODE>.png where CODE = first line of first overlapping event description
+ * DESCRIPTION RULE (new):
+ * First line of description may be:
+ *   "07 THUMB_CODE"
+ *   "07 - THUMB_CODE"
+ *   "07: THUMB_CODE"
+ *
+ * - The leading 2-digit code (if present) selects the BAR background texture: img/07.png
+ * - The remainder (if present) selects the THUMB image: img/<THUMB_CODE>.png
  ***********************/
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
 const IGNORE_EMPTY_TITLES = true;
 const IGNORE_MARKER_ONLY_EVENTS = false;
-
-/***********************
- * Month-view color palette (Google Calendar colorId -> hex)
- ***********************/
-const COLOR_ID_MAP = {
-  "1":  "#7986CB",
-  "2":  "#33B679",
-  "3":  "#8E24AA",
-  "4":  "#E67C73",
-  "5":  "#F6BF26",
-  "6":  "#F4511E",
-  "7":  "#039BE5",
-  "8":  "#616161",
-  "9":  "#3F51B5",
-  "10": "#0B8043",
-  "11": "#D50000"
-};
-function pickEventColor(ev){
-  const id = String(ev?.colorId || "");
-  return COLOR_ID_MAP[id] || getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446";
-}
-
-/***********************
- * ✅ NEW: Google colorId -> Google UI color name
- * (so you can use img/tomato.png, img/banana.png, etc)
- ***********************/
-const COLOR_ID_TO_NAME = {
-  "1":  "lavender",
-  "2":  "sage",
-  "3":  "grape",
-  "4":  "flamingo",
-  "5":  "banana",
-  "6":  "tangerine",
-  "7":  "peacock",
-  "8":  "graphite",
-  "9":  "blueberry",
-  "10": "basil",
-  "11": "tomato"
-};
-function pickEventPatternUrl(ev){
-  const id = String(ev?.colorId || "");
-  const name = COLOR_ID_TO_NAME[id];
-  if(!name) return null;
-  return IMAGE_BASE_URL + encodeURIComponent(name) + IMAGE_EXTENSION;
-}
 
 /***********************
  * Kanji check ✅
@@ -592,7 +553,7 @@ function sortEventsForDay(list){
 }
 
 /***********************
- * Month-style background code parsing
+ * Description parsing (NEW)
  ***********************/
 function normalizeDescription(desc){
   const s=String(desc||"");
@@ -605,6 +566,22 @@ function isSafeCode(code){
 }
 function codeToImageUrl(code){
   return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
+}
+
+/* returns { colorCode: "07" | null, thumbCode: "SOMETHING" | "" } */
+function parseDescLine(line){
+  const s = String(line || "").trim();
+  // "07 THUMB", "07 - THUMB", "07: THUMB", "07|THUMB"
+  const m = s.match(/^\s*(\d{2})(?:\s*[-:|]\s*|\s+)(.*)\s*$/);
+  if(m){
+    return { colorCode: m[1], thumbCode: String(m[2] || "").trim() };
+  }
+  // If it starts with just "07" and nothing else
+  const solo = s.match(/^\s*(\d{2})\s*$/);
+  if(solo){
+    return { colorCode: solo[1], thumbCode: "" };
+  }
+  return { colorCode: null, thumbCode: s };
 }
 
 /***********************
@@ -632,7 +609,7 @@ function startsOnDay(ev, dayKey){
  ***********************/
 function clearList(){ listEl.innerHTML=""; }
 
-function makeRow(day, title, timeText, rowIndex, barColor, barPatternUrl, thumbUrl){
+function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   const row=document.createElement("div");
   row.className="row " + (rowIndex % 2 === 0 ? "shift-left" : "shift-right");
 
@@ -657,7 +634,7 @@ function makeRow(day, title, timeText, rowIndex, barColor, barPatternUrl, thumbU
   // MIDDLE
   const bar=document.createElement("div");
   bar.className="bar";
-  bar.style.setProperty("--barColor", barColor);
+  bar.style.setProperty("--barColor", getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446");
   bar.style.setProperty("--barPattern", barPatternUrl ? `url("${barPatternUrl.replace(/"/g, '\\"')}")` : "none");
 
   const inner=document.createElement("div");
@@ -694,12 +671,15 @@ function pickFeaturedEventForDay(list){
   const sorted=sortEventsForDay([...list]);
   for(const ev of sorted){
     const summary=String(ev?.summary||"").trim();
-    const descCode=normalizeDescription(ev?.description||"");
+    const firstLine=normalizeDescription(ev?.description||"");
+    const parsed=parseDescLine(firstLine);
 
     if(IGNORE_EMPTY_TITLES && !summary) continue;
 
     if(IGNORE_MARKER_ONLY_EVENTS){
-      const markerOnly=!summary && descCode && isSafeCode(descCode);
+      // Marker-only means: no title, but has (safe) thumbCode or just a color code.
+      const hasSomeMarker = (!!parsed.colorCode) || (!!parsed.thumbCode);
+      const markerOnly = !summary && hasSomeMarker;
       if(markerOnly) continue;
     }
     return ev;
@@ -741,36 +721,45 @@ async function refreshWeek(){
 
       const list=byDay.get(dayKey) || [];
 
-      // Thumbnail: first overlapping event's description => img/<CODE>.png
+      // RIGHT thumbnail: first overlapping event's description first line,
+      // strip 2-digit color code if present, use remainder as thumb code.
       let thumbUrl=null;
       if(list.length){
         const sortedForBg = sortEventsForDay([...list]);
         const firstEvent = sortedForBg[0];
-        const code = normalizeDescription(firstEvent?.description || "");
-        if(code && isSafeCode(code)){
-          thumbUrl = codeToImageUrl(code);
+        const line = normalizeDescription(firstEvent?.description || "");
+        const parsed = parseDescLine(line);
+
+        const thumbCode = parsed.thumbCode;
+        if(thumbCode && isSafeCode(thumbCode)){
+          thumbUrl = codeToImageUrl(thumbCode);
         }
       }
 
-      // Featured: title/color/time + ✅ bar pattern
+      // Featured: title/time + BAR pattern from featured event's color code
       const featured=list.length ? pickFeaturedEventForDay(list) : null;
 
       let title="rest day";
       let timeText="";
-      let barColor=getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446";
       let barPatternUrl=null;
 
       if(featured){
         title=stripLeadingIndexPrefix(String(featured.summary||"").trim() || "untitled");
-        barColor = pickEventColor(featured);
-        barPatternUrl = pickEventPatternUrl(featured); // ✅ texture based on colorId
+
+        const line = normalizeDescription(featured?.description || "");
+        const parsed = parseDescLine(line);
+
+        // BAR texture: img/<2digit>.png
+        if(parsed.colorCode){
+          barPatternUrl = codeToImageUrl(parsed.colorCode);
+        }
 
         if(featured.start?.dateTime && startsOnDay(featured, dayKey)){
           timeText = formatTimeOneLine(new Date(featured.start.dateTime));
         }
       }
 
-      listEl.appendChild(makeRow(dayDef, title, timeText, i, barColor, barPatternUrl, thumbUrl));
+      listEl.appendChild(makeRow(dayDef, title, timeText, i, barPatternUrl, thumbUrl));
     }
   } catch(e){
     showError(
