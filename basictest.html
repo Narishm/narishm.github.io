@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Calendar Color → Background</title>
 
-  <!-- Put your apiKey + calendarShareLink in here:
-       window.GCAL_CONFIG = { apiKey: "...", calendarShareLink: "..." }
-  -->
   <script src="js/config.js"></script>
 
   <style>
@@ -109,11 +106,17 @@ async function fetchEvents(calendarId, timeMinISO, timeMaxISO){
   url.searchParams.set("singleEvents","true");
   url.searchParams.set("orderBy","startTime");
   url.searchParams.set("maxResults","2500");
+  
+  // ✅ IMPLEMENTED FIX: Request specific fields to ensure colorId is included
   url.searchParams.set("fields", "items(summary,start,end,description,colorId),nextPageToken");
 
   const res = await fetch(url.toString());
   const data = await res.json();
   if(!res.ok) throw new Error(data?.error?.message || "Calendar API error");
+  
+  // Debug log to see if colorId exists in the data
+  console.log("Fetched Events:", data.items);
+  
   return Array.isArray(data.items) ? data.items : [];
 }
 
@@ -133,7 +136,6 @@ function setBackgroundByName(name, hexFallback){
   const safe = String(name || "").trim();
   const imgUrl = IMAGE_BASE + encodeURIComponent(safe) + IMAGE_EXT;
 
-  // Set a fallback color first, then set the image.
   document.body.style.backgroundColor = hexFallback || FALLBACK_HEX;
   document.body.style.backgroundImage = `url(${JSON.stringify(imgUrl)})`;
   document.body.style.backgroundRepeat = "repeat";
@@ -157,26 +159,23 @@ function fmt(ev){
     const calendarId = extractCalendarIdFromShareLink(SHARE_LINK);
     if(!calendarId) throw new Error("Could not decode calendarId from the cid link.");
 
-    // Look ahead 30 days (adjust however you want)
     const now = new Date();
     const end = new Date(now.getTime() + 30*24*60*60*1000);
 
     const events = await fetchEvents(calendarId, now.toISOString(), end.toISOString());
     const featured = pickFirstUpcoming(events);
 
-    const colorId = String(featured?.colorId || "");
-    const nameFromId = COLOR_ID_TO_NAME[colorId] || "";
+    // ✅ REFINED LOGIC: Explicitly handle the undefined colorId case
+    const colorId = featured?.colorId ? String(featured.colorId) : "";
+    const nameFromId = COLOR_ID_TO_NAME[colorId] || FALLBACK_COLOR_NAME;
     const hexFromId  = COLOR_ID_TO_HEX[colorId]  || FALLBACK_HEX;
 
-    // If no event.colorId, we use your config fallback name
-    const finalName = nameFromId || FALLBACK_COLOR_NAME;
-
-    setBackgroundByName(finalName, hexFromId);
+    setBackgroundByName(nameFromId, hexFromId);
 
     hud.textContent =
       `Featured event:\n${fmt(featured)}\n\n` +
-      `event.colorId: ${colorId || "(none)"}\n` +
-      `bg image: ${finalName}${IMAGE_EXT}\n` +
+      `event.colorId: ${colorId || "(none - using default)"}\n` +
+      `bg image: ${nameFromId}${IMAGE_EXT}\n` +
       `hex fallback: ${hexFromId}`;
 
   } catch (e){
