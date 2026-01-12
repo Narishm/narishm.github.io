@@ -161,6 +161,7 @@
       --dayPattern: url("img/06.png");
     }
 
+
     .arrow::before{
       content:"";
       position:absolute;
@@ -182,10 +183,12 @@
       content:"";
       position:absolute;
       inset: var(--borderSize);
+
+      /* ✅ texture is visible now (was previously hidden under opaque blue) */
       background:
-        linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.15)),
         var(--dayPattern) 0 0 / auto repeat,
-        linear-gradient(180deg, var(--blue1), var(--blue2));
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
+
       clip-path: polygon(
         0% 50%,
         var(--point) 0%,
