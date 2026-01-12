@@ -225,7 +225,7 @@
     }
 
     /********************************
-     * MIDDLE BAR (slant LEFT, slant RIGHT)
+     * MIDDLE BAR
      ********************************/
     .bar{
       position:relative;
@@ -235,7 +235,7 @@
       overflow:hidden;
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
 
-      /* set per-row in JS: url("img/07.png") etc, or none */
+      /* set per-row in JS: url("img/00.png") etc, or none */
       --barPattern: none;
     }
 
@@ -259,7 +259,7 @@
       position:absolute;
       inset: var(--borderSize);
 
-      /* Texture tiles; base color still behind it */
+      /* Texture tiles; base color behind it */
       background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
@@ -275,7 +275,6 @@
       z-index:1;
     }
 
-    /* Center the middle text group */
     .barInner{
       position:relative;
       z-index:2;
@@ -417,14 +416,10 @@ const GOOGLE_API_KEY = cfg.apiKey;
 const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
 
 /***********************
- * DESCRIPTION RULE (new):
- * First line of description may be:
- *   "07 THUMB_CODE"
- *   "07 - THUMB_CODE"
- *   "07: THUMB_CODE"
- *
- * - The leading 2-digit code (if present) selects the BAR background texture: img/07.png
- * - The remainder (if present) selects the THUMB image: img/<THUMB_CODE>.png
+ * DESCRIPTION CODE (new locked format):
+ * First line of description is ALWAYS: "00off"
+ * - First 2 digits: bar background texture file => img/00.png
+ * - Remainder: thumbnail code file => img/off.png
  ***********************/
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
@@ -432,10 +427,6 @@ const IMAGE_EXTENSION = ".png";
 const IGNORE_EMPTY_TITLES = true;
 const IGNORE_MARKER_ONLY_EVENTS = false;
 
-/***********************
- * Kanji check ✅
- * Sun 日, Mon 月, Tue 火, Wed 水, Thu 木, Fri 金, Sat 土
- ***********************/
 const DAYS = [
   { name:"sun", kanji:"日" },
   { name:"mon", kanji:"月" },
@@ -553,7 +544,7 @@ function sortEventsForDay(list){
 }
 
 /***********************
- * Description parsing (NEW)
+ * Description parsing (LOCKED "00off" format)
  ***********************/
 function normalizeDescription(desc){
   const s=String(desc||"");
@@ -568,20 +559,19 @@ function codeToImageUrl(code){
   return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
 }
 
-/* returns { colorCode: "07" | null, thumbCode: "SOMETHING" | "" } */
-function parseDescLine(line){
+/* "00off" => { barCode:"00", thumbCode:"off" } */
+function parsePackedCode(line){
   const s = String(line || "").trim();
-  // "07 THUMB", "07 - THUMB", "07: THUMB", "07|THUMB"
-  const m = s.match(/^\s*(\d{2})(?:\s*[-:|]\s*|\s+)(.*)\s*$/);
-  if(m){
-    return { colorCode: m[1], thumbCode: String(m[2] || "").trim() };
-  }
-  // If it starts with just "07" and nothing else
-  const solo = s.match(/^\s*(\d{2})\s*$/);
-  if(solo){
-    return { colorCode: solo[1], thumbCode: "" };
-  }
-  return { colorCode: null, thumbCode: s };
+  if(!s) return { barCode:null, thumbCode:null };
+
+  // Use only the first token on the line (in case someone adds notes after)
+  const token = s.split(/\s+/)[0];
+
+  const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
+  if(m) return { barCode: m[1], thumbCode: m[2] };
+
+  // If somehow it isn't packed correctly, fail cleanly.
+  return { barCode:null, thumbCode:null };
 }
 
 /***********************
@@ -672,14 +662,13 @@ function pickFeaturedEventForDay(list){
   for(const ev of sorted){
     const summary=String(ev?.summary||"").trim();
     const firstLine=normalizeDescription(ev?.description||"");
-    const parsed=parseDescLine(firstLine);
+    const parsed=parsePackedCode(firstLine);
 
     if(IGNORE_EMPTY_TITLES && !summary) continue;
 
     if(IGNORE_MARKER_ONLY_EVENTS){
-      // Marker-only means: no title, but has (safe) thumbCode or just a color code.
-      const hasSomeMarker = (!!parsed.colorCode) || (!!parsed.thumbCode);
-      const markerOnly = !summary && hasSomeMarker;
+      // Marker-only means: no title, but has a packed code
+      const markerOnly = !summary && !!parsed.barCode && !!parsed.thumbCode;
       if(markerOnly) continue;
     }
     return ev;
@@ -721,23 +710,21 @@ async function refreshWeek(){
 
       const list=byDay.get(dayKey) || [];
 
-      // RIGHT thumbnail: first overlapping event's description first line,
-      // strip 2-digit color code if present, use remainder as thumb code.
+      // Use the FIRST overlapping event for the thumbnail code (month-view behavior)
       let thumbUrl=null;
       if(list.length){
-        const sortedForBg = sortEventsForDay([...list]);
-        const firstEvent = sortedForBg[0];
+        const sortedForThumb = sortEventsForDay([...list]);
+        const firstEvent = sortedForThumb[0];
         const line = normalizeDescription(firstEvent?.description || "");
-        const parsed = parseDescLine(line);
+        const parsed = parsePackedCode(line);
 
-        const thumbCode = parsed.thumbCode;
-        if(thumbCode && isSafeCode(thumbCode)){
-          thumbUrl = codeToImageUrl(thumbCode);
+        if(parsed.thumbCode && isSafeCode(parsed.thumbCode)){
+          thumbUrl = codeToImageUrl(parsed.thumbCode);
         }
       }
 
-      // Featured: title/time + BAR pattern from featured event's color code
-      const featured=list.length ? pickFeaturedEventForDay(list) : null;
+      // Use FEATURED event for bar texture + title/time
+      const featured = list.length ? pickFeaturedEventForDay(list) : null;
 
       let title="rest day";
       let timeText="";
@@ -747,11 +734,11 @@ async function refreshWeek(){
         title=stripLeadingIndexPrefix(String(featured.summary||"").trim() || "untitled");
 
         const line = normalizeDescription(featured?.description || "");
-        const parsed = parseDescLine(line);
+        const parsed = parsePackedCode(line);
 
-        // BAR texture: img/<2digit>.png
-        if(parsed.colorCode){
-          barPatternUrl = codeToImageUrl(parsed.colorCode);
+        if(parsed.barCode && isSafeCode(parsed.barCode)){
+          // Bar texture is the 2-digit code file: img/00.png
+          barPatternUrl = codeToImageUrl(parsed.barCode);
         }
 
         if(featured.start?.dateTime && startsOnDay(featured, dayKey)){
