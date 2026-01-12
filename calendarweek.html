@@ -225,7 +225,7 @@
     }
 
     /********************************
-     * MIDDLE BAR
+     * MIDDLE BAR (slant LEFT, slant RIGHT)
      ********************************/
     .bar{
       position:relative;
@@ -234,7 +234,9 @@
       padding: 0 18px;
       overflow:hidden;
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-      --barPattern: none; /* set per-row in JS */
+
+      /* set per-row in JS: url("img/tomato.png") etc, or none */
+      --barPattern: none;
     }
 
     .bar::before{
@@ -257,27 +259,12 @@
       position:absolute;
       inset: var(--borderSize);
 
-      background-color: var(--barColor, var(--barDefault));
-
-      background-image:
+      /* ✅ NEW: texture layer (matches Google color name images in /img/) */
+      background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
-        var(--barPattern);
-
-      background-repeat:
-        no-repeat,
-        no-repeat,
-        repeat;
-
-      background-size:
-        auto,
-        auto,
-        auto;
-
-      background-position:
-        0 0,
-        0 0,
-        0 0;
+        var(--barPattern) center / cover no-repeat,
+        var(--barColor, var(--barDefault));
 
       clip-path: polygon(
         var(--slant) 0%,
@@ -288,6 +275,7 @@
       z-index:1;
     }
 
+    /* ✅ Center the middle text group */
     .barInner{
       position:relative;
       z-index:2;
@@ -334,7 +322,10 @@
       justify-content:flex-end;
       padding-right: 16px;
       overflow:visible;
+
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
+
+      /* set per-row in JS: url("...") or none */
       --thumb: none;
     }
 
@@ -359,10 +350,12 @@
       content:"";
       position:absolute;
       inset: var(--borderSize);
+
       background:
         var(--thumb) center / 100% auto no-repeat,
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.18)),
         linear-gradient(180deg, var(--blue1), var(--blue2));
+
       clip-path: polygon(
         var(--slant) 0%,
         calc(100% - var(--point)) 0%,
@@ -417,16 +410,15 @@
 <script>
 /***********************
  * CONFIG (loaded from js/config.js)
- * window.GCAL_CONFIG = { apiKey, calendarShareLink, defaultColorId?, defaultColorName? }
+ * window.GCAL_CONFIG = { apiKey, calendarShareLink }
  ***********************/
 const cfg = window.GCAL_CONFIG || {};
 const GOOGLE_API_KEY = cfg.apiKey;
 const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
-const DEFAULT_COLOR_ID = String(cfg.defaultColorId || "");      // e.g. "11"
-const DEFAULT_COLOR_NAME = String(cfg.defaultColorName || "");  // e.g. "tomato"
 
 /***********************
- * THUMBNAIL RULE
+ * THUMBNAIL RULE (matches month view)
+ * img/<CODE>.png where CODE = first line of first overlapping event description
  ***********************/
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
@@ -435,7 +427,7 @@ const IGNORE_EMPTY_TITLES = true;
 const IGNORE_MARKER_ONLY_EVENTS = false;
 
 /***********************
- * Google Calendar colorId -> hex
+ * Month-view color palette (Google Calendar colorId -> hex)
  ***********************/
 const COLOR_ID_MAP = {
   "1":  "#7986CB",
@@ -450,24 +442,20 @@ const COLOR_ID_MAP = {
   "10": "#0B8043",
   "11": "#D50000"
 };
-
-function effectiveColorId(ev){
-  const id = String(ev?.colorId || "");
-  return id || DEFAULT_COLOR_ID;
-}
-
 function pickEventColor(ev){
-  const id = effectiveColorId(ev);
-  return COLOR_ID_MAP[id] ||
-    getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() ||
-    "#2a3446";
+  const id = String(ev?.colorId || "");
+  return COLOR_ID_MAP[id] || getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446";
 }
 
 /***********************
- * colorId -> your texture file names in /img/
+ * ✅ NEW: Google colorId -> Google UI color name
+ * (so you can use img/tomato.png, img/banana.png, etc)
  ***********************/
 const COLOR_ID_TO_NAME = {
+  "1":  "lavender",
+  "2":  "sage",
   "3":  "grape",
+  "4":  "flamingo",
   "5":  "banana",
   "6":  "tangerine",
   "7":  "peacock",
@@ -476,16 +464,16 @@ const COLOR_ID_TO_NAME = {
   "10": "basil",
   "11": "tomato"
 };
-
 function pickEventPatternUrl(ev){
-  const id = effectiveColorId(ev);
-  const name = COLOR_ID_TO_NAME[id] || DEFAULT_COLOR_NAME;
+  const id = String(ev?.colorId || "");
+  const name = COLOR_ID_TO_NAME[id];
   if(!name) return null;
   return IMAGE_BASE_URL + encodeURIComponent(name) + IMAGE_EXTENSION;
 }
 
 /***********************
- * Days
+ * Kanji check ✅
+ * Sun 日, Mon 月, Tue 火, Wed 水, Thu 木, Fri 金, Sat 土
  ***********************/
 const DAYS = [
   { name:"sun", kanji:"日" },
@@ -670,7 +658,7 @@ function makeRow(day, title, timeText, rowIndex, barColor, barPatternUrl, thumbU
   const bar=document.createElement("div");
   bar.className="bar";
   bar.style.setProperty("--barColor", barColor);
-  bar.style.setProperty("--barPattern", barPatternUrl ? `url(${JSON.stringify(barPatternUrl)})` : "none");
+  bar.style.setProperty("--barPattern", barPatternUrl ? `url("${barPatternUrl.replace(/"/g, '\\"')}")` : "none");
 
   const inner=document.createElement("div");
   inner.className="barInner";
@@ -764,6 +752,7 @@ async function refreshWeek(){
         }
       }
 
+      // Featured: title/color/time + ✅ bar pattern
       const featured=list.length ? pickFeaturedEventForDay(list) : null;
 
       let title="rest day";
@@ -774,7 +763,7 @@ async function refreshWeek(){
       if(featured){
         title=stripLeadingIndexPrefix(String(featured.summary||"").trim() || "untitled");
         barColor = pickEventColor(featured);
-        barPatternUrl = pickEventPatternUrl(featured);
+        barPatternUrl = pickEventPatternUrl(featured); // ✅ texture based on colorId
 
         if(featured.start?.dateTime && startsOnDay(featured, dayKey)){
           timeText = formatTimeOneLine(new Date(featured.start.dateTime));
