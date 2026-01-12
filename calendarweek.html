@@ -225,7 +225,7 @@
     }
 
     /********************************
-     * MIDDLE BAR (slant LEFT, slant RIGHT)
+     * MIDDLE BAR
      ********************************/
     .bar{
       position:relative;
@@ -234,9 +234,7 @@
       padding: 0 18px;
       overflow:hidden;
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-
-      /* set per-row in JS: url("img/tomato.png") etc, or none */
-      --barPattern: none;
+      --barPattern: none; /* set per-row in JS */
     }
 
     .bar::before{
@@ -254,7 +252,6 @@
       filter: drop-shadow(0 6px 0 rgba(0,0,0,.85));
     }
 
-    /* ✅ CHANGED: Explicit layered backgrounds so pattern can truly repeat */
     .bar::after{
       content:"";
       position:absolute;
@@ -291,7 +288,6 @@
       z-index:1;
     }
 
-    /* ✅ Center the middle text group */
     .barInner{
       position:relative;
       z-index:2;
@@ -330,7 +326,6 @@
 
     /********************************
      * RIGHT BOX (THUMBNAIL)
-     * Always paint dark-blue base, then layer thumb on top.
      ********************************/
     .arrowR{
       position:relative;
@@ -339,10 +334,7 @@
       justify-content:flex-end;
       padding-right: 16px;
       overflow:visible;
-
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-
-      /* set per-row in JS: url("...") or none */
       --thumb: none;
     }
 
@@ -367,12 +359,10 @@
       content:"";
       position:absolute;
       inset: var(--borderSize);
-
       background:
         var(--thumb) center / 100% auto no-repeat,
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.18)),
         linear-gradient(180deg, var(--blue1), var(--blue2));
-
       clip-path: polygon(
         var(--slant) 0%,
         calc(100% - var(--point)) 0%,
@@ -427,15 +417,16 @@
 <script>
 /***********************
  * CONFIG (loaded from js/config.js)
- * window.GCAL_CONFIG = { apiKey, calendarShareLink }
+ * window.GCAL_CONFIG = { apiKey, calendarShareLink, defaultColorId?, defaultColorName? }
  ***********************/
 const cfg = window.GCAL_CONFIG || {};
 const GOOGLE_API_KEY = cfg.apiKey;
 const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
+const DEFAULT_COLOR_ID = String(cfg.defaultColorId || "");      // e.g. "11"
+const DEFAULT_COLOR_NAME = String(cfg.defaultColorName || "");  // e.g. "tomato"
 
 /***********************
- * THUMBNAIL RULE (matches month view)
- * img/<CODE>.png where CODE = first line of first overlapping event description
+ * THUMBNAIL RULE
  ***********************/
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
@@ -444,7 +435,7 @@ const IGNORE_EMPTY_TITLES = true;
 const IGNORE_MARKER_ONLY_EVENTS = false;
 
 /***********************
- * Month-view color palette (Google Calendar colorId -> hex)
+ * Google Calendar colorId -> hex
  ***********************/
 const COLOR_ID_MAP = {
   "1":  "#7986CB",
@@ -459,14 +450,21 @@ const COLOR_ID_MAP = {
   "10": "#0B8043",
   "11": "#D50000"
 };
-function pickEventColor(ev){
+
+function effectiveColorId(ev){
   const id = String(ev?.colorId || "");
-  return COLOR_ID_MAP[id] || getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446";
+  return id || DEFAULT_COLOR_ID;
+}
+
+function pickEventColor(ev){
+  const id = effectiveColorId(ev);
+  return COLOR_ID_MAP[id] ||
+    getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() ||
+    "#2a3446";
 }
 
 /***********************
- * Google colorId -> your texture file names in /img/
- * (These are the ones you said exist)
+ * colorId -> your texture file names in /img/
  ***********************/
 const COLOR_ID_TO_NAME = {
   "3":  "grape",
@@ -480,15 +478,14 @@ const COLOR_ID_TO_NAME = {
 };
 
 function pickEventPatternUrl(ev){
-  const id = String(ev?.colorId || "");
-  const name = COLOR_ID_TO_NAME[id];
+  const id = effectiveColorId(ev);
+  const name = COLOR_ID_TO_NAME[id] || DEFAULT_COLOR_NAME;
   if(!name) return null;
   return IMAGE_BASE_URL + encodeURIComponent(name) + IMAGE_EXTENSION;
 }
 
 /***********************
- * Kanji check ✅
- * Sun 日, Mon 月, Tue 火, Wed 水, Thu 木, Fri 金, Sat 土
+ * Days
  ***********************/
 const DAYS = [
   { name:"sun", kanji:"日" },
@@ -673,12 +670,7 @@ function makeRow(day, title, timeText, rowIndex, barColor, barPatternUrl, thumbU
   const bar=document.createElement("div");
   bar.className="bar";
   bar.style.setProperty("--barColor", barColor);
-
-  /* ✅ CHANGED: robust URL quoting */
-  bar.style.setProperty(
-    "--barPattern",
-    barPatternUrl ? `url(${JSON.stringify(barPatternUrl)})` : "none"
-  );
+  bar.style.setProperty("--barPattern", barPatternUrl ? `url(${JSON.stringify(barPatternUrl)})` : "none");
 
   const inner=document.createElement("div");
   inner.className="barInner";
@@ -772,7 +764,6 @@ async function refreshWeek(){
         }
       }
 
-      // Featured: title/color/time + texture
       const featured=list.length ? pickFeaturedEventForDay(list) : null;
 
       let title="rest day";
@@ -785,17 +776,9 @@ async function refreshWeek(){
         barColor = pickEventColor(featured);
         barPatternUrl = pickEventPatternUrl(featured);
 
-        /* ✅ TEMP DEBUG: show whether colorId exists */
-        title += featured?.colorId ? ` [c${featured.colorId}]` : " [no colorId]";
-
         if(featured.start?.dateTime && startsOnDay(featured, dayKey)){
           timeText = formatTimeOneLine(new Date(featured.start.dateTime));
         }
-      }
-
-      /* ✅ TEMP DEBUG: force Sunday to tomato so you can confirm patterns load at all */
-      if(i === 0){
-        barPatternUrl = "img/tomato.png";
       }
 
       listEl.appendChild(makeRow(dayDef, title, timeText, i, barColor, barPatternUrl, thumbUrl));
