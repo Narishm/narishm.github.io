@@ -109,6 +109,7 @@ async function fetchEvents(calendarId, timeMinISO, timeMaxISO){
   url.searchParams.set("singleEvents","true");
   url.searchParams.set("orderBy","startTime");
   url.searchParams.set("maxResults","2500");
+  url.searchParams.set("fields", "items(summary,start,end,description,colorId),nextPageToken");
 
   const res = await fetch(url.toString());
   const data = await res.json();
