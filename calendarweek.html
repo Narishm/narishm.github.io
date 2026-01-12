@@ -259,7 +259,6 @@
       position:absolute;
       inset: var(--borderSize);
 
-      /* Texture tiles; base color behind it */
       background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
@@ -366,13 +365,6 @@
       z-index:1;
     }
 
-    .arrowRContent{
-      position:relative;
-      z-index:2;
-      width:100%;
-      height:100%;
-    }
-
     @media (max-width: 800px){
       :root{
         --sideW: 200px;
@@ -387,6 +379,19 @@
       .dow{ font-size: 28px; }
       .eventTitle{ max-width: 66%; }
     }
+
+    /* Optional debug tag on each row */
+    .dbg{
+      position:absolute;
+      bottom:6px;
+      left:10px;
+      font: 700 11px/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: rgba(255,255,255,.85);
+      text-shadow: 0 2px 0 rgba(0,0,0,.9);
+      pointer-events:none;
+      display:none;
+    }
+    .bar.debug .dbg{ display:block; }
   </style>
 </head>
 
@@ -408,25 +413,26 @@
 
 <script>
 /***********************
- * CONFIG (loaded from js/config.js)
- * window.GCAL_CONFIG = { apiKey, calendarShareLink }
+ * CONFIG
+ * window.GCAL_CONFIG = { apiKey, calendarShareLink, debug?: true }
  ***********************/
 const cfg = window.GCAL_CONFIG || {};
 const GOOGLE_API_KEY = cfg.apiKey;
 const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
+const DEBUG = !!cfg.debug;
 
 /***********************
- * DESCRIPTION CODE (new locked format):
- * First line of description is ALWAYS: "00off"
- * - First 2 digits: bar background texture file => img/00.png
- * - Remainder: thumbnail code file => img/off.png
+ * LOCKED DESCRIPTION FORMAT:
+ * First line token is ALWAYS: "00off"
+ * - First 2 digits => BAR texture: img/00.png
+ * - Rest => THUMB: img/off.png
  ***********************/
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
-const IGNORE_EMPTY_TITLES = true;
-const IGNORE_MARKER_ONLY_EVENTS = false;
-
+/***********************
+ * Kanji check
+ ***********************/
 const DAYS = [
   { name:"sun", kanji:"日" },
   { name:"mon", kanji:"月" },
@@ -544,7 +550,7 @@ function sortEventsForDay(list){
 }
 
 /***********************
- * Description parsing (LOCKED "00off" format)
+ * Description parsing (LOCKED)
  ***********************/
 function normalizeDescription(desc){
   const s=String(desc||"");
@@ -560,30 +566,20 @@ function codeToImageUrl(code){
 }
 
 /* "00off" => { barCode:"00", thumbCode:"off" } */
-function parsePackedCode(line){
-  const s = String(line || "").trim();
-  if(!s) return { barCode:null, thumbCode:null };
-
-  // Use only the first token on the line (in case someone adds notes after)
-  const token = s.split(/\s+/)[0];
-
+function parsePackedCodeFromEvent(ev){
+  const line = normalizeDescription(ev?.description || "");
+  const token = line.split(/\s+/)[0]; // only first token matters
   const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
-  if(m) return { barCode: m[1], thumbCode: m[2] };
-
-  // If somehow it isn't packed correctly, fail cleanly.
-  return { barCode:null, thumbCode:null };
+  if(!m) return { barCode:null, thumbCode:null, raw: line };
+  return { barCode: m[1], thumbCode: m[2], raw: line };
 }
 
 /***********************
- * Remove leading "1 - " / "12 - " etc from titles
+ * Title + time
  ***********************/
 function stripLeadingIndexPrefix(title){
   return String(title || "").replace(/^\s*\d+\s*-\s*/,"").trim();
 }
-
-/***********************
- * Time formatting
- ***********************/
 function formatTimeOneLine(date){
   const raw=new Intl.DateTimeFormat(undefined,{hour:"numeric",minute:"2-digit"}).format(date);
   return raw.replace(":00","").toUpperCase();
@@ -595,11 +591,11 @@ function startsOnDay(ev, dayKey){
 }
 
 /***********************
- * Render
+ * Rendering
  ***********************/
 function clearList(){ listEl.innerHTML=""; }
 
-function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
+function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl, debugText){
   const row=document.createElement("div");
   row.className="row " + (rowIndex % 2 === 0 ? "shift-left" : "shift-right");
 
@@ -624,6 +620,8 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   // MIDDLE
   const bar=document.createElement("div");
   bar.className="bar";
+  if(DEBUG) bar.classList.add("debug");
+
   bar.style.setProperty("--barColor", getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446");
   bar.style.setProperty("--barPattern", barPatternUrl ? `url("${barPatternUrl.replace(/"/g, '\\"')}")` : "none");
 
@@ -642,14 +640,15 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   if(timeText) inner.appendChild(time);
   bar.appendChild(inner);
 
+  const dbg=document.createElement("div");
+  dbg.className="dbg";
+  dbg.textContent=debugText || "";
+  bar.appendChild(dbg);
+
   // RIGHT
   const arrowR=document.createElement("div");
   arrowR.className="arrowR";
   arrowR.style.setProperty("--thumb", thumbUrl ? `url("${thumbUrl.replace(/"/g, '\\"')}")` : "none");
-
-  const arrowRContent=document.createElement("div");
-  arrowRContent.className="arrowRContent";
-  arrowR.appendChild(arrowRContent);
 
   row.appendChild(arrow);
   row.appendChild(bar);
@@ -657,23 +656,18 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   return row;
 }
 
-function pickFeaturedEventForDay(list){
-  const sorted=sortEventsForDay([...list]);
+/* Choose the event that drives BOTH bar + thumb.
+   Priority:
+   1) first event that has a valid packed code
+   2) else first event in the day
+*/
+function pickDriverEventForDay(list){
+  const sorted = sortEventsForDay([...list]);
   for(const ev of sorted){
-    const summary=String(ev?.summary||"").trim();
-    const firstLine=normalizeDescription(ev?.description||"");
-    const parsed=parsePackedCode(firstLine);
-
-    if(IGNORE_EMPTY_TITLES && !summary) continue;
-
-    if(IGNORE_MARKER_ONLY_EVENTS){
-      // Marker-only means: no title, but has a packed code
-      const markerOnly = !summary && !!parsed.barCode && !!parsed.thumbCode;
-      if(markerOnly) continue;
-    }
-    return ev;
+    const parsed = parsePackedCodeFromEvent(ev);
+    if(parsed.barCode && parsed.thumbCode) return ev;
   }
-  return null;
+  return sorted[0] || null;
 }
 
 let cursorDate=new Date();
@@ -709,44 +703,48 @@ async function refreshWeek(){
       const dayDef=DAYS[i];
 
       const list=byDay.get(dayKey) || [];
-
-      // Use the FIRST overlapping event for the thumbnail code (month-view behavior)
-      let thumbUrl=null;
-      if(list.length){
-        const sortedForThumb = sortEventsForDay([...list]);
-        const firstEvent = sortedForThumb[0];
-        const line = normalizeDescription(firstEvent?.description || "");
-        const parsed = parsePackedCode(line);
-
-        if(parsed.thumbCode && isSafeCode(parsed.thumbCode)){
-          thumbUrl = codeToImageUrl(parsed.thumbCode);
-        }
-      }
-
-      // Use FEATURED event for bar texture + title/time
-      const featured = list.length ? pickFeaturedEventForDay(list) : null;
+      const driver = list.length ? pickDriverEventForDay(list) : null;
 
       let title="rest day";
       let timeText="";
       let barPatternUrl=null;
+      let thumbUrl=null;
+      let debugText="";
 
-      if(featured){
-        title=stripLeadingIndexPrefix(String(featured.summary||"").trim() || "untitled");
+      if(driver){
+        const parsed = parsePackedCodeFromEvent(driver);
 
-        const line = normalizeDescription(featured?.description || "");
-        const parsed = parsePackedCode(line);
+        // Title: prefer actual summary, else use thumbCode (OFF, etc)
+        const summary = stripLeadingIndexPrefix(String(driver.summary || "").trim());
+        title = summary || (parsed.thumbCode ? parsed.thumbCode : "untitled");
 
+        // BAR texture: img/<2digits>.png
         if(parsed.barCode && isSafeCode(parsed.barCode)){
-          // Bar texture is the 2-digit code file: img/00.png
           barPatternUrl = codeToImageUrl(parsed.barCode);
         }
 
-        if(featured.start?.dateTime && startsOnDay(featured, dayKey)){
-          timeText = formatTimeOneLine(new Date(featured.start.dateTime));
+        // THUMB: img/<rest>.png
+        if(parsed.thumbCode && isSafeCode(parsed.thumbCode)){
+          thumbUrl = codeToImageUrl(parsed.thumbCode);
+        }
+
+        // Time only if timed and starts today
+        if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
+          timeText = formatTimeOneLine(new Date(driver.start.dateTime));
+        }
+
+        if(DEBUG){
+          debugText = `${parsed.raw}  →  bar:${parsed.barCode || "??"}  thumb:${parsed.thumbCode || "??"}`;
+          console.log(`[${dayDef.name}]`, debugText, { barPatternUrl, thumbUrl });
+        }
+      } else {
+        if(DEBUG){
+          debugText = "(no events)";
+          console.log(`[${dayDef.name}] (no events)`);
         }
       }
 
-      listEl.appendChild(makeRow(dayDef, title, timeText, i, barPatternUrl, thumbUrl));
+      listEl.appendChild(makeRow(dayDef, title, timeText, i, barPatternUrl, thumbUrl, debugText));
     }
   } catch(e){
     showError(
