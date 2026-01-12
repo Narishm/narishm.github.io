@@ -148,7 +148,7 @@
     .row.shift-right { --rowShift: var(--offset); }
 
     /********************************
-     * LEFT BOX (DAY)
+     * LEFT BOX (DAY)  ✅ now uses img/06.png
      ********************************/
     .arrow{
       position:relative;
@@ -156,6 +156,9 @@
       align-items:center;
       padding-left: 16px;
       overflow:visible;
+
+      /* fixed day texture */
+      --dayPattern: url("img/06.png");
     }
 
     .arrow::before{
@@ -181,6 +184,7 @@
       inset: var(--borderSize);
       background:
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.15)),
+        var(--dayPattern) 0 0 / auto repeat,
         linear-gradient(180deg, var(--blue1), var(--blue2));
       clip-path: polygon(
         0% 50%,
@@ -379,19 +383,6 @@
       .dow{ font-size: 28px; }
       .eventTitle{ max-width: 66%; }
     }
-
-    /* Optional debug tag on each row */
-    .dbg{
-      position:absolute;
-      bottom:6px;
-      left:10px;
-      font: 700 11px/1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: rgba(255,255,255,.85);
-      text-shadow: 0 2px 0 rgba(0,0,0,.9);
-      pointer-events:none;
-      display:none;
-    }
-    .bar.debug .dbg{ display:block; }
   </style>
 </head>
 
@@ -412,27 +403,13 @@
   </div>
 
 <script>
-/***********************
- * CONFIG
- * window.GCAL_CONFIG = { apiKey, calendarShareLink, debug?: true }
- ***********************/
 const cfg = window.GCAL_CONFIG || {};
 const GOOGLE_API_KEY = cfg.apiKey;
 const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
-const DEBUG = !!cfg.debug;
 
-/***********************
- * LOCKED DESCRIPTION FORMAT:
- * First line token is ALWAYS: "00off"
- * - First 2 digits => BAR texture: img/00.png
- * - Rest => THUMB: img/off.png
- ***********************/
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
-/***********************
- * Kanji check
- ***********************/
 const DAYS = [
   { name:"sun", kanji:"日" },
   { name:"mon", kanji:"月" },
@@ -469,9 +446,6 @@ function formatRangeLabel(weekStart){
   return `${weekStart.toLocaleDateString(undefined,{month:"short", day:"numeric"})} – ${end.toLocaleDateString(undefined,{month:"short", day:"numeric"})}`;
 }
 
-/***********************
- * cid decode => calendarId
- ***********************/
 function padBase64(b64){ const mod=b64.length%4; return mod ? b64 + "=".repeat(4-mod) : b64; }
 function decodeCidToCalendarId(cid){
   try { const n=cid.replace(/-/g,"+").replace(/_/g,"/"); return atob(padBase64(n)); }
@@ -482,9 +456,6 @@ function extractCalendarIdFromShareLink(urlStr){
   catch { return null; }
 }
 
-/***********************
- * Fetch events
- ***********************/
 async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
   const base = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`;
   let pageToken=null;
@@ -510,9 +481,6 @@ async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
   return all;
 }
 
-/***********************
- * Multi-day overlap
- ***********************/
 function coveredDayKeys(ev){
   let start,endExclusive;
 
@@ -549,9 +517,6 @@ function sortEventsForDay(list){
   });
 }
 
-/***********************
- * Description parsing (LOCKED)
- ***********************/
 function normalizeDescription(desc){
   const s=String(desc||"");
   const noHtml=s.replace(/<[^>]+>/g,"");
@@ -564,19 +529,14 @@ function isSafeCode(code){
 function codeToImageUrl(code){
   return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
 }
-
-/* "00off" => { barCode:"00", thumbCode:"off" } */
 function parsePackedCodeFromEvent(ev){
   const line = normalizeDescription(ev?.description || "");
-  const token = line.split(/\s+/)[0]; // only first token matters
+  const token = line.split(/\s+/)[0];
   const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
-  if(!m) return { barCode:null, thumbCode:null, raw: line };
-  return { barCode: m[1], thumbCode: m[2], raw: line };
+  if(!m) return { barCode:null, thumbCode:null };
+  return { barCode: m[1], thumbCode: m[2] };
 }
 
-/***********************
- * Title + time
- ***********************/
 function stripLeadingIndexPrefix(title){
   return String(title || "").replace(/^\s*\d+\s*-\s*/,"").trim();
 }
@@ -590,18 +550,15 @@ function startsOnDay(ev, dayKey){
   return false;
 }
 
-/***********************
- * Rendering
- ***********************/
 function clearList(){ listEl.innerHTML=""; }
 
-function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl, debugText){
+function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   const row=document.createElement("div");
   row.className="row " + (rowIndex % 2 === 0 ? "shift-left" : "shift-right");
 
-  // LEFT
   const arrow=document.createElement("div");
   arrow.className="arrow";
+
   const arrowContent=document.createElement("div");
   arrowContent.className="arrowContent";
 
@@ -617,11 +574,8 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl, debugT
   arrowContent.appendChild(dow);
   arrow.appendChild(arrowContent);
 
-  // MIDDLE
   const bar=document.createElement("div");
   bar.className="bar";
-  if(DEBUG) bar.classList.add("debug");
-
   bar.style.setProperty("--barColor", getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446");
   bar.style.setProperty("--barPattern", barPatternUrl ? `url("${barPatternUrl.replace(/"/g, '\\"')}")` : "none");
 
@@ -640,12 +594,6 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl, debugT
   if(timeText) inner.appendChild(time);
   bar.appendChild(inner);
 
-  const dbg=document.createElement("div");
-  dbg.className="dbg";
-  dbg.textContent=debugText || "";
-  bar.appendChild(dbg);
-
-  // RIGHT
   const arrowR=document.createElement("div");
   arrowR.className="arrowR";
   arrowR.style.setProperty("--thumb", thumbUrl ? `url("${thumbUrl.replace(/"/g, '\\"')}")` : "none");
@@ -656,11 +604,6 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl, debugT
   return row;
 }
 
-/* Choose the event that drives BOTH bar + thumb.
-   Priority:
-   1) first event that has a valid packed code
-   2) else first event in the day
-*/
 function pickDriverEventForDay(list){
   const sorted = sortEventsForDay([...list]);
   for(const ev of sorted){
@@ -709,42 +652,25 @@ async function refreshWeek(){
       let timeText="";
       let barPatternUrl=null;
       let thumbUrl=null;
-      let debugText="";
 
       if(driver){
         const parsed = parsePackedCodeFromEvent(driver);
-
-        // Title: prefer actual summary, else use thumbCode (OFF, etc)
         const summary = stripLeadingIndexPrefix(String(driver.summary || "").trim());
         title = summary || (parsed.thumbCode ? parsed.thumbCode : "untitled");
 
-        // BAR texture: img/<2digits>.png
         if(parsed.barCode && isSafeCode(parsed.barCode)){
           barPatternUrl = codeToImageUrl(parsed.barCode);
         }
-
-        // THUMB: img/<rest>.png
         if(parsed.thumbCode && isSafeCode(parsed.thumbCode)){
           thumbUrl = codeToImageUrl(parsed.thumbCode);
         }
 
-        // Time only if timed and starts today
         if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
           timeText = formatTimeOneLine(new Date(driver.start.dateTime));
         }
-
-        if(DEBUG){
-          debugText = `${parsed.raw}  →  bar:${parsed.barCode || "??"}  thumb:${parsed.thumbCode || "??"}`;
-          console.log(`[${dayDef.name}]`, debugText, { barPatternUrl, thumbUrl });
-        }
-      } else {
-        if(DEBUG){
-          debugText = "(no events)";
-          console.log(`[${dayDef.name}] (no events)`);
-        }
       }
 
-      listEl.appendChild(makeRow(dayDef, title, timeText, i, barPatternUrl, thumbUrl, debugText));
+      listEl.appendChild(makeRow(dayDef, title, timeText, i, barPatternUrl, thumbUrl));
     }
   } catch(e){
     showError(
