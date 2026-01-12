@@ -259,12 +259,31 @@
       position:absolute;
       inset: var(--borderSize);
 
-      /* ✅ NEW: texture layer (matches Google color name images in /img/) */
-      background:
+      /* base fallback color */
+      background-color: var(--barColor, var(--barDefault));
+
+      /* layer stack */
+      background-image:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
-        var(--barPattern) center / cover no-repeat,
-        var(--barColor, var(--barDefault));
+        var(--barPattern);
+
+      /* ✅ this is the key: make ONLY the pattern repeat */
+      background-repeat:
+        no-repeat,
+        no-repeat,
+        repeat;
+
+      /* keep the “gloss” layers behaving as before */
+      background-size:
+        auto,
+        auto,
+        auto;  /* uses the image’s natural size */
+
+      background-position:
+        0 0,
+        0 0,
+        0 0;
 
       clip-path: polygon(
         var(--slant) 0%,
@@ -274,6 +293,7 @@
       );
       z-index:1;
     }
+
 
     /* ✅ Center the middle text group */
     .barInner{
