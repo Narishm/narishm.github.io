@@ -148,7 +148,8 @@
     .row.shift-right { --rowShift: var(--offset); }
 
     /********************************
-     * LEFT BOX (DAY)  ✅ now uses img/06.png
+     * LEFT BOX (DAY)  ✅ uses img/06.png
+     * ✅ FIXED BORDER: uniform via box-shadow stroke
      ********************************/
     .arrow{
       position:relative;
@@ -161,29 +162,13 @@
       --dayPattern: url("img/06.png");
     }
 
-    .arrow::before{
-      content:"";
-      position:absolute;
-      inset: 0;
-      background: var(--borderColor);
-      clip-path: polygon(
-        0% 50%,
-        var(--point) 0%,
-        100% 0%,
-        calc(100% - var(--slant)) 100%,
-        var(--point) 100%,
-        0% 50%
-      );
-      z-index:0;
-      filter: drop-shadow(0 6px 0 rgba(0,0,0,.85));
-    }
+    /* (removed .arrow::before border layer) */
 
     .arrow::after{
       content:"";
       position:absolute;
-      inset: var(--borderSize);
+      inset: 0;
 
-      /* ✅ texture is visible now (was previously hidden under opaque blue) */
       background:
         var(--dayPattern) 0 0 / auto repeat,
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
@@ -196,6 +181,12 @@
         var(--point) 100%,
         0% 50%
       );
+
+      /* ✅ uniform stroke + depth shadow */
+      box-shadow:
+        0 6px 0 rgba(0,0,0,.85),
+        0 0 0 var(--borderSize) var(--borderColor);
+
       z-index:1;
     }
 
@@ -232,6 +223,7 @@
 
     /********************************
      * MIDDLE BAR
+     * ✅ FIXED BORDER: uniform via box-shadow stroke
      ********************************/
     .bar{
       position:relative;
@@ -245,25 +237,12 @@
       --barPattern: none;
     }
 
-    .bar::before{
-      content:"";
-      position:absolute;
-      inset: 0;
-      background: var(--borderColor);
-      clip-path: polygon(
-        var(--slant) 0%,
-        100% 0%,
-        calc(100% - var(--slant)) 100%,
-        0% 100%
-      );
-      z-index:0;
-      filter: drop-shadow(0 6px 0 rgba(0,0,0,.85));
-    }
+    /* (removed .bar::before border layer) */
 
     .bar::after{
       content:"";
       position:absolute;
-      inset: var(--borderSize);
+      inset: 0;
 
       background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
@@ -277,6 +256,12 @@
         calc(100% - var(--slant)) 100%,
         0% 100%
       );
+
+      /* ✅ uniform stroke + depth shadow */
+      box-shadow:
+        0 6px 0 rgba(0,0,0,.85),
+        0 0 0 var(--borderSize) var(--borderColor);
+
       z-index:1;
     }
 
@@ -318,6 +303,7 @@
 
     /********************************
      * RIGHT BOX (THUMBNAIL)
+     * ✅ FIXED BORDER: uniform via box-shadow stroke
      ********************************/
     .arrowR{
       position:relative;
@@ -333,27 +319,12 @@
       --thumb: none;
     }
 
-    .arrowR::before{
-      content:"";
-      position:absolute;
-      inset: 0;
-      background: var(--borderColor);
-      clip-path: polygon(
-        var(--slant) 0%,
-        calc(100% - var(--point)) 0%,
-        100% 50%,
-        calc(100% - var(--point)) 100%,
-        0% 100%,
-        var(--slant) 0%
-      );
-      z-index:0;
-      filter: drop-shadow(0 6px 0 rgba(0,0,0,.85));
-    }
+    /* (removed .arrowR::before border layer) */
 
     .arrowR::after{
       content:"";
       position:absolute;
-      inset: var(--borderSize);
+      inset: 0;
 
       background:
         var(--thumb) center / 100% auto no-repeat,
@@ -368,6 +339,12 @@
         0% 100%,
         var(--slant) 0%
       );
+
+      /* ✅ uniform stroke + depth shadow */
+      box-shadow:
+        0 6px 0 rgba(0,0,0,.85),
+        0 0 0 var(--borderSize) var(--borderColor);
+
       z-index:1;
     }
 
