@@ -5,30 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>VTuber Schedule – Week Bars (Sun–Sat)</title>
 
-  <!-- Shared config (apiKey + calendarShareLink) -->
   <script src="js/config.js"></script>
 
   <style>
-    :root{
-      --bg:#000;
-      --white:#fff;
+    :root {
+      --bg: #000;
+      --white: #fff;
 
       /* =========================
-         BORDER SETTINGS (EDIT ME)
+         BORDER SETTINGS
          ========================= */
       --borderColor: #fff;
-      --borderSize: 5px;
+      --borderSize: 5px; /* Change this and the border remains uniform! */
 
-      --blue1:#2e4b78;
-      --blue2:#1f345a;
+      --blue1: #2e4b78;
+      --blue2: #1f345a;
 
-      --rowH:92px;
-
-      /* Row gap vs tip-to-tip gap between shapes */
+      --rowH: 92px;
       --rowGap: 15px;
       --pointGap: 15px;
-
-      --sideW:220px;
+      --sideW: 220px;
 
       /* Shape tuning */
       --slant: 26px;
@@ -36,18 +32,11 @@
 
       /* Row offset tuning */
       --offset: 50px;
-
-      /* Default (no-event) bar color */
       --barDefault: #2a3446;
-
-      /* Middle text font */
       --midFont: "AleaWB", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    /* =========================
-       FONT (place file in /fnt/)
-       ========================= */
-    @font-face{
+    @font-face {
       font-family: "AleaWB";
       src: url("fnt/ALEAWB__.TTF") format("truetype");
       font-weight: 400;
@@ -55,91 +44,90 @@
       font-display: swap;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; margin:0; background:var(--bg); }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; background: var(--bg); overflow-x: hidden; }
 
-    body{
-      display:grid;
-      place-items:center;
-      padding:24px;
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
-    .wrap{
-      width:min(1200px, 96vw);
-      display:flex;
-      flex-direction:column;
-      gap:14px;
+    .wrap {
+      width: min(1200px, 96vw);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      color:#fff;
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #fff;
     }
 
-    .title{
+    .title {
       font-weight: 900;
-      letter-spacing:.04em;
+      letter-spacing: .04em;
       text-transform: uppercase;
       font-size: 14px;
-      opacity:.9;
+      opacity: .9;
     }
 
-    .controls{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+    .controls {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
-    .btn{
-      border:1px solid rgba(255,255,255,.20);
+    .btn {
+      border: 1px solid rgba(255,255,255,.20);
       background: rgba(255,255,255,.06);
-      color:#fff;
-      border-radius:999px;
-      padding:10px 12px;
-      font-size:13px;
-      cursor:pointer;
+      color: #fff;
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-size: 13px;
+      cursor: pointer;
       transition: background .12s ease, transform .06s ease;
-      user-select:none;
+      user-select: none;
     }
-    .btn:hover{ background: rgba(255,255,255,.10); }
-    .btn:active{ transform: translateY(1px); }
+    .btn:hover { background: rgba(255,255,255,.10); }
+    .btn:active { transform: translateY(1px); }
 
-    .range{
-      font-weight:900;
+    .range {
+      font-weight: 900;
       font-size: 14px;
-      opacity:.95;
+      opacity: .95;
       text-shadow: 0 3px 0 rgba(0,0,0,.8);
     }
 
-    .error{
-      color:#fff;
+    .error {
+      color: #fff;
       background: rgba(255,80,80,.16);
-      border:1px solid rgba(255,80,80,.40);
-      border-radius:12px;
-      padding:10px 12px;
-      white-space:pre-wrap;
-      display:none;
+      border: 1px solid rgba(255,80,80,.40);
+      border-radius: 12px;
+      padding: 10px 12px;
+      white-space: pre-wrap;
+      display: none;
     }
 
-    .list{
-      display:flex;
-      flex-direction:column;
+    .list {
+      display: flex;
+      flex-direction: column;
       gap: var(--rowGap);
     }
 
-    .row{
+    .row {
       height: var(--rowH);
-      display:grid;
+      display: grid;
       grid-template-columns: var(--sideW) 1fr var(--sideW);
       gap: 0px;
-      align-items:stretch;
-
+      align-items: stretch;
       transform: translateX(var(--rowShift, 0px));
       transition: transform .15s ease;
     }
@@ -148,263 +136,87 @@
     .row.shift-right { --rowShift: var(--offset); }
 
     /* =========================
-       ✅ BORDER FX (uniform-ish)
-       Uses drop-shadow “dilation” so slants don’t thin.
+       UNIFORM BORDER CORE LOGIC
        ========================= */
-    .strokeFX{
-      filter:
-        /* outline (8 directions) */
-        drop-shadow(var(--borderSize) 0 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) 0 0 var(--borderColor))
-        drop-shadow(0 var(--borderSize) 0 var(--borderColor))
-        drop-shadow(0 calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        /* depth shadow */
-        drop-shadow(0 6px 0 rgba(0,0,0,.85));
+    .shape-container {
+      position: relative;
+      background: var(--borderColor);
+      /* Use drop-shadow for the overall block shadow */
+      filter: drop-shadow(0 6px 0 rgba(0,0,0,0.8));
     }
 
-    /********************************
-     * LEFT BOX (DAY)  ✅ uses img/06.png
-     * ✅ FIXED BORDER: drop-shadow stroke (no shrinking on slants)
-     ********************************/
-    .arrow{
-      position:relative;
-      display:flex;
-      align-items:center;
-      padding-left: 16px;
-      overflow:visible;
-
-      /* fixed day texture */
-      --dayPattern: url("img/06.png");
+    .shape-container::after {
+      content: "";
+      position: absolute;
+      inset: var(--borderSize); /* This creates the UNIFORM inner gap */
+      z-index: 1;
     }
 
-    /* remove any old border layer: we only use ::after now */
-    .arrow::before{ content:none; }
-
-    .arrow::after{
-      content:"";
-      position:absolute;
-      inset: 0;
-
-      background:
-        var(--dayPattern) 0 0 / auto repeat,
-        linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
-
-      clip-path: polygon(
-        0% 50%,
-        var(--point) 0%,
-        100% 0%,
-        calc(100% - var(--slant)) 100%,
-        var(--point) 100%,
-        0% 50%
-      );
-
-      z-index:1;
-      /* ✅ uniform border */
-      filter: inherit;
+    /* LEFT BOX */
+    .arrow {
+      clip-path: polygon(0% 50%, var(--point) 0%, 100% 0%, calc(100% - var(--slant)) 100%, var(--point) 100%, 0% 50%);
+    }
+    .arrow::after {
+      background: url("img/06.png") center/cover, linear-gradient(135deg, rgba(255,255,255,.1), rgba(0,0,0,.2));
+      clip-path: polygon(0% 50%, var(--point) 0%, 100% 0%, calc(100% - var(--slant)) 100%, var(--point) 100%, 0% 50%);
     }
 
-    /* apply strokeFX to the pseudo-element via inheritance */
-    .arrow{ filter: none; }
-    .arrow::after{ filter: none; }
-
-    .arrow::after{
-      filter:
-        drop-shadow(var(--borderSize) 0 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) 0 0 var(--borderColor))
-        drop-shadow(0 var(--borderSize) 0 var(--borderColor))
-        drop-shadow(0 calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(0 6px 0 rgba(0,0,0,.85));
+    /* MIDDLE BAR */
+    .bar {
+      margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
+      clip-path: polygon(var(--slant) 0%, 100% 0%, calc(100% - var(--slant)) 100%, 0% 100%);
+    }
+    .bar::after {
+      background: var(--barPattern, none) center/cover, var(--barColor, var(--barDefault));
+      clip-path: polygon(var(--slant) 0%, 100% 0%, calc(100% - var(--slant)) 100%, 0% 100%);
     }
 
-    .arrowContent{
-      position:relative;
-      z-index:2;
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      padding-right: 10px;
-      width:100%;
+    /* RIGHT BOX */
+    .arrowR {
+      margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
+      clip-path: polygon(var(--slant) 0%, calc(100% - var(--point)) 0%, 100% 50%, calc(100% - var(--point)) 100%, 0% 100%);
+    }
+    .arrowR::after {
+      background: var(--thumb, none) center/cover, linear-gradient(180deg, var(--blue1), var(--blue2));
+      clip-path: polygon(var(--slant) 0%, calc(100% - var(--point)) 0%, 100% 50%, calc(100% - var(--point)) 100%, 0% 100%);
     }
 
-    .kanjiBox{
-      width: 70px;
-      height: 70px;
-      display:grid;
-      place-items:center;
-      color: var(--white);
-      font-weight: 900;
-      font-size: 44px;
-      line-height:1;
+    .content-layer {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .kanjiBox {
+      width: 70px; height: 70px; display: grid; place-items: center;
+      color: var(--white); font-weight: 900; font-size: 44px;
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.85));
     }
 
-    .dow{
-      color:#fff;
-      font-weight: 900;
-      font-size: 32px;
-      text-transform: uppercase;
-      letter-spacing: .02em;
+    .dow {
+      color: #fff; font-weight: 900; font-size: 32px;
+      text-transform: uppercase; text-shadow: 0 4px 0 rgba(0,0,0,.85);
+    }
+
+    .eventTitle {
+      flex: 1; font-family: var(--midFont); color: #fff; font-weight: 900;
+      font-size: clamp(22px, 2.2vw, 44px); text-shadow: 0 5px 0 rgba(0,0,0,.85);
+      text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .eventTime {
+      font-family: var(--midFont); color: #fff; font-weight: 900;
+      font-size: clamp(14px, 1.2vw, 22px); text-transform: uppercase;
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
     }
 
-    /********************************
-     * MIDDLE BAR
-     * ✅ FIXED BORDER: drop-shadow stroke (no shrinking on slants)
-     ********************************/
-    .bar{
-      position:relative;
-      display:flex;
-      align-items:center;
-      padding: 0 18px;
-      overflow:hidden;
-      margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-
-      /* set per-row in JS: url("img/00.png") etc, or none */
-      --barPattern: none;
-    }
-
-    .bar::before{ content:none; }
-
-    .bar::after{
-      content:"";
-      position:absolute;
-      inset: 0;
-
-      background:
-        radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
-        var(--barPattern) 0 0 / auto repeat,
-        var(--barColor, var(--barDefault));
-
-      clip-path: polygon(
-        var(--slant) 0%,
-        100% 0%,
-        calc(100% - var(--slant)) 100%,
-        0% 100%
-      );
-
-      z-index:1;
-      filter:
-        drop-shadow(var(--borderSize) 0 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) 0 0 var(--borderColor))
-        drop-shadow(0 var(--borderSize) 0 var(--borderColor))
-        drop-shadow(0 calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(0 6px 0 rgba(0,0,0,.85));
-    }
-
-    .barInner{
-      position:relative;
-      z-index:2;
-      width:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap: 16px;
-    }
-
-    .eventTitle{
-      font-family: var(--midFont);
-      color:#fff;
-      font-weight: 900;
-      font-size: clamp(22px, 2.2vw, 44px);
-      text-shadow: 0 5px 0 rgba(0,0,0,.85);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      max-width: 70%;
-      text-align:center;
-    }
-
-    .eventTime{
-      font-family: var(--midFont);
-      color:#fff;
-      font-weight: 900;
-      font-size: clamp(14px, 1.2vw, 22px);
-      text-transform: uppercase;
-      text-align:left;
-      line-height: 1.05;
-      text-shadow: 0 4px 0 rgba(0,0,0,.85);
-      min-width: unset;
-      white-space:nowrap;
-    }
-
-    /********************************
-     * RIGHT BOX (THUMBNAIL)
-     * ✅ FIXED BORDER: drop-shadow stroke (no shrinking on slants)
-     ********************************/
-    .arrowR{
-      position:relative;
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      padding-right: 16px;
-      overflow:visible;
-
-      margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-
-      /* set per-row in JS: url("...") or none */
-      --thumb: none;
-    }
-
-    .arrowR::before{ content:none; }
-
-    .arrowR::after{
-      content:"";
-      position:absolute;
-      inset: 0;
-
-      background:
-        var(--thumb) center / 100% auto no-repeat,
-        linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.18)),
-        linear-gradient(180deg, var(--blue1), var(--blue2));
-
-      clip-path: polygon(
-        var(--slant) 0%,
-        calc(100% - var(--point)) 0%,
-        100% 50%,
-        calc(100% - var(--point)) 100%,
-        0% 100%,
-        var(--slant) 0%
-      );
-
-      z-index:1;
-      filter:
-        drop-shadow(var(--borderSize) 0 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) 0 0 var(--borderColor))
-        drop-shadow(0 var(--borderSize) 0 var(--borderColor))
-        drop-shadow(0 calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) var(--borderSize) 0 var(--borderColor))
-        drop-shadow(var(--borderSize) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(calc(var(--borderSize) * -1) calc(var(--borderSize) * -1) 0 var(--borderColor))
-        drop-shadow(0 6px 0 rgba(0,0,0,.85));
-    }
-
-    @media (max-width: 800px){
-      :root{
-        --sideW: 200px;
-        --rowH: 82px;
-        --slant: 22px;
-        --point: 24px;
-        --rowGap: 8px;
-        --pointGap: 8px;
-        --offset: 16px;
-      }
-      .kanjiBox{ width:62px; height:62px; font-size:38px; }
-      .dow{ font-size: 28px; }
-      .eventTitle{ max-width: 66%; }
+    @media (max-width: 800px) {
+      :root { --sideW: 200px; --rowH: 82px; --slant: 22px; --point: 24px; --offset: 16px; }
+      .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
+      .dow { font-size: 28px; }
     }
   </style>
 </head>
@@ -420,7 +232,6 @@
         <div class="range" id="rangeLabel"></div>
       </div>
     </div>
-
     <div class="error" id="errorBox"></div>
     <div class="list" id="list"></div>
   </div>
@@ -429,17 +240,12 @@
 const cfg = window.GCAL_CONFIG || {};
 const GOOGLE_API_KEY = cfg.apiKey;
 const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
-
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
 const DAYS = [
-  { name:"sun", kanji:"日" },
-  { name:"mon", kanji:"月" },
-  { name:"tue", kanji:"火" },
-  { name:"wed", kanji:"水" },
-  { name:"thu", kanji:"木" },
-  { name:"fri", kanji:"金" },
+  { name:"sun", kanji:"日" }, { name:"mon", kanji:"月" }, { name:"tue", kanji:"火" },
+  { name:"wed", kanji:"水" }, { name:"thu", kanji:"木" }, { name:"fri", kanji:"金" },
   { name:"sat", kanji:"土" },
 ];
 
@@ -448,11 +254,9 @@ const rangeLabel = document.getElementById("rangeLabel");
 const errorBox = document.getElementById("errorBox");
 
 function showError(msg){ errorBox.style.display = "block"; errorBox.textContent = msg; }
-function clearError(){ errorBox.style.display = "none"; errorBox.textContent = ""; }
-
+function clearError(){ errorBox.style.display = "none"; }
 function pad(n){ return String(n).padStart(2,"0"); }
 function ymd(d){ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
-
 function startOfDayLocal(d){ const x = new Date(d); x.setHours(0,0,0,0); return x; }
 function addDays(d, n){ const x = new Date(d); x.setDate(x.getDate() + n); return x; }
 function startOfWeekSunday(d){
@@ -462,250 +266,101 @@ function startOfWeekSunday(d){
   start.setHours(0,0,0,0);
   return start;
 }
+
 function formatRangeLabel(weekStart){
   const end = addDays(weekStart, 6);
-  const sameMonth = weekStart.getMonth() === end.getMonth() && weekStart.getFullYear() === end.getFullYear();
-  if (sameMonth) return `${weekStart.toLocaleString(undefined,{month:"long"})} ${weekStart.getDate()}–${end.getDate()}, ${weekStart.getFullYear()}`;
-  return `${weekStart.toLocaleDateString(undefined,{month:"short", day:"numeric"})} – ${end.toLocaleDateString(undefined,{month:"short", day:"numeric"})}`;
+  return `${weekStart.toLocaleDateString(undefined,{month:'short', day:'numeric'})} – ${end.toLocaleDateString(undefined,{month:'short', day:'numeric', year:'numeric'})}`;
 }
 
-function padBase64(b64){ const mod=b64.length%4; return mod ? b64 + "=".repeat(4-mod) : b64; }
-function decodeCidToCalendarId(cid){
-  try { const n=cid.replace(/-/g,"+").replace(/_/g,"/"); return atob(padBase64(n)); }
-  catch { return null; }
-}
 function extractCalendarIdFromShareLink(urlStr){
-  try { const u=new URL(urlStr); const cid=u.searchParams.get("cid"); return cid ? decodeCidToCalendarId(cid) : null; }
-  catch { return null; }
+  try { 
+    const u = new URL(urlStr); 
+    const cid = u.searchParams.get("cid"); 
+    if(!cid) return null;
+    return atob(cid.replace(/-/g,"+").replace(/_/g,"/")); 
+  } catch { return null; }
 }
 
 async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
-  const base = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`;
-  let pageToken=null;
-  const all=[];
-  while(true){
-    const url=new URL(base);
-    url.searchParams.set("key", GOOGLE_API_KEY);
-    url.searchParams.set("timeMin", timeMinISO);
-    url.searchParams.set("timeMax", timeMaxISO);
-    url.searchParams.set("singleEvents","true");
-    url.searchParams.set("orderBy","startTime");
-    url.searchParams.set("maxResults","2500");
-    if(pageToken) url.searchParams.set("pageToken", pageToken);
-
-    const res=await fetch(url.toString());
-    const data=await res.json();
-    if(!res.ok) throw new Error(data?.error?.message || "Calendar API error");
-    if(Array.isArray(data.items)) all.push(...data.items);
-
-    pageToken=data.nextPageToken;
-    if(!pageToken) break;
-  }
-  return all;
+  const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${GOOGLE_API_KEY}&timeMin=${timeMinISO}&timeMax=${timeMaxISO}&singleEvents=true&orderBy=startTime`;
+  const res = await fetch(url);
+  const data = await res.json();
+  if(!res.ok) throw new Error(data?.error?.message || "API Error");
+  return data.items || [];
 }
 
-function coveredDayKeys(ev){
-  let start,endExclusive;
-
-  if(ev?.start?.date){
-    start=new Date(ev.start.date+"T00:00:00");
-    endExclusive=ev?.end?.date ? new Date(ev.end.date+"T00:00:00") : new Date(start.getTime()+86400000);
-  } else if(ev?.start?.dateTime){
-    start=new Date(ev.start.dateTime);
-    endExclusive=ev?.end?.dateTime ? new Date(ev.end.dateTime) : new Date(start.getTime()+3600000);
-  } else return [];
-
-  const startDay=startOfDayLocal(start);
-  const lastTouched=new Date(endExclusive.getTime()-1);
-  const endDay=startOfDayLocal(lastTouched);
-
-  const keys=[];
-  for(let d=new Date(startDay); d<=endDay; d.setDate(d.getDate()+1)) keys.push(ymd(d));
-  return keys;
-}
-
-function isAllDay(ev){ return !!ev?.start?.date; }
-function startMillis(ev){
-  if(ev?.start?.dateTime) return new Date(ev.start.dateTime).getTime();
-  if(ev?.start?.date) return new Date(ev.start.date+"T00:00:00").getTime();
-  return Number.POSITIVE_INFINITY;
-}
-function sortEventsForDay(list){
-  return list.sort((a,b)=>{
-    const ad=isAllDay(a), bd=isAllDay(b);
-    if(ad!==bd) return ad ? -1 : 1;
-    const sa=startMillis(a), sb=startMillis(b);
-    if(sa!==sb) return sa-sb;
-    return String(a?.summary||"").localeCompare(String(b?.summary||""));
-  });
-}
-
-function normalizeDescription(desc){
-  const s=String(desc||"");
-  const noHtml=s.replace(/<[^>]+>/g,"");
-  const firstLine=noHtml.split(/\r?\n/)[0];
-  return firstLine.trim();
-}
-function isSafeCode(code){
-  return /^[A-Za-z0-9_-]+$/.test(code);
-}
-function codeToImageUrl(code){
-  return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
-}
 function parsePackedCodeFromEvent(ev){
-  const line = normalizeDescription(ev?.description || "");
-  const token = line.split(/\s+/)[0];
-  const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
-  if(!m) return { barCode:null, thumbCode:null };
-  return { barCode: m[1], thumbCode: m[2] };
+  const desc = String(ev?.description || "").replace(/<[^>]+>/g,"").trim();
+  const m = desc.split(/\s+/)[0].match(/^(\d{2})([A-Za-z0-9_-]+)$/);
+  return m ? { barCode: m[1], thumbCode: m[2] } : { barCode: null, thumbCode: null };
 }
-
-function stripLeadingIndexPrefix(title){
-  return String(title || "").replace(/^\s*\d+\s*-\s*/,"").trim();
-}
-function formatTimeOneLine(date){
-  const raw=new Intl.DateTimeFormat(undefined,{hour:"numeric",minute:"2-digit"}).format(date);
-  return raw.replace(":00","").toUpperCase();
-}
-function startsOnDay(ev, dayKey){
-  if(ev?.start?.date) return ev.start.date===dayKey;
-  if(ev?.start?.dateTime) return ymd(new Date(ev.start.dateTime))===dayKey;
-  return false;
-}
-
-function clearList(){ listEl.innerHTML=""; }
 
 function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
-  const row=document.createElement("div");
-  row.className="row " + (rowIndex % 2 === 0 ? "shift-left" : "shift-right");
+  const row = document.createElement("div");
+  row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
-  const arrow=document.createElement("div");
-  arrow.className="arrow";
+  // Left Arrow
+  const arrow = document.createElement("div");
+  arrow.className = "shape-container arrow";
+  arrow.innerHTML = `<div class="content-layer"><div class="kanjiBox">${day.kanji}</div><div class="dow">${day.name}</div></div>`;
 
-  const arrowContent=document.createElement("div");
-  arrowContent.className="arrowContent";
+  // Center Bar
+  const bar = document.createElement("div");
+  bar.className = "shape-container bar";
+  if(barPatternUrl) bar.style.setProperty("--barPattern", `url("${barPatternUrl}")`);
+  bar.innerHTML = `<div class="content-layer"><div class="eventTitle">${title}</div>${timeText ? `<div class="eventTime">${timeText}</div>`:''}</div>`;
 
-  const kanji=document.createElement("div");
-  kanji.className="kanjiBox";
-  kanji.textContent=day.kanji;
+  // Right Arrow
+  const arrowR = document.createElement("div");
+  arrowR.className = "shape-container arrowR";
+  if(thumbUrl) arrowR.style.setProperty("--thumb", `url("${thumbUrl}")`);
 
-  const dow=document.createElement("div");
-  dow.className="dow";
-  dow.textContent=day.name;
-
-  arrowContent.appendChild(kanji);
-  arrowContent.appendChild(dow);
-  arrow.appendChild(arrowContent);
-
-  const bar=document.createElement("div");
-  bar.className="bar";
-  bar.style.setProperty("--barColor", getComputedStyle(document.documentElement).getPropertyValue("--barDefault").trim() || "#2a3446");
-  bar.style.setProperty("--barPattern", barPatternUrl ? `url("${barPatternUrl.replace(/"/g, '\\"')}")` : "none");
-
-  const inner=document.createElement("div");
-  inner.className="barInner";
-
-  const t=document.createElement("div");
-  t.className="eventTitle";
-  t.textContent=title;
-
-  const time=document.createElement("div");
-  time.className="eventTime";
-  time.textContent=timeText || "";
-
-  inner.appendChild(t);
-  if(timeText) inner.appendChild(time);
-  bar.appendChild(inner);
-
-  const arrowR=document.createElement("div");
-  arrowR.className="arrowR";
-  arrowR.style.setProperty("--thumb", thumbUrl ? `url("${thumbUrl.replace(/"/g, '\\"')}")` : "none");
-
-  row.appendChild(arrow);
-  row.appendChild(bar);
-  row.appendChild(arrowR);
+  row.append(arrow, bar, arrowR);
   return row;
 }
 
-function pickDriverEventForDay(list){
-  const sorted = sortEventsForDay([...list]);
-  for(const ev of sorted){
-    const parsed = parsePackedCodeFromEvent(ev);
-    if(parsed.barCode && parsed.thumbCode) return ev;
-  }
-  return sorted[0] || null;
-}
-
-let cursorDate=new Date();
+let cursorDate = new Date();
 
 async function refreshWeek(){
   clearError();
-  clearList();
+  listEl.innerHTML = "";
+  const calendarId = extractCalendarIdFromShareLink(CALENDAR_SHARE_LINK);
+  if(!calendarId) return showError("Invalid Calendar Link");
 
-  if(!window.GCAL_CONFIG) return showError("Missing js/config.js (window.GCAL_CONFIG not found).");
-  if(!GOOGLE_API_KEY || !CALENDAR_SHARE_LINK) return showError("js/config.js must provide { apiKey, calendarShareLink }.");
+  const weekStart = startOfWeekSunday(cursorDate);
+  rangeLabel.textContent = formatRangeLabel(weekStart);
 
-  const calendarId=extractCalendarIdFromShareLink(CALENDAR_SHARE_LINK);
-  if(!calendarId) return showError("Could not decode calendarId from the cid link.");
+  try {
+    const events = await fetchAllEvents(calendarId, weekStart.toISOString(), addDays(weekStart, 7).toISOString());
+    const byDay = {};
+    events.forEach(ev => {
+      const d = ev.start.dateTime ? new Date(ev.start.dateTime) : new Date(ev.start.date + "T00:00:00");
+      const k = ymd(d);
+      if(!byDay[k]) byDay[k] = [];
+      byDay[k].push(ev);
+    });
 
-  const weekStart=startOfWeekSunday(cursorDate);
-  const weekEndExclusive=addDays(weekStart,7);
-  rangeLabel.textContent=formatRangeLabel(weekStart);
-
-  try{
-    const events=await fetchAllEvents(calendarId, weekStart.toISOString(), weekEndExclusive.toISOString());
-
-    const byDay=new Map();
-    for(const ev of events){
-      for(const k of coveredDayKeys(ev)){
-        if(!byDay.has(k)) byDay.set(k, []);
-        byDay.get(k).push(ev);
-      }
-    }
-
-    for(let i=0;i<7;i++){
-      const dayDate=addDays(weekStart,i);
-      const dayKey=ymd(dayDate);
-      const dayDef=DAYS[i];
-
-      const list=byDay.get(dayKey) || [];
-      const driver = list.length ? pickDriverEventForDay(list) : null;
-
-      let title="rest day";
-      let timeText="";
-      let barPatternUrl=null;
-      let thumbUrl=null;
+    for(let i=0; i<7; i++){
+      const dayDate = addDays(weekStart, i);
+      const evs = byDay[ymd(dayDate)] || [];
+      const driver = evs[0];
+      let title = "Rest Day", time = "", bPat = null, tPat = null;
 
       if(driver){
         const parsed = parsePackedCodeFromEvent(driver);
-        const summary = stripLeadingIndexPrefix(String(driver.summary || "").trim());
-        title = summary || (parsed.thumbCode ? parsed.thumbCode : "untitled");
-
-        if(parsed.barCode && isSafeCode(parsed.barCode)){
-          barPatternUrl = codeToImageUrl(parsed.barCode);
-        }
-        if(parsed.thumbCode && isSafeCode(parsed.thumbCode)){
-          thumbUrl = codeToImageUrl(parsed.thumbCode);
-        }
-
-        if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
-          timeText = formatTimeOneLine(new Date(driver.start.dateTime));
-        }
+        title = driver.summary;
+        if(parsed.barCode) bPat = IMAGE_BASE_URL + parsed.barCode + IMAGE_EXTENSION;
+        if(parsed.thumbCode) tPat = IMAGE_BASE_URL + parsed.thumbCode + IMAGE_EXTENSION;
+        if(driver.start.dateTime) time = new Intl.DateTimeFormat(undefined, {hour:'numeric', minute:'2-digit'}).format(new Date(driver.start.dateTime));
       }
-
-      listEl.appendChild(makeRow(dayDef, title, timeText, i, barPatternUrl, thumbUrl));
+      listEl.appendChild(makeRow(DAYS[i], title, time, i, bPat, tPat));
     }
-  } catch(e){
-    showError(
-      "Google Calendar API error: " + (e?.message || String(e)) +
-      "\n\nIf your calendar is private, API-key-only won’t work (needs OAuth)."
-    );
-  }
+  } catch(e) { showError(e.message); }
 }
 
-document.getElementById("todayBtn").addEventListener("click", ()=>{ cursorDate=new Date(); refreshWeek(); });
-document.getElementById("prevBtn").addEventListener("click", ()=>{ cursorDate=addDays(startOfWeekSunday(cursorDate), -7); refreshWeek(); });
-document.getElementById("nextBtn").addEventListener("click", ()=>{ cursorDate=addDays(startOfWeekSunday(cursorDate), 7); refreshWeek(); });
+document.getElementById("todayBtn").onclick = () => { cursorDate = new Date(); refreshWeek(); };
+document.getElementById("prevBtn").onclick = () => { cursorDate = addDays(cursorDate, -7); refreshWeek(); };
+document.getElementById("nextBtn").onclick = () => { cursorDate = addDays(cursorDate, 7); refreshWeek(); };
 
 refreshWeek();
 </script>
