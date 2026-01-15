@@ -251,13 +251,15 @@
       flex: 0 0 auto;
     }
 
-    /* NEW: day + date stack */
+    /* NEW: day + date stack (centered, same size) */
     .dowWrap{
       display: flex;
       flex-direction: column;
+      align-items: center;     /* centers date under day */
+      text-align: center;
       line-height: 1;
       gap: 6px;
-      transform: translateY(-6px); /* move the whole stack up a bit */
+      transform: translateY(-6px);
       flex: 0 0 auto;
     }
 
@@ -272,11 +274,13 @@
     .date {
       color: #fff;
       font-weight: 900;
-      font-size: 16px;
-      opacity: .95;
+      font-size: 32px;         /* same size as .dow */
+      text-transform: uppercase; /* optional; remove if you want 01/15 exactly */
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
       letter-spacing: .02em;
+      opacity: .95;
     }
+
 
     .eventTitle {
       flex: 1;
@@ -313,7 +317,7 @@
       }
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow { font-size: 28px; }
-      .date { font-size: 14px; }
+      .date { font-size: 28px; }
       .dowWrap { transform: translateY(-5px); gap: 5px; }
     }
   </style>
