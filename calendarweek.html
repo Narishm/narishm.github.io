@@ -251,11 +251,11 @@
       flex: 0 0 auto;
     }
 
-    /* NEW: day + date stack (centered, same size) */
+    /* day + date stack (centered, same size) */
     .dowWrap{
       display: flex;
       flex-direction: column;
-      align-items: center;     /* centers date under day */
+      align-items: center;
       text-align: center;
       line-height: 1;
       gap: 3px;
@@ -274,8 +274,8 @@
     .date {
       color: #fff;
       font-weight: 900;
-      font-size: 32px;         /* same size as .dow */
-      text-transform: uppercase; /* optional; remove if you want 01/15 exactly */
+      font-size: 32px;
+      text-transform: uppercase;
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
       letter-spacing: .02em;
       opacity: .95;
@@ -344,6 +344,11 @@ const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
 
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
+
+/* OFF defaults (used when a day has no events) */
+const OFF_TITLE = "OFF";
+const OFF_BAR_CODE = "00";     // -> img/00.png
+const OFF_THUMB_CODE = "off";  // -> img/off.png
 
 const DAYS = [
   { name:"sun", kanji:"日" }, { name:"mon", kanji:"月" }, { name:"tue", kanji:"火" },
@@ -693,10 +698,11 @@ async function refreshWeek(){
       const evs = byDay.get(dayKey) || [];
       const driver = evs.length ? pickDriverEventForDay(evs) : null;
 
-      let title = "Rest Day";
+      /* OFF defaults (overridden when a driver event exists) */
+      let title = OFF_TITLE;
       let timeText = "";
-      let barPatternUrl = null;
-      let thumbUrl = null;
+      let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
+      let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
 
       if(driver){
         const parsed = parsePackedCodeFromEvent(driver);
