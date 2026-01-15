@@ -16,8 +16,7 @@
          BORDER SETTINGS
          ========================= */
       --borderColor: #fff;
-      --borderSize: 5; /* ✅ number (no px). 5 = about 5px outside stroke */
-      --borderScaleK: 0.012; /* tweak: 0.010–0.015 if you want */
+      --borderSize: 5px; /* ✅ uniform outside stroke */
 
       --blue1: #2e4b78;
       --blue2: #1f345a;
@@ -137,22 +136,23 @@
     .row.shift-left  { --rowShift: calc(var(--offset) * -1); }
     .row.shift-right { --rowShift: var(--offset); }
 
-    /* ✅ critical: stack order so outside borders don't get covered by overlaps */
+    /* ✅ needed because cells overlap (negative margins) */
     .cell { position: relative; }
     .z3 { z-index: 30; }
     .z2 { z-index: 20; }
     .z1 { z-index: 10; }
 
     /* =========================
-       OUTSIDE BORDER CORE LOGIC
+       OUTSIDE BORDER (NO SCALING)
        ========================= */
     .shape-container {
       position: relative;
       overflow: visible;
-      filter: drop-shadow(0 6px 0 rgba(0,0,0,0.8));
+      /* depth shadow */
+      filter: drop-shadow(0 6px 0 rgba(0,0,0,0.80));
     }
 
-    /* OUTSIDE BORDER LAYER */
+    /* Border layer = SAME SHAPE, then we "stroke" it outward via drop-shadows */
     .shape-container::before {
       content: "";
       position: absolute;
@@ -161,12 +161,55 @@
       z-index: 0;
       pointer-events: none;
 
-      /* scale outward; borderSize is a number */
-      transform: scale(calc(1 + (var(--borderSize) * var(--borderScaleK))));
-      transform-origin: center;
+      /* ✅ outside stroke approximation: 1..5px in 8 directions (uniform-looking) */
+      filter:
+        drop-shadow( 1px  0px 0 var(--borderColor))
+        drop-shadow(-1px  0px 0 var(--borderColor))
+        drop-shadow( 0px  1px 0 var(--borderColor))
+        drop-shadow( 0px -1px 0 var(--borderColor))
+        drop-shadow( 1px  1px 0 var(--borderColor))
+        drop-shadow(-1px  1px 0 var(--borderColor))
+        drop-shadow( 1px -1px 0 var(--borderColor))
+        drop-shadow(-1px -1px 0 var(--borderColor))
+
+        drop-shadow( 2px  0px 0 var(--borderColor))
+        drop-shadow(-2px  0px 0 var(--borderColor))
+        drop-shadow( 0px  2px 0 var(--borderColor))
+        drop-shadow( 0px -2px 0 var(--borderColor))
+        drop-shadow( 2px  2px 0 var(--borderColor))
+        drop-shadow(-2px  2px 0 var(--borderColor))
+        drop-shadow( 2px -2px 0 var(--borderColor))
+        drop-shadow(-2px -2px 0 var(--borderColor))
+
+        drop-shadow( 3px  0px 0 var(--borderColor))
+        drop-shadow(-3px  0px 0 var(--borderColor))
+        drop-shadow( 0px  3px 0 var(--borderColor))
+        drop-shadow( 0px -3px 0 var(--borderColor))
+        drop-shadow( 3px  3px 0 var(--borderColor))
+        drop-shadow(-3px  3px 0 var(--borderColor))
+        drop-shadow( 3px -3px 0 var(--borderColor))
+        drop-shadow(-3px -3px 0 var(--borderColor))
+
+        drop-shadow( 4px  0px 0 var(--borderColor))
+        drop-shadow(-4px  0px 0 var(--borderColor))
+        drop-shadow( 0px  4px 0 var(--borderColor))
+        drop-shadow( 0px -4px 0 var(--borderColor))
+        drop-shadow( 4px  4px 0 var(--borderColor))
+        drop-shadow(-4px  4px 0 var(--borderColor))
+        drop-shadow( 4px -4px 0 var(--borderColor))
+        drop-shadow(-4px -4px 0 var(--borderColor))
+
+        drop-shadow( 5px  0px 0 var(--borderColor))
+        drop-shadow(-5px  0px 0 var(--borderColor))
+        drop-shadow( 0px  5px 0 var(--borderColor))
+        drop-shadow( 0px -5px 0 var(--borderColor))
+        drop-shadow( 5px  5px 0 var(--borderColor))
+        drop-shadow(-5px  5px 0 var(--borderColor))
+        drop-shadow( 5px -5px 0 var(--borderColor))
+        drop-shadow(-5px -5px 0 var(--borderColor));
     }
 
-    /* FILL LAYER */
+    /* Fill layer */
     .shape-container::after {
       content: "";
       position: absolute;
@@ -174,10 +217,6 @@
       z-index: 1;
       pointer-events: none;
     }
-
-    /* =========================
-       SHAPES (clip-path applied to BOTH ::before border and ::after fill)
-       ========================= */
 
     /* LEFT BOX */
     .arrow::before,
@@ -212,7 +251,7 @@
     }
     .bar::after {
       background:
-        var(--barPattern, none) center/cover,
+        var(--barPattern, none) 0 0 / auto repeat,
         var(--barColor, var(--barDefault));
     }
 
@@ -266,6 +305,7 @@
       font-family: var(--midFont); color: #fff; font-weight: 900;
       font-size: clamp(14px, 1.2vw, 22px); text-transform: uppercase;
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
+      white-space: nowrap;
     }
 
     @media (max-width: 800px) {
@@ -309,7 +349,8 @@ const rangeLabel = document.getElementById("rangeLabel");
 const errorBox = document.getElementById("errorBox");
 
 function showError(msg){ errorBox.style.display = "block"; errorBox.textContent = msg; }
-function clearError(){ errorBox.style.display = "none"; }
+function clearError(){ errorBox.style.display = "none"; errorBox.textContent = ""; }
+
 function pad(n){ return String(n).padStart(2,"0"); }
 function ymd(d){ return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`; }
 function startOfDayLocal(d){ const x = new Date(d); x.setHours(0,0,0,0); return x; }
@@ -327,27 +368,104 @@ function formatRangeLabel(weekStart){
   return `${weekStart.toLocaleDateString(undefined,{month:'short', day:'numeric'})} – ${end.toLocaleDateString(undefined,{month:'short', day:'numeric', year:'numeric'})}`;
 }
 
+/* cid decode => calendarId */
+function padBase64(b64){ const mod=b64.length%4; return mod ? b64 + "=".repeat(4-mod) : b64; }
+function decodeCidToCalendarId(cid){
+  try { const n=cid.replace(/-/g,"+").replace(/_/g,"/"); return atob(padBase64(n)); }
+  catch { return null; }
+}
 function extractCalendarIdFromShareLink(urlStr){
   try {
     const u = new URL(urlStr);
     const cid = u.searchParams.get("cid");
-    if(!cid) return null;
-    return atob(cid.replace(/-/g,"+").replace(/_/g,"/"));
+    return cid ? decodeCidToCalendarId(cid) : null;
   } catch { return null; }
 }
 
 async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
-  const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?key=${GOOGLE_API_KEY}&timeMin=${timeMinISO}&timeMax=${timeMaxISO}&singleEvents=true&orderBy=startTime`;
-  const res = await fetch(url);
+  const base = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`;
+  const url = new URL(base);
+  url.searchParams.set("key", GOOGLE_API_KEY);
+  url.searchParams.set("timeMin", timeMinISO);
+  url.searchParams.set("timeMax", timeMaxISO);
+  url.searchParams.set("singleEvents", "true");
+  url.searchParams.set("orderBy", "startTime");
+
+  const res = await fetch(url.toString());
   const data = await res.json();
   if(!res.ok) throw new Error(data?.error?.message || "API Error");
   return data.items || [];
 }
 
+/* ✅ multi-day overlap */
+function coveredDayKeys(ev){
+  let start, endExclusive;
+
+  if(ev?.start?.date){
+    start = new Date(ev.start.date + "T00:00:00");
+    endExclusive = ev?.end?.date ? new Date(ev.end.date + "T00:00:00")
+                                 : new Date(start.getTime() + 86400000);
+  } else if(ev?.start?.dateTime){
+    start = new Date(ev.start.dateTime);
+    endExclusive = ev?.end?.dateTime ? new Date(ev.end.dateTime)
+                                     : new Date(start.getTime() + 3600000);
+  } else {
+    return [];
+  }
+
+  const startDay = startOfDayLocal(start);
+  const lastTouched = new Date(endExclusive.getTime() - 1);
+  const endDay = startOfDayLocal(lastTouched);
+
+  const keys = [];
+  for(let d = new Date(startDay); d <= endDay; d.setDate(d.getDate()+1)){
+    keys.push(ymd(d));
+  }
+  return keys;
+}
+
+function isAllDay(ev){ return !!ev?.start?.date; }
+function startMillis(ev){
+  if(ev?.start?.dateTime) return new Date(ev.start.dateTime).getTime();
+  if(ev?.start?.date) return new Date(ev.start.date + "T00:00:00").getTime();
+  return Number.POSITIVE_INFINITY;
+}
+function sortEventsForDay(list){
+  return list.sort((a,b)=>{
+    const ad=isAllDay(a), bd=isAllDay(b);
+    if(ad!==bd) return ad ? -1 : 1;
+    const sa=startMillis(a), sb=startMillis(b);
+    if(sa!==sb) return sa-sb;
+    return String(a?.summary||"").localeCompare(String(b?.summary||""));
+  });
+}
+
+function normalizeDescription(desc){
+  const s = String(desc||"");
+  const noHtml = s.replace(/<[^>]+>/g,"");
+  const firstLine = noHtml.split(/\r?\n/)[0];
+  return firstLine.trim();
+}
+
+/* packed code: "00off" */
 function parsePackedCodeFromEvent(ev){
-  const desc = String(ev?.description || "").replace(/<[^>]+>/g,"").trim();
-  const m = desc.split(/\s+/)[0].match(/^(\d{2})([A-Za-z0-9_-]+)$/);
+  const token = normalizeDescription(ev?.description || "").split(/\s+/)[0];
+  const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
   return m ? { barCode: m[1], thumbCode: m[2] } : { barCode: null, thumbCode: null };
+}
+
+function safeUrl(code){
+  return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
+}
+
+function formatTimeOneLine(date){
+  const raw = new Intl.DateTimeFormat(undefined,{hour:"numeric",minute:"2-digit"}).format(date);
+  return raw.replace(":00","").toUpperCase();
+}
+function startsOnDay(ev, dayKey){
+  if(ev?.start?.date) return ev.start.date === dayKey;
+  if(ev?.start?.dateTime) return ymd(new Date(ev.start.dateTime)) === dayKey;
+  return false;
 }
 
 function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
@@ -363,7 +481,7 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   const bar = document.createElement("div");
   bar.className = "cell z2 shape-container bar";
   if(barPatternUrl) bar.style.setProperty("--barPattern", `url("${barPatternUrl}")`);
-  bar.innerHTML = `<div class="content-layer"><div class="eventTitle">${title}</div>${timeText ? `<div class="eventTime">${timeText}</div>`:''}</div>`;
+  bar.innerHTML = `<div class="content-layer"><div class="eventTitle">${title}</div>${timeText ? `<div class="eventTime">${timeText}</div>` : ''}</div>`;
 
   // Right Arrow (bottom)
   const arrowR = document.createElement("div");
@@ -374,48 +492,79 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   return row;
 }
 
+function pickDriverEventForDay(list){
+  const sorted = sortEventsForDay([...list]);
+  // prefer one with packed codes
+  for(const ev of sorted){
+    const p = parsePackedCodeFromEvent(ev);
+    if(p.barCode && p.thumbCode) return ev;
+  }
+  return sorted[0] || null;
+}
+
 let cursorDate = new Date();
 
 async function refreshWeek(){
   clearError();
   listEl.innerHTML = "";
+
+  if(!window.GCAL_CONFIG) return showError("Missing js/config.js (window.GCAL_CONFIG not found).");
+  if(!GOOGLE_API_KEY || !CALENDAR_SHARE_LINK) return showError("js/config.js must provide { apiKey, calendarShareLink }.");
+
   const calendarId = extractCalendarIdFromShareLink(CALENDAR_SHARE_LINK);
   if(!calendarId) return showError("Invalid Calendar Link");
 
   const weekStart = startOfWeekSunday(cursorDate);
+  const weekEndExclusive = addDays(weekStart, 7);
   rangeLabel.textContent = formatRangeLabel(weekStart);
 
   try {
-    const events = await fetchAllEvents(calendarId, weekStart.toISOString(), addDays(weekStart, 7).toISOString());
-    const byDay = {};
-    events.forEach(ev => {
-      const d = ev.start.dateTime ? new Date(ev.start.dateTime) : new Date(ev.start.date + "T00:00:00");
-      const k = ymd(d);
-      if(!byDay[k]) byDay[k] = [];
-      byDay[k].push(ev);
-    });
+    const events = await fetchAllEvents(calendarId, weekStart.toISOString(), weekEndExclusive.toISOString());
+
+    // ✅ build map with coverage
+    const byDay = new Map();
+    for(const ev of events){
+      for(const k of coveredDayKeys(ev)){
+        if(!byDay.has(k)) byDay.set(k, []);
+        byDay.get(k).push(ev);
+      }
+    }
 
     for(let i=0; i<7; i++){
       const dayDate = addDays(weekStart, i);
-      const evs = byDay[ymd(dayDate)] || [];
-      const driver = evs[0];
-      let title = "Rest Day", time = "", bPat = null, tPat = null;
+      const dayKey = ymd(dayDate);
+      const evs = byDay.get(dayKey) || [];
+
+      const driver = evs.length ? pickDriverEventForDay(evs) : null;
+
+      let title = "Rest Day";
+      let timeText = "";
+      let barPatternUrl = null;
+      let thumbUrl = null;
 
       if(driver){
         const parsed = parsePackedCodeFromEvent(driver);
-        title = driver.summary;
-        if(parsed.barCode) bPat = IMAGE_BASE_URL + parsed.barCode + IMAGE_EXTENSION;
-        if(parsed.thumbCode) tPat = IMAGE_BASE_URL + parsed.thumbCode + IMAGE_EXTENSION;
-        if(driver.start.dateTime) time = new Intl.DateTimeFormat(undefined, {hour:'numeric', minute:'2-digit'}).format(new Date(driver.start.dateTime));
+        title = String(driver.summary || "").trim() || "Untitled";
+
+        if(parsed.barCode) barPatternUrl = safeUrl(parsed.barCode);
+        if(parsed.thumbCode) thumbUrl = safeUrl(parsed.thumbCode);
+
+        if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
+          timeText = formatTimeOneLine(new Date(driver.start.dateTime));
+        }
       }
-      listEl.appendChild(makeRow(DAYS[i], title, time, i, bPat, tPat));
+
+      listEl.appendChild(makeRow(DAYS[i], title, timeText, i, barPatternUrl, thumbUrl));
     }
-  } catch(e) { showError(e.message); }
+
+  } catch(e) {
+    showError(e?.message || String(e));
+  }
 }
 
 document.getElementById("todayBtn").onclick = () => { cursorDate = new Date(); refreshWeek(); };
-document.getElementById("prevBtn").onclick = () => { cursorDate = addDays(cursorDate, -7); refreshWeek(); };
-document.getElementById("nextBtn").onclick = () => { cursorDate = addDays(cursorDate, 7); refreshWeek(); };
+document.getElementById("prevBtn").onclick = () => { cursorDate = addDays(startOfWeekSunday(cursorDate), -7); refreshWeek(); };
+document.getElementById("nextBtn").onclick = () => { cursorDate = addDays(startOfWeekSunday(cursorDate), 7); refreshWeek(); };
 
 refreshWeek();
 </script>
