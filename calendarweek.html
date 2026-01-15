@@ -210,16 +210,7 @@
     /* apply strokeFX to the pseudo-element via inheritance */
     .arrow{ filter: none; }
     .arrow::after{ filter: none; }
-    .arrow.stroked::after{ }
-    .arrow.stroked::after{ }
-    .arrow.stroked::after{ }
 
-    /* simplest: put strokeFX on the ::after itself */
-    .arrow::after{ }
-    .arrow::after{ }
-    .arrow::after{ }
-    .arrow::after{ }
-    .arrow::after{ }
     .arrow::after{
       filter:
         drop-shadow(var(--borderSize) 0 0 var(--borderColor))
