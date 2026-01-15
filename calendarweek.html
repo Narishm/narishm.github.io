@@ -247,7 +247,7 @@
       font-size: 44px;
       line-height: 1;
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.85));
-      margin-right: 6px;
+      margin-right: 2px;
       flex: 0 0 auto;
     }
 
@@ -376,7 +376,7 @@ function formatRangeLabel(weekStart){
 }
 
 function formatMMDD(d){
-  return `${pad(d.getMonth()+1)}/${pad(d.getDate())}`;
+  return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
 /* ✅ robust cid decode */
