@@ -147,8 +147,6 @@
 
     /* =========================
        SHAPES
-       - Fill is still CSS (clip-path)
-       - Border is SVG stroke overlay (uniform thickness)
        ========================= */
     .shape {
       position: relative;
@@ -243,7 +241,7 @@
         linear-gradient(180deg, var(--blue1), var(--blue2));
     }
 
-    /* text */
+    /* left text */
     .kanjiBox {
       width: 70px; height: 70px;
       display: grid; place-items: center;
@@ -257,7 +255,6 @@
       font-family: var(--uiFont);
     }
 
-    /* day + date stack (centered, same size) */
     .dowWrap{
       display: flex;
       flex-direction: column;
@@ -270,7 +267,7 @@
       font-family: var(--uiFont);
     }
 
-    .dow {
+    .dow, .date {
       color: #fff;
       font-weight: 900;
       font-size: 32px;
@@ -280,14 +277,8 @@
     }
 
     .date {
-      color: #fff;
-      font-weight: 900;
-      font-size: 32px;
-      text-transform: uppercase;
-      text-shadow: 0 4px 0 rgba(0,0,0,.85);
       letter-spacing: .02em;
       opacity: .95;
-      font-family: var(--uiFont);
     }
 
     /* ===== Center bar text layout ===== */
@@ -312,7 +303,7 @@
 
     .eventMain {
       width: 100%;
-      font-family: var(--midFont); /* AleaWB */
+      font-family: var(--midFont);
       color: #fff;
       font-weight: 900;
       font-size: clamp(22px, 2.2vw, 44px);
@@ -325,7 +316,7 @@
 
     .eventSub {
       width: 100%;
-      font-family: var(--uiFont);  /* same as day/date */
+      font-family: var(--uiFont);
       color: #fff;
       font-weight: 900;
       font-size: clamp(14px, 1.2vw, 22px);
@@ -338,7 +329,7 @@
     }
 
     .eventTime {
-      font-family: var(--uiFont);  /* same as subtitle/date */
+      font-family: var(--uiFont);
       color: #fff;
       font-weight: 900;
       font-size: clamp(14px, 1.2vw, 22px);
@@ -346,7 +337,7 @@
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
       white-space: nowrap;
       flex: 0 0 auto;
-      margin-left: auto; /* right side of bar */
+      margin-left: auto;
     }
 
     @media (max-width: 800px) {
@@ -358,8 +349,7 @@
         --offset: 16px;
       }
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
-      .dow { font-size: 28px; }
-      .date { font-size: 28px; }
+      .dow, .date { font-size: 28px; }
       .dowWrap { transform: translateY(-3px); gap: 3px; }
       .titleStack { gap: 3px; }
     }
@@ -389,14 +379,13 @@ const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
-/* ✅ WHERE YOUR QUEST JSON FILES LIVE (edit if needed) */
-const QUEST_JSON_BASE_URL = "json/";   // e.g. "json/" or "./" or "data/quests/"
+/* ✅ WHERE YOUR QUEST JSON FILES LIVE */
+const QUEST_JSON_BASE_URL = "json/";   // change to "./" if the json sits beside the html
 
-/* OFF defaults (used when a day has no events) */
+/* OFF defaults */
 const OFF_MAIN = "OFF";
-const OFF_SUB = "";
-const OFF_BAR_CODE = "00";       // -> img/00.png
-const OFF_THUMB_CODE = "off";    // -> img/off.png
+const OFF_BAR_CODE = "00";
+const OFF_THUMB_CODE = "off";
 
 const DAYS = [
   { name:"sun", kanji:"日" }, { name:"mon", kanji:"月" }, { name:"tue", kanji:"火" },
@@ -432,7 +421,8 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
-/* ✅ parse: "1 - DevStream / Let's Coding Time - 12 PM EST" */
+/* ✅ parse: "1 - The Dev Quest - 12 PM EST"
+   (we are no longer using "/ subtitle") */
 function parseCalendarTitle(raw){
   const s = String(raw || "").trim();
 
@@ -447,15 +437,8 @@ function parseCalendarTitle(raw){
     rest = rest.slice(0, t.index).trim();
   }
 
-  let main = rest;
-  let subtitle = null;
-  const slash = rest.indexOf("/");
-  if(slash !== -1){
-    main = rest.slice(0, slash).trim();
-    subtitle = rest.slice(slash + 1).trim() || null;
-  }
-
-  return { slot, main, subtitle, time };
+  const main = rest.trim();
+  return { slot, main, time };
 }
 
 /* ✅ robust cid decode */
@@ -550,7 +533,7 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
-/* packed code: "00off" (00 = bar color/pattern, off = id) */
+/* packed code: "00off" (00 = bar, off = id) */
 function parsePackedCodeFromEvent(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0];
   const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
@@ -582,11 +565,8 @@ function pickDriverEventForDay(list){
 
 /* =========================
    ✅ QUEST JSON LOOKUP
-   - file: mainTitle -> lowercase, remove spaces, + ".json"
-   - find node with id == thumbCode
-   - subtitle = node.title
    ========================= */
-const questJsonCache = new Map(); // filename -> parsed JSON (or null if missing)
+const questJsonCache = new Map(); // filename -> parsed JSON (or null)
 
 function questTitleToFilename(mainTitle){
   return String(mainTitle || "")
@@ -607,18 +587,14 @@ function deepFindTitleById(root, targetId){
   }
 
   if(typeof root === "object"){
-    // match
     if(root.id === targetId && typeof root.title === "string" && root.title.trim()){
       return root.title.trim();
     }
-
-    // recurse all object keys
     for(const k of Object.keys(root)){
       const r = deepFindTitleById(root[k], targetId);
       if(r) return r;
     }
   }
-
   return null;
 }
 
@@ -645,7 +621,6 @@ async function lookupSubtitleFromQuestJson(mainTitle, thumbCode){
   const filename = questTitleToFilename(mainTitle);
   const json = await fetchQuestJson(filename);
   if(!json) return null;
-
   return deepFindTitleById(json, thumbCode);
 }
 
@@ -785,6 +760,8 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, barPatt
   const subEl = document.createElement("div");
   subEl.className = "eventSub";
   subEl.textContent = subTitle || "";
+
+  // show subtitle line even if empty? (currently hide if empty)
   if(!subTitle) subEl.style.display = "none";
 
   titleStack.appendChild(mainEl);
@@ -840,7 +817,6 @@ async function refreshWeek(){
   try {
     const events = await fetchAllEvents(calendarId, weekStart.toISOString(), weekEndExclusive.toISOString());
 
-    // map using coverage, not start date
     const byDay = new Map();
     for(const ev of events){
       for(const k of coveredDayKeys(ev)){
@@ -857,9 +833,8 @@ async function refreshWeek(){
       const evs = byDay.get(dayKey) || [];
       const driver = evs.length ? pickDriverEventForDay(evs) : null;
 
-      // OFF defaults (overridden when a driver event exists)
       let mainTitle = OFF_MAIN;
-      let subTitle = OFF_SUB;
+      let subTitle = "";
       let timeText = "";
       let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
       let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
@@ -868,25 +843,19 @@ async function refreshWeek(){
         const packed = parsePackedCodeFromEvent(driver);
         const parts = parseCalendarTitle(driver.summary || "");
 
-        mainTitle = (parts.main || "").trim();
-        subTitle = (parts.subtitle || "").trim();
+        mainTitle = (parts.main || "").trim() || (packed.thumbCode ? packed.thumbCode : "Untitled");
 
-        // If we have an id code (thumbCode), use it to lookup subtitle from quest JSON
+        // patterns/thumbs
+        if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
+        if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
+
+        // subtitle from quest json (ONLY source now)
         if(mainTitle && packed.thumbCode){
           const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
           if(jsonSub) subTitle = jsonSub;
         }
 
-        // Fallback if main is missing
-        if(!mainTitle){
-          mainTitle = packed.thumbCode ? packed.thumbCode : "Untitled";
-          subTitle = "";
-        }
-
-        if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
-        if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
-
-        // Prefer time from title, otherwise use actual start time
+        // time: prefer title suffix, else real start time
         if(parts.time){
           timeText = parts.time;
         } else if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
@@ -897,7 +866,6 @@ async function refreshWeek(){
       listEl.appendChild(makeRow(DAYS[i], mmdd, mainTitle, subTitle, timeText, i, barPatternUrl, thumbUrl));
     }
 
-    // Apply after DOM has actual sizes
     scheduleStrokeApply();
 
   } catch(e) {
