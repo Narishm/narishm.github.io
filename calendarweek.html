@@ -149,7 +149,7 @@
 
     /********************************
      * LEFT BOX (DAY)  ✅ uses img/06.png
-     * ✅ FIXED BORDER: uniform via box-shadow stroke
+     * ✅ FIXED BORDER: true border layer + inner clip shrink
      ********************************/
     .arrow{
       position:relative;
@@ -162,7 +162,22 @@
       --dayPattern: url("img/06.png");
     }
 
-    /* (removed .arrow::before border layer) */
+    .arrow::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background: var(--borderColor);
+      clip-path: polygon(
+        0% 50%,
+        var(--point) 0%,
+        100% 0%,
+        calc(100% - var(--slant)) 100%,
+        var(--point) 100%,
+        0% 50%
+      );
+      z-index:0;
+      filter: drop-shadow(0 6px 0 rgba(0,0,0,.85));
+    }
 
     .arrow::after{
       content:"";
@@ -173,19 +188,15 @@
         var(--dayPattern) 0 0 / auto repeat,
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
 
+      /* inner shape shrunk by borderSize (avoid axis inset thinning) */
       clip-path: polygon(
-        0% 50%,
-        var(--point) 0%,
-        100% 0%,
-        calc(100% - var(--slant)) 100%,
-        var(--point) 100%,
-        0% 50%
+        var(--borderSize) 50%,
+        calc(var(--point) + var(--borderSize)) var(--borderSize),
+        calc(100% - var(--borderSize)) var(--borderSize),
+        calc(100% - var(--slant) - var(--borderSize)) calc(100% - var(--borderSize)),
+        calc(var(--point) + var(--borderSize)) calc(100% - var(--borderSize)),
+        var(--borderSize) 50%
       );
-
-      /* ✅ uniform stroke + depth shadow */
-      box-shadow:
-        0 6px 0 rgba(0,0,0,.85),
-        0 0 0 var(--borderSize) var(--borderColor);
 
       z-index:1;
     }
@@ -223,7 +234,7 @@
 
     /********************************
      * MIDDLE BAR
-     * ✅ FIXED BORDER: uniform via box-shadow stroke
+     * ✅ FIXED BORDER: true border layer + inner clip shrink
      ********************************/
     .bar{
       position:relative;
@@ -237,7 +248,20 @@
       --barPattern: none;
     }
 
-    /* (removed .bar::before border layer) */
+    .bar::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background: var(--borderColor);
+      clip-path: polygon(
+        var(--slant) 0%,
+        100% 0%,
+        calc(100% - var(--slant)) 100%,
+        0% 100%
+      );
+      z-index:0;
+      filter: drop-shadow(0 6px 0 rgba(0,0,0,.85));
+    }
 
     .bar::after{
       content:"";
@@ -251,16 +275,11 @@
         var(--barColor, var(--barDefault));
 
       clip-path: polygon(
-        var(--slant) 0%,
-        100% 0%,
-        calc(100% - var(--slant)) 100%,
-        0% 100%
+        calc(var(--slant) + var(--borderSize)) var(--borderSize),
+        calc(100% - var(--borderSize)) var(--borderSize),
+        calc(100% - (var(--slant) + var(--borderSize))) calc(100% - var(--borderSize)),
+        var(--borderSize) calc(100% - var(--borderSize))
       );
-
-      /* ✅ uniform stroke + depth shadow */
-      box-shadow:
-        0 6px 0 rgba(0,0,0,.85),
-        0 0 0 var(--borderSize) var(--borderColor);
 
       z-index:1;
     }
@@ -303,7 +322,7 @@
 
     /********************************
      * RIGHT BOX (THUMBNAIL)
-     * ✅ FIXED BORDER: uniform via box-shadow stroke
+     * ✅ FIXED BORDER: true border layer + inner clip shrink
      ********************************/
     .arrowR{
       position:relative;
@@ -319,7 +338,22 @@
       --thumb: none;
     }
 
-    /* (removed .arrowR::before border layer) */
+    .arrowR::before{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background: var(--borderColor);
+      clip-path: polygon(
+        var(--slant) 0%,
+        calc(100% - var(--point)) 0%,
+        100% 50%,
+        calc(100% - var(--point)) 100%,
+        0% 100%,
+        var(--slant) 0%
+      );
+      z-index:0;
+      filter: drop-shadow(0 6px 0 rgba(0,0,0,.85));
+    }
 
     .arrowR::after{
       content:"";
@@ -332,18 +366,13 @@
         linear-gradient(180deg, var(--blue1), var(--blue2));
 
       clip-path: polygon(
-        var(--slant) 0%,
-        calc(100% - var(--point)) 0%,
-        100% 50%,
-        calc(100% - var(--point)) 100%,
-        0% 100%,
-        var(--slant) 0%
+        calc(var(--slant) + var(--borderSize)) var(--borderSize),
+        calc(100% - var(--point) - var(--borderSize)) var(--borderSize),
+        calc(100% - var(--borderSize)) 50%,
+        calc(100% - var(--point) - var(--borderSize)) calc(100% - var(--borderSize)),
+        var(--borderSize) calc(100% - var(--borderSize)),
+        calc(var(--slant) + var(--borderSize)) var(--borderSize)
       );
-
-      /* ✅ uniform stroke + depth shadow */
-      box-shadow:
-        0 6px 0 rgba(0,0,0,.85),
-        0 0 0 var(--borderSize) var(--borderColor);
 
       z-index:1;
     }
@@ -357,6 +386,9 @@
         --rowGap: 8px;
         --pointGap: 8px;
         --offset: 16px;
+
+        /* optionally reduce border on mobile if you want */
+        /* --borderSize: 4px; */
       }
       .kanjiBox{ width:62px; height:62px; font-size:38px; }
       .dow{ font-size: 28px; }
