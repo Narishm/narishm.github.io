@@ -296,13 +296,14 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      min-width: 0;
     }
 
     .titleStack {
       flex: 1;
       display: flex;
       flex-direction: column;
-      align-items: center;   /* center like the date */
+      align-items: center;
       text-align: center;
       line-height: 1;
       gap: 4px;
@@ -388,11 +389,14 @@ const CALENDAR_SHARE_LINK = cfg.calendarShareLink;
 const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
+/* ✅ WHERE YOUR QUEST JSON FILES LIVE (edit if needed) */
+const QUEST_JSON_BASE_URL = "json/";   // e.g. "json/" or "./" or "data/quests/"
+
 /* OFF defaults (used when a day has no events) */
 const OFF_MAIN = "OFF";
-const OFF_SUB = "";         // optional subtitle for OFF
-const OFF_BAR_CODE = "00";  // -> img/00.png
-const OFF_THUMB_CODE = "off"; // -> img/off.png
+const OFF_SUB = "";
+const OFF_BAR_CODE = "00";       // -> img/00.png
+const OFF_THUMB_CODE = "off";    // -> img/off.png
 
 const DAYS = [
   { name:"sun", kanji:"日" }, { name:"mon", kanji:"月" }, { name:"tue", kanji:"火" },
@@ -432,12 +436,10 @@ function formatMMDD(d){
 function parseCalendarTitle(raw){
   const s = String(raw || "").trim();
 
-  // Slot prefix: "1 - "
   const m = s.match(/^\s*(\d+)\s*-\s*(.*)$/);
   const slot = m ? parseInt(m[1], 10) : null;
   let rest = (m ? m[2] : s).trim();
 
-  // Time suffix: last " - ..."
   let time = null;
   const t = rest.match(/\s*-\s*([^-]+)$/);
   if(t){
@@ -445,7 +447,6 @@ function parseCalendarTitle(raw){
     rest = rest.slice(0, t.index).trim();
   }
 
-  // Main / subtitle: "Main / Subtitle"
   let main = rest;
   let subtitle = null;
   const slash = rest.indexOf("/");
@@ -549,7 +550,7 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
-/* packed code: "00off" */
+/* packed code: "00off" (00 = bar color/pattern, off = id) */
 function parsePackedCodeFromEvent(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0];
   const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
@@ -577,6 +578,75 @@ function pickDriverEventForDay(list){
     if(p.barCode && p.thumbCode) return ev;
   }
   return sorted[0] || null;
+}
+
+/* =========================
+   ✅ QUEST JSON LOOKUP
+   - file: mainTitle -> lowercase, remove spaces, + ".json"
+   - find node with id == thumbCode
+   - subtitle = node.title
+   ========================= */
+const questJsonCache = new Map(); // filename -> parsed JSON (or null if missing)
+
+function questTitleToFilename(mainTitle){
+  return String(mainTitle || "")
+    .trim()
+    .replace(/\s+/g,"")
+    .toLowerCase() + ".json";
+}
+
+function deepFindTitleById(root, targetId){
+  if(!root || !targetId) return null;
+
+  if(Array.isArray(root)){
+    for(const item of root){
+      const r = deepFindTitleById(item, targetId);
+      if(r) return r;
+    }
+    return null;
+  }
+
+  if(typeof root === "object"){
+    // match
+    if(root.id === targetId && typeof root.title === "string" && root.title.trim()){
+      return root.title.trim();
+    }
+
+    // recurse all object keys
+    for(const k of Object.keys(root)){
+      const r = deepFindTitleById(root[k], targetId);
+      if(r) return r;
+    }
+  }
+
+  return null;
+}
+
+async function fetchQuestJson(filename){
+  if(questJsonCache.has(filename)) return questJsonCache.get(filename);
+
+  try{
+    const res = await fetch(QUEST_JSON_BASE_URL + filename, { cache: "no-store" });
+    if(!res.ok){
+      questJsonCache.set(filename, null);
+      return null;
+    }
+    const data = await res.json();
+    questJsonCache.set(filename, data);
+    return data;
+  } catch {
+    questJsonCache.set(filename, null);
+    return null;
+  }
+}
+
+async function lookupSubtitleFromQuestJson(mainTitle, thumbCode){
+  if(!mainTitle || !thumbCode) return null;
+  const filename = questTitleToFilename(mainTitle);
+  const json = await fetchQuestJson(filename);
+  if(!json) return null;
+
+  return deepFindTitleById(json, thumbCode);
 }
 
 /* =========================
@@ -800,6 +870,12 @@ async function refreshWeek(){
 
         mainTitle = (parts.main || "").trim();
         subTitle = (parts.subtitle || "").trim();
+
+        // If we have an id code (thumbCode), use it to lookup subtitle from quest JSON
+        if(mainTitle && packed.thumbCode){
+          const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
+          if(jsonSub) subTitle = jsonSub;
+        }
 
         // Fallback if main is missing
         if(!mainTitle){
