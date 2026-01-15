@@ -16,7 +16,8 @@
          BORDER SETTINGS
          ========================= */
       --borderColor: #fff;
-      --borderSize: 5px; /* outside thickness control */
+      --borderSize: 5; /* ✅ number (no px). 5 = about 5px outside stroke */
+      --borderScaleK: 0.012; /* tweak: 0.010–0.015 if you want */
 
       --blue1: #2e4b78;
       --blue2: #1f345a;
@@ -130,47 +131,57 @@
       align-items: stretch;
       transform: translateX(var(--rowShift, 0px));
       transition: transform .15s ease;
+      overflow: visible;
     }
 
     .row.shift-left  { --rowShift: calc(var(--offset) * -1); }
     .row.shift-right { --rowShift: var(--offset); }
+
+    /* ✅ critical: stack order so outside borders don't get covered by overlaps */
+    .cell { position: relative; }
+    .z3 { z-index: 30; }
+    .z2 { z-index: 20; }
+    .z1 { z-index: 10; }
 
     /* =========================
        OUTSIDE BORDER CORE LOGIC
        ========================= */
     .shape-container {
       position: relative;
-      overflow: visible; /* allow border outside */
-      /* overall drop shadow under everything */
+      overflow: visible;
       filter: drop-shadow(0 6px 0 rgba(0,0,0,0.8));
     }
 
-    /* ✅ OUTSIDE BORDER: same shape, scaled up behind */
-    .shape-container::before{
-      content:"";
-      position:absolute;
+    /* OUTSIDE BORDER LAYER */
+    .shape-container::before {
+      content: "";
+      position: absolute;
       inset: 0;
       background: var(--borderColor);
       z-index: 0;
-      pointer-events:none;
+      pointer-events: none;
 
-      /* scale border outward; value tuned from borderSize */
-      transform: scale(calc(1 + (var(--borderSize) / 100)));
+      /* scale outward; borderSize is a number */
+      transform: scale(calc(1 + (var(--borderSize) * var(--borderScaleK))));
       transform-origin: center;
     }
 
-    /* ✅ FILL: the real textured/colored shape */
-    .shape-container::after{
-      content:"";
-      position:absolute;
+    /* FILL LAYER */
+    .shape-container::after {
+      content: "";
+      position: absolute;
       inset: 0;
       z-index: 1;
-      pointer-events:none;
+      pointer-events: none;
     }
+
+    /* =========================
+       SHAPES (clip-path applied to BOTH ::before border and ::after fill)
+       ========================= */
 
     /* LEFT BOX */
     .arrow::before,
-    .arrow::after{
+    .arrow::after {
       clip-path: polygon(
         0% 50%,
         var(--point) 0%,
@@ -180,18 +191,18 @@
         0% 50%
       );
     }
-    .arrow::after{
+    .arrow::after {
       background:
-        url("img/06.png") center/cover,
-        linear-gradient(135deg, rgba(255,255,255,.1), rgba(0,0,0,.2));
+        url("img/06.png") 0 0 / auto repeat,
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
     }
 
     /* MIDDLE BAR */
-    .bar{
+    .bar {
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
     }
     .bar::before,
-    .bar::after{
+    .bar::after {
       clip-path: polygon(
         var(--slant) 0%,
         100% 0%,
@@ -199,18 +210,18 @@
         0% 100%
       );
     }
-    .bar::after{
+    .bar::after {
       background:
         var(--barPattern, none) center/cover,
         var(--barColor, var(--barDefault));
     }
 
     /* RIGHT BOX */
-    .arrowR{
+    .arrowR {
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
     }
     .arrowR::before,
-    .arrowR::after{
+    .arrowR::after {
       clip-path: polygon(
         var(--slant) 0%,
         calc(100% - var(--point)) 0%,
@@ -219,7 +230,7 @@
         0% 100%
       );
     }
-    .arrowR::after{
+    .arrowR::after {
       background:
         var(--thumb, none) center/cover,
         linear-gradient(180deg, var(--blue1), var(--blue2));
@@ -343,20 +354,20 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
-  // Left Arrow
+  // Left Arrow (topmost)
   const arrow = document.createElement("div");
-  arrow.className = "shape-container arrow";
+  arrow.className = "cell z3 shape-container arrow";
   arrow.innerHTML = `<div class="content-layer"><div class="kanjiBox">${day.kanji}</div><div class="dow">${day.name}</div></div>`;
 
-  // Center Bar
+  // Center Bar (middle)
   const bar = document.createElement("div");
-  bar.className = "shape-container bar";
+  bar.className = "cell z2 shape-container bar";
   if(barPatternUrl) bar.style.setProperty("--barPattern", `url("${barPatternUrl}")`);
   bar.innerHTML = `<div class="content-layer"><div class="eventTitle">${title}</div>${timeText ? `<div class="eventTime">${timeText}</div>`:''}</div>`;
 
-  // Right Arrow
+  // Right Arrow (bottom)
   const arrowR = document.createElement("div");
-  arrowR.className = "shape-container arrowR";
+  arrowR.className = "cell z1 shape-container arrowR";
   if(thumbUrl) arrowR.style.setProperty("--thumb", `url("${thumbUrl}")`);
 
   row.append(arrow, bar, arrowR);
