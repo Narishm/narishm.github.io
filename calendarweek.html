@@ -16,7 +16,7 @@
          BORDER SETTINGS
          ========================= */
       --borderColor: #fff;
-      --borderSize: 4px; /* OUTSIDE border thickness */
+      --borderSize: 4px; /* uniform border thickness */
 
       --blue1: #2e4b78;
       --blue2: #1f345a;
@@ -141,8 +141,9 @@
     .row.shift-right { --rowShift: var(--offset); }
 
     /* =========================
-       OUTSIDE BORDER SHAPES
-       (border = ::before, fill = ::after)
+       SHAPES
+       - Fill is still CSS (clip-path)
+       - Border is now SVG stroke overlay (uniform thickness)
        ========================= */
     .shape {
       position: relative;
@@ -151,21 +152,30 @@
       min-height: 1px;
     }
 
-    .shape::before {
-      content: "";
-      position: absolute;
-      inset: calc(-1 * var(--borderSize)); /* ✅ border OUTSIDE */
-      background: var(--borderColor);
-      z-index: 0;
-      pointer-events: none;
-    }
-
+    /* Fill layer */
     .shape::after {
       content: "";
       position: absolute;
-      inset: 0; /* fill stays exact size */
+      inset: 0;
       z-index: 1;
       pointer-events: none;
+    }
+
+    /* SVG stroke overlay */
+    .strokeSvg {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .strokeSvg polygon {
+      fill: none;
+      stroke: var(--borderColor);
+      stroke-width: var(--borderSize);
+      vector-effect: non-scaling-stroke;
+      stroke-linejoin: miter;
+      stroke-miterlimit: 4;
     }
 
     .content-layer {
@@ -177,7 +187,6 @@
       padding: 0 20px;
     }
 
-    .arrow::before,
     .arrow::after {
       clip-path: polygon(
         0% 50%,
@@ -187,8 +196,6 @@
         var(--point) 100%,
         0% 50%
       );
-    }
-    .arrow::after {
       background:
         url("img/06.png") 0 0 / auto repeat,
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
@@ -199,7 +206,6 @@
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
       --barPattern: none;
     }
-    .bar::before,
     .bar::after {
       clip-path: polygon(
         var(--slant) 0%,
@@ -207,8 +213,6 @@
         calc(100% - var(--slant)) 100%,
         0% 100%
       );
-    }
-    .bar::after {
       background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
@@ -221,7 +225,6 @@
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
       --thumb: none;
     }
-    .arrowR::before,
     .arrowR::after {
       clip-path: polygon(
         var(--slant) 0%,
@@ -230,8 +233,6 @@
         calc(100% - var(--point)) 100%,
         0% 100%
       );
-    }
-    .arrowR::after {
       background:
         var(--thumb) center/cover,
         linear-gradient(180deg, var(--blue1), var(--blue2));
@@ -477,6 +478,87 @@ function pickDriverEventForDay(list){
   return sorted[0] || null;
 }
 
+/* =========================
+   SVG STROKE BORDER (uniform)
+   ========================= */
+function cssPx(varName){
+  const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  const n = parseFloat(v);
+  return Number.isFinite(n) ? n : 0;
+}
+
+const strokeJobs = [];
+function queueStroke(shapeEl, kind){
+  strokeJobs.push({ el: shapeEl, kind });
+}
+
+function ensureStrokeSvg(shapeEl){
+  let svg = shapeEl.querySelector(":scope > svg.strokeSvg");
+  if(svg) return svg;
+
+  svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+  svg.classList.add("strokeSvg");
+
+  const poly = document.createElementNS("http://www.w3.org/2000/svg","polygon");
+  svg.appendChild(poly);
+
+  shapeEl.appendChild(svg);
+  return svg;
+}
+
+function setPolygonPoints(poly, pts){
+  poly.setAttribute("points", pts.map(p => `${p[0]},${p[1]}`).join(" "));
+}
+
+function applyStrokes(){
+  const slant = cssPx("--slant");
+  const point = cssPx("--point");
+
+  while(strokeJobs.length){
+    const { el, kind } = strokeJobs.shift();
+    const w = el.clientWidth;
+    const h = el.clientHeight;
+    if(!w || !h) continue;
+
+    const svg = ensureStrokeSvg(el);
+    svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
+    svg.setAttribute("preserveAspectRatio","none");
+
+    const poly = svg.querySelector("polygon");
+
+    if(kind === "arrowL"){
+      setPolygonPoints(poly, [
+        [0, h/2],
+        [point, 0],
+        [w, 0],
+        [w - slant, h],
+        [point, h],
+        [0, h/2],
+      ]);
+    } else if(kind === "bar"){
+      setPolygonPoints(poly, [
+        [slant, 0],
+        [w, 0],
+        [w - slant, h],
+        [0, h],
+      ]);
+    } else if(kind === "arrowR"){
+      setPolygonPoints(poly, [
+        [slant, 0],
+        [w - point, 0],
+        [w, h/2],
+        [w - point, h],
+        [0, h],
+      ]);
+    }
+  }
+}
+
+function scheduleStrokeApply(){
+  requestAnimationFrame(() => applyStrokes());
+}
+window.addEventListener("resize", () => scheduleStrokeApply());
+
 function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
@@ -526,6 +608,12 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   row.appendChild(arrow);
   row.appendChild(bar);
   row.appendChild(arrowR);
+
+  // Queue uniform SVG borders
+  queueStroke(arrow, "arrowL");
+  queueStroke(bar, "bar");
+  queueStroke(arrowR, "arrowR");
+
   return row;
 }
 
@@ -583,6 +671,9 @@ async function refreshWeek(){
 
       listEl.appendChild(makeRow(DAYS[i], title, timeText, i, barPatternUrl, thumbUrl));
     }
+
+    // Apply after DOM has actual sizes
+    scheduleStrokeApply();
 
   } catch(e) {
     showError(e?.message || String(e));
