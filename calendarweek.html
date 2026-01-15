@@ -143,7 +143,7 @@
     /* =========================
        SHAPES
        - Fill is still CSS (clip-path)
-       - Border is now SVG stroke overlay (uniform thickness)
+       - Border is SVG stroke overlay (uniform thickness)
        ========================= */
     .shape {
       position: relative;
@@ -251,13 +251,31 @@
       flex: 0 0 auto;
     }
 
+    /* NEW: day + date stack */
+    .dowWrap{
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      gap: 6px;
+      transform: translateY(-6px); /* move the whole stack up a bit */
+      flex: 0 0 auto;
+    }
+
     .dow {
       color: #fff;
       font-weight: 900;
       font-size: 32px;
       text-transform: uppercase;
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
-      flex: 0 0 auto;
+    }
+
+    .date {
+      color: #fff;
+      font-weight: 900;
+      font-size: 16px;
+      opacity: .95;
+      text-shadow: 0 4px 0 rgba(0,0,0,.85);
+      letter-spacing: .02em;
     }
 
     .eventTitle {
@@ -295,6 +313,8 @@
       }
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow { font-size: 28px; }
+      .date { font-size: 14px; }
+      .dowWrap { transform: translateY(-5px); gap: 5px; }
     }
   </style>
 </head>
@@ -350,6 +370,10 @@ function startOfWeekSunday(d){
 function formatRangeLabel(weekStart){
   const end = addDays(weekStart, 6);
   return `${weekStart.toLocaleDateString(undefined,{month:'short', day:'numeric'})} – ${end.toLocaleDateString(undefined,{month:'short', day:'numeric', year:'numeric'})}`;
+}
+
+function formatMMDD(d){
+  return `${pad(d.getMonth()+1)}/${pad(d.getDate())}`;
 }
 
 /* ✅ robust cid decode */
@@ -559,7 +583,7 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
+function makeRow(day, dateText, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
@@ -568,14 +592,27 @@ function makeRow(day, title, timeText, rowIndex, barPatternUrl, thumbUrl){
   arrow.className = "shape arrow";
   const leftContent = document.createElement("div");
   leftContent.className = "content-layer";
+
   const kanji = document.createElement("div");
   kanji.className = "kanjiBox";
   kanji.textContent = day.kanji;
+
+  const dowWrap = document.createElement("div");
+  dowWrap.className = "dowWrap";
+
   const dow = document.createElement("div");
   dow.className = "dow";
   dow.textContent = day.name;
+
+  const dateEl = document.createElement("div");
+  dateEl.className = "date";
+  dateEl.textContent = dateText;
+
+  dowWrap.appendChild(dow);
+  dowWrap.appendChild(dateEl);
+
   leftContent.appendChild(kanji);
-  leftContent.appendChild(dow);
+  leftContent.appendChild(dowWrap);
   arrow.appendChild(leftContent);
 
   // Center
@@ -648,6 +685,8 @@ async function refreshWeek(){
     for(let i=0; i<7; i++){
       const dayDate = addDays(weekStart, i);
       const dayKey = ymd(dayDate);
+      const mmdd = formatMMDD(dayDate);
+
       const evs = byDay.get(dayKey) || [];
       const driver = evs.length ? pickDriverEventForDay(evs) : null;
 
@@ -669,7 +708,7 @@ async function refreshWeek(){
         }
       }
 
-      listEl.appendChild(makeRow(DAYS[i], title, timeText, i, barPatternUrl, thumbUrl));
+      listEl.appendChild(makeRow(DAYS[i], mmdd, title, timeText, i, barPatternUrl, thumbUrl));
     }
 
     // Apply after DOM has actual sizes
