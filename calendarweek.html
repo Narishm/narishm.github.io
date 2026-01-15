@@ -36,8 +36,11 @@
       /* Default (no-event) bar fallback */
       --barDefault: #2a3446;
 
-      /* Middle text font */
+      /* Middle text font (Main title) */
       --midFont: "AleaWB", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+      /* UI font (Day/Date/Subtitle/Time) */
+      --uiFont: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
     @font-face {
@@ -55,7 +58,7 @@
       display: grid;
       place-items: center;
       padding: 24px;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: var(--uiFont);
     }
 
     .wrap {
@@ -99,6 +102,7 @@
       cursor: pointer;
       transition: background .12s ease, transform .06s ease;
       user-select: none;
+      font-family: var(--uiFont);
     }
     .btn:hover { background: rgba(255,255,255,.10); }
     .btn:active { transform: translateY(1px); }
@@ -118,6 +122,7 @@
       padding: 10px 12px;
       white-space: pre-wrap;
       display: none;
+      font-family: var(--uiFont);
     }
 
     .list {
@@ -249,6 +254,7 @@
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.85));
       margin-right: 6px;
       flex: 0 0 auto;
+      font-family: var(--uiFont);
     }
 
     /* day + date stack (centered, same size) */
@@ -261,6 +267,7 @@
       gap: 3px;
       transform: translateY(-3px);
       flex: 0 0 auto;
+      font-family: var(--uiFont);
     }
 
     .dow {
@@ -269,6 +276,7 @@
       font-size: 32px;
       text-transform: uppercase;
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
+      font-family: var(--uiFont);
     }
 
     .date {
@@ -279,24 +287,57 @@
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
       letter-spacing: .02em;
       opacity: .95;
+      font-family: var(--uiFont);
     }
 
-    .eventTitle {
+    /* ===== Center bar text layout ===== */
+    .midContent {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .titleStack {
       flex: 1;
-      font-family: var(--midFont);
+      display: flex;
+      flex-direction: column;
+      align-items: center;   /* center like the date */
+      text-align: center;
+      line-height: 1;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .eventMain {
+      width: 100%;
+      font-family: var(--midFont); /* AleaWB */
       color: #fff;
       font-weight: 900;
       font-size: clamp(22px, 2.2vw, 44px);
       text-shadow: 0 5px 0 rgba(0,0,0,.85);
-      text-align: center;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       padding: 0 10px;
     }
 
+    .eventSub {
+      width: 100%;
+      font-family: var(--uiFont);  /* same as day/date */
+      color: #fff;
+      font-weight: 900;
+      font-size: clamp(14px, 1.2vw, 22px);
+      text-shadow: 0 4px 0 rgba(0,0,0,.85);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 0 10px;
+      opacity: .95;
+    }
+
     .eventTime {
-      font-family: var(--midFont);
+      font-family: var(--uiFont);  /* same as subtitle/date */
       color: #fff;
       font-weight: 900;
       font-size: clamp(14px, 1.2vw, 22px);
@@ -304,6 +345,7 @@
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
       white-space: nowrap;
       flex: 0 0 auto;
+      margin-left: auto; /* right side of bar */
     }
 
     @media (max-width: 800px) {
@@ -318,6 +360,7 @@
       .dow { font-size: 28px; }
       .date { font-size: 28px; }
       .dowWrap { transform: translateY(-3px); gap: 3px; }
+      .titleStack { gap: 3px; }
     }
   </style>
 </head>
@@ -346,9 +389,10 @@ const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
 /* OFF defaults (used when a day has no events) */
-const OFF_TITLE = "OFF";
-const OFF_BAR_CODE = "00";     // -> img/00.png
-const OFF_THUMB_CODE = "off";  // -> img/off.png
+const OFF_MAIN = "OFF";
+const OFF_SUB = "";         // optional subtitle for OFF
+const OFF_BAR_CODE = "00";  // -> img/00.png
+const OFF_THUMB_CODE = "off"; // -> img/off.png
 
 const DAYS = [
   { name:"sun", kanji:"日" }, { name:"mon", kanji:"月" }, { name:"tue", kanji:"火" },
@@ -384,7 +428,7 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
-/* ✅ NEW: parse "1 - DevStream / Let's Coding Time - 12 PM EST" */
+/* ✅ parse: "1 - DevStream / Let's Coding Time - 12 PM EST" */
 function parseCalendarTitle(raw){
   const s = String(raw || "").trim();
 
@@ -401,7 +445,7 @@ function parseCalendarTitle(raw){
     rest = rest.slice(0, t.index).trim();
   }
 
-  // Main / subtitle split: "DevStream / Let's Coding Time"
+  // Main / subtitle: "Main / Subtitle"
   let main = rest;
   let subtitle = null;
   const slash = rest.indexOf("/");
@@ -455,7 +499,7 @@ async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
   return all;
 }
 
-/* ✅ multi-day coverage map (fixes Friday) */
+/* ✅ multi-day coverage map */
 function coveredDayKeys(ev){
   let start, endExclusive;
 
@@ -510,10 +554,6 @@ function parsePackedCodeFromEvent(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0];
   const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
   return m ? { barCode: m[1], thumbCode: m[2] } : { barCode: null, thumbCode: null };
-}
-
-function stripLeadingIndexPrefix(title){
-  return String(title || "").replace(/^\s*\d+\s*-\s*/,"").trim();
 }
 
 function formatTimeOneLine(date){
@@ -620,7 +660,7 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, dateText, title, timeText, rowIndex, barPatternUrl, thumbUrl){
+function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, barPatternUrl, thumbUrl){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
@@ -658,18 +698,38 @@ function makeRow(day, dateText, title, timeText, rowIndex, barPatternUrl, thumbU
   if(barPatternUrl){
     bar.style.setProperty("--barPattern", `url("${barPatternUrl.replace(/"/g,'\\"')}")`);
   }
+
   const midContent = document.createElement("div");
   midContent.className = "content-layer";
-  const eventTitle = document.createElement("div");
-  eventTitle.className = "eventTitle";
-  eventTitle.textContent = title;
-  midContent.appendChild(eventTitle);
+
+  const midInner = document.createElement("div");
+  midInner.className = "midContent";
+
+  const titleStack = document.createElement("div");
+  titleStack.className = "titleStack";
+
+  const mainEl = document.createElement("div");
+  mainEl.className = "eventMain";
+  mainEl.textContent = mainTitle || "";
+
+  const subEl = document.createElement("div");
+  subEl.className = "eventSub";
+  subEl.textContent = subTitle || "";
+  if(!subTitle) subEl.style.display = "none";
+
+  titleStack.appendChild(mainEl);
+  titleStack.appendChild(subEl);
+
+  midInner.appendChild(titleStack);
+
   if(timeText){
     const eventTime = document.createElement("div");
     eventTime.className = "eventTime";
     eventTime.textContent = timeText;
-    midContent.appendChild(eventTime);
+    midInner.appendChild(eventTime);
   }
+
+  midContent.appendChild(midInner);
   bar.appendChild(midContent);
 
   // Right
@@ -710,7 +770,7 @@ async function refreshWeek(){
   try {
     const events = await fetchAllEvents(calendarId, weekStart.toISOString(), weekEndExclusive.toISOString());
 
-    // ✅ map using coverage, not start date
+    // map using coverage, not start date
     const byDay = new Map();
     for(const ev of events){
       for(const k of coveredDayKeys(ev)){
@@ -727,26 +787,30 @@ async function refreshWeek(){
       const evs = byDay.get(dayKey) || [];
       const driver = evs.length ? pickDriverEventForDay(evs) : null;
 
-      /* OFF defaults (overridden when a driver event exists) */
-      let title = OFF_TITLE;
+      // OFF defaults (overridden when a driver event exists)
+      let mainTitle = OFF_MAIN;
+      let subTitle = OFF_SUB;
       let timeText = "";
       let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
       let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
 
       if(driver){
-        const parsed = parsePackedCodeFromEvent(driver);
-
-        // ✅ NEW: parse the title into slot/main/subtitle/time
+        const packed = parsePackedCodeFromEvent(driver);
         const parts = parseCalendarTitle(driver.summary || "");
 
-        // Choose what to display in the big title: subtitle first, otherwise main
-        const displayTitle = (parts.subtitle || parts.main || "").trim();
-        title = displayTitle || (parsed.thumbCode ? parsed.thumbCode : "Untitled");
+        mainTitle = (parts.main || "").trim();
+        subTitle = (parts.subtitle || "").trim();
 
-        if(parsed.barCode) barPatternUrl = codeToImageUrl(parsed.barCode);
-        if(parsed.thumbCode) thumbUrl = codeToImageUrl(parsed.thumbCode);
+        // Fallback if main is missing
+        if(!mainTitle){
+          mainTitle = packed.thumbCode ? packed.thumbCode : "Untitled";
+          subTitle = "";
+        }
 
-        // Prefer time from the title, otherwise use actual start time
+        if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
+        if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
+
+        // Prefer time from title, otherwise use actual start time
         if(parts.time){
           timeText = parts.time;
         } else if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
@@ -754,7 +818,7 @@ async function refreshWeek(){
         }
       }
 
-      listEl.appendChild(makeRow(DAYS[i], mmdd, title, timeText, i, barPatternUrl, thumbUrl));
+      listEl.appendChild(makeRow(DAYS[i], mmdd, mainTitle, subTitle, timeText, i, barPatternUrl, thumbUrl));
     }
 
     // Apply after DOM has actual sizes
