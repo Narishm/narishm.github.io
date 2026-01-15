@@ -306,7 +306,7 @@
       padding: 0 10px;
     }
 
-    /* Time now uses AleaWB too */
+    /* Time uses AleaWB */
     .eventTime {
       font-family: var(--midFont);
       color: #fff;
@@ -365,6 +365,11 @@ const OFF_MAIN = "OFF";
 const OFF_BAR_CODE = "00";
 const OFF_THUMB_CODE = "off";
 
+/* If a driver event is all-day, assume 12 PM America/New_York */
+const FALLBACK_ALLDAY_HOUR_LOCAL = 12;      // 12 PM
+const FALLBACK_ALLDAY_MINUTE_LOCAL = 0;
+const FALLBACK_ALLDAY_TZ = "America/New_York";
+
 const DAYS = [
   { name:"sun", kanji:"日" }, { name:"mon", kanji:"月" }, { name:"tue", kanji:"火" },
   { name:"wed", kanji:"水" }, { name:"thu", kanji:"木" }, { name:"fri", kanji:"金" },
@@ -399,8 +404,7 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
-/* ✅ parse: "1 - The DevQuest - 12 PM EST"
-   (no "/ subtitle" part anymore) */
+/* ✅ parse: "1 - The DevQuest - 12 PM EST" (kept, but time now comes from GC when possible) */
 function parseCalendarTitle(raw){
   const s = String(raw || "").trim();
 
@@ -419,9 +423,60 @@ function parseCalendarTitle(raw){
   return { slot, main, time };
 }
 
-function stripTimezone(s){
-  // Removes trailing " EST" / "PDT" / etc (2-5 letters)
-  return String(s || "").replace(/\s+[A-Z]{2,5}$/, "").trim();
+/* Local time formatting (AM/PM, drop :00) */
+function formatViewerLocalTime(date){
+  const raw = new Intl.DateTimeFormat(undefined, {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true
+  }).format(date);
+
+  return raw.replace(":00","").toUpperCase();
+}
+
+/* Create a Date that represents "YYYY-MM-DD at 12:00 in America/New_York" (fallback for all-day) */
+function buildDateFromYMDInTZ(ymdStr, hour, minute, timeZone){
+  // We’ll construct it by formatting a UTC date into that TZ to find the local Y/M/D offset.
+  // Simpler reliable approach: use Intl parts to compute the UTC instant for that TZ local time.
+  // (Works well for modern browsers.)
+
+  const [Y, M, D] = ymdStr.split("-").map(n => parseInt(n, 10));
+  // Start with a UTC guess
+  const guessUTC = new Date(Date.UTC(Y, (M-1), D, hour, minute, 0));
+
+  // Determine the TZ offset at that instant by comparing formatted parts
+  const fmt = new Intl.DateTimeFormat("en-US", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false
+  });
+
+  function partsToStamp(dt){
+    const parts = fmt.formatToParts(dt);
+    const get = (t) => parts.find(p => p.type === t)?.value;
+    return {
+      y: parseInt(get("year"), 10),
+      m: parseInt(get("month"), 10),
+      d: parseInt(get("day"), 10),
+      hh: parseInt(get("hour"), 10),
+      mm: parseInt(get("minute"), 10),
+      ss: parseInt(get("second"), 10),
+    };
+  }
+
+  // We want TZ-local Y/M/D hour:minute; we adjust guessUTC until TZ-local matches.
+  // One correction step is enough for practical usage here.
+  const p = partsToStamp(guessUTC);
+  const desiredUTC = Date.UTC(Y, (M-1), D, hour, minute, 0);
+  const gotUTC = Date.UTC(p.y, (p.m-1), p.d, p.hh, p.mm, p.ss);
+
+  const deltaMs = desiredUTC - gotUTC;
+  return new Date(guessUTC.getTime() + deltaMs);
 }
 
 /* ✅ robust cid decode */
@@ -516,17 +571,13 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
-/* packed code: "03tdqlct" (03 = bar, tdqlct = id) */
+/* packed code: "03tdqlct" */
 function parsePackedCodeFromEvent(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0];
   const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
   return m ? { barCode: m[1], thumbCode: m[2] } : { barCode: null, thumbCode: null };
 }
 
-function formatTimeOneLine(date){
-  const raw = new Intl.DateTimeFormat(undefined,{hour:"numeric",minute:"2-digit"}).format(date);
-  return raw.replace(":00","").toUpperCase();
-}
 function startsOnDay(ev, dayKey){
   if(ev?.start?.date) return ev.start.date === dayKey;
   if(ev?.start?.dateTime) return ymd(new Date(ev.start.dateTime)) === dayKey;
@@ -549,7 +600,7 @@ function pickDriverEventForDay(list){
 /* =========================
    ✅ QUEST JSON LOOKUP
    ========================= */
-const questJsonCache = new Map(); // filename -> parsed JSON (or null)
+const questJsonCache = new Map();
 
 function questTitleToFilename(mainTitle){
   return String(mainTitle || "")
@@ -735,7 +786,6 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, barPatt
 
   const mainEl = document.createElement("div");
   mainEl.className = "eventMain";
-  // ✅ ONE line: show JSON subtitle if present, otherwise calendar title
   mainEl.textContent = (subTitle && subTitle.trim()) ? subTitle : (mainTitle || "");
 
   midInner.appendChild(mainEl);
@@ -820,17 +870,25 @@ async function refreshWeek(){
         if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
         if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
 
-        // subtitle from quest json (ONLY source for subtitle)
+        // subtitle from quest json
         if(mainTitle && packed.thumbCode){
           const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
           if(jsonSub) subTitle = jsonSub;
         }
 
-        // time: prefer title suffix, else real start time
-        if(parts.time){
-          timeText = stripTimezone(parts.time);
-        } else if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
-          timeText = formatTimeOneLine(new Date(driver.start.dateTime));
+        // ✅ TIME:
+        // - If event has real dateTime, show viewer-local time from Google Calendar
+        // - If it's all-day, assume 12 PM America/New_York and convert to viewer-local
+        if(driver.start?.dateTime){
+          timeText = formatViewerLocalTime(new Date(driver.start.dateTime));
+        } else if(driver.start?.date){
+          const fallback = buildDateFromYMDInTZ(
+            driver.start.date,
+            FALLBACK_ALLDAY_HOUR_LOCAL,
+            FALLBACK_ALLDAY_MINUTE_LOCAL,
+            FALLBACK_ALLDAY_TZ
+          );
+          timeText = formatViewerLocalTime(fallback);
         }
       }
 
