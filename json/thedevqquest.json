@@ -1,0 +1,15 @@
+{
+  "eras": ["LCT"],
+  "adventures": [
+    {
+      "id": "tdqlct",
+      "era": "LCT",
+      "order": 1,
+      "type": "",
+      "name": "Let's Coding Time",
+      "edition": "",
+      "platform": [],
+      "unlocks": []
+    }
+  ]
+}
