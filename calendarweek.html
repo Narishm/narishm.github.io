@@ -36,10 +36,10 @@
       /* Default (no-event) bar fallback */
       --barDefault: #2a3446;
 
-      /* Middle text font (Main title) */
+      /* Middle text font (AleaWB) */
       --midFont: "AleaWB", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-      /* UI font (Day/Date/Subtitle/Time) */
+      /* UI font (Day/Date) */
       --uiFont: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
 
@@ -290,46 +290,25 @@
       min-width: 0;
     }
 
-    .titleStack {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      line-height: 1;
-      gap: 4px;
-      min-width: 0;
-    }
-
+    /* ONE LINE title (subtitle if found; else main title) */
     .eventMain {
-      width: 100%;
+      flex: 1;
+      min-width: 0;
       font-family: var(--midFont);
       color: #fff;
       font-weight: 900;
       font-size: clamp(22px, 2.2vw, 44px);
       text-shadow: 0 5px 0 rgba(0,0,0,.85);
+      text-align: center;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       padding: 0 10px;
     }
 
-    .eventSub {
-      width: 100%;
-      font-family: var(--uiFont);
-      color: #fff;
-      font-weight: 900;
-      font-size: clamp(14px, 1.2vw, 22px);
-      text-shadow: 0 4px 0 rgba(0,0,0,.85);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      padding: 0 10px;
-      opacity: .95;
-    }
-
+    /* Time now uses AleaWB too */
     .eventTime {
-      font-family: var(--uiFont);
+      font-family: var(--midFont);
       color: #fff;
       font-weight: 900;
       font-size: clamp(14px, 1.2vw, 22px);
@@ -351,7 +330,6 @@
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow, .date { font-size: 28px; }
       .dowWrap { transform: translateY(-3px); gap: 3px; }
-      .titleStack { gap: 3px; }
     }
   </style>
 </head>
@@ -421,8 +399,8 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
-/* ✅ parse: "1 - The Dev Quest - 12 PM EST"
-   (we are no longer using "/ subtitle") */
+/* ✅ parse: "1 - The DevQuest - 12 PM EST"
+   (no "/ subtitle" part anymore) */
 function parseCalendarTitle(raw){
   const s = String(raw || "").trim();
 
@@ -439,6 +417,11 @@ function parseCalendarTitle(raw){
 
   const main = rest.trim();
   return { slot, main, time };
+}
+
+function stripTimezone(s){
+  // Removes trailing " EST" / "PDT" / etc (2-5 letters)
+  return String(s || "").replace(/\s+[A-Z]{2,5}$/, "").trim();
 }
 
 /* ✅ robust cid decode */
@@ -533,7 +516,7 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
-/* packed code: "00off" (00 = bar, off = id) */
+/* packed code: "03tdqlct" (03 = bar, tdqlct = id) */
 function parsePackedCodeFromEvent(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0];
   const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
@@ -750,24 +733,12 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, barPatt
   const midInner = document.createElement("div");
   midInner.className = "midContent";
 
-  const titleStack = document.createElement("div");
-  titleStack.className = "titleStack";
-
   const mainEl = document.createElement("div");
   mainEl.className = "eventMain";
-  mainEl.textContent = mainTitle || "";
+  // ✅ ONE line: show JSON subtitle if present, otherwise calendar title
+  mainEl.textContent = (subTitle && subTitle.trim()) ? subTitle : (mainTitle || "");
 
-  const subEl = document.createElement("div");
-  subEl.className = "eventSub";
-  subEl.textContent = subTitle || "";
-
-  // show subtitle line even if empty? (currently hide if empty)
-  if(!subTitle) subEl.style.display = "none";
-
-  titleStack.appendChild(mainEl);
-  titleStack.appendChild(subEl);
-
-  midInner.appendChild(titleStack);
+  midInner.appendChild(mainEl);
 
   if(timeText){
     const eventTime = document.createElement("div");
@@ -849,7 +820,7 @@ async function refreshWeek(){
         if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
         if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
 
-        // subtitle from quest json (ONLY source now)
+        // subtitle from quest json (ONLY source for subtitle)
         if(mainTitle && packed.thumbCode){
           const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
           if(jsonSub) subTitle = jsonSub;
@@ -857,7 +828,7 @@ async function refreshWeek(){
 
         // time: prefer title suffix, else real start time
         if(parts.time){
-          timeText = parts.time;
+          timeText = stripTimezone(parts.time);
         } else if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
           timeText = formatTimeOneLine(new Date(driver.start.dateTime));
         }
