@@ -384,6 +384,35 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
+/* ✅ NEW: parse "1 - DevStream / Let's Coding Time - 12 PM EST" */
+function parseCalendarTitle(raw){
+  const s = String(raw || "").trim();
+
+  // Slot prefix: "1 - "
+  const m = s.match(/^\s*(\d+)\s*-\s*(.*)$/);
+  const slot = m ? parseInt(m[1], 10) : null;
+  let rest = (m ? m[2] : s).trim();
+
+  // Time suffix: last " - ..."
+  let time = null;
+  const t = rest.match(/\s*-\s*([^-]+)$/);
+  if(t){
+    time = t[1].trim();
+    rest = rest.slice(0, t.index).trim();
+  }
+
+  // Main / subtitle split: "DevStream / Let's Coding Time"
+  let main = rest;
+  let subtitle = null;
+  const slash = rest.indexOf("/");
+  if(slash !== -1){
+    main = rest.slice(0, slash).trim();
+    subtitle = rest.slice(slash + 1).trim() || null;
+  }
+
+  return { slot, main, subtitle, time };
+}
+
 /* ✅ robust cid decode */
 function padBase64(b64){ const mod=b64.length%4; return mod ? b64 + "=".repeat(4-mod) : b64; }
 function decodeCidToCalendarId(cid){
@@ -706,13 +735,21 @@ async function refreshWeek(){
 
       if(driver){
         const parsed = parsePackedCodeFromEvent(driver);
-        const summary = stripLeadingIndexPrefix(String(driver.summary || "").trim());
-        title = summary || (parsed.thumbCode ? parsed.thumbCode : "Untitled");
+
+        // ✅ NEW: parse the title into slot/main/subtitle/time
+        const parts = parseCalendarTitle(driver.summary || "");
+
+        // Choose what to display in the big title: subtitle first, otherwise main
+        const displayTitle = (parts.subtitle || parts.main || "").trim();
+        title = displayTitle || (parsed.thumbCode ? parsed.thumbCode : "Untitled");
 
         if(parsed.barCode) barPatternUrl = codeToImageUrl(parsed.barCode);
         if(parsed.thumbCode) thumbUrl = codeToImageUrl(parsed.thumbCode);
 
-        if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
+        // Prefer time from the title, otherwise use actual start time
+        if(parts.time){
+          timeText = parts.time;
+        } else if(driver.start?.dateTime && startsOnDay(driver, dayKey)){
           timeText = formatTimeOneLine(new Date(driver.start.dateTime));
         }
       }
