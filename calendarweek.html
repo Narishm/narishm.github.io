@@ -51,6 +51,9 @@
       /* Middle text font (AleaWB) */
       --midFont: "AleaWB", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
+      /* Edition line font (Joystix) */
+      --editionFont: "Joystix", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
       /* UI font (Day/Date) */
       --uiFont: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
     }
@@ -58,6 +61,15 @@
     @font-face {
       font-family: "AleaWB";
       src: url("fnt/ALEAWB__.TTF") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* ✅ Add your Joystix font file here (update filename if needed) */
+    @font-face {
+      font-family: "Joystix";
+      src: url("fnt/joystix.ttf") format("truetype");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -329,9 +341,21 @@
       min-width: 0;
     }
 
-    /* ONE LINE title (subtitle if found; else main title) */
-    .eventMain {
+    /* ✅ Title + optional edition stacked, still centered as a block */
+    .titleStack{
       flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      padding: 0 10px;
+    }
+
+    /* Title (top line) */
+    .eventMain {
+      width: 100%;
       min-width: 0;
       font-family: var(--midFont);
       color: #fff;
@@ -342,7 +366,30 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding: 0 10px;
+      line-height: 1.0;
+    }
+
+    /* ✅ Edition line (only shown if present) */
+    .eventEdition{
+      width: max-content;            /* shrink to its content so we can right-align to title width */
+      max-width: 100%;
+      align-self: center;            /* keep block centered overall */
+      font-family: var(--editionFont);
+      color: rgba(255,255,255,.92);
+      font-weight: 400;
+      font-size: clamp(10px, 0.95vw, 16px);
+      text-shadow: 0 3px 0 rgba(0,0,0,.85);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.0;
+      transform: translateY(-1px);
+      opacity: .95;
+    }
+
+    /* Right-align the edition text to the right edge of the title line */
+    .eventEdition.rightAlign{
+      text-align: right;
     }
 
     /* Time uses AleaWB, scooted from right edge */
@@ -811,23 +858,21 @@ function questTitleToFilename(mainTitle){
     .toLowerCase() + ".json";
 }
 
-function deepFindTitleById(root, targetId){
+function deepFindEntryById(root, targetId){
   if(!root || !targetId) return null;
 
   if(Array.isArray(root)){
     for(const item of root){
-      const r = deepFindTitleById(item, targetId);
+      const r = deepFindEntryById(item, targetId);
       if(r) return r;
     }
     return null;
   }
 
   if(typeof root === "object"){
-    if(root.id === targetId && typeof root.title === "string" && root.title.trim()){
-      return root.title.trim();
-    }
+    if(root.id === targetId) return root;
     for(const k of Object.keys(root)){
-      const r = deepFindTitleById(root[k], targetId);
+      const r = deepFindEntryById(root[k], targetId);
       if(r) return r;
     }
   }
@@ -852,12 +897,21 @@ async function fetchQuestJson(filename){
   }
 }
 
-async function lookupSubtitleFromQuestJson(mainTitle, thumbCode){
-  if(!mainTitle || !thumbCode) return null;
+/* ✅ Returns { title, edition } if id found */
+async function lookupTitleAndEditionFromQuestJson(mainTitle, thumbCode){
+  if(!mainTitle || !thumbCode) return { title: null, edition: null };
+
   const filename = questTitleToFilename(mainTitle);
   const json = await fetchQuestJson(filename);
-  if(!json) return null;
-  return deepFindTitleById(json, thumbCode);
+  if(!json) return { title: null, edition: null };
+
+  const entry = deepFindEntryById(json, thumbCode);
+  if(!entry || typeof entry !== "object") return { title: null, edition: null };
+
+  const title = (typeof entry.title === "string" && entry.title.trim()) ? entry.title.trim() : null;
+  const edition = (typeof entry.edition === "string" && entry.edition.trim()) ? entry.edition.trim() : null;
+
+  return { title, edition };
 }
 
 /* =========================
@@ -941,7 +995,7 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl, allowTwitch){
+function makeRow(day, dateText, displayTitle, editionText, timeText, ytIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl, allowTwitch){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
@@ -990,11 +1044,24 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, 
   const midInner = document.createElement("div");
   midInner.className = "midContent";
 
+  // ✅ Title stack (title + optional edition)
+  const titleStack = document.createElement("div");
+  titleStack.className = "titleStack";
+
   const mainEl = document.createElement("div");
   mainEl.className = "eventMain";
-  mainEl.textContent = (subTitle && subTitle.trim()) ? subTitle : (mainTitle || "");
+  mainEl.textContent = displayTitle || "";
 
-  midInner.appendChild(mainEl);
+  titleStack.appendChild(mainEl);
+
+  if(editionText && String(editionText).trim()){
+    const edEl = document.createElement("div");
+    edEl.className = "eventEdition rightAlign";
+    edEl.textContent = String(editionText).trim();
+    titleStack.appendChild(edEl);
+  }
+
+  midInner.appendChild(titleStack);
 
   // ✅ Right side slot: Twitch (live), YT icons, or time
   const rightSlot = document.createElement("div");
@@ -1132,7 +1199,8 @@ async function refreshWeek(){
       const driver = evs.length ? pickDriverEventForDay(evs) : null;
 
       let mainTitle = OFF_MAIN;
-      let subTitle = "";
+      let displayTitle = OFF_MAIN;
+      let editionText = "";
       let timeText = "";
       let ytIds = [];
       let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
@@ -1151,8 +1219,13 @@ async function refreshWeek(){
         ytIds = Array.isArray(packed.ytIds) ? packed.ytIds : [];
 
         if(mainTitle && packed.thumbCode){
-          const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
-          if(jsonSub) subTitle = jsonSub;
+          const looked = await lookupTitleAndEditionFromQuestJson(mainTitle, packed.thumbCode);
+          if(looked.title) displayTitle = looked.title;
+          else displayTitle = mainTitle;
+
+          if(looked.edition) editionText = looked.edition;
+        } else {
+          displayTitle = mainTitle;
         }
 
         // TIME:
@@ -1180,8 +1253,8 @@ async function refreshWeek(){
       const rowEl = makeRow(
         DAYS[i],
         mmdd,
-        mainTitle,
-        subTitle,
+        displayTitle,
+        editionText,
         timeText,
         ytIds,
         i,
