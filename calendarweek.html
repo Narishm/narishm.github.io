@@ -341,23 +341,21 @@
       min-width: 0;
     }
 
-    /* ✅ Title + optional edition stacked, centered as a block,
-         but edition right-aligns to the title width */
+    /* ✅ UPDATED: Title centered, edition right-aligned to title width */
     .titleStack{
       flex: 1;
       min-width: 0;
-      display: inline-flex;       /* shrink-wrap to content width */
-      flex-direction: column;
-      align-items: flex-start;    /* left-align lines within the stack */
-      justify-content: center;
+      display: inline-grid;         /* shrink-wraps to title width */
+      grid-auto-rows: min-content;
+      justify-items: center;        /* centers the title line */
+      align-items: center;
       gap: 2px;
-      margin: 0 auto;            /* center the whole stack in the bar */
+      margin: 0 auto;               /* center the whole stack in the bar */
       padding: 0 10px;
     }
 
-    /* Title (top line) */
-    .eventMain {
-      width: auto;               /* shrink-wrap instead of full width */
+    .eventMain{
+      display: inline-block;        /* makes grid width follow title width */
       max-width: 100%;
       min-width: 0;
       font-family: var(--midFont);
@@ -365,16 +363,16 @@
       font-weight: 900;
       font-size: clamp(22px, 2.2vw, 44px);
       text-shadow: 0 5px 0 rgba(0,0,0,.85);
-      text-align: center;          /* stack centers as a block; text aligns naturally */
+      text-align: center;           /* ✅ centered title */
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       line-height: 1.0;
     }
 
-    /* ✅ Edition line (only shown if present): bigger + right-aligned to title width */
     .eventEdition{
-      width: 100%;               /* match title line width */
+      width: 100%;                  /* ✅ match title width */
+      justify-self: stretch;         /* ensure it spans the grid width */
       max-width: 100%;
       font-family: var(--editionFont);
       color: rgba(255,255,255,.92);
@@ -387,7 +385,7 @@
       line-height: 1.0;
       transform: translateY(-1px);
       opacity: .95;
-      text-align: right;         /* ✅ right aligned */
+      text-align: right;            /* ✅ right aligned edition */
     }
 
     /* Time uses AleaWB, scooted from right edge */
