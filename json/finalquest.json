@@ -7,7 +7,7 @@
       "order": 1,
       "type": "MAIN",
       "title": "Final Fantasy",
-      "locked": true,
+      "locked": false,
       "edition": "Pixel Remaster",
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [

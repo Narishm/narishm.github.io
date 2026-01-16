@@ -7,7 +7,7 @@
       "order": 1,
       "type": "CORE",
       "title": "The Legend of Zelda",
-      "locked": true,
+      "locked": false,
       "edition": "",
       "platform": ["NES"],
       "unlocks": [
