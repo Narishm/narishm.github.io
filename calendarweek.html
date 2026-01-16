@@ -1195,7 +1195,8 @@ async function refreshWeek(){
       listEl.appendChild(rowEl);
 
       // If TODAY and we have a timed driver event, arm the live window
-      if(isToday && driver){
+      // ✅ BUT: if YouTube IDs exist, it can NOT be live
+      if(isToday && driver && !(Array.isArray(ytIds) && ytIds.length)){
         const range = getEventRangeMillis(driver);
         if(range){
           liveTarget = {
