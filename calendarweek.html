@@ -281,13 +281,17 @@
       display: flex;
       align-items: stretch;
       width: 100%;
-      gap: 0px; /* no gap; looks like one bar */
+      gap: var(--pointGap); /* ✅ REAL gap between halves (matches other joins) */
       min-width: 0;
     }
     .barHalf{
       flex: 1 1 0;
       min-width: 0;
       --barPattern: none;
+    }
+    /* ✅ IMPORTANT: compensate overlap on right half so the gap matches perfectly */
+    .barHalf.right{
+      margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
     }
 
     /* left segment: has slant only on the left side */
@@ -734,7 +738,6 @@ function getEventRangeMillis(ev){
   return null;
 }
 
-/* Create a Date that represents "YYYY-MM-DD at 12:00 in America/New_York" (fallback for all-day) */
 function buildDateFromYMDInTZ(ymdStr, hour, minute, timeZone){
   const [Y, M, D] = ymdStr.split("-").map(n => parseInt(n, 10));
   const guessUTC = new Date(Date.UTC(Y, (M-1), D, hour, minute, 0));
@@ -771,7 +774,6 @@ function buildDateFromYMDInTZ(ymdStr, hour, minute, timeZone){
   return new Date(guessUTC.getTime() + deltaMs);
 }
 
-/* ✅ robust cid decode */
 function padBase64(b64){ const mod=b64.length%4; return mod ? b64 + "=".repeat(4-mod) : b64; }
 function decodeCidToCalendarId(cid){
   try { return atob(padBase64(cid.replace(/-/g,"+").replace(/_/g,"/"))); }
@@ -785,7 +787,6 @@ function extractCalendarIdFromShareLink(urlStr){
   } catch { return null; }
 }
 
-/* ✅ paging-safe fetch */
 async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
   const base = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events`;
   let pageToken = null;
@@ -813,7 +814,6 @@ async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
   return all;
 }
 
-/* ✅ multi-day coverage map */
 function coveredDayKeys(ev){
   let start, endExclusive;
 
@@ -846,7 +846,6 @@ function startMillis(ev){
   return Number.POSITIVE_INFINITY;
 }
 
-/* ✅ Pick the EARLIEST events (by startMillis) */
 function sortEventsForDay(list){
   return list.sort((a,b)=>{
     const sa=startMillis(a), sb=startMillis(b);
@@ -1080,7 +1079,6 @@ async function buildEntryFromEvent(ev){
     if(looked.edition) editionText = looked.edition;
   }
 
-  // time (only if no YT icons)
   let timeText = "";
   if(!ytIds.length){
     if(ev.start?.dateTime){
@@ -1096,7 +1094,6 @@ async function buildEntryFromEvent(ev){
     }
   }
 
-  // live only for timed events AND only if no ytIds
   const canLive = !!(ev.start?.dateTime) && !(ytIds.length);
   const liveRange = canLive ? getEventRangeMillis(ev) : null;
 
@@ -1340,7 +1337,7 @@ async function refreshWeek(){
 
       const entries = entry2 ? [entry1, entry2] : [entry1];
 
-      // right thumb stays driven by FIRST event (same behavior as before)
+      // right thumb stays driven by FIRST event
       const thumbUrl = entry1.thumbUrl || codeToImageUrl(OFF_THUMB_CODE);
 
       const isToday = (dayKey === todayKey);
