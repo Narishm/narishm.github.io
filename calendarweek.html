@@ -22,10 +22,6 @@
       --today1: #2de2e6; /* teal */
       --today2: #2f7dff; /* blue */
 
-      /* Hover highlight stroke gradient */
-      --hover1: #2cff6a; /* bright green */
-      --hover2: #0d833c; /* darker green */
-
       --blue1: #2e4b78;
       --blue2: #1f345a;
 
@@ -49,6 +45,9 @@
 
       /* UI font (Day/Date) */
       --uiFont: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+      /* Embedded YouTube icon (your uploaded image) */
+      --ytIcon: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADgCAYAAABy+7/wAAAgAElEQVR4nOySwQrDMAxDX5qm2/9/7bY4qDk0o7oJf4x0m0a6oQm0f0QKkG7bqV3v8z8l5wq8dWcG7fUqgVq9G8cXyqvQy8qE7b3mW0p0bJ0w6y9wqgN2b0c3m8Y3rJd7o2mWmY3c2v2K0m1l2wQb9QmP0jK7C6wT9d5b8nJmQv2c6m4a7c9tQw0p3t8W0m+2r8cYh9gFq9oJx0r1m8m7mYy9m9gqf0vYx9n8b9tZ3mB0cVvV0b2xw0Z4Yq9n8s1+oUeQGZc7eKpYJ6bO1o0+v8c+Q1E9i8wq+5r4qf6r8gq8u0oGz8pKx8mB9dWbXw2mO2m9o1pY2vX0n1T0s9vYq0Zkq8f1v0b1f9o8u9p+zPqQhV8r5b8m7a+8v9t8h9Jm1qf0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q==");
     }
 
     @font-face {
@@ -189,18 +188,8 @@
       stroke-miterlimit: 4;
     }
 
-    /* Hover highlight: whole row reacts when mouse is over any part */
-    .row:hover .strokeSvg polygon{
-      stroke: url(#hoverStroke);
-    }
-
     /* Today highlight: gradient stroke for all 3 shapes in the row */
     .row.today .strokeSvg polygon{
-      stroke: url(#todayStroke);
-    }
-
-    /* Keep today stroke when today row is hovered */
-    .row.today:hover .strokeSvg polygon{
       stroke: url(#todayStroke);
     }
 
@@ -213,9 +202,8 @@
       padding: 0 20px;
     }
 
-    /* LEFT: pattern is variable now (default 06) */
+    /* LEFT PANEL pattern is now dynamic (per-row) */
     .arrow { --leftPattern: url("img/06.png"); }
-
     .arrow::after {
       clip-path: polygon(
         0% 50%,
@@ -346,6 +334,30 @@
       padding-right: 6px; /* ✅ scoot left */
     }
 
+    /* YouTube links replace the time when present */
+    .ytLinks{
+      margin-left: auto;
+      padding-right: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 0 0 auto;
+    }
+    .ytBtn{
+      width: 38px;
+      height: 26px;
+      display: inline-block;
+      background: var(--ytIcon) center/contain no-repeat;
+      filter: drop-shadow(0 3px 0 rgba(0,0,0,.85));
+      opacity: .95;
+      transform: translateY(0);
+      transition: transform .08s ease, opacity .08s ease;
+    }
+    .ytBtn:hover{
+      transform: translateY(-1px);
+      opacity: 1;
+    }
+
     @media (max-width: 800px) {
       :root {
         --sideW: 200px;
@@ -357,22 +369,18 @@
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow, .date { font-size: 28px; }
       .dowWrap { transform: translateY(-3px); gap: 3px; }
+      .ytBtn{ width: 34px; height: 24px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Gradient defs used by today's + hover borders -->
+  <!-- Gradient def used by today's border -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="todayStroke" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="var(--today1)"/>
         <stop offset="100%" stop-color="var(--today2)"/>
-      </linearGradient>
-
-      <linearGradient id="hoverStroke" x1="0" y1="0" x2="1" y2="0">
-        <stop offset="0%" stop-color="var(--hover1)"/>
-        <stop offset="100%" stop-color="var(--hover2)"/>
       </linearGradient>
     </defs>
   </svg>
@@ -599,11 +607,26 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
-/* packed code: "03tdqlct" */
+/*
+  Packed token formats (first token of first line):
+    - "03tdqlct"                    -> bar=03, thumb=tdqlct
+    - "03tdqlct:VIDEOID"            -> plus youtubeIds [VIDEOID]
+    - "03tdqlct:ID1,ID2,ID3"        -> plus youtubeIds [ID1, ID2, ID3]
+*/
 function parsePackedCodeFromEvent(ev){
-  const token = normalizeDescription(ev?.description || "").split(/\s+/)[0];
-  const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
-  return m ? { barCode: m[1], thumbCode: m[2] } : { barCode: null, thumbCode: null };
+  const token = normalizeDescription(ev?.description || "").split(/\s+/)[0].trim();
+  const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)(?::([A-Za-z0-9_,-]+))?$/);
+  if(!m) return { barCode: null, thumbCode: null, youtubeIds: [] };
+
+  const barCode = m[1];
+  const thumbCode = m[2];
+  const ytRaw = (m[3] || "").trim();
+
+  const youtubeIds = ytRaw
+    ? ytRaw.split(",").map(s => s.trim()).filter(Boolean)
+    : [];
+
+  return { barCode, thumbCode, youtubeIds };
 }
 
 function codeToImageUrl(code){
@@ -758,7 +781,7 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl){
+function makeRow(day, dateText, mainTitle, subTitle, timeText, youtubeIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
@@ -810,10 +833,26 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, leftPat
   const mainEl = document.createElement("div");
   mainEl.className = "eventMain";
   mainEl.textContent = (subTitle && subTitle.trim()) ? subTitle : (mainTitle || "");
-
   midInner.appendChild(mainEl);
 
-  if(timeText){
+  // Right side of the middle bar: YouTube icons OR time
+  if(Array.isArray(youtubeIds) && youtubeIds.length){
+    const ytWrap = document.createElement("div");
+    ytWrap.className = "ytLinks";
+
+    for(const id of youtubeIds){
+      const a = document.createElement("a");
+      a.className = "ytBtn";
+      a.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.title = "Open YouTube live";
+      ytWrap.appendChild(a);
+    }
+
+    midInner.appendChild(ytWrap);
+
+  } else if(timeText) {
     const eventTime = document.createElement("div");
     eventTime.className = "eventTime";
     eventTime.textContent = timeText;
@@ -876,11 +915,14 @@ async function refreshWeek(){
       const dayKey = ymd(dayDate);
       const mmdd = formatMMDD(dayDate);
 
-      // LEFT pattern: past=00, today=07, future=06
-      let leftCode = "06";
-      if(dayKey < todayKey) leftCode = "00";
-      else if(dayKey === todayKey) leftCode = "07";
-      const leftPatternUrl = codeToImageUrl(leftCode);
+      // Left panel pattern:
+      // - past days: 00
+      // - today: 07
+      // - future: 06
+      let leftPatternCode = "06";
+      if(dayKey < todayKey) leftPatternCode = "00";
+      else if(dayKey === todayKey) leftPatternCode = "07";
+      const leftPatternUrl = codeToImageUrl(leftPatternCode);
 
       const evs = byDay.get(dayKey) || [];
       const driver = evs.length ? pickDriverEventForDay(evs) : null;
@@ -888,6 +930,8 @@ async function refreshWeek(){
       let mainTitle = OFF_MAIN;
       let subTitle = "";
       let timeText = "";
+      let youtubeIds = [];
+
       let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
       let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
 
@@ -900,28 +944,45 @@ async function refreshWeek(){
         if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
         if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
 
+        youtubeIds = Array.isArray(packed.youtubeIds) ? packed.youtubeIds : [];
+
         if(mainTitle && packed.thumbCode){
           const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
           if(jsonSub) subTitle = jsonSub;
         }
 
         // ✅ TIME:
-        // - If event has real dateTime, show viewer-local time from Google Calendar
+        // - If YouTube IDs exist, we show icons instead of time
+        // - Else show viewer-local time from Google Calendar
         // - If it's all-day, assume 12 PM America/New_York and convert to viewer-local
-        if(driver.start?.dateTime){
-          timeText = formatViewerLocalTime(new Date(driver.start.dateTime));
-        } else if(driver.start?.date){
-          const fallback = buildDateFromYMDInTZ(
-            driver.start.date,
-            FALLBACK_ALLDAY_HOUR_LOCAL,
-            FALLBACK_ALLDAY_MINUTE_LOCAL,
-            FALLBACK_ALLDAY_TZ
-          );
-          timeText = formatViewerLocalTime(fallback);
+        if(!youtubeIds.length){
+          if(driver.start?.dateTime){
+            timeText = formatViewerLocalTime(new Date(driver.start.dateTime));
+          } else if(driver.start?.date){
+            const fallback = buildDateFromYMDInTZ(
+              driver.start.date,
+              FALLBACK_ALLDAY_HOUR_LOCAL,
+              FALLBACK_ALLDAY_MINUTE_LOCAL,
+              FALLBACK_ALLDAY_TZ
+            );
+            timeText = formatViewerLocalTime(fallback);
+          }
         }
       }
 
-      const rowEl = makeRow(DAYS[i], mmdd, mainTitle, subTitle, timeText, i, leftPatternUrl, barPatternUrl, thumbUrl);
+      const rowEl = makeRow(
+        DAYS[i],
+        mmdd,
+        mainTitle,
+        subTitle,
+        timeText,
+        youtubeIds,
+        i,
+        leftPatternUrl,
+        barPatternUrl,
+        thumbUrl
+      );
+
       if(dayKey === todayKey) rowEl.classList.add("today");
       listEl.appendChild(rowEl);
     }
