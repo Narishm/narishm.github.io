@@ -199,6 +199,10 @@
       padding: 0 20px;
     }
 
+    /* LEFT ARROW BG:
+       - default uses img/06.png
+       - if row is today, use img/07.png
+    */
     .arrow::after {
       clip-path: polygon(
         0% 50%,
@@ -210,6 +214,11 @@
       );
       background:
         url("img/06.png") 0 0 / auto repeat,
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
+    }
+    .row.today .arrow::after{
+      background:
+        url("img/07.png") 0 0 / auto repeat,
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
     }
 
