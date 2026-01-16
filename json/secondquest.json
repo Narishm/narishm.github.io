@@ -6,7 +6,8 @@
       "era": "Early",
       "order": 1,
       "type": "CORE",
-      "name": "The Legend of Zelda",
+      "title": "The Legend of Zelda",
+      "locked": true,
       "edition": "NES",
       "platform": ["NES"],
       "unlocks": [
@@ -15,7 +16,8 @@
           "era": "Early",
           "order": 2,
           "type": "ALTERNATE",
-          "name": "The Legend of Zelda",
+          "title": "The Legend of Zelda",
+          "locked": true,
           "edition": "The Second Quest",
           "platform": ["NES"],
           "unlocks": [
@@ -24,7 +26,8 @@
               "era": "Early",
               "order": 3,
               "type": "ALTERNATE",
-              "name": "The Legend of Zelda",
+              "title": "The Legend of Zelda",
+              "locked": true,
               "edition": "Broadcast Satellaview",
               "platform": ["SATELLAVIEW"],
               "unlocks": [
@@ -33,7 +36,8 @@
                   "era": "Early",
                   "order": 4,
                   "type": "ALTERNATE",
-                  "name": "The Legend of Zelda: Broadcast Satellaview",
+                  "title": "The Legend of Zelda: Broadcast Satellaview",
+                  "locked": true,
                   "edition": "The Second Quest",
                   "platform": ["SATELLAVIEW"],
                   "unlocks": [
@@ -42,7 +46,8 @@
                       "era": "Early",
                       "order": 5,
                       "type": "ALTERNATE",
-                      "name": "The Legend of Zelda: Broadcast Satellaview",
+                      "title": "The Legend of Zelda: Broadcast Satellaview",
+                      "locked": true,
                       "edition": "The Third Quest",
                       "platform": ["SATELLAVIEW"],
                       "unlocks": [
@@ -51,7 +56,8 @@
                           "era": "Early",
                           "order": 6,
                           "type": "ALTERNATE",
-                          "name": "The Legend of Zelda: Broadcast Satellaview",
+                          "title": "The Legend of Zelda: Broadcast Satellaview",
+                          "locked": true,
                           "edition": "The Fourth Quest",
                           "platform": ["SATELLAVIEW"],
                           "unlocks": []
@@ -67,7 +73,8 @@
               "era": "Early",
               "order": 7,
               "type": "RANDOMIZER",
-              "name": "The Legend of Zelda",
+              "title": "The Legend of Zelda",
+              "locked": true,
               "edition": "Randomizer",
               "platform": ["NES"],
               "unlocks": []
@@ -81,7 +88,8 @@
       "era": "Early",
       "order": 8,
       "type": "CORE",
-      "name": "Zelda II: The Adventure of Link",
+      "title": "Zelda II: The Adventure of Link",
+      "locked": true,
       "edition": "NES",
       "platform": ["NES"],
       "unlocks": [
@@ -90,7 +98,8 @@
           "era": "Early",
           "order": 9,
           "type": "RANDOMIZER",
-          "name": "Zelda II: The Adventure of Link",
+          "title": "Zelda II: The Adventure of Link",
+          "locked": true,
           "edition": "Randomizer",
           "platform": ["NES"],
           "unlocks": []
@@ -100,7 +109,8 @@
           "era": "Early",
           "order": 10,
           "type": "ALTERNATE",
-          "name": "Zelda II: The Adventure of Link",
+          "title": "Zelda II: The Adventure of Link",
+          "locked": true,
           "edition": "Enhanced Edition",
           "platform": ["NES"],
           "unlocks": [
@@ -109,7 +119,8 @@
               "era": "Early",
               "order": 11,
               "type": "RANDOMIZER",
-              "name": "Zelda II: The Adventure of Link Enhanced Edition",
+              "title": "Zelda II: The Adventure of Link Enhanced Edition",
+              "locked": true,
               "edition": "Randomizer",
               "platform": ["NES"],
               "unlocks": []
@@ -123,7 +134,8 @@
       "era": "Early",
       "order": 12,
       "type": "CORE",
-      "name": "The Legend of Zelda: A Link to the Past",
+      "title": "The Legend of Zelda: A Link to the Past",
+      "locked": true,
       "edition": "SNES",
       "platform": ["SNES"],
       "unlocks": [
@@ -132,7 +144,8 @@
           "era": "Early",
           "order": 13,
           "type": "RANDOMIZER",
-          "name": "The Legend of Zelda: A Link to the Past",
+          "title": "The Legend of Zelda: A Link to the Past",
+          "locked": true,
           "edition": "Randomizer",
           "platform": ["SNES"],
           "unlocks": []
@@ -142,7 +155,8 @@
           "era": "Early",
           "order": 14,
           "type": "ALTERNATE",
-          "name": "The Legend of Zelda: A Link to the Past",
+          "title": "The Legend of Zelda: A Link to the Past",
+          "locked": true,
           "edition": "Advance",
           "platform": ["GBA"],
           "unlocks": []
@@ -154,7 +168,8 @@
       "era": "Early",
       "order": 15,
       "type": "CORE",
-      "name": "The Legend of Zelda: Link's Awakening",
+      "title": "The Legend of Zelda: Link's Awakening",
+      "locked": true,
       "edition": "Remaster",
       "platform": ["SWITCH"],
       "unlocks": [
@@ -163,7 +178,8 @@
           "era": "Early",
           "order": 16,
           "type": "ALTERNATE",
-          "name": "The Legend of Zelda: Link's Awakening",
+          "title": "The Legend of Zelda: Link's Awakening",
+          "locked": true,
           "edition": "GB",
           "platform": ["GB"],
           "unlocks": []
@@ -173,7 +189,8 @@
           "era": "Early",
           "order": 17,
           "type": "ALTERNATE",
-          "name": "The Legend of Zelda: Link's Awakening",
+          "title": "The Legend of Zelda: Link's Awakening",
+          "locked": true,
           "edition": "DX",
           "platform": ["GBC"],
           "unlocks": []
@@ -185,7 +202,8 @@
       "era": "3D",
       "order": 18,
       "type": "CORE",
-      "name": "The Legend of Zelda: Ocarina of Time",
+      "title": "The Legend of Zelda: Ocarina of Time",
+      "locked": true,
       "edition": "N64",
       "platform": ["N64"],
       "unlocks": [
@@ -194,7 +212,8 @@
           "era": "3D",
           "order": 19,
           "type": "ALTERNATE",
-          "name": "The Legend of Zelda: Ocarina of Time",
+          "title": "The Legend of Zelda: Ocarina of Time",
+          "locked": true,
           "edition": "Master Quest",
           "platform": ["N64"],
           "unlocks": []
@@ -204,7 +223,8 @@
           "era": "3D",
           "order": 20,
           "type": "ALTERNATE",
-          "name": "The Legend of Zelda: Ocarina of Time",
+          "title": "The Legend of Zelda: Ocarina of Time",
+          "locked": true,
           "edition": "3D",
           "platform": ["3DS"],
           "unlocks": [
@@ -213,7 +233,8 @@
               "era": "3D",
               "order": 21,
               "type": "ALTERNATE",
-              "name": "The Legend of Zelda: Ocarina of Time 3D",
+              "title": "The Legend of Zelda: Ocarina of Time 3D",
+              "locked": true,
               "edition": "Master Quest",
               "platform": ["3DS"],
               "unlocks": []
@@ -225,7 +246,8 @@
           "era": "3D",
           "order": 22,
           "type": "RANDOMIZER",
-          "name": "The Legend of Zelda: Ocarina of Time",
+          "title": "The Legend of Zelda: Ocarina of Time",
+          "locked": true,
           "edition": "Randomizer",
           "platform": ["N64"],
           "unlocks": []
@@ -237,7 +259,8 @@
       "era": "3D",
       "order": 23,
       "type": "CORE",
-      "name": "The Legend of Zelda: Majora's Mask",
+      "title": "The Legend of Zelda: Majora's Mask",
+      "locked": true,
       "edition": "N64",
       "platform": ["N64"],
       "unlocks": [
@@ -246,7 +269,8 @@
           "era": "3D",
           "order": 24,
           "type": "ALTERNATE",
-          "name": "The Legend of Zelda: Majora's Mask",
+          "title": "The Legend of Zelda: Majora's Mask",
+          "locked": true,
           "edition": "3D",
           "platform": ["3DS"],
           "unlocks": []
@@ -256,7 +280,8 @@
           "era": "3D",
           "order": 25,
           "type": "RANDOMIZER",
-          "name": "The Legend of Zelda: Majora's Mask",
+          "title": "The Legend of Zelda: Majora's Mask",
+          "locked": true,
           "edition": "Randomizer",
           "platform": ["N64"],
           "unlocks": []
@@ -268,7 +293,8 @@
       "era": "3D",
       "order": 26,
       "type": "CORE",
-      "name": "The Legend of Zelda: The Wind Waker",
+      "title": "The Legend of Zelda: The Wind Waker",
+      "locked": true,
       "edition": "HD",
       "platform": ["WIIU"],
       "unlocks": []
@@ -278,7 +304,8 @@
       "era": "Handheld",
       "order": 27,
       "type": "CORE",
-      "name": "The Legend of Zelda: Oracle of Ages",
+      "title": "The Legend of Zelda: Oracle of Ages",
+      "locked": true,
       "edition": "GBC",
       "platform": ["GBC"],
       "unlocks": []
@@ -288,7 +315,8 @@
       "era": "Handheld",
       "order": 28,
       "type": "CORE",
-      "name": "The Legend of Zelda: Oracle of Seasons",
+      "title": "The Legend of Zelda: Oracle of Seasons",
+      "locked": true,
       "edition": "GBC",
       "platform": ["GBC"],
       "unlocks": []
@@ -298,7 +326,8 @@
       "era": "Handheld",
       "order": 29,
       "type": "SIDE",
-      "name": "The Legend of Zelda: Four Swords Anniversary",
+      "title": "The Legend of Zelda: Four Swords Anniversary",
+      "locked": true,
       "edition": "3DS",
       "platform": ["3DS"],
       "unlocks": []
@@ -308,7 +337,8 @@
       "era": "Handheld",
       "order": 30,
       "type": "CORE",
-      "name": "The Legend of Zelda: The Minish Cap",
+      "title": "The Legend of Zelda: The Minish Cap",
+      "locked": true,
       "edition": "GBA",
       "platform": ["GBA"],
       "unlocks": []
@@ -318,7 +348,8 @@
       "era": "Handheld",
       "order": 31,
       "type": "SIDE",
-      "name": "The Legend of Zelda: Spirit Tracks",
+      "title": "The Legend of Zelda: Spirit Tracks",
+      "locked": true,
       "edition": "3DS",
       "platform": ["3DS"],
       "unlocks": [
@@ -327,7 +358,8 @@
           "era": "Handheld",
           "order": 32,
           "type": "SIDE",
-          "name": "The Legend of Zelda: Phantom Hourglass",
+          "title": "The Legend of Zelda: Phantom Hourglass",
+          "locked": true,
           "edition": "3DS",
           "platform": ["3DS"],
           "unlocks": []
@@ -339,7 +371,8 @@
       "era": "New",
       "order": 33,
       "type": "SIDE",
-      "name": "The Legend of Zelda: Four Swords Adventure",
+      "title": "The Legend of Zelda: Four Swords Adventure",
+      "locked": true,
       "edition": "GameCube",
       "platform": ["GAMECUBE"],
       "unlocks": []
@@ -349,7 +382,8 @@
       "era": "New",
       "order": 34,
       "type": "CORE",
-      "name": "The Legend of Zelda: Twilight Princess HD",
+      "title": "The Legend of Zelda: Twilight Princess HD",
+      "locked": true,
       "edition": "Wii U",
       "platform": ["WIIU"],
       "unlocks": []
@@ -359,7 +393,8 @@
       "era": "New",
       "order": 35,
       "type": "CORE",
-      "name": "The Legend of Zelda: Skyward Sword HD",
+      "title": "The Legend of Zelda: Skyward Sword HD",
+      "locked": true,
       "edition": "Switch",
       "platform": ["SWITCH"],
       "unlocks": []
@@ -369,7 +404,8 @@
       "era": "New",
       "order": 36,
       "type": "CORE",
-      "name": "The Legend of Zelda: A Link Between Worlds",
+      "title": "The Legend of Zelda: A Link Between Worlds",
+      "locked": true,
       "edition": "3DS",
       "platform": ["3DS"],
       "unlocks": []
@@ -379,7 +415,8 @@
       "era": "New",
       "order": 37,
       "type": "SIDE",
-      "name": "The Legend of Zelda: Tri Force Heroes",
+      "title": "The Legend of Zelda: Tri Force Heroes",
+      "locked": true,
       "edition": "3DS",
       "platform": ["3DS"],
       "unlocks": []
@@ -389,7 +426,8 @@
       "era": "Current",
       "order": 38,
       "type": "CORE",
-      "name": "The Legend of Zelda: Breath of the Wild",
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "locked": true,
       "edition": "Switch",
       "platform": ["SWITCH"],
       "unlocks": [
@@ -398,7 +436,8 @@
           "era": "Current",
           "order": 39,
           "type": "CORE",
-          "name": "The Legend of Zelda: Tears of the Kingdom",
+          "title": "The Legend of Zelda: Tears of the Kingdom",
+          "locked": true,
           "edition": "Switch",
           "platform": ["SWITCH"],
           "unlocks": []
@@ -410,7 +449,8 @@
       "era": "Current",
       "order": 40,
       "type": "CORE",
-      "name": "The Legend of Zelda: Echoes of Wisdom",
+      "title": "The Legend of Zelda: Echoes of Wisdom",
+      "locked": true,
       "edition": "Switch",
       "platform": ["SWITCH"],
       "unlocks": []
@@ -420,7 +460,8 @@
       "era": "Side",
       "order": 41,
       "type": "SIDE",
-      "name": "Ancient Stone Tablets Week One",
+      "title": "Ancient Stone Tablets Week One",
+      "locked": true,
       "edition": "Broadcast Satellaview",
       "platform": ["SATELLAVIEW"],
       "unlocks": [
@@ -429,7 +470,8 @@
           "era": "Side",
           "order": 42,
           "type": "SIDE",
-          "name": "Ancient Stone Tablets Week Two",
+          "title": "Ancient Stone Tablets Week Two",
+          "locked": true,
           "edition": "Broadcast Satellaview",
           "platform": ["SATELLAVIEW"],
           "unlocks": [
@@ -438,7 +480,8 @@
               "era": "Side",
               "order": 43,
               "type": "SIDE",
-              "name": "Ancient Stone Tablets Week Three",
+              "title": "Ancient Stone Tablets Week Three",
+              "locked": true,
               "edition": "Broadcast Satellaview",
               "platform": ["SATELLAVIEW"],
               "unlocks": [
@@ -447,7 +490,8 @@
                   "era": "Side",
                   "order": 44,
                   "type": "SIDE",
-                  "name": "Ancient Stone Tablets Week Four",
+                  "title": "Ancient Stone Tablets Week Four",
+                  "locked": true,
                   "edition": "Broadcast Satellaview",
                   "platform": ["SATELLAVIEW"],
                   "unlocks": []
@@ -463,7 +507,8 @@
       "era": "Side",
       "order": 45,
       "type": "SIDE",
-      "name": "Faces of Evil",
+      "title": "Faces of Evil",
+      "locked": true,
       "edition": "Phillips CDi",
       "platform": ["CDI"],
       "unlocks": [
@@ -472,7 +517,8 @@
           "era": "Side",
           "order": 46,
           "type": "SIDE",
-          "name": "Wand of Gamelon",
+          "title": "Wand of Gamelon",
+          "locked": true,
           "edition": "Phillips CDi",
           "platform": ["CDI"],
           "unlocks": [
@@ -481,7 +527,8 @@
               "era": "Side",
               "order": 47,
               "type": "SIDE",
-              "name": "Zelda's Adventure",
+              "title": "Zelda's Adventure",
+              "locked": true,
               "edition": "Phillips CDi",
               "platform": ["CDI"],
               "unlocks": []
@@ -495,7 +542,8 @@
       "era": "Side",
       "order": 48,
       "type": "SIDE",
-      "name": "Hyrule Warriors",
+      "title": "Hyrule Warriors",
+      "locked": true,
       "edition": "Definitive Edition",
       "platform": ["SWITCH"],
       "unlocks": [
@@ -504,7 +552,8 @@
           "era": "Side",
           "order": 49,
           "type": "SIDE",
-          "name": "Hyrule Warriors: Age of Calamity",
+          "title": "Hyrule Warriors: Age of Calamity",
+          "locked": true,
           "edition": "Switch",
           "platform": ["SWITCH"],
           "unlocks": [
@@ -513,7 +562,8 @@
               "era": "Side",
               "order": 50,
               "type": "SIDE",
-              "name": "Hyrule Warriors: Age of Imprisonment",
+              "title": "Hyrule Warriors: Age of Imprisonment",
+              "locked": true,
               "edition": "Switch",
               "platform": ["SWITCH"],
               "unlocks": []
@@ -527,7 +577,8 @@
       "era": "Side",
       "order": 51,
       "type": "SIDE",
-      "name": "Cadence of Hyrule",
+      "title": "Cadence of Hyrule",
+      "locked": true,
       "edition": "Switch",
       "platform": ["SWITCH"],
       "unlocks": []
