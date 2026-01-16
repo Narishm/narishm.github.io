@@ -496,19 +496,17 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
-/* parse: "1 - The DevQuest - 12 PM EST" (we only care about slot+main now) */
+/* parse: "The DevQuest - 12 PM EST" (now we only care about main) */
 function parseCalendarTitle(raw){
-  const s = String(raw || "").trim();
-  const m = s.match(/^\s*(\d+)\s*-\s*(.*)$/);
-  const slot = m ? parseInt(m[1], 10) : null;
-  let rest = (m ? m[2] : s).trim();
+  let rest = String(raw || "").trim();
 
   // remove trailing " - anything" (old time suffix), keep the core title
   const t = rest.match(/\s*-\s*([^-]+)$/);
   if(t) rest = rest.slice(0, t.index).trim();
 
-  return { slot, main: rest.trim() };
+  return { slot: null, main: rest.trim() };
 }
+
 
 /* Local time formatting (AM/PM, drop :00) */
 function formatViewerLocalTime(date){
