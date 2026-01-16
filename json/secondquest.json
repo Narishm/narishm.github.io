@@ -503,33 +503,33 @@
       ]
     },
     {
-      "id": "FOE",
+      "id": "foe",
       "era": "Side",
       "order": 45,
       "type": "SIDE",
       "title": "Faces of Evil",
       "locked": true,
-      "edition": "Phillips CDi",
+      "edition": "",
       "platform": ["CDI"],
       "unlocks": [
         {
-          "id": "WOG",
+          "id": "wog",
           "era": "Side",
           "order": 46,
           "type": "SIDE",
           "title": "Wand of Gamelon",
           "locked": true,
-          "edition": "Phillips CDi",
+          "edition": "",
           "platform": ["CDI"],
           "unlocks": [
             {
-              "id": "ZA",
+              "id": "za",
               "era": "Side",
               "order": 47,
               "type": "SIDE",
               "title": "Zelda's Adventure",
               "locked": true,
-              "edition": "Phillips CDi",
+              "edition": "",
               "platform": ["CDI"],
               "unlocks": []
             }
@@ -538,7 +538,7 @@
       ]
     },
     {
-      "id": "HW",
+      "id": "hwde",
       "era": "Side",
       "order": 48,
       "type": "SIDE",
@@ -548,23 +548,23 @@
       "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "AOC",
+          "id": "hwaoc",
           "era": "Side",
           "order": 49,
           "type": "SIDE",
-          "title": "Hyrule Warriors: Age of Calamity",
+          "title": "Age of Calamity",
           "locked": true,
-          "edition": "Switch",
+          "edition": "Hyrule Warriors",
           "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "AOI",
+              "id": "hqaoi",
               "era": "Side",
               "order": 50,
               "type": "SIDE",
-              "title": "Hyrule Warriors: Age of Imprisonment",
+              "title": "Age of Imprisonment",
               "locked": true,
-              "edition": "Switch",
+              "edition": "Hyrule Warriors",
               "platform": ["SWITCH"],
               "unlocks": []
             }
@@ -573,13 +573,13 @@
       ]
     },
     {
-      "id": "COH",
+      "id": "coh",
       "era": "Side",
       "order": 51,
       "type": "SIDE",
       "title": "Cadence of Hyrule",
       "locked": true,
-      "edition": "Switch",
+      "edition": "",
       "platform": ["SWITCH"],
       "unlocks": []
     }
