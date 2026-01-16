@@ -24,7 +24,7 @@
 
       /* Hover highlight stroke gradient */
       --hover1: #2cff6a; /* bright green */
-      --hover2: #0b3d1f; /* dark green */
+      --hover2: #068037; /* darker green */
 
       --blue1: #2e4b78;
       --blue2: #1f345a;
@@ -353,27 +353,45 @@
       padding-right: 6px; /* same “scoot left” */
       flex: 0 0 auto;
     }
+
+    /* ✅ Link wrapper: NO box, but still easy to click */
     .ytLink {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: rgba(0,0,0,.25);
-      border: 1px solid rgba(255,255,255,.18);
-      box-shadow: 0 4px 0 rgba(0,0,0,.55);
+      padding: 4px;             /* click padding without a visible box */
+      margin: 0;
+      border: 0;
+      background: transparent;
       text-decoration: none;
-      transition: transform .08s ease, background .12s ease;
+      line-height: 0;           /* removes baseline “mystery box” */
+      border-radius: 8px;       /* for focus ring */
+      transition: transform .10s ease, filter .10s ease;
     }
-    .ytLink:hover { background: rgba(0,0,0,.35); transform: translateY(-1px); }
-    .ytLink:active { transform: translateY(0px); }
 
+    /* ✅ Preserve icon ratio: height fixed, width auto */
     .ytIcon {
-      width: 22px;
       height: 22px;
+      width: auto;
       display: block;
+      object-fit: contain;
       image-rendering: pixelated; /* keeps your pixel art crisp */
+      filter: drop-shadow(0 2px 0 rgba(0,0,0,.70));
+    }
+
+    /* Keep the hover pop effect */
+    .ytLink:hover {
+      transform: translateY(-1px) scale(1.08);
+      filter: drop-shadow(0 2px 0 rgba(0,0,0,.55));
+    }
+    .ytLink:active {
+      transform: translateY(0px) scale(1.02);
+    }
+
+    /* Nice keyboard focus without a big box normally */
+    .ytLink:focus-visible{
+      outline: 2px solid rgba(255,255,255,.65);
+      outline-offset: 2px;
     }
 
     @media (max-width: 800px) {
@@ -387,8 +405,7 @@
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow, .date { font-size: 28px; }
       .dowWrap { transform: translateY(-3px); gap: 3px; }
-      .ytLink { width: 30px; height: 30px; }
-      .ytIcon { width: 20px; height: 20px; }
+      .ytIcon { height: 20px; }
     }
   </style>
 </head>
@@ -877,7 +894,7 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, 
       a.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
       a.target = "_blank";
       a.rel = "noopener noreferrer";
-      a.title = "Open YouTube stream";
+      a.title = "Open YouTube VOD";
 
       const img = document.createElement("img");
       img.className = "ytIcon";
