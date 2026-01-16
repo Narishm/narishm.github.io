@@ -404,23 +404,18 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
-/* ✅ parse: "1 - The DevQuest - 12 PM EST" (kept, but time now comes from GC when possible) */
+/* parse: "1 - The DevQuest - 12 PM EST" (we only care about slot+main now) */
 function parseCalendarTitle(raw){
   const s = String(raw || "").trim();
-
   const m = s.match(/^\s*(\d+)\s*-\s*(.*)$/);
   const slot = m ? parseInt(m[1], 10) : null;
   let rest = (m ? m[2] : s).trim();
 
-  let time = null;
+  // remove trailing " - anything" (old time suffix), keep the core title
   const t = rest.match(/\s*-\s*([^-]+)$/);
-  if(t){
-    time = t[1].trim();
-    rest = rest.slice(0, t.index).trim();
-  }
+  if(t) rest = rest.slice(0, t.index).trim();
 
-  const main = rest.trim();
-  return { slot, main, time };
+  return { slot, main: rest.trim() };
 }
 
 /* Local time formatting (AM/PM, drop :00) */
@@ -436,15 +431,9 @@ function formatViewerLocalTime(date){
 
 /* Create a Date that represents "YYYY-MM-DD at 12:00 in America/New_York" (fallback for all-day) */
 function buildDateFromYMDInTZ(ymdStr, hour, minute, timeZone){
-  // We’ll construct it by formatting a UTC date into that TZ to find the local Y/M/D offset.
-  // Simpler reliable approach: use Intl parts to compute the UTC instant for that TZ local time.
-  // (Works well for modern browsers.)
-
   const [Y, M, D] = ymdStr.split("-").map(n => parseInt(n, 10));
-  // Start with a UTC guess
   const guessUTC = new Date(Date.UTC(Y, (M-1), D, hour, minute, 0));
 
-  // Determine the TZ offset at that instant by comparing formatted parts
   const fmt = new Intl.DateTimeFormat("en-US", {
     timeZone,
     year: "numeric",
@@ -469,8 +458,6 @@ function buildDateFromYMDInTZ(ymdStr, hour, minute, timeZone){
     };
   }
 
-  // We want TZ-local Y/M/D hour:minute; we adjust guessUTC until TZ-local matches.
-  // One correction step is enough for practical usage here.
   const p = partsToStamp(guessUTC);
   const desiredUTC = Date.UTC(Y, (M-1), D, hour, minute, 0);
   const gotUTC = Date.UTC(p.y, (p.m-1), p.d, p.hh, p.mm, p.ss);
@@ -548,16 +535,15 @@ function coveredDayKeys(ev){
   return keys;
 }
 
-function isAllDay(ev){ return !!ev?.start?.date; }
 function startMillis(ev){
   if(ev?.start?.dateTime) return new Date(ev.start.dateTime).getTime();
   if(ev?.start?.date) return new Date(ev.start.date + "T00:00:00").getTime();
   return Number.POSITIVE_INFINITY;
 }
+
+/* ✅ NOW that you're using times, pick the EARLIEST event (by startMillis) */
 function sortEventsForDay(list){
   return list.sort((a,b)=>{
-    const ad=isAllDay(a), bd=isAllDay(b);
-    if(ad!==bd) return ad ? -1 : 1;
     const sa=startMillis(a), sb=startMillis(b);
     if(sa!==sb) return sa-sb;
     return String(a?.summary||"").localeCompare(String(b?.summary||""));
@@ -578,22 +564,13 @@ function parsePackedCodeFromEvent(ev){
   return m ? { barCode: m[1], thumbCode: m[2] } : { barCode: null, thumbCode: null };
 }
 
-function startsOnDay(ev, dayKey){
-  if(ev?.start?.date) return ev.start.date === dayKey;
-  if(ev?.start?.dateTime) return ymd(new Date(ev.start.dateTime)) === dayKey;
-  return false;
-}
-
 function codeToImageUrl(code){
   return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
 }
 
+/* ✅ driver event = earliest event of the day */
 function pickDriverEventForDay(list){
   const sorted = sortEventsForDay([...list]);
-  for(const ev of sorted){
-    const p = parsePackedCodeFromEvent(ev);
-    if(p.barCode && p.thumbCode) return ev;
-  }
   return sorted[0] || null;
 }
 
@@ -866,11 +843,9 @@ async function refreshWeek(){
 
         mainTitle = (parts.main || "").trim() || (packed.thumbCode ? packed.thumbCode : "Untitled");
 
-        // patterns/thumbs
         if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
         if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
 
-        // subtitle from quest json
         if(mainTitle && packed.thumbCode){
           const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
           if(jsonSub) subTitle = jsonSub;
