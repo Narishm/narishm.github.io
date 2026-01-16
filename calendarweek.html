@@ -24,8 +24,7 @@
 
       /* Hover highlight stroke gradient */
       --hover1: #2cff6a; /* bright green */
-      --hover2: #007e32; /* darker green */
-
+      --hover2: #0d833c; /* darker green */
 
       --blue1: #2e4b78;
       --blue2: #1f345a;
@@ -190,8 +189,18 @@
       stroke-miterlimit: 4;
     }
 
+    /* Hover highlight: whole row reacts when mouse is over any part */
+    .row:hover .strokeSvg polygon{
+      stroke: url(#hoverStroke);
+    }
+
     /* Today highlight: gradient stroke for all 3 shapes in the row */
     .row.today .strokeSvg polygon{
+      stroke: url(#todayStroke);
+    }
+
+    /* Keep today stroke when today row is hovered */
+    .row.today:hover .strokeSvg polygon{
       stroke: url(#todayStroke);
     }
 
@@ -204,10 +213,9 @@
       padding: 0 20px;
     }
 
-    /* LEFT ARROW BG:
-       - default uses img/06.png
-       - if row is today, use img/07.png
-    */
+    /* LEFT: pattern is variable now (default 06) */
+    .arrow { --leftPattern: url("img/06.png"); }
+
     .arrow::after {
       clip-path: polygon(
         0% 50%,
@@ -218,18 +226,8 @@
         0% 50%
       );
       background:
-        url("img/06.png") 0 0 / auto repeat,
+        var(--leftPattern) 0 0 / auto repeat,
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
-    }
-    .row.today .arrow::after{
-      background:
-        url("img/07.png") 0 0 / auto repeat,
-        linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
-    }
-    
-    /* Hover highlight: whole row reacts when mouse is over any part */
-    .row:hover .strokeSvg polygon{
-      stroke: url(#hoverStroke);
     }
 
     /* MIDDLE BAR */
@@ -364,13 +362,14 @@
 </head>
 
 <body>
-  <!-- Gradient def used by today's border -->
+  <!-- Gradient defs used by today's + hover borders -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="todayStroke" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="var(--today1)"/>
         <stop offset="100%" stop-color="var(--today2)"/>
       </linearGradient>
+
       <linearGradient id="hoverStroke" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="var(--hover1)"/>
         <stop offset="100%" stop-color="var(--hover2)"/>
@@ -759,13 +758,17 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, barPatternUrl, thumbUrl){
+function makeRow(day, dateText, mainTitle, subTitle, timeText, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
   // Left
   const arrow = document.createElement("div");
   arrow.className = "shape arrow";
+  if(leftPatternUrl){
+    arrow.style.setProperty("--leftPattern", `url("${leftPatternUrl.replace(/"/g,'\\"')}")`);
+  }
+
   const leftContent = document.createElement("div");
   leftContent.className = "content-layer";
 
@@ -873,6 +876,12 @@ async function refreshWeek(){
       const dayKey = ymd(dayDate);
       const mmdd = formatMMDD(dayDate);
 
+      // LEFT pattern: past=00, today=07, future=06
+      let leftCode = "06";
+      if(dayKey < todayKey) leftCode = "00";
+      else if(dayKey === todayKey) leftCode = "07";
+      const leftPatternUrl = codeToImageUrl(leftCode);
+
       const evs = byDay.get(dayKey) || [];
       const driver = evs.length ? pickDriverEventForDay(evs) : null;
 
@@ -912,7 +921,7 @@ async function refreshWeek(){
         }
       }
 
-      const rowEl = makeRow(DAYS[i], mmdd, mainTitle, subTitle, timeText, i, barPatternUrl, thumbUrl);
+      const rowEl = makeRow(DAYS[i], mmdd, mainTitle, subTitle, timeText, i, leftPatternUrl, barPatternUrl, thumbUrl);
       if(dayKey === todayKey) rowEl.classList.add("today");
       listEl.appendChild(rowEl);
     }
