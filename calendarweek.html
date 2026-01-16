@@ -66,7 +66,6 @@
       font-display: swap;
     }
 
-    /* ✅ Add your Joystix font file here (update filename if needed) */
     @font-face {
       font-family: "Joystix";
       src: url("fnt/joystix.ttf") format("truetype");
@@ -205,7 +204,7 @@
       stroke-miterlimit: 4;
     }
 
-    /* Today highlight: gradient stroke for all 3 shapes in the row */
+    /* Today highlight: gradient stroke for all shapes in the row */
     .row.today .strokeSvg polygon{
       stroke: url(#todayStroke);
     }
@@ -215,19 +214,21 @@
       stroke: url(#hoverStroke);
     }
 
-    /* ✅ Live border: ONLY the middle bar stroke becomes red gradient */
-    .row.live .bar .strokeSvg polygon{
-      stroke: url(#liveStroke);
-    }
-
-    /* Hover highlight: whole row reacts when mouse is over any part */
-    .row:hover .bar .strokeSvg polygon{
-      stroke: url(#hoverStroke);
-    }
-
-    /* ✅ Live border: ALSO the right thumbnail stroke becomes red gradient */
+    /* ✅ Live border: right thumbnail stroke becomes red gradient */
     .row.live .arrowR .strokeSvg polygon{
       stroke: url(#liveStroke) !important;
+    }
+
+    /* ✅ Live border: ONLY the LIVE segment in the middle turns red */
+    .barHalf.liveSeg .strokeSvg polygon,
+    .bar.liveSeg .strokeSvg polygon{
+      stroke: url(#liveStroke) !important;
+    }
+
+    /* Hover highlight (explicit for bars too) */
+    .row:hover .bar .strokeSvg polygon,
+    .row:hover .barHalf .strokeSvg polygon{
+      stroke: url(#hoverStroke);
     }
 
     .content-layer {
@@ -255,7 +256,7 @@
         linear-gradient(135deg, rgba(255,255,255,.10), rgba(0,0,0,.22));
     }
 
-    /* MIDDLE BAR */
+    /* MIDDLE BAR (single) */
     .bar {
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
       --barPattern: none;
@@ -263,6 +264,51 @@
     .bar::after {
       clip-path: polygon(
         var(--slant) 0%,
+        100% 0%,
+        calc(100% - var(--slant)) 100%,
+        0% 100%
+      );
+      background:
+        radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
+        var(--barPattern) 0 0 / auto repeat,
+        var(--barDefault);
+    }
+
+    /* ✅ MIDDLE BAR (split wrapper) */
+    .barWrap{
+      margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
+      display: flex;
+      align-items: stretch;
+      width: 100%;
+      gap: 0px; /* no gap; looks like one bar */
+      min-width: 0;
+    }
+    .barHalf{
+      flex: 1 1 0;
+      min-width: 0;
+      --barPattern: none;
+    }
+
+    /* left segment: has slant only on the left side */
+    .barHalf.left::after{
+      clip-path: polygon(
+        var(--slant) 0%,
+        100% 0%,
+        100% 100%,
+        0% 100%
+      );
+      background:
+        radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
+        var(--barPattern) 0 0 / auto repeat,
+        var(--barDefault);
+    }
+
+    /* right segment: has slant only on the right-bottom like original */
+    .barHalf.right::after{
+      clip-path: polygon(
+        0% 0%,
         100% 0%,
         calc(100% - var(--slant)) 100%,
         0% 100%
@@ -341,29 +387,28 @@
       min-width: 0;
     }
 
-    /* ✅ UPDATED: Title centered, edition right-aligned to title width */
     .titleStack{
       flex: 1;
       min-width: 0;
-      display: inline-grid;         /* shrink-wraps to title width */
+      display: inline-grid;
       grid-auto-rows: min-content;
-      justify-items: center;        /* centers the title line */
+      justify-items: center;
       align-items: center;
       gap: 2px;
-      margin: 0 auto;               /* center the whole stack in the bar */
+      margin: 0 auto;
       padding: 0 10px;
     }
 
     .eventMain{
-      display: inline-block;        /* makes grid width follow title width */
+      display: inline-block;
       max-width: 100%;
       min-width: 0;
       font-family: var(--midFont);
       color: #fff;
       font-weight: 900;
-      font-size: clamp(22px, 2.2vw, 44px);
+      font-size: clamp(18px, 1.9vw, 44px);
       text-shadow: 0 5px 0 rgba(0,0,0,.85);
-      text-align: center;           /* ✅ centered title */
+      text-align: center;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -371,13 +416,13 @@
     }
 
     .eventEdition{
-      width: 100%;                  /* ✅ match title width */
-      justify-self: stretch;         /* ensure it spans the grid width */
+      width: 100%;
+      justify-self: stretch;
       max-width: 100%;
       font-family: var(--editionFont);
       color: rgba(255,255,255,.92);
       font-weight: 400;
-      font-size: clamp(12px, 1.15vw, 18px); /* ✅ bigger */
+      font-size: clamp(11px, 1.05vw, 18px);
       text-shadow: 0 3px 0 rgba(0,0,0,.85);
       white-space: nowrap;
       overflow: hidden;
@@ -385,7 +430,7 @@
       line-height: 1.0;
       transform: translateY(-1px);
       opacity: .95;
-      text-align: right;            /* ✅ right aligned edition */
+      text-align: right;
     }
 
     /* Time uses AleaWB, scooted from right edge */
@@ -393,13 +438,13 @@
       font-family: var(--midFont);
       color: #fff;
       font-weight: 900;
-      font-size: clamp(14px, 1.2vw, 22px);
+      font-size: clamp(12px, 1.05vw, 22px);
       text-transform: uppercase;
       text-shadow: 0 4px 0 rgba(0,0,0,.85);
       white-space: nowrap;
       flex: 0 0 auto;
       margin-left: auto;
-      padding-right: 6px; /* ✅ scoot left */
+      padding-right: 6px;
     }
 
     /* YouTube icons container (replaces time) */
@@ -408,36 +453,33 @@
       align-items: center;
       gap: 10px;
       margin-left: auto;
-      padding-right: 6px; /* same “scoot left” */
+      padding-right: 6px;
       flex: 0 0 auto;
     }
 
-    /* ✅ Link wrapper: NO box, but still easy to click */
     .ytLink {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 4px;             /* click padding without a visible box */
+      padding: 4px;
       margin: 0;
       border: 0;
       background: transparent;
       text-decoration: none;
-      line-height: 0;           /* removes baseline “mystery box” */
-      border-radius: 8px;       /* for focus ring */
+      line-height: 0;
+      border-radius: 8px;
       transition: transform .10s ease, filter .10s ease;
     }
 
-    /* ✅ Preserve icon ratio: height fixed, width auto */
     .ytIcon {
       height: 22px;
       width: auto;
       display: block;
       object-fit: contain;
-      image-rendering: auto; /* keeps your pixel art crisp */
+      image-rendering: auto;
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.70));
     }
 
-    /* Keep the hover pop effect */
     .ytLink:hover {
       transform: translateY(-1px) scale(1.08);
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.55));
@@ -445,22 +487,20 @@
     .ytLink:active {
       transform: translateY(0px) scale(1.02);
     }
-
-    /* Nice keyboard focus without a big box normally */
     .ytLink:focus-visible{
       outline: 2px solid rgba(255,255,255,.65);
       outline-offset: 2px;
     }
 
     /* =========================
-       ✅ Twitch Live swap UI (today row only)
+       ✅ Twitch Live swap UI (today row only, per segment)
        ========================= */
     .rightSlot{
       display: flex;
       align-items: center;
       gap: 10px;
       margin-left: auto;
-      padding-right: 6px; /* matches your “scoot left” */
+      padding-right: 6px;
       flex: 0 0 auto;
     }
 
@@ -498,10 +538,14 @@
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.70));
     }
 
-    /* When live: show Twitch badge, hide time + yt icons (middle bar only) */
-    .row.live .twitchWrap{ display: flex; }
-    .row.live .eventTime{ display: none; }
-    .row.live .ytIcons{ display: none; }
+    /* When LIVE on a segment: show Twitch badge, hide time + yt icons (that segment only) */
+    .barHalf.liveSeg .twitchWrap,
+    .bar.liveSeg .twitchWrap{ display: flex; }
+
+    .barHalf.liveSeg .eventTime,
+    .barHalf.liveSeg .ytIcons,
+    .bar.liveSeg .eventTime,
+    .bar.liveSeg .ytIcons{ display: none; }
 
     @media (max-width: 800px) {
       :root {
@@ -521,7 +565,6 @@
 </head>
 
 <body>
-  <!-- Gradient def used by today's border & hover border -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="todayStroke" x1="0" y1="0" x2="1" y2="0">
@@ -532,8 +575,6 @@
         <stop offset="0%" stop-color="var(--hover1)"/>
         <stop offset="100%" stop-color="var(--hover2)"/>
       </linearGradient>
-
-      <!-- ✅ Live red gradient (middle section only) -->
       <linearGradient id="liveStroke" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="var(--live1)"/>
         <stop offset="100%" stop-color="var(--live2)"/>
@@ -571,7 +612,7 @@ const YT_ICON_URL = "img/youtube.png";
 
 /* ✅ Twitch (in img folder) */
 const TWITCH_URL = "https://twitch.tv/narishm";
-const TWITCH_ICON_URL = "img/twitch.png"; // put your provided image here
+const TWITCH_ICON_URL = "img/twitch.png";
 
 /* ✅ Live thumbnail for right box while live */
 const LIVE_THUMB_URL = "img/live.png";
@@ -582,7 +623,7 @@ const OFF_BAR_CODE = "00";
 const OFF_THUMB_CODE = "off";
 
 /* If a driver event is all-day, assume 12 PM America/New_York */
-const FALLBACK_ALLDAY_HOUR_LOCAL = 12;      // 12 PM
+const FALLBACK_ALLDAY_HOUR_LOCAL = 12;
 const FALLBACK_ALLDAY_MINUTE_LOCAL = 0;
 const FALLBACK_ALLDAY_TZ = "America/New_York";
 
@@ -647,38 +688,50 @@ function formatViewerLocalTime(date){
 
 /* ✅ Live ticker state */
 let liveTicker = null;
-let liveTarget = null; // { rowEl, startMs, endMs, arrowR, origThumbUrl }
-
-function getEventRangeMillis(ev){
-  // Only timed events (dateTime) get a live window.
-  if(ev?.start?.dateTime){
-    const startMs = new Date(ev.start.dateTime).getTime();
-    // If end is missing, assume 2 hours.
-    const endMs = ev?.end?.dateTime
-      ? new Date(ev.end.dateTime).getTime()
-      : (startMs + 2 * 60 * 60 * 1000);
-
-    return { startMs, endMs };
+/*
+  liveTarget shape:
+  {
+    rowEl,
+    segments: [ { segEl, startMs, endMs } ... ],
+    arrowR,
+    origThumbUrl
   }
-  return null;
-}
+*/
+let liveTarget = null;
 
 function updateLiveState(){
   if(!liveTarget) return;
 
   const now = Date.now();
-  const isLive = now >= liveTarget.startMs && now < liveTarget.endMs;
+  let anyLive = false;
 
-  liveTarget.rowEl.classList.toggle("live", isLive);
+  for(const seg of liveTarget.segments){
+    const isLive = now >= seg.startMs && now < seg.endMs;
+    seg.segEl.classList.toggle("liveSeg", isLive);
+    anyLive = anyLive || isLive;
+  }
+
+  liveTarget.rowEl.classList.toggle("live", anyLive);
 
   // ✅ swap the right thumbnail image only while live
   if(liveTarget.arrowR){
-    if(isLive){
+    if(anyLive){
       liveTarget.arrowR.style.setProperty("--thumb", `url("${LIVE_THUMB_URL.replace(/"/g,'\\"')}")`);
     } else if(liveTarget.origThumbUrl){
       liveTarget.arrowR.style.setProperty("--thumb", `url("${liveTarget.origThumbUrl.replace(/"/g,'\\"')}")`);
     }
   }
+}
+
+function getEventRangeMillis(ev){
+  if(ev?.start?.dateTime){
+    const startMs = new Date(ev.start.dateTime).getTime();
+    const endMs = ev?.end?.dateTime
+      ? new Date(ev.end.dateTime).getTime()
+      : (startMs + 2 * 60 * 60 * 1000);
+    return { startMs, endMs };
+  }
+  return null;
 }
 
 /* Create a Date that represents "YYYY-MM-DD at 12:00 in America/New_York" (fallback for all-day) */
@@ -793,7 +846,7 @@ function startMillis(ev){
   return Number.POSITIVE_INFINITY;
 }
 
-/* ✅ Pick the EARLIEST event (by startMillis) */
+/* ✅ Pick the EARLIEST events (by startMillis) */
 function sortEventsForDay(list){
   return list.sort((a,b)=>{
     const sa=startMillis(a), sb=startMillis(b);
@@ -809,12 +862,6 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
-/*
-  Packed token examples:
-    "03tdqlct"
-    "03tdqlct~dQw4w9WgXcQ"
-    "03tdqlct~id1~id2~id3"
-*/
 function parsePackedToken(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0].trim();
   if(!token) return { barCode: null, thumbCode: null, ytIds: [] };
@@ -826,20 +873,12 @@ function parsePackedToken(ev){
   const barCode = m ? m[1] : null;
   const thumbCode = m ? m[2] : null;
 
-  // Remaining parts are YouTube video IDs (or live IDs)
   const ytIds = parts.slice(1).map(s => s.trim()).filter(Boolean);
-
   return { barCode, thumbCode, ytIds };
 }
 
 function codeToImageUrl(code){
   return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
-}
-
-/* ✅ driver event = earliest event of the day */
-function pickDriverEventForDay(list){
-  const sorted = sortEventsForDay([...list]);
-  return sorted[0] || null;
 }
 
 /* =========================
@@ -893,7 +932,6 @@ async function fetchQuestJson(filename){
   }
 }
 
-/* ✅ Returns { title, edition } if id found */
 async function lookupTitleAndEditionFromQuestJson(mainTitle, thumbCode){
   if(!mainTitle || !thumbCode) return { title: null, edition: null };
 
@@ -974,6 +1012,20 @@ function applyStrokes(){
         [w - slant, h],
         [0, h],
       ]);
+    } else if(kind === "barL"){
+      setPolygonPoints(poly, [
+        [slant, 0],
+        [w, 0],
+        [w, h],
+        [0, h],
+      ]);
+    } else if(kind === "barR"){
+      setPolygonPoints(poly, [
+        [0, 0],
+        [w, 0],
+        [w - slant, h],
+        [0, h],
+      ]);
     } else if(kind === "arrowR"){
       setPolygonPoints(poly, [
         [slant, 0],
@@ -991,7 +1043,155 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, dateText, displayTitle, editionText, timeText, ytIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl, allowTwitch){
+/* =========================
+   ✅ Build display data for a single event
+   ========================= */
+async function buildEntryFromEvent(ev){
+  if(!ev){
+    return {
+      displayTitle: OFF_MAIN,
+      editionText: "",
+      timeText: "",
+      ytIds: [],
+      barPatternUrl: codeToImageUrl(OFF_BAR_CODE),
+      thumbUrl: codeToImageUrl(OFF_THUMB_CODE),
+      canLive: false,
+      liveRange: null
+    };
+  }
+
+  const packed = parsePackedToken(ev);
+  const parts = parseCalendarTitle(ev.summary || "");
+
+  const mainTitle = (parts.main || "").trim() || (packed.thumbCode ? packed.thumbCode : "Untitled");
+
+  let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
+  let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
+  if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
+  if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
+
+  let ytIds = Array.isArray(packed.ytIds) ? packed.ytIds : [];
+
+  let displayTitle = mainTitle;
+  let editionText = "";
+  if(mainTitle && packed.thumbCode){
+    const looked = await lookupTitleAndEditionFromQuestJson(mainTitle, packed.thumbCode);
+    if(looked.title) displayTitle = looked.title;
+    if(looked.edition) editionText = looked.edition;
+  }
+
+  // time (only if no YT icons)
+  let timeText = "";
+  if(!ytIds.length){
+    if(ev.start?.dateTime){
+      timeText = formatViewerLocalTime(new Date(ev.start.dateTime));
+    } else if(ev.start?.date){
+      const fallback = buildDateFromYMDInTZ(
+        ev.start.date,
+        FALLBACK_ALLDAY_HOUR_LOCAL,
+        FALLBACK_ALLDAY_MINUTE_LOCAL,
+        FALLBACK_ALLDAY_TZ
+      );
+      timeText = formatViewerLocalTime(fallback);
+    }
+  }
+
+  // live only for timed events AND only if no ytIds
+  const canLive = !!(ev.start?.dateTime) && !(ytIds.length);
+  const liveRange = canLive ? getEventRangeMillis(ev) : null;
+
+  return { displayTitle, editionText, timeText, ytIds, barPatternUrl, thumbUrl, canLive, liveRange };
+}
+
+/* =========================
+   ✅ Row builders
+   ========================= */
+function buildMiddleContent(entry, allowTwitch){
+  const midContent = document.createElement("div");
+  midContent.className = "content-layer";
+
+  const midInner = document.createElement("div");
+  midInner.className = "midContent";
+
+  const titleStack = document.createElement("div");
+  titleStack.className = "titleStack";
+
+  const mainEl = document.createElement("div");
+  mainEl.className = "eventMain";
+  mainEl.textContent = entry.displayTitle || "";
+  titleStack.appendChild(mainEl);
+
+  if(entry.editionText && String(entry.editionText).trim()){
+    const edEl = document.createElement("div");
+    edEl.className = "eventEdition";
+    edEl.textContent = String(entry.editionText).trim();
+    titleStack.appendChild(edEl);
+  }
+
+  midInner.appendChild(titleStack);
+
+  const rightSlot = document.createElement("div");
+  rightSlot.className = "rightSlot";
+
+  if(allowTwitch){
+    const twWrap = document.createElement("div");
+    twWrap.className = "twitchWrap";
+
+    const a = document.createElement("a");
+    a.className = "twitchLink";
+    a.href = TWITCH_URL;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.title = "Watch live on Twitch";
+
+    const img = document.createElement("img");
+    img.className = "twitchIcon";
+    img.src = TWITCH_ICON_URL;
+    img.alt = "Twitch";
+
+    a.appendChild(img);
+    twWrap.appendChild(a);
+    rightSlot.appendChild(twWrap);
+  }
+
+  if(Array.isArray(entry.ytIds) && entry.ytIds.length){
+    const ytWrap = document.createElement("div");
+    ytWrap.className = "ytIcons";
+
+    for(const id of entry.ytIds){
+      const a = document.createElement("a");
+      a.className = "ytLink";
+      a.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.title = "Open YouTube VOD";
+
+      const img = document.createElement("img");
+      img.className = "ytIcon";
+      img.src = YT_ICON_URL;
+      img.alt = "YouTube";
+
+      a.appendChild(img);
+      ytWrap.appendChild(a);
+    }
+
+    rightSlot.appendChild(ytWrap);
+  } else if(entry.timeText){
+    const eventTime = document.createElement("div");
+    eventTime.className = "eventTime";
+    eventTime.textContent = entry.timeText;
+    rightSlot.appendChild(eventTime);
+  }
+
+  if(rightSlot.childNodes.length){
+    midInner.appendChild(rightSlot);
+  }
+
+  midContent.appendChild(midInner);
+  return midContent;
+}
+
+function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, allowTwitch){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
@@ -1027,102 +1227,41 @@ function makeRow(day, dateText, displayTitle, editionText, timeText, ytIds, rowI
   leftContent.appendChild(dowWrap);
   arrow.appendChild(leftContent);
 
-  // Center
-  const bar = document.createElement("div");
-  bar.className = "shape bar";
-  if(barPatternUrl){
-    bar.style.setProperty("--barPattern", `url("${barPatternUrl.replace(/"/g,'\\"')}")`);
+  // Middle (single or split)
+  let middleNode = null;
+  const segmentEls = [];
+
+  if(entries.length >= 2){
+    const wrap = document.createElement("div");
+    wrap.className = "barWrap";
+
+    const leftSeg = document.createElement("div");
+    leftSeg.className = "shape barHalf left";
+    leftSeg.style.setProperty("--barPattern", `url("${entries[0].barPatternUrl.replace(/"/g,'\\"')}")`);
+    leftSeg.appendChild(buildMiddleContent(entries[0], allowTwitch));
+    wrap.appendChild(leftSeg);
+
+    const rightSeg = document.createElement("div");
+    rightSeg.className = "shape barHalf right";
+    rightSeg.style.setProperty("--barPattern", `url("${entries[1].barPatternUrl.replace(/"/g,'\\"')}")`);
+    rightSeg.appendChild(buildMiddleContent(entries[1], allowTwitch));
+    wrap.appendChild(rightSeg);
+
+    middleNode = wrap;
+    segmentEls.push(leftSeg, rightSeg);
+
+    queueStroke(leftSeg, "barL");
+    queueStroke(rightSeg, "barR");
+  } else {
+    const bar = document.createElement("div");
+    bar.className = "shape bar";
+    bar.style.setProperty("--barPattern", `url("${entries[0].barPatternUrl.replace(/"/g,'\\"')}")`);
+    bar.appendChild(buildMiddleContent(entries[0], allowTwitch));
+    middleNode = bar;
+    segmentEls.push(bar);
+
+    queueStroke(bar, "bar");
   }
-
-  const midContent = document.createElement("div");
-  midContent.className = "content-layer";
-
-  const midInner = document.createElement("div");
-  midInner.className = "midContent";
-
-  // ✅ Title stack (title + optional edition)
-  const titleStack = document.createElement("div");
-  titleStack.className = "titleStack";
-
-  const mainEl = document.createElement("div");
-  mainEl.className = "eventMain";
-  mainEl.textContent = displayTitle || "";
-
-  titleStack.appendChild(mainEl);
-
-  if(editionText && String(editionText).trim()){
-    const edEl = document.createElement("div");
-    edEl.className = "eventEdition";  // ✅ removed rightAlign class (no longer needed)
-    edEl.textContent = String(editionText).trim();
-    titleStack.appendChild(edEl);
-  }
-
-  midInner.appendChild(titleStack);
-
-  // ✅ Right side slot: Twitch (live), YT icons, or time
-  const rightSlot = document.createElement("div");
-  rightSlot.className = "rightSlot";
-
-  // Twitch badge (hidden unless .row.live)
-  if(allowTwitch){
-    const twWrap = document.createElement("div");
-    twWrap.className = "twitchWrap";
-
-    const a = document.createElement("a");
-    a.className = "twitchLink";
-    a.href = TWITCH_URL;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    a.title = "Watch live on Twitch";
-
-    const img = document.createElement("img");
-    img.className = "twitchIcon";
-    img.src = TWITCH_ICON_URL;
-    img.alt = "Twitch";
-
-    a.appendChild(img);
-    twWrap.appendChild(a);
-    rightSlot.appendChild(twWrap);
-  }
-
-  // YouTube icons (shown when not live)
-  if(Array.isArray(ytIds) && ytIds.length){
-    const ytWrap = document.createElement("div");
-    ytWrap.className = "ytIcons";
-
-    for(const id of ytIds){
-      const a = document.createElement("a");
-      a.className = "ytLink";
-      a.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.title = "Open YouTube VOD";
-
-      const img = document.createElement("img");
-      img.className = "ytIcon";
-      img.src = YT_ICON_URL;
-      img.alt = "YouTube";
-
-      a.appendChild(img);
-      ytWrap.appendChild(a);
-    }
-
-    rightSlot.appendChild(ytWrap);
-  }
-  // Time (shown when not live and no YT icons)
-  else if(timeText){
-    const eventTime = document.createElement("div");
-    eventTime.className = "eventTime";
-    eventTime.textContent = timeText;
-    rightSlot.appendChild(eventTime);
-  }
-
-  if(rightSlot.childNodes.length){
-    midInner.appendChild(rightSlot);
-  }
-
-  midContent.appendChild(midInner);
-  bar.appendChild(midContent);
 
   // Right
   const arrowR = document.createElement("div");
@@ -1132,16 +1271,15 @@ function makeRow(day, dateText, displayTitle, editionText, timeText, ytIds, rowI
   }
 
   row.appendChild(arrow);
-  row.appendChild(bar);
+  row.appendChild(middleNode);
   row.appendChild(arrowR);
 
-  // ✅ store refs so "live" can swap thumb temporarily
   row._arrowR = arrowR;
   row._origThumbUrl = thumbUrl || "";
+  row._segmentEls = segmentEls;
 
-  // Queue uniform SVG borders
+  // Strokes
   queueStroke(arrow, "arrowL");
-  queueStroke(bar, "bar");
   queueStroke(arrowR, "arrowR");
 
   return row;
@@ -1153,7 +1291,6 @@ async function refreshWeek(){
   clearError();
   listEl.innerHTML = "";
 
-  // reset live targeting each render
   liveTarget = null;
   if(liveTicker){ clearInterval(liveTicker); liveTicker = null; }
 
@@ -1192,70 +1329,29 @@ async function refreshWeek(){
       const leftPatternUrl = codeToImageUrl(leftPatternCode);
 
       const evs = byDay.get(dayKey) || [];
-      const driver = evs.length ? pickDriverEventForDay(evs) : null;
+      const sorted = sortEventsForDay([...evs]);
 
-      let mainTitle = OFF_MAIN;
-      let displayTitle = OFF_MAIN;
-      let editionText = "";
-      let timeText = "";
-      let ytIds = [];
-      let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
-      let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
+      // ✅ show first TWO events if present
+      const ev1 = sorted[0] || null;
+      const ev2 = sorted[1] || null;
 
-      if(driver){
-        const packed = parsePackedToken(driver);
-        const parts = parseCalendarTitle(driver.summary || "");
+      const entry1 = await buildEntryFromEvent(ev1);
+      const entry2 = ev2 ? await buildEntryFromEvent(ev2) : null;
 
-        mainTitle = (parts.main || "").trim() || (packed.thumbCode ? packed.thumbCode : "Untitled");
+      const entries = entry2 ? [entry1, entry2] : [entry1];
 
-        if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
-        if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
-
-        // YouTube IDs (if present) replace time
-        ytIds = Array.isArray(packed.ytIds) ? packed.ytIds : [];
-
-        if(mainTitle && packed.thumbCode){
-          const looked = await lookupTitleAndEditionFromQuestJson(mainTitle, packed.thumbCode);
-          if(looked.title) displayTitle = looked.title;
-          else displayTitle = mainTitle;
-
-          if(looked.edition) editionText = looked.edition;
-        } else {
-          displayTitle = mainTitle;
-        }
-
-        // TIME:
-        // - If YouTube IDs exist, we do NOT render time (icons replace it)
-        // - Else show viewer-local time from Google Calendar
-        // - If all-day, assume 12 PM America/New_York and convert to viewer-local
-        if(!ytIds.length){
-          if(driver.start?.dateTime){
-            timeText = formatViewerLocalTime(new Date(driver.start.dateTime));
-          } else if(driver.start?.date){
-            const fallback = buildDateFromYMDInTZ(
-              driver.start.date,
-              FALLBACK_ALLDAY_HOUR_LOCAL,
-              FALLBACK_ALLDAY_MINUTE_LOCAL,
-              FALLBACK_ALLDAY_TZ
-            );
-            timeText = formatViewerLocalTime(fallback);
-          }
-        }
-      }
+      // right thumb stays driven by FIRST event (same behavior as before)
+      const thumbUrl = entry1.thumbUrl || codeToImageUrl(OFF_THUMB_CODE);
 
       const isToday = (dayKey === todayKey);
-      const allowTwitch = isToday; // only TODAY row gets the Twitch swap
+      const allowTwitch = isToday;
 
       const rowEl = makeRow(
         DAYS[i],
         mmdd,
-        displayTitle,
-        editionText,
-        timeText,
-        ytIds,
+        entries,
         i,
         leftPatternUrl,
-        barPatternUrl,
         thumbUrl,
         allowTwitch
       );
@@ -1263,15 +1359,21 @@ async function refreshWeek(){
       if(isToday) rowEl.classList.add("today");
       listEl.appendChild(rowEl);
 
-      // If TODAY and we have a timed driver event, arm the live window
-      // ✅ BUT: if YouTube IDs exist, it can NOT be live
-      if(isToday && driver && !(Array.isArray(ytIds) && ytIds.length)){
-        const range = getEventRangeMillis(driver);
-        if(range){
+      // ✅ Live targeting (today only), per-segment, only timed + no YT
+      if(isToday){
+        const segs = [];
+
+        if(entry1.canLive && entry1.liveRange){
+          segs.push({ segEl: rowEl._segmentEls[0], startMs: entry1.liveRange.startMs, endMs: entry1.liveRange.endMs });
+        }
+        if(entry2 && entry2.canLive && entry2.liveRange){
+          segs.push({ segEl: rowEl._segmentEls[1], startMs: entry2.liveRange.startMs, endMs: entry2.liveRange.endMs });
+        }
+
+        if(segs.length){
           liveTarget = {
             rowEl,
-            startMs: range.startMs,
-            endMs: range.endMs,
+            segments: segs,
             arrowR: rowEl._arrowR,
             origThumbUrl: rowEl._origThumbUrl
           };
@@ -1281,7 +1383,6 @@ async function refreshWeek(){
 
     scheduleStrokeApply();
 
-    // Live ticker: updates without refetching calendar data
     updateLiveState();
     liveTicker = setInterval(updateLiveState, 15000);
 
