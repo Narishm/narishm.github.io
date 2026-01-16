@@ -18,7 +18,7 @@
           "type": "ALTERNATE",
           "title": "Final Fantasy",
           "locked": true,
-          "edition": "NES",
+          "edition": "",
           "platform": ["NES"],
           "unlocks": []
         },
@@ -71,9 +71,9 @@
               "era": "NES",
               "order": 7,
               "type": "SEQUEL",
-              "title": "Final Fantasy II Dawn of Souls",
+              "title": "Soul of Rebirth",
               "locked": true,
-              "edition": "Soul of Rebirth",
+              "edition": "Final Fantasy II Dawn of Souls",
               "platform": ["GBA"],
               "unlocks": []
             }
@@ -94,9 +94,9 @@
               "era": "NES",
               "order": 9,
               "type": "SEQUEL",
-              "title": "Final Fantasy II 20th Anniversary",
+              "title": "Soul of Rebirth",
               "locked": true,
-              "edition": "Soul of Rebirth",
+              "edition": "Final Fantasy II 20th Anniversary",
               "platform": ["PSP"],
               "unlocks": []
             }
@@ -119,9 +119,9 @@
           "era": "NES",
           "order": 11,
           "type": "ALTERNATE",
-          "title": "Final Fantasy III",
+          "title": "Final Fantasy III 3D",
           "locked": true,
-          "edition": "3D Remake",
+          "edition": "",
           "platform": ["STEAM"],
           "unlocks": []
         }
@@ -144,7 +144,7 @@
           "type": "ALTERNATE",
           "title": "Final Fantasy II(IV)",
           "locked": true,
-          "edition": "SNES",
+          "edition": "",
           "platform": ["SNES"],
           "unlocks": []
         },
@@ -198,9 +198,9 @@
           "era": "SNES",
           "order": 18,
           "type": "ALTERNATE",
-          "title": "Final Fantasy IV",
+          "title": "Final Fantasy IV 3D",
           "locked": true,
-          "edition": "3D Remake",
+          "edition": "",
           "platform": ["STEAM"],
           "unlocks": [
             {
@@ -210,7 +210,7 @@
               "type": "SEQUEL",
               "title": "The After Years",
               "locked": true,
-              "edition": "3D Remake",
+              "edition": "Final Fantasy IV 3D",
               "platform": ["STEAM"],
               "unlocks": []
             }
@@ -247,7 +247,7 @@
           "title": "Final Fantasy V",
           "locked": true,
           "edition": "Four Job Fiesta",
-          "platform": ["PS4", "PS5", "STEAM"],
+          "platform": ["GBA", "PS5", "STEAM"],
           "unlocks": []
         },
         {
@@ -255,10 +255,10 @@
           "era": "SNES",
           "order": 23,
           "type": "VIDEO",
-          "title": "Final Fantasy V",
+          "title": "Legend of the Crystals",
           "locked": true,
-          "edition": "Legend of the Crystals",
-          "platform": [],
+          "edition": "Final Fantasy V",
+          "platform": ["VIDEO"],
           "unlocks": []
         }
       ]
@@ -280,7 +280,7 @@
           "type": "ALTERNATE",
           "title": "Final Fantasy III(VI)",
           "locked": true,
-          "edition": "SNES",
+          "edition": "",
           "platform": ["SNES"],
           "unlocks": []
         },
@@ -304,7 +304,7 @@
       "type": "CORE",
       "title": "Final Fantasy VII",
       "locked": true,
-      "edition": "Steam",
+      "edition": "",
       "platform": ["STEAM"],
       "unlocks": [
         {
@@ -323,9 +323,9 @@
           "era": "PS1",
           "order": 29,
           "type": "PREQUEL",
-          "title": "Crisis Core: Final Fantasy VII",
+          "title": "Crisis Core Reunion",
           "locked": true,
-          "edition": "Reunion",
+          "edition": "Final Fantasy VII",
           "platform": ["PS4", "PS5", "STEAM"],
           "unlocks": []
         },
@@ -334,9 +334,9 @@
           "era": "PS1",
           "order": 30,
           "type": "SEQUEL",
-          "title": "Dirge of Cerberus: Final Fantasy VII",
+          "title": "Dirge of Cerberus",
           "locked": true,
-          "edition": "PS2",
+          "edition": "Final Fantasy VII",
           "platform": ["PS2"],
           "unlocks": []
         },
@@ -345,9 +345,9 @@
           "era": "PS1",
           "order": 31,
           "type": "ALTERNATE",
-          "title": "Final Fantasy VII",
+          "title": "Final Fantasy VII Ever Crisis",
           "locked": true,
-          "edition": "Ever Crisis: The First Soldier",
+          "edition": "The First Soldier",
           "platform": ["STEAM"],
           "unlocks": []
         },
@@ -356,9 +356,9 @@
           "era": "PS1",
           "order": 32,
           "type": "VIDEO",
-          "title": "Final Fantasy VII",
+          "title": "Advent Children Complete",
           "locked": true,
-          "edition": "Advent Children Complete",
+          "edition": "Final Fantasy VII",
           "platform": [],
           "unlocks": []
         },
@@ -367,9 +367,9 @@
           "era": "PS1",
           "order": 33,
           "type": "ALTERNATE",
-          "title": "Final Fantasy VII",
+          "title": "Final Fantasy VII Remake",
           "locked": true,
-          "edition": "Remake",
+          "edition": "",
           "platform": ["PS4", "PS5"],
           "unlocks": [
             {
@@ -377,7 +377,7 @@
               "era": "PS1",
               "order": 34,
               "type": "ALTERNATE",
-              "title": "Final Fantasy VII",
+              "title": "Final Fantasy VII Remake",
               "locked": true,
               "edition": "Intergrade",
               "platform": ["PS5", "STEAM"],
@@ -388,7 +388,7 @@
               "era": "PS1",
               "order": 35,
               "type": "DIFFICULTY",
-              "title": "Final Fantasy VII",
+              "title": "Final Fantasy VII Remake",
               "locked": true,
               "edition": "Hard Mode",
               "platform": ["PS4", "PS5"],
@@ -399,9 +399,9 @@
               "era": "PS1",
               "order": 36,
               "type": "ALTERNATE",
-              "title": "Final Fantasy VII",
+              "title": "Final Fantasy VII Rebirth",
               "locked": true,
-              "edition": "Rebirth",
+              "edition": "",
               "platform": ["PS5"],
               "unlocks": [
                 {
@@ -409,7 +409,7 @@
                   "era": "PS1",
                   "order": 37,
                   "type": "DIFFICULTY",
-                  "title": "Final Fantasy VII",
+                  "title": "Final Fantasy VII Rebirth",
                   "locked": true,
                   "edition": "Hard Mode",
                   "platform": ["PS5"],
@@ -422,7 +422,7 @@
                   "type": "ALTERNATE",
                   "title": "Final Fantasy VII",
                   "locked": true,
-                  "edition": "?",
+                  "edition": "",
                   "platform": ["PS5"],
                   "unlocks": [
                     {
@@ -462,7 +462,7 @@
       "type": "CORE",
       "title": "Final Fantasy IX",
       "locked": true,
-      "edition": "Steam",
+      "edition": "",
       "platform": ["STEAM"],
       "unlocks": [
         {
@@ -484,7 +484,7 @@
           "title": "Final Fantasy IX",
           "locked": true,
           "edition": "Animated Series",
-          "platform": [],
+          "platform": ["VIDEO"],
           "unlocks": []
         },
         {
