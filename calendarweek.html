@@ -520,6 +520,9 @@ const YT_ICON_URL = "img/youtube.png";
 const TWITCH_URL = "https://twitch.tv/narishm";
 const TWITCH_ICON_URL = "img/twitch.png"; // put your provided image here
 
+/* ✅ Live thumbnail for right box while live */
+const LIVE_THUMB_URL = "img/live.png";
+
 /* OFF defaults */
 const OFF_MAIN = "OFF";
 const OFF_BAR_CODE = "00";
@@ -591,7 +594,7 @@ function formatViewerLocalTime(date){
 
 /* ✅ Live ticker state */
 let liveTicker = null;
-let liveTarget = null; // { rowEl, startMs, endMs }
+let liveTarget = null; // { rowEl, startMs, endMs, arrowR, origThumbUrl }
 
 function getEventRangeMillis(ev){
   // Only timed events (dateTime) get a live window.
@@ -609,9 +612,20 @@ function getEventRangeMillis(ev){
 
 function updateLiveState(){
   if(!liveTarget) return;
+
   const now = Date.now();
   const isLive = now >= liveTarget.startMs && now < liveTarget.endMs;
+
   liveTarget.rowEl.classList.toggle("live", isLive);
+
+  // ✅ swap the right thumbnail image only while live
+  if(liveTarget.arrowR){
+    if(isLive){
+      liveTarget.arrowR.style.setProperty("--thumb", `url("${LIVE_THUMB_URL.replace(/"/g,'\\"')}")`);
+    } else if(liveTarget.origThumbUrl){
+      liveTarget.arrowR.style.setProperty("--thumb", `url("${liveTarget.origThumbUrl.replace(/"/g,'\\"')}")`);
+    }
+  }
 }
 
 /* Create a Date that represents "YYYY-MM-DD at 12:00 in America/New_York" (fallback for all-day) */
@@ -1048,6 +1062,10 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, 
   row.appendChild(bar);
   row.appendChild(arrowR);
 
+  // ✅ store refs so "live" can swap thumb temporarily
+  row._arrowR = arrowR;
+  row._origThumbUrl = thumbUrl || "";
+
   // Queue uniform SVG borders
   queueStroke(arrow, "arrowL");
   queueStroke(bar, "bar");
@@ -1170,7 +1188,13 @@ async function refreshWeek(){
       if(isToday && driver){
         const range = getEventRangeMillis(driver);
         if(range){
-          liveTarget = { rowEl, startMs: range.startMs, endMs: range.endMs };
+          liveTarget = {
+            rowEl,
+            startMs: range.startMs,
+            endMs: range.endMs,
+            arrowR: rowEl._arrowR,
+            origThumbUrl: rowEl._origThumbUrl
+          };
         }
       }
     }
