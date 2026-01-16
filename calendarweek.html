@@ -198,14 +198,14 @@
       stroke: url(#todayStroke);
     }
 
-    /* Hover highlight: whole row reacts when mouse is over any part */
-    .row:hover .strokeSvg polygon{
-      stroke: url(#hoverStroke);
-    }
-
     /* ✅ Live border: ONLY the middle bar stroke becomes red gradient */
     .row.live .bar .strokeSvg polygon{
       stroke: url(#liveStroke) !important;
+    }
+
+    /* Hover highlight: whole row reacts when mouse is over any part */
+    .row:hover .strokeSvg polygon{
+      stroke: url(#hoverStroke);
     }
 
     /* ✅ Live border: ALSO the right thumbnail stroke becomes red gradient */
