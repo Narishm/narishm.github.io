@@ -2,7 +2,7 @@
   "eras": ["NES", "SNES", "PS1", "HD", "MODERN", "MMO", "SIDE"],
   "adventures": [
     {
-      "id": "FF1",
+      "id": "ff1pr",
       "era": "NES",
       "order": 1,
       "type": "MAIN",
@@ -12,7 +12,7 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF1NES",
+          "id": "ff1nes",
           "era": "NES",
           "order": 2,
           "type": "ALTERNATE",
@@ -23,7 +23,7 @@
           "unlocks": []
         },
         {
-          "id": "FF1DOS",
+          "id": "ff1dos",
           "era": "NES",
           "order": 3,
           "type": "ALTERNATE",
@@ -34,7 +34,7 @@
           "unlocks": []
         },
         {
-          "id": "FF120",
+          "id": "ff120th",
           "era": "NES",
           "order": 4,
           "type": "ALTERNATE",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": "FF2",
+      "id": "ff2pr",
       "era": "NES",
       "order": 5,
       "type": "MAIN",
@@ -57,7 +57,7 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF2DOS",
+          "id": "ff2dos",
           "era": "NES",
           "order": 6,
           "type": "ALTERNATE",
@@ -67,7 +67,7 @@
           "platform": ["GBA"],
           "unlocks": [
             {
-              "id": "SORDOS",
+              "id": "ff2dossor",
               "era": "NES",
               "order": 7,
               "type": "SEQUEL",
@@ -80,7 +80,7 @@
           ]
         },
         {
-          "id": "FF220",
+          "id": "ff220th",
           "era": "NES",
           "order": 8,
           "type": "ALTERNATE",
@@ -90,7 +90,7 @@
           "platform": ["PSP"],
           "unlocks": [
             {
-              "id": "SOR20",
+              "id": "ff220thsor",
               "era": "NES",
               "order": 9,
               "type": "SEQUEL",
@@ -105,7 +105,7 @@
       ]
     },
     {
-      "id": "FF3",
+      "id": "ff3pr",
       "era": "NES",
       "order": 10,
       "type": "MAIN",
@@ -115,7 +115,7 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF33D",
+          "id": "ff33d",
           "era": "NES",
           "order": 11,
           "type": "ALTERNATE",
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "id": "FF4",
+      "id": "ff4pr",
       "era": "SNES",
       "order": 12,
       "type": "CORE",
@@ -138,7 +138,7 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF4SNES",
+          "id": "ff4snes",
           "era": "SNES",
           "order": 13,
           "type": "ALTERNATE",
@@ -149,7 +149,7 @@
           "unlocks": []
         },
         {
-          "id": "FF4ADV",
+          "id": "ff4adv",
           "era": "SNES",
           "order": 14,
           "type": "ALTERNATE",
@@ -160,7 +160,7 @@
           "unlocks": []
         },
         {
-          "id": "FF4CC",
+          "id": "ff4cc",
           "era": "SNES",
           "order": 15,
           "type": "ALTERNATE",
@@ -170,7 +170,7 @@
           "platform": ["PSP"],
           "unlocks": [
             {
-              "id": "FF4CCINT",
+              "id": "ff4cci",
               "era": "SNES",
               "order": 16,
               "type": "SEQUEL",
@@ -181,7 +181,7 @@
               "unlocks": []
             },
             {
-              "id": "FF4CCAY",
+              "id": "ff4cctay",
               "era": "SNES",
               "order": 17,
               "type": "SEQUEL",
@@ -194,7 +194,7 @@
           ]
         },
         {
-          "id": "FF43D",
+          "id": "ff43d",
           "era": "SNES",
           "order": 18,
           "type": "ALTERNATE",
@@ -204,7 +204,7 @@
           "platform": ["STEAM"],
           "unlocks": [
             {
-              "id": "FF43DAY",
+              "id": "ff43dtay",
               "era": "SNES",
               "order": 19,
               "type": "SEQUEL",
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "id": "FF5",
+      "id": "ff5pr",
       "era": "SNES",
       "order": 20,
       "type": "CORE",
@@ -229,7 +229,7 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF5ADV",
+          "id": "ff5adv",
           "era": "SNES",
           "order": 21,
           "type": "ALTERNATE",
@@ -240,7 +240,7 @@
           "unlocks": []
         },
         {
-          "id": "FF5FJF",
+          "id": "ff5fjf",
           "era": "SNES",
           "order": 22,
           "type": "CHALLENGE",
@@ -251,7 +251,7 @@
           "unlocks": []
         },
         {
-          "id": "FF5LOTC",
+          "id": "ff5lotc",
           "era": "SNES",
           "order": 23,
           "type": "VIDEO",
@@ -264,7 +264,7 @@
       ]
     },
     {
-      "id": "FF6",
+      "id": "ff6pr",
       "era": "SNES",
       "order": 24,
       "type": "CORE",
@@ -274,7 +274,7 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF6SNES",
+          "id": "ff6snes",
           "era": "SNES",
           "order": 25,
           "type": "ALTERNATE",
@@ -285,7 +285,7 @@
           "unlocks": []
         },
         {
-          "id": "FF6ADV",
+          "id": "ff6adv",
           "era": "SNES",
           "order": 26,
           "type": "ALTERNATE",
@@ -298,7 +298,7 @@
       ]
     },
     {
-      "id": "FF7",
+      "id": "ff7ps1",
       "era": "PS1",
       "order": 27,
       "type": "CORE",
@@ -308,7 +308,7 @@
       "platform": ["STEAM"],
       "unlocks": [
         {
-          "id": "FF7SAC",
+          "id": "ff7sac",
           "era": "PS1",
           "order": 28,
           "type": "MOD",
@@ -319,7 +319,7 @@
           "unlocks": []
         },
         {
-          "id": "CCFF7R",
+          "id": "ccff7r",
           "era": "PS1",
           "order": 29,
           "type": "PREQUEL",
@@ -330,7 +330,7 @@
           "unlocks": []
         },
         {
-          "id": "DOCFF7",
+          "id": "docff7",
           "era": "PS1",
           "order": 30,
           "type": "SEQUEL",
@@ -341,18 +341,18 @@
           "unlocks": []
         },
         {
-          "id": "FF7ECX",
+          "id": "ff7ectfs",
           "era": "PS1",
           "order": 31,
           "type": "ALTERNATE",
           "title": "Final Fantasy VII",
           "locked": true,
-          "edition": "Ever Crisis (The First Soldier)",
+          "edition": "Ever Crisis: The First Soldier",
           "platform": ["STEAM"],
           "unlocks": []
         },
         {
-          "id": "FF7ACC",
+          "id": "ff7acc",
           "era": "PS1",
           "order": 32,
           "type": "VIDEO",
@@ -363,7 +363,7 @@
           "unlocks": []
         },
         {
-          "id": "FF7R",
+          "id": "ff7r",
           "era": "PS1",
           "order": 33,
           "type": "ALTERNATE",
@@ -373,7 +373,7 @@
           "platform": ["PS4", "PS5"],
           "unlocks": [
             {
-              "id": "FF7RI",
+              "id": "ff7ri",
               "era": "PS1",
               "order": 34,
               "type": "ALTERNATE",
@@ -384,7 +384,7 @@
               "unlocks": []
             },
             {
-              "id": "FF7RH",
+              "id": "ff7rh",
               "era": "PS1",
               "order": 35,
               "type": "DIFFICULTY",
@@ -395,7 +395,7 @@
               "unlocks": []
             },
             {
-              "id": "FF7R2",
+              "id": "ff7r2",
               "era": "PS1",
               "order": 36,
               "type": "ALTERNATE",
@@ -405,7 +405,7 @@
               "platform": ["PS5"],
               "unlocks": [
                 {
-                  "id": "FF7R2H",
+                  "id": "ff7r2h",
                   "era": "PS1",
                   "order": 37,
                   "type": "DIFFICULTY",
@@ -416,7 +416,7 @@
                   "unlocks": []
                 },
                 {
-                  "id": "FF7R3",
+                  "id": "ff7r3",
                   "era": "PS1",
                   "order": 38,
                   "type": "ALTERNATE",
@@ -426,7 +426,7 @@
                   "platform": ["PS5"],
                   "unlocks": [
                     {
-                      "id": "FF7R3H",
+                      "id": "ff7r3h",
                       "era": "PS1",
                       "order": 39,
                       "type": "DIFFICULTY",
@@ -445,7 +445,7 @@
       ]
     },
     {
-      "id": "FF8",
+      "id": "ff8r",
       "era": "PS1",
       "order": 40,
       "type": "CORE",
@@ -456,7 +456,7 @@
       "unlocks": []
     },
     {
-      "id": "FF9",
+      "id": "ff9ps1",
       "era": "PS1",
       "order": 41,
       "type": "CORE",
@@ -466,7 +466,7 @@
       "platform": ["STEAM"],
       "unlocks": [
         {
-          "id": "FF9MOG",
+          "id": "ff9mm",
           "era": "PS1",
           "order": 42,
           "type": "MOD",
@@ -477,7 +477,7 @@
           "unlocks": []
         },
         {
-          "id": "FF9ANI",
+          "id": "ff9ani",
           "era": "PS1",
           "order": 43,
           "type": "VIDEO",
@@ -488,20 +488,20 @@
           "unlocks": []
         },
         {
-          "id": "FF9RUM",
+          "id": "ff9r",
           "era": "PS1",
           "order": 44,
           "type": "ALTERNATE",
           "title": "Final Fantasy IX",
           "locked": true,
-          "edition": "Remaster (Rumored)",
+          "edition": "Remaster",
           "platform": [],
           "unlocks": []
         }
       ]
     },
     {
-      "id": "FFX",
+      "id": "ffxhdr",
       "era": "HD",
       "order": 45,
       "type": "CORE",
@@ -511,17 +511,17 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FFXEC",
+          "id": "ffxhdrec",
           "era": "HD",
           "order": 46,
           "type": "VIDEO",
-          "title": "Final Fantasy X",
+          "title": "Eternal Calm",
           "locked": true,
-          "edition": "Eternal Calm",
+          "edition": "Final Fantasy X",
           "platform": ["PS4", "PS5", "STEAM"],
           "unlocks": [
             {
-              "id": "FFX2",
+              "id": "ffx2hdr",
               "era": "HD",
               "order": 47,
               "type": "SEQUEL",
@@ -531,13 +531,13 @@
               "platform": ["PS4", "PS5", "STEAM"],
               "unlocks": [
                 {
-                  "id": "FFXLM",
+                  "id": "ffx2hgdrtlm",
                   "era": "HD",
                   "order": 48,
                   "type": "SEQUEL",
-                  "title": "Final Fantasy X-2",
+                  "title": "Last Mission",
                   "locked": true,
-                  "edition": "Last Mission",
+                  "edition": "Final Fantasy X-2",
                   "platform": ["PS4", "PS5", "STEAM"],
                   "unlocks": []
                 }
@@ -548,7 +548,7 @@
       ]
     },
     {
-      "id": "FF12",
+      "id": "ff12tza",
       "era": "HD",
       "order": 49,
       "type": "CORE",
@@ -558,29 +558,29 @@
       "platform": ["PS4", "PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF12PS2",
+          "id": "ff12ps2",
           "era": "HD",
           "order": 50,
           "type": "ALTERNATE",
           "title": "Final Fantasy XII",
           "locked": true,
-          "edition": "PS2",
+          "edition": "",
           "platform": ["PS2"],
           "unlocks": []
         },
         {
-          "id": "VSTORY",
+          "id": "vsps1",
           "era": "HD",
           "order": 51,
           "type": "SPINOFF",
           "title": "Vagrant Story",
           "locked": true,
-          "edition": "PS1 Original",
+          "edition": "",
           "platform": ["PS1"],
           "unlocks": []
         },
         {
-          "id": "FFTIC",
+          "id": "fftic",
           "era": "HD",
           "order": 52,
           "type": "SPINOFF",
@@ -590,58 +590,58 @@
           "platform": [],
           "unlocks": [
             {
-              "id": "FFTPS1",
+              "id": "fftps1",
               "era": "HD",
               "order": 53,
               "type": "ALTERNATE",
               "title": "Final Fantasy Tactics",
               "locked": true,
-              "edition": "PS1 Original",
+              "edition": "",
               "platform": ["PS1"],
               "unlocks": []
             },
             {
-              "id": "FFTWOTL",
+              "id": "ffttwotl",
               "era": "HD",
               "order": 54,
               "type": "ALTERNATE",
-              "title": "Final Fantasy Tactics",
+              "title": "The War of the Lions",
               "locked": true,
-              "edition": "The War of the Lions",
+              "edition": "Final Fantasy Tactics",
               "platform": ["PSP"],
               "unlocks": []
             }
           ]
         },
         {
-          "id": "FF12RW",
+          "id": "ff12rw",
           "era": "HD",
           "order": 55,
           "type": "SPINOFF",
-          "title": "Final Fantasy XII",
+          "title": "Revenant Wings",
           "locked": true,
-          "edition": "Revenant Wings",
+          "edition": "Final Fantasy XII",
           "platform": ["DS"],
           "unlocks": []
         },
         {
-          "id": "FFTA",
+          "id": "fftadv",
           "era": "HD",
           "order": 56,
           "type": "SPINOFF",
           "title": "Final Fantasy Tactics Advance",
           "locked": true,
-          "edition": "GBA",
+          "edition": "",
           "platform": ["GBA"],
           "unlocks": [
             {
-              "id": "FFTA2",
+              "id": "fftadv2a2gotr",
               "era": "HD",
               "order": 57,
               "type": "SPINOFF",
-              "title": "Final Fantasy Tactics A2",
+              "title": "Grimoire of the Rift",
               "locked": true,
-              "edition": "Grimoire of the Rift",
+              "edition": "Final Fantasy Tactics A2",
               "platform": ["DS"],
               "unlocks": []
             }
@@ -650,43 +650,43 @@
       ]
     },
     {
-      "id": "FF13",
+      "id": "ff13",
       "era": "HD",
       "order": 58,
       "type": "CORE",
       "title": "Final Fantasy XIII",
       "locked": true,
-      "edition": "Steam",
+      "edition": "",
       "platform": ["STEAM"],
       "unlocks": [
         {
-          "id": "FF132",
+          "id": "ff132",
           "era": "HD",
           "order": 59,
           "type": "SEQUEL",
           "title": "Final Fantasy XIII-2",
           "locked": true,
-          "edition": "Steam",
+          "edition": "",
           "platform": ["STEAM"],
           "unlocks": [
             {
-              "id": "FF13LR",
+              "id": "ff133lr",
               "era": "HD",
               "order": 60,
               "type": "SEQUEL",
-              "title": "Lightning Returns: Final Fantasy XIII",
+              "title": "Lightning Returns",
               "locked": true,
-              "edition": "Steam",
+              "edition": "Final Fantasy XIII",
               "platform": ["STEAM"],
               "unlocks": [
                 {
-                  "id": "FFT0",
+                  "id": "fft0hd",
                   "era": "HD",
                   "order": 61,
                   "type": "SPINOFF",
-                  "title": "Final Fantasy Type-0",
+                  "title": "Final Fantasy Type-0 HD",
                   "locked": true,
-                  "edition": "HD",
+                  "edition": "",
                   "platform": ["PS5"],
                   "unlocks": []
                 }
@@ -697,17 +697,17 @@
       ]
     },
     {
-      "id": "FF16",
+      "id": "ff16",
       "era": "MODERN",
       "order": 62,
       "type": "CORE",
       "title": "Final Fantasy XVI",
       "locked": true,
-      "edition": "Base Game",
+      "edition": "",
       "platform": ["PS5"],
       "unlocks": [
         {
-          "id": "FF16FM",
+          "id": "ff16ffm",
           "era": "MODERN",
           "order": 65,
           "type": "DIFFICULTY",
@@ -718,7 +718,7 @@
           "unlocks": []
         },
         {
-          "id": "FF16UM",
+          "id": "ff16um",
           "era": "MODERN",
           "order": 66,
           "type": "DIFFICULTY",
@@ -731,144 +731,144 @@
       ]
     },
     {
-      "id": "FF11",
+      "id": "ff11",
       "era": "MMO",
       "order": 67,
       "type": "CORE",
       "title": "Final Fantasy XI",
       "locked": true,
       "edition": "Story Review",
-      "platform": [],
+      "platform": ["VIDEO"],
       "unlocks": [
         {
-          "id": "FF11ROZ",
+          "id": "ff11roz",
           "era": "MMO",
           "order": 68,
           "type": "EXPANSION",
           "title": "Final Fantasy XI",
           "locked": true,
           "edition": "Rise of the Zilart",
-          "platform": [],
+          "platform": ["VIDEO"],
           "unlocks": [
             {
-              "id": "FF11COP",
+              "id": "ff11cop",
               "era": "MMO",
               "order": 69,
               "type": "EXPANSION",
               "title": "Final Fantasy XI",
               "locked": true,
               "edition": "Chains of Promathia",
-              "platform": [],
+              "platform": ["VIDEO"],
               "unlocks": [
                 {
-                  "id": "FF11TAU",
+                  "id": "ff11toau",
                   "era": "MMO",
                   "order": 70,
                   "type": "EXPANSION",
                   "title": "Final Fantasy XI",
                   "locked": true,
                   "edition": "Treasures of Aht Urhgan",
-                  "platform": [],
+                  "platform": ["VIDEO"],
                   "unlocks": [
                     {
-                      "id": "FF11WOTG",
+                      "id": "ff11wotg",
                       "era": "MMO",
                       "order": 71,
                       "type": "EXPANSION",
                       "title": "Final Fantasy XI",
                       "locked": true,
                       "edition": "Wings of the Goddess",
-                      "platform": [],
+                      "platform": ["VIDEO"],
                       "unlocks": [
                         {
-                          "id": "FF11SOAD",
+                          "id": "ff11soa",
                           "era": "MMO",
                           "order": 72,
                           "type": "EXPANSION",
                           "title": "Final Fantasy XI",
                           "locked": true,
                           "edition": "Seekers of Adoulin",
-                          "platform": [],
+                          "platform": ["VIDEO"],
                           "unlocks": [
                             {
-                              "id": "FF11ACP",
+                              "id": "ff11acp",
                               "era": "MMO",
                               "order": 73,
                               "type": "EXPANSION",
                               "title": "Final Fantasy XI",
                               "locked": true,
                               "edition": "A Crystalline Prophecy",
-                              "platform": [],
+                              "platform": ["VIDEO"],
                               "unlocks": [
                                 {
-                                  "id": "FF11MKD",
+                                  "id": "ff11amkd",
                                   "era": "MMO",
                                   "order": 74,
                                   "type": "EXPANSION",
                                   "title": "Final Fantasy XI",
                                   "locked": true,
                                   "edition": "A Moogle Kupo d'Etat",
-                                  "platform": [],
+                                  "platform": ["VIDEO"],
                                   "unlocks": [
                                     {
-                                      "id": "FF11ASA",
+                                      "id": "ff11asa",
                                       "era": "MMO",
                                       "order": 75,
                                       "type": "EXPANSION",
                                       "title": "Final Fantasy XI",
                                       "locked": true,
                                       "edition": "A Shantotto Ascension",
-                                      "platform": [],
+                                      "platform": ["VIDEO"],
                                       "unlocks": [
                                         {
-                                          "id": "FF11VAB",
+                                          "id": "ff11voa",
                                           "era": "MMO",
                                           "order": 76,
                                           "type": "EXPANSION",
                                           "title": "Final Fantasy XI",
                                           "locked": true,
                                           "edition": "Vision of Abyssea",
-                                          "platform": [],
+                                          "platform": ["VIDEO"],
                                           "unlocks": [
                                             {
-                                              "id": "FF11SAB",
+                                              "id": "ff11soa",
                                               "era": "MMO",
                                               "order": 77,
                                               "type": "EXPANSION",
                                               "title": "Final Fantasy XI",
                                               "locked": true,
                                               "edition": "Scars of Abyssea",
-                                              "platform": [],
+                                              "platform": ["VIDEO"],
                                               "unlocks": [
                                                 {
-                                                  "id": "FF11HAB",
+                                                  "id": "ff11hoa",
                                                   "era": "MMO",
                                                   "order": 78,
                                                   "type": "EXPANSION",
                                                   "title": "Final Fantasy XI",
                                                   "locked": true,
                                                   "edition": "Heroes of Abyssea",
-                                                  "platform": [],
+                                                  "platform": ["VIDEO"],
                                                   "unlocks": [
                                                     {
-                                                      "id": "FF11ROV",
+                                                      "id": "ff11rov",
                                                       "era": "MMO",
                                                       "order": 79,
                                                       "type": "EXPANSION",
                                                       "title": "Final Fantasy XI",
                                                       "locked": true,
                                                       "edition": "Rhapsodies of Vana'diel",
-                                                      "platform": [],
+                                                      "platform": ["VIDEO"],
                                                       "unlocks": [
                                                         {
-                                                          "id": "FF11TVR",
+                                                          "id": "ff11tvr",
                                                           "era": "MMO",
                                                           "order": 80,
                                                           "type": "EXPANSION",
                                                           "title": "Final Fantasy XI",
                                                           "locked": true,
                                                           "edition": "The Voracious Resurgence",
-                                                          "platform": [],
+                                                          "platform": ["VIDEO"],
                                                           "unlocks": []
                                                         }
                                                       ]
@@ -898,7 +898,7 @@
       ]
     },
     {
-      "id": "FF14ARR",
+      "id": "ff14arr",
       "era": "MMO",
       "order": 82,
       "type": "EXPANSION",
@@ -908,7 +908,7 @@
       "platform": ["PS5", "STEAM"],
       "unlocks": [
         {
-          "id": "FF14HW",
+          "id": "ff14hw",
           "era": "MMO",
           "order": 83,
           "type": "EXPANSION",
@@ -918,7 +918,7 @@
           "platform": ["PS5", "STEAM"],
           "unlocks": [
             {
-              "id": "FF14SB",
+              "id": "ff14sb",
               "era": "MMO",
               "order": 84,
               "type": "EXPANSION",
@@ -928,7 +928,7 @@
               "platform": ["PS5", "STEAM"],
               "unlocks": [
                 {
-                  "id": "FF14SHB",
+                  "id": "ff14shb",
                   "era": "MMO",
                   "order": 85,
                   "type": "EXPANSION",
@@ -938,7 +938,7 @@
                   "platform": ["PS5", "STEAM"],
                   "unlocks": [
                     {
-                      "id": "FF14EW",
+                      "id": "ff14ew",
                       "era": "MMO",
                       "order": 86,
                       "type": "EXPANSION",
@@ -948,7 +948,7 @@
                       "platform": ["PS5", "STEAM"],
                       "unlocks": [
                         {
-                          "id": "FF14DT",
+                          "id": "ff14dt",
                           "era": "MMO",
                           "order": 87,
                           "type": "EXPANSION",
@@ -969,18 +969,18 @@
       ]
     },
     {
-      "id": "FFMQ",
+      "id": "ffmq",
       "era": "SIDE",
       "order": 88,
       "type": "SPINOFF",
       "title": "Final Fantasy Mystic Quest",
       "locked": true,
-      "edition": "SNES",
+      "edition": "",
       "platform": ["SNES"],
       "unlocks": []
     },
     {
-      "id": "FFCC",
+      "id": "ffccr",
       "era": "SIDE",
       "order": 89,
       "type": "SPINOFF",
@@ -990,54 +990,54 @@
       "platform": ["PS5"],
       "unlocks": [
         {
-          "id": "FFCCROF",
+          "id": "ffccrof",
           "era": "SIDE",
           "order": 90,
           "type": "SPINOFF",
-          "title": "Final Fantasy Crystal Chronicles",
+          "title": "Ring of Fates",
           "locked": true,
-          "edition": "Ring of Fates",
+          "edition": "Final Fantasy Crystal Chronicles",
           "platform": ["DS"],
           "unlocks": [
             {
-              "id": "FFCCMLK",
+              "id": "ffccmlaak",
               "era": "SIDE",
               "order": 91,
               "type": "SPINOFF",
-              "title": "Final Fantasy Crystal Chronicles",
+              "title": "My Life as a King",
               "locked": true,
-              "edition": "My Life as a King",
-              "platform": ["Wii"],
+              "edition": "Final Fantasy Crystal Chronicles",
+              "platform": ["WII"],
               "unlocks": [
                 {
-                  "id": "FFCCEOT",
+                  "id": "ffcceot",
                   "era": "SIDE",
                   "order": 92,
                   "type": "SPINOFF",
-                  "title": "Final Fantasy Crystal Chronicles",
+                  "title": "Echoes of Time",
                   "locked": true,
-                  "edition": "Echoes of Time",
+                  "edition": "Final Fantasy Crystal Chronicles",
                   "platform": ["DS"],
                   "unlocks": [
                     {
-                      "id": "FFCCMLD",
+                      "id": "ffccmlaad",
                       "era": "SIDE",
                       "order": 93,
                       "type": "SPINOFF",
-                      "title": "Final Fantasy Crystal Chronicles",
+                      "title": "My Life as a Darklord",
                       "locked": true,
-                      "edition": "My Life as a Darklord",
-                      "platform": ["Wii"],
+                      "edition": "Final Fantasy Crystal Chronicles",
+                      "platform": ["WII"],
                       "unlocks": [
                         {
-                          "id": "FFCCCB",
+                          "id": "ffcccb",
                           "era": "SIDE",
                           "order": 94,
                           "type": "SPINOFF",
-                          "title": "Final Fantasy Crystal Chronicles",
+                          "title": "Crystal Bearers",
                           "locked": true,
-                          "edition": "Crystal Bearers",
-                          "platform": ["Wii"],
+                          "edition": "",
+                          "platform": ["WII"],
                           "unlocks": []
                         }
                       ]
@@ -1051,66 +1051,66 @@
       ]
     },
     {
-      "id": "WOFF",
+      "id": "woff",
       "era": "SIDE",
       "order": 95,
       "type": "SPINOFF",
       "title": "World of Final Fantasy",
       "locked": true,
-      "edition": "Switch",
+      "edition": "",
       "platform": ["SWITCH"],
       "unlocks": []
     },
     {
-      "id": "TSW",
+      "id": "fftsw",
       "era": "SIDE",
       "order": 96,
       "type": "VIDEO",
-      "title": "Final Fantasy",
+      "title": "The Spirits Within",
       "locked": true,
-      "edition": "The Spirits Within",
-      "platform": [],
+      "edition": "",
+      "platform": ["VIDEO"],
       "unlocks": []
     },
     {
-      "id": "FFSOP",
+      "id": "ffosop",
       "era": "SIDE",
       "order": 97,
       "type": "SPINOFF",
-      "title": "Stranger of Paradise: Final Fantasy Origin",
+      "title": "Stranger of Paradise",
       "locked": true,
-      "edition": "PS5",
+      "edition": "Final Fantasy Origin",
       "platform": ["PS5"],
       "unlocks": []
     },
     {
-      "id": "DISS",
+      "id": "ffd",
       "era": "SIDE",
       "order": 98,
       "type": "SPINOFF",
       "title": "Dissidia Final Fantasy",
       "locked": true,
-      "edition": "PSP",
+      "edition": "",
       "platform": ["PSP"],
       "unlocks": [
         {
-          "id": "DISS012",
+          "id": "ffd012",
           "era": "SIDE",
           "order": 99,
           "type": "SEQUEL",
-          "title": "Dissidia 012 Final Fantasy",
+          "title": "Dissidia Final Fantasy",
           "locked": true,
-          "edition": "PSP",
+          "edition": "012",
           "platform": ["PSP"],
           "unlocks": [
             {
-              "id": "DISSNT",
+              "id": "ffdnt",
               "era": "SIDE",
               "order": 100,
               "type": "ALTERNATE",
-              "title": "Dissidia Final Fantasy NT",
+              "title": "Dissidia Final Fantasy",
               "locked": true,
-              "edition": "PS5",
+              "edition": "NT",
               "platform": ["PS5"],
               "unlocks": []
             }
@@ -1119,17 +1119,17 @@
       ]
     },
     {
-      "id": "THFBL",
+      "id": "fftfbl",
       "era": "SIDE",
       "order": 101,
       "type": "SPINOFF",
-      "title": "Theatrhythm Final Bar Line",
+      "title": "Theatrhythm Final Fantasy",
       "locked": true,
-      "edition": "PS5",
+      "edition": "Final Bar Line",
       "platform": ["PS5"],
       "unlocks": [
         {
-          "id": "TH3DS",
+          "id": "fft3ds",
           "era": "SIDE",
           "order": 102,
           "type": "ALTERNATE",
@@ -1139,7 +1139,7 @@
           "platform": ["3DS"],
           "unlocks": [
             {
-              "id": "THCC",
+              "id": "fftcc",
               "era": "SIDE",
               "order": 103,
               "type": "ALTERNATE",
@@ -1154,13 +1154,13 @@
       ]
     },
     {
-      "id": "FFEC",
+      "id": "ff7ec",
       "era": "SIDE",
       "order": 104,
       "type": "SPINOFF",
-      "title": "Final Fantasy VII Ever Crisis",
+      "title": "Final Fantasy VII",
       "locked": true,
-      "edition": "Steam",
+      "edition": "Ever Crisis",
       "platform": ["STEAM"],
       "unlocks": []
     }
