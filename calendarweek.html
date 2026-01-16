@@ -22,6 +22,10 @@
       --today1: #2de2e6; /* teal */
       --today2: #2f7dff; /* blue */
 
+      /* Hover highlight stroke gradient */
+      --hover1: #2cff6a; /* bright green */
+      --hover2: #0b3d1f; /* dark green */
+
       --blue1: #2e4b78;
       --blue2: #1f345a;
 
@@ -45,9 +49,6 @@
 
       /* UI font (Day/Date) */
       --uiFont: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-      /* Embedded YouTube icon (your uploaded image) */
-      --ytIcon: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUAAAADgCAYAAABy+7/wAAAgAElEQVR4nOySwQrDMAxDX5qm2/9/7bY4qDk0o7oJf4x0m0a6oQm0f0QKkG7bqV3v8z8l5wq8dWcG7fUqgVq9G8cXyqvQy8qE7b3mW0p0bJ0w6y9wqgN2b0c3m8Y3rJd7o2mWmY3c2v2K0m1l2wQb9QmP0jK7C6wT9d5b8nJmQv2c6m4a7c9tQw0p3t8W0m+2r8cYh9gFq9oJx0r1m8m7mYy9m9gqf0vYx9n8b9tZ3mB0cVvV0b2xw0Z4Yq9n8s1+oUeQGZc7eKpYJ6bO1o0+v8c+Q1E9i8wq+5r4qf6r8gq8u0oGz8pKx8mB9dWbXw2mO2m9o1pY2vX0n1T0s9vYq0Zkq8f1v0b1f9o8u9p+zPqQhV8r5b8m7a+8v9t8h9Jm1qf0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q0o0m8k8Q==");
     }
 
     @font-face {
@@ -193,6 +194,15 @@
       stroke: url(#todayStroke);
     }
 
+    /* Hover highlight: whole row reacts when mouse is over any part */
+    .row:hover .strokeSvg polygon{
+      stroke: url(#hoverStroke);
+    }
+    /* Keep today stroke when today row is hovered */
+    .row.today:hover .strokeSvg polygon{
+      stroke: url(#todayStroke);
+    }
+
     .content-layer {
       position: relative;
       z-index: 5;
@@ -202,8 +212,8 @@
       padding: 0 20px;
     }
 
-    /* LEFT PANEL pattern is now dynamic (per-row) */
-    .arrow { --leftPattern: url("img/06.png"); }
+    /* LEFT ARROW: make pattern variable per-row */
+    .arrow { --leftPattern: url("img/06.png"); } /* default */
     .arrow::after {
       clip-path: polygon(
         0% 50%,
@@ -334,28 +344,36 @@
       padding-right: 6px; /* ✅ scoot left */
     }
 
-    /* YouTube links replace the time when present */
-    .ytLinks{
-      margin-left: auto;
-      padding-right: 6px;
+    /* YouTube icons container (replaces time) */
+    .ytIcons {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      margin-left: auto;
+      padding-right: 6px; /* same “scoot left” */
       flex: 0 0 auto;
     }
-    .ytBtn{
-      width: 38px;
-      height: 26px;
-      display: inline-block;
-      background: var(--ytIcon) center/contain no-repeat;
-      filter: drop-shadow(0 3px 0 rgba(0,0,0,.85));
-      opacity: .95;
-      transform: translateY(0);
-      transition: transform .08s ease, opacity .08s ease;
+    .ytLink {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 4px 0 rgba(0,0,0,.55);
+      text-decoration: none;
+      transition: transform .08s ease, background .12s ease;
     }
-    .ytBtn:hover{
-      transform: translateY(-1px);
-      opacity: 1;
+    .ytLink:hover { background: rgba(0,0,0,.35); transform: translateY(-1px); }
+    .ytLink:active { transform: translateY(0px); }
+
+    .ytIcon {
+      width: 22px;
+      height: 22px;
+      display: block;
+      image-rendering: pixelated; /* keeps your pixel art crisp */
     }
 
     @media (max-width: 800px) {
@@ -369,18 +387,23 @@
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow, .date { font-size: 28px; }
       .dowWrap { transform: translateY(-3px); gap: 3px; }
-      .ytBtn{ width: 34px; height: 24px; }
+      .ytLink { width: 30px; height: 30px; }
+      .ytIcon { width: 20px; height: 20px; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Gradient def used by today's border -->
+  <!-- Gradient def used by today's border & hover border -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="todayStroke" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="var(--today1)"/>
         <stop offset="100%" stop-color="var(--today2)"/>
+      </linearGradient>
+      <linearGradient id="hoverStroke" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="var(--hover1)"/>
+        <stop offset="100%" stop-color="var(--hover2)"/>
       </linearGradient>
     </defs>
   </svg>
@@ -410,6 +433,9 @@ const IMAGE_EXTENSION = ".png";
 /* ✅ WHERE YOUR QUEST JSON FILES LIVE */
 const QUEST_JSON_BASE_URL = "json/";   // change to "./" if the json sits beside the html
 
+/* YouTube icon (in img folder) */
+const YT_ICON_URL = "img/youtube.png";
+
 /* OFF defaults */
 const OFF_MAIN = "OFF";
 const OFF_BAR_CODE = "00";
@@ -419,6 +445,9 @@ const OFF_THUMB_CODE = "off";
 const FALLBACK_ALLDAY_HOUR_LOCAL = 12;      // 12 PM
 const FALLBACK_ALLDAY_MINUTE_LOCAL = 0;
 const FALLBACK_ALLDAY_TZ = "America/New_York";
+
+/* Packed token delimiter for YouTube codes */
+const YT_DELIM = "~";
 
 const DAYS = [
   { name:"sun", kanji:"日" }, { name:"mon", kanji:"月" }, { name:"tue", kanji:"火" },
@@ -608,25 +637,26 @@ function normalizeDescription(desc){
 }
 
 /*
-  Packed token formats (first token of first line):
-    - "03tdqlct"                    -> bar=03, thumb=tdqlct
-    - "03tdqlct:VIDEOID"            -> plus youtubeIds [VIDEOID]
-    - "03tdqlct:ID1,ID2,ID3"        -> plus youtubeIds [ID1, ID2, ID3]
+  Packed token examples:
+    "03tdqlct"
+    "03tdqlct~dQw4w9WgXcQ"
+    "03tdqlct~id1~id2~id3"
 */
-function parsePackedCodeFromEvent(ev){
+function parsePackedToken(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0].trim();
-  const m = token.match(/^(\d{2})([A-Za-z0-9_-]+)(?::([A-Za-z0-9_,-]+))?$/);
-  if(!m) return { barCode: null, thumbCode: null, youtubeIds: [] };
+  if(!token) return { barCode: null, thumbCode: null, ytIds: [] };
 
-  const barCode = m[1];
-  const thumbCode = m[2];
-  const ytRaw = (m[3] || "").trim();
+  const parts = token.split(YT_DELIM).filter(Boolean);
+  const head = parts[0] || "";
+  const m = head.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
 
-  const youtubeIds = ytRaw
-    ? ytRaw.split(",").map(s => s.trim()).filter(Boolean)
-    : [];
+  const barCode = m ? m[1] : null;
+  const thumbCode = m ? m[2] : null;
 
-  return { barCode, thumbCode, youtubeIds };
+  // Remaining parts are YouTube video IDs (or live IDs)
+  const ytIds = parts.slice(1).map(s => s.trim()).filter(Boolean);
+
+  return { barCode, thumbCode, ytIds };
 }
 
 function codeToImageUrl(code){
@@ -781,7 +811,7 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, dateText, mainTitle, subTitle, timeText, youtubeIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl){
+function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
@@ -833,26 +863,33 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, youtubeIds, rowIn
   const mainEl = document.createElement("div");
   mainEl.className = "eventMain";
   mainEl.textContent = (subTitle && subTitle.trim()) ? subTitle : (mainTitle || "");
+
   midInner.appendChild(mainEl);
 
-  // Right side of the middle bar: YouTube icons OR time
-  if(Array.isArray(youtubeIds) && youtubeIds.length){
+  // Right side of middle bar: either YouTube icons OR time
+  if(Array.isArray(ytIds) && ytIds.length){
     const ytWrap = document.createElement("div");
-    ytWrap.className = "ytLinks";
+    ytWrap.className = "ytIcons";
 
-    for(const id of youtubeIds){
+    for(const id of ytIds){
       const a = document.createElement("a");
-      a.className = "ytBtn";
+      a.className = "ytLink";
       a.href = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}`;
       a.target = "_blank";
-      a.rel = "noopener";
-      a.title = "Open YouTube live";
+      a.rel = "noopener noreferrer";
+      a.title = "Open YouTube stream";
+
+      const img = document.createElement("img");
+      img.className = "ytIcon";
+      img.src = YT_ICON_URL;
+      img.alt = "YouTube";
+
+      a.appendChild(img);
       ytWrap.appendChild(a);
     }
 
     midInner.appendChild(ytWrap);
-
-  } else if(timeText) {
+  } else if(timeText){
     const eventTime = document.createElement("div");
     eventTime.className = "eventTime";
     eventTime.textContent = timeText;
@@ -915,10 +952,7 @@ async function refreshWeek(){
       const dayKey = ymd(dayDate);
       const mmdd = formatMMDD(dayDate);
 
-      // Left panel pattern:
-      // - past days: 00
-      // - today: 07
-      // - future: 06
+      // Left panel pattern: past=00, today=07, future=06
       let leftPatternCode = "06";
       if(dayKey < todayKey) leftPatternCode = "00";
       else if(dayKey === todayKey) leftPatternCode = "07";
@@ -930,13 +964,12 @@ async function refreshWeek(){
       let mainTitle = OFF_MAIN;
       let subTitle = "";
       let timeText = "";
-      let youtubeIds = [];
-
+      let ytIds = [];
       let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
       let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
 
       if(driver){
-        const packed = parsePackedCodeFromEvent(driver);
+        const packed = parsePackedToken(driver);
         const parts = parseCalendarTitle(driver.summary || "");
 
         mainTitle = (parts.main || "").trim() || (packed.thumbCode ? packed.thumbCode : "Untitled");
@@ -944,18 +977,19 @@ async function refreshWeek(){
         if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
         if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
 
-        youtubeIds = Array.isArray(packed.youtubeIds) ? packed.youtubeIds : [];
+        // YouTube IDs (if present) replace time
+        ytIds = Array.isArray(packed.ytIds) ? packed.ytIds : [];
 
         if(mainTitle && packed.thumbCode){
           const jsonSub = await lookupSubtitleFromQuestJson(mainTitle, packed.thumbCode);
           if(jsonSub) subTitle = jsonSub;
         }
 
-        // ✅ TIME:
-        // - If YouTube IDs exist, we show icons instead of time
+        // TIME:
+        // - If YouTube IDs exist, we do NOT render time (icons replace it)
         // - Else show viewer-local time from Google Calendar
-        // - If it's all-day, assume 12 PM America/New_York and convert to viewer-local
-        if(!youtubeIds.length){
+        // - If all-day, assume 12 PM America/New_York and convert to viewer-local
+        if(!ytIds.length){
           if(driver.start?.dateTime){
             timeText = formatViewerLocalTime(new Date(driver.start.dateTime));
           } else if(driver.start?.date){
@@ -976,7 +1010,7 @@ async function refreshWeek(){
         mainTitle,
         subTitle,
         timeText,
-        youtubeIds,
+        ytIds,
         i,
         leftPatternUrl,
         barPatternUrl,
