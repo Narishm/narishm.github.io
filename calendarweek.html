@@ -18,6 +18,10 @@
       --borderColor: #fff;
       --borderSize: 4px; /* uniform border thickness */
 
+      /* Today highlight stroke gradient */
+      --today1: #2de2e6; /* teal */
+      --today2: #2f7dff; /* blue */
+
       --blue1: #2e4b78;
       --blue2: #1f345a;
 
@@ -181,6 +185,11 @@
       stroke-miterlimit: 4;
     }
 
+    /* Today highlight: gradient stroke for all 3 shapes in the row */
+    .row.today .strokeSvg polygon{
+      stroke: url(#todayStroke);
+    }
+
     .content-layer {
       position: relative;
       z-index: 5;
@@ -306,7 +315,7 @@
       padding: 0 10px;
     }
 
-    /* Time uses AleaWB */
+    /* Time uses AleaWB, scooted from right edge */
     .eventTime {
       font-family: var(--midFont);
       color: #fff;
@@ -336,6 +345,16 @@
 </head>
 
 <body>
+  <!-- Gradient def used by today's border -->
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <linearGradient id="todayStroke" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="var(--today1)"/>
+        <stop offset="100%" stop-color="var(--today2)"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
   <div class="wrap">
     <div class="topbar">
       <div class="title">Weekly Schedule</div>
@@ -542,7 +561,7 @@ function startMillis(ev){
   return Number.POSITIVE_INFINITY;
 }
 
-/* ✅ NOW that you're using times, pick the EARLIEST event (by startMillis) */
+/* ✅ Pick the EARLIEST event (by startMillis) */
 function sortEventsForDay(list){
   return list.sort((a,b)=>{
     const sa=startMillis(a), sb=startMillis(b);
@@ -813,6 +832,8 @@ async function refreshWeek(){
   const weekEndExclusive = addDays(weekStart, 7);
   rangeLabel.textContent = formatRangeLabel(weekStart);
 
+  const todayKey = ymd(new Date());
+
   try {
     const events = await fetchAllEvents(calendarId, weekStart.toISOString(), weekEndExclusive.toISOString());
 
@@ -868,7 +889,9 @@ async function refreshWeek(){
         }
       }
 
-      listEl.appendChild(makeRow(DAYS[i], mmdd, mainTitle, subTitle, timeText, i, barPatternUrl, thumbUrl));
+      const rowEl = makeRow(DAYS[i], mmdd, mainTitle, subTitle, timeText, i, barPatternUrl, thumbUrl);
+      if(dayKey === todayKey) rowEl.classList.add("today");
+      listEl.appendChild(rowEl);
     }
 
     scheduleStrokeApply();
