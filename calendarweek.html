@@ -26,6 +26,10 @@
       --hover1: #2cff6a; /* bright green */
       --hover2: #068037; /* darker green */
 
+      /* ✅ Live stroke gradient (middle section only) */
+      --live1: #ff2a2a; /* bright red */
+      --live2: #8b0000; /* deep red */
+
       --blue1: #2e4b78;
       --blue2: #1f345a;
 
@@ -197,6 +201,11 @@
     /* Hover highlight: whole row reacts when mouse is over any part */
     .row:hover .strokeSvg polygon{
       stroke: url(#hoverStroke);
+    }
+
+    /* ✅ Live border: ONLY the middle bar stroke becomes red gradient */
+    .row.live .bar .strokeSvg polygon{
+      stroke: url(#liveStroke) !important;
     }
 
     .content-layer {
@@ -390,6 +399,57 @@
       outline-offset: 2px;
     }
 
+    /* =========================
+       ✅ Twitch Live swap UI (today row only)
+       ========================= */
+    .rightSlot{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+      padding-right: 6px; /* matches your “scoot left” */
+      flex: 0 0 auto;
+    }
+
+    .twitchWrap{ display: none; }
+
+    .twitchLink{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      background: transparent;
+      border: 0;
+      text-decoration: none;
+      line-height: 0;
+      border-radius: 8px;
+      transition: transform .10s ease, filter .10s ease;
+    }
+    .twitchLink:hover{
+      transform: translateY(-1px) scale(1.08);
+      filter: drop-shadow(0 2px 0 rgba(0,0,0,.55));
+    }
+    .twitchLink:active{
+      transform: translateY(0px) scale(1.02);
+    }
+    .twitchLink:focus-visible{
+      outline: 2px solid rgba(255,255,255,.65);
+      outline-offset: 2px;
+    }
+
+    .twitchIcon{
+      height: 22px;
+      width: auto;
+      display: block;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 0 rgba(0,0,0,.70));
+    }
+
+    /* When live: show Twitch badge, hide time + yt icons (middle bar only) */
+    .row.live .twitchWrap{ display: flex; }
+    .row.live .eventTime{ display: none; }
+    .row.live .ytIcons{ display: none; }
+
     @media (max-width: 800px) {
       :root {
         --sideW: 200px;
@@ -402,6 +462,7 @@
       .dow, .date { font-size: 28px; }
       .dowWrap { transform: translateY(-3px); gap: 3px; }
       .ytIcon { height: 20px; }
+      .twitchIcon { height: 20px; }
     }
   </style>
 </head>
@@ -417,6 +478,12 @@
       <linearGradient id="hoverStroke" x1="0" y1="0" x2="1" y2="0">
         <stop offset="0%" stop-color="var(--hover1)"/>
         <stop offset="100%" stop-color="var(--hover2)"/>
+      </linearGradient>
+
+      <!-- ✅ Live red gradient (middle section only) -->
+      <linearGradient id="liveStroke" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%" stop-color="var(--live1)"/>
+        <stop offset="100%" stop-color="var(--live2)"/>
       </linearGradient>
     </defs>
   </svg>
@@ -448,6 +515,10 @@ const QUEST_JSON_BASE_URL = "json/";   // change to "./" if the json sits beside
 
 /* YouTube icon (in img folder) */
 const YT_ICON_URL = "img/youtube.png";
+
+/* ✅ Twitch (in img folder) */
+const TWITCH_URL = "https://twitch.tv/narishm";
+const TWITCH_ICON_URL = "img/twitch.png"; // put your provided image here
 
 /* OFF defaults */
 const OFF_MAIN = "OFF";
@@ -516,6 +587,31 @@ function formatViewerLocalTime(date){
   }).format(date);
 
   return raw.replace(":00","").toUpperCase();
+}
+
+/* ✅ Live ticker state */
+let liveTicker = null;
+let liveTarget = null; // { rowEl, startMs, endMs }
+
+function getEventRangeMillis(ev){
+  // Only timed events (dateTime) get a live window.
+  if(ev?.start?.dateTime){
+    const startMs = new Date(ev.start.dateTime).getTime();
+    // If end is missing, assume 2 hours.
+    const endMs = ev?.end?.dateTime
+      ? new Date(ev.end.dateTime).getTime()
+      : (startMs + 2 * 60 * 60 * 1000);
+
+    return { startMs, endMs };
+  }
+  return null;
+}
+
+function updateLiveState(){
+  if(!liveTarget) return;
+  const now = Date.now();
+  const isLive = now >= liveTarget.startMs && now < liveTarget.endMs;
+  liveTarget.rowEl.classList.toggle("live", isLive);
 }
 
 /* Create a Date that represents "YYYY-MM-DD at 12:00 in America/New_York" (fallback for all-day) */
@@ -821,7 +917,7 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl){
+function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, leftPatternUrl, barPatternUrl, thumbUrl, allowTwitch){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
@@ -876,7 +972,33 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, 
 
   midInner.appendChild(mainEl);
 
-  // Right side of middle bar: either YouTube icons OR time
+  // ✅ Right side slot: Twitch (live), YT icons, or time
+  const rightSlot = document.createElement("div");
+  rightSlot.className = "rightSlot";
+
+  // Twitch badge (hidden unless .row.live)
+  if(allowTwitch){
+    const twWrap = document.createElement("div");
+    twWrap.className = "twitchWrap";
+
+    const a = document.createElement("a");
+    a.className = "twitchLink";
+    a.href = TWITCH_URL;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.title = "Watch live on Twitch";
+
+    const img = document.createElement("img");
+    img.className = "twitchIcon";
+    img.src = TWITCH_ICON_URL;
+    img.alt = "Twitch";
+
+    a.appendChild(img);
+    twWrap.appendChild(a);
+    rightSlot.appendChild(twWrap);
+  }
+
+  // YouTube icons (shown when not live)
   if(Array.isArray(ytIds) && ytIds.length){
     const ytWrap = document.createElement("div");
     ytWrap.className = "ytIcons";
@@ -898,12 +1020,18 @@ function makeRow(day, dateText, mainTitle, subTitle, timeText, ytIds, rowIndex, 
       ytWrap.appendChild(a);
     }
 
-    midInner.appendChild(ytWrap);
-  } else if(timeText){
+    rightSlot.appendChild(ytWrap);
+  }
+  // Time (shown when not live and no YT icons)
+  else if(timeText){
     const eventTime = document.createElement("div");
     eventTime.className = "eventTime";
     eventTime.textContent = timeText;
-    midInner.appendChild(eventTime);
+    rightSlot.appendChild(eventTime);
+  }
+
+  if(rightSlot.childNodes.length){
+    midInner.appendChild(rightSlot);
   }
 
   midContent.appendChild(midInner);
@@ -933,6 +1061,10 @@ let cursorDate = new Date();
 async function refreshWeek(){
   clearError();
   listEl.innerHTML = "";
+
+  // reset live targeting each render
+  liveTarget = null;
+  if(liveTicker){ clearInterval(liveTicker); liveTicker = null; }
 
   if(!window.GCAL_CONFIG) return showError("Missing js/config.js (window.GCAL_CONFIG not found).");
   if(!GOOGLE_API_KEY || !CALENDAR_SHARE_LINK) return showError("js/config.js must provide { apiKey, calendarShareLink }.");
@@ -1014,6 +1146,9 @@ async function refreshWeek(){
         }
       }
 
+      const isToday = (dayKey === todayKey);
+      const allowTwitch = isToday; // only TODAY row gets the Twitch swap
+
       const rowEl = makeRow(
         DAYS[i],
         mmdd,
@@ -1024,14 +1159,27 @@ async function refreshWeek(){
         i,
         leftPatternUrl,
         barPatternUrl,
-        thumbUrl
+        thumbUrl,
+        allowTwitch
       );
 
-      if(dayKey === todayKey) rowEl.classList.add("today");
+      if(isToday) rowEl.classList.add("today");
       listEl.appendChild(rowEl);
+
+      // If TODAY and we have a timed driver event, arm the live window
+      if(isToday && driver){
+        const range = getEventRangeMillis(driver);
+        if(range){
+          liveTarget = { rowEl, startMs: range.startMs, endMs: range.endMs };
+        }
+      }
     }
 
     scheduleStrokeApply();
+
+    // Live ticker: updates without refetching calendar data
+    updateLiveState();
+    liveTicker = setInterval(updateLiveState, 15000);
 
   } catch(e) {
     showError(e?.message || String(e));
