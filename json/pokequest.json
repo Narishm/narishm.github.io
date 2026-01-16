@@ -684,33 +684,33 @@
       ]
     },
     {
-      "id": "PRR",
+      "id": "pkmnr",
       "era": "SIDE",
       "order": 60,
       "type": "SIDE",
       "title": "Pokémon Ranger",
       "locked": true,
-      "edition": "DS",
+      "edition": "",
       "platform": ["DS"],
       "unlocks": [
         {
-          "id": "PRSOA",
+          "id": "pkmnrsoa",
           "era": "SIDE",
           "order": 61,
           "type": "SIDE",
-          "title": "Pokémon Ranger: Shadows of Almia",
+          "title": "Pokémon Ranger",
           "locked": true,
-          "edition": "DS",
+          "edition": "Shadows of Almia",
           "platform": ["DS"],
           "unlocks": [
             {
-              "id": "PRGA",
+              "id": "pkmnrgs",
               "era": "SIDE",
               "order": 62,
               "type": "SIDE",
-              "title": "Pokémon Ranger: Guardian Signs",
+              "title": "Pokémon Ranger",
               "locked": true,
-              "edition": "DS",
+              "edition": "Guardian Signs",
               "platform": ["DS"],
               "unlocks": []
             }
@@ -719,53 +719,53 @@
       ]
     },
     {
-      "id": "PDP",
+      "id": "pkmndp",
       "era": "SIDE",
       "order": 63,
       "type": "SIDE",
       "title": "Pokémon Detective Pikachu",
       "locked": true,
-      "edition": "3DS",
+      "edition": "",
       "platform": ["3DS"],
       "unlocks": [
         {
-          "id": "PDPR",
+          "id": "pkmndpr",
           "era": "SIDE",
           "order": 64,
           "type": "SEQUEL",
           "title": "Pokémon Detective Pikachu Returns",
           "locked": true,
-          "edition": "Switch",
+          "edition": "",
           "platform": ["SWITCH"],
           "unlocks": []
         }
       ]
     },
     {
-      "id": "PSN",
+      "id": "pkmnsnap",
       "era": "SIDE",
       "order": 65,
       "type": "SIDE",
       "title": "Pokémon Snap",
       "locked": true,
-      "edition": "N64",
+      "edition": "",
       "platform": ["N64"],
       "unlocks": [
         {
-          "id": "NPMS",
+          "id": "pkmnnsnap",
           "era": "SIDE",
           "order": 66,
           "type": "SEQUEL",
           "title": "New Pokémon Snap",
           "locked": true,
-          "edition": "Switch",
+          "edition": "",
           "platform": ["SWITCH"],
           "unlocks": []
         }
       ]
     },
     {
-      "id": "PU",
+      "id": "pkmnu",
       "era": "SIDE",
       "order": 67,
       "type": "ROMHACK",
@@ -776,7 +776,7 @@
       "unlocks": []
     },
     {
-      "id": "PGZ",
+      "id": "pkmng",
       "era": "SIDE",
       "order": 68,
       "type": "ROMHACK",
@@ -787,7 +787,7 @@
       "unlocks": []
     },
     {
-      "id": "PUB",
+      "id": "pkmnub",
       "era": "SIDE",
       "order": 69,
       "type": "ROMHACK",
@@ -798,24 +798,24 @@
       "unlocks": []
     },
     {
-      "id": "PTO",
+      "id": "pokmnt",
       "era": "SIDE",
       "order": 70,
       "type": "SIDE",
       "title": "Pokkén Tournament",
       "locked": true,
-      "edition": "Switch",
+      "edition": "",
       "platform": ["SWITCH"],
       "unlocks": []
     },
     {
-      "id": "PTCG",
+      "id": "pkmntcg",
       "era": "SIDE",
       "order": 71,
       "type": "SIDE",
       "title": "Pokémon Trading Card Game",
       "locked": true,
-      "edition": "GB",
+      "edition": "",
       "platform": ["GB"],
       "unlocks": []
     }
