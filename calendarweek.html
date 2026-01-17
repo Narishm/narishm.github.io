@@ -940,6 +940,14 @@ function queueStroke(shapeEl, kind){
   strokeJobs.push({ el: shapeEl, kind });
 }
 
+/* ✅ FIX: re-queue all visible shapes before applying strokes (needed for resize) */
+function queueAllStrokes(){
+  document.querySelectorAll(".shape.arrow").forEach(el => queueStroke(el, "arrowL"));
+  document.querySelectorAll(".shape.bar").forEach(el => queueStroke(el, "bar"));
+  document.querySelectorAll(".barSeg").forEach(el => queueStroke(el, "bar"));
+  document.querySelectorAll(".shape.arrowR").forEach(el => queueStroke(el, "arrowR"));
+}
+
 function ensureStrokeSvg(shapeEl){
   let svg = shapeEl.querySelector(":scope > svg.strokeSvg");
   if(svg) return svg;
@@ -1005,7 +1013,12 @@ function applyStrokes(){
 function scheduleStrokeApply(){
   requestAnimationFrame(() => applyStrokes());
 }
-window.addEventListener("resize", () => scheduleStrokeApply());
+
+/* ✅ FIX: on resize, re-queue everything then recompute */
+window.addEventListener("resize", () => {
+  queueAllStrokes();
+  scheduleStrokeApply();
+});
 
 async function buildEntryFromEvent(ev){
   if(!ev){
@@ -1338,6 +1351,8 @@ async function refreshWeek(){
       }
     }
 
+    /* ✅ FIX: ensure strokes are recalculated for current layout */
+    queueAllStrokes();
     scheduleStrokeApply();
 
     updateLiveState();
