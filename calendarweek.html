@@ -48,7 +48,7 @@
       /* Default (no-event) bar fallback */
       --barDefault: #2a3446;
 
-      /* ✅ Split middle bar gap (tune this) */
+      /* ✅ Split middle bar visible gap (tune this) */
       --splitGap: 12px;
 
       /* Middle text font (AleaWB) */
@@ -207,15 +207,8 @@
       stroke-miterlimit: 4;
     }
 
-    /* Today highlight: gradient stroke for all shapes in the row */
-    .row.today .strokeSvg polygon{
-      stroke: url(#todayStroke);
-    }
-
-    /* Hover highlight: whole row reacts when mouse is over any part */
-    .row:hover .strokeSvg polygon{
-      stroke: url(#hoverStroke);
-    }
+    .row.today .strokeSvg polygon{ stroke: url(#todayStroke); }
+    .row:hover .strokeSvg polygon{ stroke: url(#hoverStroke); }
 
     /* ✅ Live border: right thumbnail stroke becomes red gradient */
     .row.live .arrowR .strokeSvg polygon{
@@ -243,8 +236,8 @@
       padding: 0 20px;
     }
 
-    /* LEFT ARROW: make pattern variable per-row */
-    .arrow { --leftPattern: url("img/06.png"); } /* default */
+    /* LEFT ARROW */
+    .arrow { --leftPattern: url("img/06.png"); }
     .arrow::after {
       clip-path: polygon(
         0% 50%,
@@ -278,20 +271,14 @@
         var(--barDefault);
     }
 
-    /* ✅ MIDDLE BAR (split wrapper)
-       - gap set to 0
-       - we "cancel" the double slant with negative margin on the 2nd segment
-       - leaving only --splitGap visible
-       - ✅ NEW: margin-right restores the normal join to the thumbnail
-    */
+    /* ✅ MIDDLE BAR (split wrapper) */
     .barWrap{
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-      margin-right: calc(-1 * (var(--slant) - var(--splitGap))); /* ✅ restore right join */
       display: flex;
       align-items: stretch;
       width: 100%;
       min-width: 0;
-      gap: 0; /* IMPORTANT */
+      gap: 0;
     }
 
     /* ✅ Pull the second segment left so only --splitGap remains visible */
@@ -299,7 +286,7 @@
       margin-left: calc(-1 * (var(--slant) - var(--splitGap)));
     }
 
-    /* ✅ Each split segment is a FULL angled bar (same as .bar) */
+    /* ✅ Each split segment is a FULL angled bar */
     .barSeg{
       position: relative;
       overflow: visible;
@@ -333,11 +320,20 @@
         var(--barDefault);
     }
 
-    /* RIGHT BOX */
+    /* RIGHT BOX (normal join) */
     .arrowR {
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
       --thumb: none;
     }
+
+    /* ✅ RIGHT BOX (split join)
+       Pull the thumbnail left by the same amount we pulled segment 2 left:
+       (var(--slant) - var(--splitGap))
+    */
+    .row.split .arrowR{
+      margin-left: calc(-1 * ( (var(--slant) - var(--pointGap)) + (var(--slant) - var(--splitGap)) ));
+    }
+
     .arrowR::after {
       clip-path: polygon(
         var(--slant) 0%,
@@ -386,10 +382,7 @@
       font-family: var(--uiFont);
     }
 
-    .date {
-      letter-spacing: .02em;
-      opacity: .95;
-    }
+    .date { letter-spacing: .02em; opacity: .95; }
 
     /* ===== Center bar text layout ===== */
     .midContent {
@@ -446,7 +439,6 @@
       text-align: right;
     }
 
-    /* Time uses AleaWB, scooted from right edge */
     .eventTime {
       font-family: var(--midFont);
       color: #fff;
@@ -460,7 +452,6 @@
       padding-right: 6px;
     }
 
-    /* YouTube icons container (replaces time) */
     .ytIcons {
       display: flex;
       align-items: center;
@@ -493,21 +484,10 @@
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.70));
     }
 
-    .ytLink:hover {
-      transform: translateY(-1px) scale(1.08);
-      filter: drop-shadow(0 2px 0 rgba(0,0,0,.55));
-    }
-    .ytLink:active {
-      transform: translateY(0px) scale(1.02);
-    }
-    .ytLink:focus-visible{
-      outline: 2px solid rgba(255,255,255,.65);
-      outline-offset: 2px;
-    }
+    .ytLink:hover { transform: translateY(-1px) scale(1.08); filter: drop-shadow(0 2px 0 rgba(0,0,0,.55)); }
+    .ytLink:active { transform: translateY(0px) scale(1.02); }
+    .ytLink:focus-visible{ outline: 2px solid rgba(255,255,255,.65); outline-offset: 2px; }
 
-    /* =========================
-       ✅ Twitch Live swap UI (today row only, per segment)
-       ========================= */
     .rightSlot{
       display: flex;
       align-items: center;
@@ -531,17 +511,9 @@
       border-radius: 8px;
       transition: transform .10s ease, filter .10s ease;
     }
-    .twitchLink:hover{
-      transform: translateY(-1px) scale(1.08);
-      filter: drop-shadow(0 2px 0 rgba(0,0,0,.55));
-    }
-    .twitchLink:active{
-      transform: translateY(0px) scale(1.02);
-    }
-    .twitchLink:focus-visible{
-      outline: 2px solid rgba(255,255,255,.65);
-      outline-offset: 2px;
-    }
+    .twitchLink:hover{ transform: translateY(-1px) scale(1.08); filter: drop-shadow(0 2px 0 rgba(0,0,0,.55)); }
+    .twitchLink:active{ transform: translateY(0px) scale(1.02); }
+    .twitchLink:focus-visible{ outline: 2px solid rgba(255,255,255,.65); outline-offset: 2px; }
 
     .twitchIcon{
       height: 38px;
@@ -551,7 +523,6 @@
       filter: drop-shadow(0 2px 0 rgba(0,0,0,.70));
     }
 
-    /* When LIVE on a segment: show Twitch badge, hide time + yt icons (that segment only) */
     .barSeg.liveSeg .twitchWrap,
     .bar.liveSeg .twitchWrap{ display: flex; }
 
@@ -567,9 +538,6 @@
         --slant: 22px;
         --point: 24px;
         --offset: 16px;
-        /* Optional: slightly smaller split gap on mobile
-        --splitGap: 10px;
-        */
       }
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow, .date { font-size: 28px; }
@@ -693,7 +661,6 @@ function formatViewerLocalTime(date){
     minute: "2-digit",
     hour12: true
   }).format(date);
-
   return raw.replace(":00","").toUpperCase();
 }
 
@@ -806,7 +773,6 @@ async function fetchAllEvents(calendarId, timeMinISO, timeMaxISO){
     pageToken = data.nextPageToken;
     if(!pageToken) break;
   }
-
   return all;
 }
 
@@ -855,21 +821,6 @@ function normalizeDescription(desc){
   const noHtml = s.replace(/<[^>]+>/g,"");
   const firstLine = noHtml.split(/\r?\n/)[0];
   return firstLine.trim();
-}
-
-function parsePackedToken(ev){
-  const token = normalizeDescription(ev?.description || "").split(/\s+/)[0].trim();
-  if(!token) return { barCode: null, thumbCode: null, ytIds: [] };
-
-  const parts = token.split(YT_DELIM).filter(Boolean);
-  const head = parts[0] || "";
-  const m = head.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
-
-  const barCode = m ? m[1] : null;
-  const thumbCode = m ? m[2] : null;
-
-  const ytIds = parts.slice(1).map(s => s.trim()).filter(Boolean);
-  return { barPatternUrl: barCode ? codeToImageUrl(barCode) : null, thumbCode, ytIds, barCode };
 }
 
 function codeToImageUrl(code){
@@ -940,6 +891,9 @@ async function lookupTitleAndEditionFromQuestJson(mainTitle, thumbCode){
   return { title, edition };
 }
 
+/* =========================
+   SVG STROKE BORDER (uniform)
+   ========================= */
 function cssPx(varName){
   const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
   const n = parseFloat(v);
@@ -1044,6 +998,7 @@ async function buildEntryFromEvent(ev){
   const thumbUrl = thumbCode ? codeToImageUrl(thumbCode) : codeToImageUrl(OFF_THUMB_CODE);
 
   const ytIds = tokenParts.slice(1).map(s => s.trim()).filter(Boolean);
+
   const parts = parseCalendarTitle(ev.summary || "");
   const mainTitle = (parts.main || "").trim() || (thumbCode ? thumbCode : "Untitled");
 
@@ -1164,6 +1119,11 @@ function buildMiddleContent(entry, allowTwitch){
 function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, allowTwitch){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
+
+  // ✅ mark split rows so CSS can tighten thumbnail join
+  if(entries.length >= 2){
+    row.classList.add("split");
+  }
 
   const arrow = document.createElement("div");
   arrow.className = "shape arrow";
