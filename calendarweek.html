@@ -251,7 +251,7 @@
       stroke: url(#liveStroke) !important;
     }
 
-    /* ✅ NEW: on live days, middle panels can turn green on hover */
+    /* ✅ On live days, middle panels can turn green on hover */
     .barSeg.liveSeg.hovered .strokeSvg polygon,
     .bar.liveSeg.hovered .strokeSvg polygon{
       stroke: url(#hoverStroke) !important;
@@ -752,7 +752,7 @@ function updateLiveState(){
   liveTarget.rowEl.classList.toggle("live", anyLive);
 
   if(liveTarget.arrowR){
-    // ✅ NEW: allow hover thumb override even while live
+    // ✅ allow hover thumb override even while live
     if(liveTarget.hoverThumbUrl){
       setThumb(liveTarget.arrowR, liveTarget.hoverThumbUrl);
     } else if(anyLive){
@@ -1067,7 +1067,8 @@ async function buildEntryFromEvent(ev){
       barPatternUrl: codeToImageUrl(OFF_BAR_CODE),
       thumbUrl: codeToImageUrl(OFF_THUMB_CODE),
       canLive: false,
-      liveRange: null
+      liveRange: null,
+      eventRange: null,   // ✅ always-populated (dateTime only), even if VOD
     };
   }
 
@@ -1110,10 +1111,13 @@ async function buildEntryFromEvent(ev){
     }
   }
 
-  const canLive = !!(ev.start?.dateTime) && !(ytIds.length);
-  const liveRange = canLive ? getEventRangeMillis(ev) : null;
+  // ✅ always compute dateTime range (used for “first stream passed” logic)
+  const eventRange = getEventRangeMillis(ev);
 
-  return { displayTitle, editionText, timeText, ytIds, barPatternUrl, thumbUrl, canLive, liveRange };
+  const canLive = !!(ev.start?.dateTime) && !(ytIds.length);
+  const liveRange = canLive ? eventRange : null;
+
+  return { displayTitle, editionText, timeText, ytIds, barPatternUrl, thumbUrl, canLive, liveRange, eventRange };
 }
 
 function buildMiddleContent(entry, allowTwitch){
@@ -1228,9 +1232,6 @@ function setHoverAll(row){
     for(const seg of row._segmentEls) seg.classList.remove("hovered");
   }
 
-  // For full-row hover, keep current thumb behavior:
-  // - if live day -> stays live (updateLiveState enforces LIVE unless hoverThumbUrl set)
-  // - if not live -> keep whatever is already set (default is fine)
   if(liveTarget && liveTarget.rowEl === row){
     liveTarget.hoverThumbUrl = null;
     updateLiveState();
@@ -1247,7 +1248,7 @@ function setHoverSeg(row, segEl){
     segEl.classList.add("hovered");
   }
 
-  // ✅ NEW: swap thumbnail to hovered segment even while live
+  // ✅ swap thumbnail to hovered segment even while live
   const thumb = segEl?._thumbUrl || row._origThumbUrl;
 
   if(liveTarget && liveTarget.rowEl === row){
@@ -1392,6 +1393,7 @@ async function refreshWeek(){
   rangeLabel.textContent = formatRangeLabel(weekStart);
 
   const todayKey = ymd(new Date());
+  const nowMs = Date.now();
 
   try {
     const events = await fetchAllEvents(calendarId, weekStart.toISOString(), weekEndExclusive.toISOString());
@@ -1425,10 +1427,24 @@ async function refreshWeek(){
 
       const entries = entry2 ? [entry1, entry2] : [entry1];
 
-      const thumbUrl = entry1.thumbUrl || codeToImageUrl(OFF_THUMB_CODE);
-
       const isToday = (dayKey === todayKey);
       const allowTwitch = isToday;
+
+      // ✅ Default day thumbnail logic:
+      // If there are 2 streams TODAY and:
+      // - the first stream is a VOD (has ytIds), OR
+      // - the first stream has ended,
+      // then the day thumbnail should reflect stream 2.
+      let dayThumbUrl = entry1.thumbUrl || codeToImageUrl(OFF_THUMB_CODE);
+
+      if(isToday && entry2){
+        const firstIsVod = Array.isArray(entry1.ytIds) && entry1.ytIds.length > 0;
+        const firstEnded = entry1.eventRange ? (nowMs >= entry1.eventRange.endMs) : false;
+
+        if(firstIsVod || firstEnded){
+          dayThumbUrl = entry2.thumbUrl || dayThumbUrl;
+        }
+      }
 
       const rowEl = makeRow(
         DAYS[i],
@@ -1436,7 +1452,7 @@ async function refreshWeek(){
         entries,
         i,
         leftPatternUrl,
-        thumbUrl,
+        dayThumbUrl,
         allowTwitch
       );
 
