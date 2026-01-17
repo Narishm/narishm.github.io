@@ -1,0 +1,25 @@
+{
+  "eras": ["COLLAB"],
+  "adventures": [
+    {
+      "id": "cpu",
+      "era": "COLLAB",
+      "order": 1,
+      "type": "",
+      "title": "Plate Up!",
+      "edition": "Collaboration",
+      "platform": [],
+      "unlocks": []
+    },
+    {
+      "id": "cpc",
+      "era": "COLLAB",
+      "order": 1,
+      "type": "",
+      "title": "Planet Crafter",
+      "edition": "Collaboration",
+      "platform": [],
+      "unlocks": []
+    }
+  ]
+}
