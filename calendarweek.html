@@ -48,8 +48,8 @@
       /* Default (no-event) bar fallback */
       --barDefault: #2a3446;
 
-      /* ✅ Split middle bar gap (smaller than pointGap) */
-      --splitGap: 15px;
+      /* ✅ Split middle bar gap (tune this) */
+      --splitGap: 12px;
 
       /* Middle text font (AleaWB) */
       --midFont: "AleaWB", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -282,9 +282,11 @@
        - gap set to 0
        - we "cancel" the double slant with negative margin on the 2nd segment
        - leaving only --splitGap visible
+       - ✅ NEW: margin-right restores the normal join to the thumbnail
     */
     .barWrap{
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
+      margin-right: calc(-1 * (var(--slant) - var(--splitGap))); /* ✅ restore right join */
       display: flex;
       align-items: stretch;
       width: 100%;
@@ -565,6 +567,9 @@
         --slant: 22px;
         --point: 24px;
         --offset: 16px;
+        /* Optional: slightly smaller split gap on mobile
+        --splitGap: 10px;
+        */
       }
       .kanjiBox { width: 62px; height: 62px; font-size: 38px; }
       .dow, .date { font-size: 28px; }
@@ -864,7 +869,7 @@ function parsePackedToken(ev){
   const thumbCode = m ? m[2] : null;
 
   const ytIds = parts.slice(1).map(s => s.trim()).filter(Boolean);
-  return { barCode, thumbCode, ytIds };
+  return { barPatternUrl: barCode ? codeToImageUrl(barCode) : null, thumbCode, ytIds, barCode };
 }
 
 function codeToImageUrl(code){
@@ -1027,22 +1032,25 @@ async function buildEntryFromEvent(ev){
     };
   }
 
-  const packed = parsePackedToken(ev);
+  const packedRaw = normalizeDescription(ev?.description || "").split(/\s+/)[0].trim();
+  const tokenParts = packedRaw ? packedRaw.split(YT_DELIM).filter(Boolean) : [];
+  const head = tokenParts[0] || "";
+  const m = head.match(/^(\d{2})([A-Za-z0-9_-]+)$/);
+
+  const barCode = m ? m[1] : null;
+  const thumbCode = m ? m[2] : null;
+
+  const barPatternUrl = barCode ? codeToImageUrl(barCode) : codeToImageUrl(OFF_BAR_CODE);
+  const thumbUrl = thumbCode ? codeToImageUrl(thumbCode) : codeToImageUrl(OFF_THUMB_CODE);
+
+  const ytIds = tokenParts.slice(1).map(s => s.trim()).filter(Boolean);
   const parts = parseCalendarTitle(ev.summary || "");
-
-  const mainTitle = (parts.main || "").trim() || (packed.thumbCode ? packed.thumbCode : "Untitled");
-
-  let barPatternUrl = codeToImageUrl(OFF_BAR_CODE);
-  let thumbUrl = codeToImageUrl(OFF_THUMB_CODE);
-  if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
-  if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
-
-  const ytIds = Array.isArray(packed.ytIds) ? packed.ytIds : [];
+  const mainTitle = (parts.main || "").trim() || (thumbCode ? thumbCode : "Untitled");
 
   let displayTitle = mainTitle;
   let editionText = "";
-  if(mainTitle && packed.thumbCode){
-    const looked = await lookupTitleAndEditionFromQuestJson(mainTitle, packed.thumbCode);
+  if(mainTitle && thumbCode){
+    const looked = await lookupTitleAndEditionFromQuestJson(mainTitle, thumbCode);
     if(looked.title) displayTitle = looked.title;
     if(looked.edition) editionText = looked.edition;
   }
