@@ -220,14 +220,14 @@
     }
 
     /* ✅ Live border: ONLY the LIVE segment in the middle turns red */
-    .barHalf.liveSeg .strokeSvg polygon,
+    .barSeg.liveSeg .strokeSvg polygon,
     .bar.liveSeg .strokeSvg polygon{
       stroke: url(#liveStroke) !important;
     }
 
-    /* Hover highlight (explicit for bars too) */
+    /* Hover highlight for bar segments */
     .row:hover .bar .strokeSvg polygon,
-    .row:hover .barHalf .strokeSvg polygon{
+    .row:hover .barSeg .strokeSvg polygon{
       stroke: url(#hoverStroke);
     }
 
@@ -275,48 +275,48 @@
         var(--barDefault);
     }
 
-    /* ✅ MIDDLE BAR (split wrapper) */
+    /* ✅ MIDDLE BAR (split wrapper with REAL gap) */
     .barWrap{
+      /* keep same overlap with the LEFT arrow as normal middle bar */
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
+
       display: flex;
       align-items: stretch;
       width: 100%;
-      gap: var(--pointGap); /* ✅ REAL gap between halves (matches other joins) */
       min-width: 0;
+
+      /* ✅ real visible gap between the two bars */
+      gap: var(--pointGap);
     }
-    .barHalf{
+
+    /* ✅ Each split segment is a FULL angled bar (same as .bar) */
+    .barSeg{
+      position: relative;
+      overflow: visible;
+      filter: drop-shadow(0 6px 0 rgba(0,0,0,0.80));
+      min-height: 1px;
+
       flex: 1 1 0;
       min-width: 0;
+
       --barPattern: none;
     }
-    /* ✅ IMPORTANT: compensate overlap on right half so the gap matches perfectly */
-    .barHalf.right{
-      margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-    }
 
-    /* left segment: has slant only on the left side */
-    .barHalf.left::after{
+    .barSeg::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+
+      /* SAME angled bar shape as .bar */
       clip-path: polygon(
         var(--slant) 0%,
-        100% 0%,
-        100% 100%,
-        0% 100%
-      );
-      background:
-        radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
-        var(--barPattern) 0 0 / auto repeat,
-        var(--barDefault);
-    }
-
-    /* right segment: has slant only on the right-bottom like original */
-    .barHalf.right::after{
-      clip-path: polygon(
-        0% 0%,
         100% 0%,
         calc(100% - var(--slant)) 100%,
         0% 100%
       );
+
       background:
         radial-gradient(120px 80px at 20% 30%, rgba(255,255,255,.10), transparent 60%),
         linear-gradient(135deg, rgba(255,255,255,.08), rgba(0,0,0,.20)),
@@ -543,11 +543,11 @@
     }
 
     /* When LIVE on a segment: show Twitch badge, hide time + yt icons (that segment only) */
-    .barHalf.liveSeg .twitchWrap,
+    .barSeg.liveSeg .twitchWrap,
     .bar.liveSeg .twitchWrap{ display: flex; }
 
-    .barHalf.liveSeg .eventTime,
-    .barHalf.liveSeg .ytIcons,
+    .barSeg.liveSeg .eventTime,
+    .barSeg.liveSeg .ytIcons,
     .bar.liveSeg .eventTime,
     .bar.liveSeg .ytIcons{ display: none; }
 
@@ -569,6 +569,7 @@
 </head>
 
 <body>
+  <!-- Gradient defs used by today's border & hover border -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="todayStroke" x1="0" y1="0" x2="1" y2="0">
@@ -671,11 +672,8 @@ function formatMMDD(d){
 /* parse: "The DevQuest - 12 PM EST" (now we only care about main) */
 function parseCalendarTitle(raw){
   let rest = String(raw || "").trim();
-
-  // remove trailing " - anything" (old time suffix), keep the core title
   const t = rest.match(/\s*-\s*([^-]+)$/);
   if(t) rest = rest.slice(0, t.index).trim();
-
   return { slot: null, main: rest.trim() };
 }
 
@@ -693,7 +691,7 @@ function formatViewerLocalTime(date){
 /* ✅ Live ticker state */
 let liveTicker = null;
 /*
-  liveTarget shape:
+  liveTarget:
   {
     rowEl,
     segments: [ { segEl, startMs, endMs } ... ],
@@ -717,7 +715,6 @@ function updateLiveState(){
 
   liveTarget.rowEl.classList.toggle("live", anyLive);
 
-  // ✅ swap the right thumbnail image only while live
   if(liveTarget.arrowR){
     if(anyLive){
       liveTarget.arrowR.style.setProperty("--thumb", `url("${LIVE_THUMB_URL.replace(/"/g,'\\"')}")`);
@@ -861,6 +858,12 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
+/*
+  Packed token examples:
+    "03tdqlct"
+    "03tdqlct~dQw4w9WgXcQ"
+    "03tdqlct~id1~id2~id3"
+*/
 function parsePackedToken(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0].trim();
   if(!token) return { barCode: null, thumbCode: null, ytIds: [] };
@@ -1011,20 +1014,6 @@ function applyStrokes(){
         [w - slant, h],
         [0, h],
       ]);
-    } else if(kind === "barL"){
-      setPolygonPoints(poly, [
-        [slant, 0],
-        [w, 0],
-        [w, h],
-        [0, h],
-      ]);
-    } else if(kind === "barR"){
-      setPolygonPoints(poly, [
-        [0, 0],
-        [w, 0],
-        [w - slant, h],
-        [0, h],
-      ]);
     } else if(kind === "arrowR"){
       setPolygonPoints(poly, [
         [slant, 0],
@@ -1069,7 +1058,7 @@ async function buildEntryFromEvent(ev){
   if(packed.barCode) barPatternUrl = codeToImageUrl(packed.barCode);
   if(packed.thumbCode) thumbUrl = codeToImageUrl(packed.thumbCode);
 
-  let ytIds = Array.isArray(packed.ytIds) ? packed.ytIds : [];
+  const ytIds = Array.isArray(packed.ytIds) ? packed.ytIds : [];
 
   let displayTitle = mainTitle;
   let editionText = "";
@@ -1101,7 +1090,7 @@ async function buildEntryFromEvent(ev){
 }
 
 /* =========================
-   ✅ Row builders
+   ✅ Middle content builder
    ========================= */
 function buildMiddleContent(entry, allowTwitch){
   const midContent = document.createElement("div");
@@ -1188,6 +1177,9 @@ function buildMiddleContent(entry, allowTwitch){
   return midContent;
 }
 
+/* =========================
+   ✅ Row builder
+   ========================= */
 function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, allowTwitch){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
@@ -1232,28 +1224,29 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
     const wrap = document.createElement("div");
     wrap.className = "barWrap";
 
-    const leftSeg = document.createElement("div");
-    leftSeg.className = "shape barHalf left";
-    leftSeg.style.setProperty("--barPattern", `url("${entries[0].barPatternUrl.replace(/"/g,'\\"')}")`);
-    leftSeg.appendChild(buildMiddleContent(entries[0], allowTwitch));
-    wrap.appendChild(leftSeg);
+    const seg1 = document.createElement("div");
+    seg1.className = "barSeg";
+    seg1.style.setProperty("--barPattern", `url("${entries[0].barPatternUrl.replace(/"/g,'\\"')}")`);
+    seg1.appendChild(buildMiddleContent(entries[0], allowTwitch));
+    wrap.appendChild(seg1);
 
-    const rightSeg = document.createElement("div");
-    rightSeg.className = "shape barHalf right";
-    rightSeg.style.setProperty("--barPattern", `url("${entries[1].barPatternUrl.replace(/"/g,'\\"')}")`);
-    rightSeg.appendChild(buildMiddleContent(entries[1], allowTwitch));
-    wrap.appendChild(rightSeg);
+    const seg2 = document.createElement("div");
+    seg2.className = "barSeg";
+    seg2.style.setProperty("--barPattern", `url("${entries[1].barPatternUrl.replace(/"/g,'\\"')}")`);
+    seg2.appendChild(buildMiddleContent(entries[1], allowTwitch));
+    wrap.appendChild(seg2);
 
     middleNode = wrap;
-    segmentEls.push(leftSeg, rightSeg);
+    segmentEls.push(seg1, seg2);
 
-    queueStroke(leftSeg, "barL");
-    queueStroke(rightSeg, "barR");
+    queueStroke(seg1, "bar");
+    queueStroke(seg2, "bar");
   } else {
     const bar = document.createElement("div");
     bar.className = "shape bar";
     bar.style.setProperty("--barPattern", `url("${entries[0].barPatternUrl.replace(/"/g,'\\"')}")`);
     bar.appendChild(buildMiddleContent(entries[0], allowTwitch));
+
     middleNode = bar;
     segmentEls.push(bar);
 
