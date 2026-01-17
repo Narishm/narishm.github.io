@@ -36,7 +36,6 @@
       --rowH: 92px;
       --rowGap: 15px;
       --pointGap: 15px;
-      --splitGap: 8px;   /* ✅ tweak this */
       --sideW: 220px;
 
       /* Shape tuning */
@@ -48,6 +47,9 @@
 
       /* Default (no-event) bar fallback */
       --barDefault: #2a3446;
+
+      /* ✅ Split middle bar gap (smaller than pointGap) */
+      --splitGap: 8px;
 
       /* Middle text font (AleaWB) */
       --midFont: "AleaWB", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -276,18 +278,23 @@
         var(--barDefault);
     }
 
-    /* ✅ MIDDLE BAR (split wrapper with REAL gap) */
+    /* ✅ MIDDLE BAR (split wrapper)
+       - gap set to 0
+       - we "cancel" the double slant with negative margin on the 2nd segment
+       - leaving only --splitGap visible
+    */
     .barWrap{
-      /* keep same overlap with the LEFT arrow as normal middle bar */
       margin-left: calc(-1 * (var(--slant) - var(--pointGap)));
-
       display: flex;
       align-items: stretch;
       width: 100%;
       min-width: 0;
+      gap: 0; /* IMPORTANT */
+    }
 
-      /* ✅ real visible gap between the two bars */
-      gap: var(--splitGap);
+    /* ✅ Pull the second segment left so only --splitGap remains visible */
+    .barWrap .barSeg + .barSeg{
+      margin-left: calc(-1 * (var(--slant) - var(--splitGap)));
     }
 
     /* ✅ Each split segment is a FULL angled bar (same as .bar) */
@@ -310,7 +317,6 @@
       z-index: 1;
       pointer-events: none;
 
-      /* SAME angled bar shape as .bar */
       clip-path: polygon(
         var(--slant) 0%,
         100% 0%,
@@ -570,7 +576,6 @@
 </head>
 
 <body>
-  <!-- Gradient defs used by today's border & hover border -->
   <svg width="0" height="0" style="position:absolute">
     <defs>
       <linearGradient id="todayStroke" x1="0" y1="0" x2="1" y2="0">
@@ -611,7 +616,7 @@ const IMAGE_BASE_URL = "img/";
 const IMAGE_EXTENSION = ".png";
 
 /* ✅ WHERE YOUR QUEST JSON FILES LIVE */
-const QUEST_JSON_BASE_URL = "json/";   // change to "./" if the json sits beside the html
+const QUEST_JSON_BASE_URL = "json/";
 
 /* YouTube icon (in img folder) */
 const YT_ICON_URL = "img/youtube.png";
@@ -670,7 +675,6 @@ function formatMMDD(d){
   return `${d.getMonth()+1}/${d.getDate()}`;
 }
 
-/* parse: "The DevQuest - 12 PM EST" (now we only care about main) */
 function parseCalendarTitle(raw){
   let rest = String(raw || "").trim();
   const t = rest.match(/\s*-\s*([^-]+)$/);
@@ -678,7 +682,6 @@ function parseCalendarTitle(raw){
   return { slot: null, main: rest.trim() };
 }
 
-/* Local time formatting (AM/PM, drop :00) */
 function formatViewerLocalTime(date){
   const raw = new Intl.DateTimeFormat(undefined, {
     hour: "numeric",
@@ -689,17 +692,7 @@ function formatViewerLocalTime(date){
   return raw.replace(":00","").toUpperCase();
 }
 
-/* ✅ Live ticker state */
 let liveTicker = null;
-/*
-  liveTarget:
-  {
-    rowEl,
-    segments: [ { segEl, startMs, endMs } ... ],
-    arrowR,
-    origThumbUrl
-  }
-*/
 let liveTarget = null;
 
 function updateLiveState(){
@@ -859,12 +852,6 @@ function normalizeDescription(desc){
   return firstLine.trim();
 }
 
-/*
-  Packed token examples:
-    "03tdqlct"
-    "03tdqlct~dQw4w9WgXcQ"
-    "03tdqlct~id1~id2~id3"
-*/
 function parsePackedToken(ev){
   const token = normalizeDescription(ev?.description || "").split(/\s+/)[0].trim();
   if(!token) return { barCode: null, thumbCode: null, ytIds: [] };
@@ -884,9 +871,6 @@ function codeToImageUrl(code){
   return IMAGE_BASE_URL + encodeURIComponent(code) + IMAGE_EXTENSION;
 }
 
-/* =========================
-   ✅ QUEST JSON LOOKUP
-   ========================= */
 const questJsonCache = new Map();
 
 function questTitleToFilename(mainTitle){
@@ -951,9 +935,6 @@ async function lookupTitleAndEditionFromQuestJson(mainTitle, thumbCode){
   return { title, edition };
 }
 
-/* =========================
-   SVG STROKE BORDER (uniform)
-   ========================= */
 function cssPx(varName){
   const v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
   const n = parseFloat(v);
@@ -1032,9 +1013,6 @@ function scheduleStrokeApply(){
 }
 window.addEventListener("resize", () => scheduleStrokeApply());
 
-/* =========================
-   ✅ Build display data for a single event
-   ========================= */
 async function buildEntryFromEvent(ev){
   if(!ev){
     return {
@@ -1090,9 +1068,6 @@ async function buildEntryFromEvent(ev){
   return { displayTitle, editionText, timeText, ytIds, barPatternUrl, thumbUrl, canLive, liveRange };
 }
 
-/* =========================
-   ✅ Middle content builder
-   ========================= */
 function buildMiddleContent(entry, allowTwitch){
   const midContent = document.createElement("div");
   midContent.className = "content-layer";
@@ -1178,14 +1153,10 @@ function buildMiddleContent(entry, allowTwitch){
   return midContent;
 }
 
-/* =========================
-   ✅ Row builder
-   ========================= */
 function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, allowTwitch){
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
-  // Left
   const arrow = document.createElement("div");
   arrow.className = "shape arrow";
   if(leftPatternUrl){
@@ -1217,7 +1188,6 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
   leftContent.appendChild(dowWrap);
   arrow.appendChild(leftContent);
 
-  // Middle (single or split)
   let middleNode = null;
   const segmentEls = [];
 
@@ -1254,7 +1224,6 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
     queueStroke(bar, "bar");
   }
 
-  // Right
   const arrowR = document.createElement("div");
   arrowR.className = "shape arrowR";
   if(thumbUrl){
@@ -1269,7 +1238,6 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
   row._origThumbUrl = thumbUrl || "";
   row._segmentEls = segmentEls;
 
-  // Strokes
   queueStroke(arrow, "arrowL");
   queueStroke(arrowR, "arrowR");
 
@@ -1313,7 +1281,6 @@ async function refreshWeek(){
       const dayKey = ymd(dayDate);
       const mmdd = formatMMDD(dayDate);
 
-      // Left panel pattern: past=00, today=07, future=06
       let leftPatternCode = "06";
       if(dayKey < todayKey) leftPatternCode = "00";
       else if(dayKey === todayKey) leftPatternCode = "07";
@@ -1322,7 +1289,6 @@ async function refreshWeek(){
       const evs = byDay.get(dayKey) || [];
       const sorted = sortEventsForDay([...evs]);
 
-      // ✅ show first TWO events if present
       const ev1 = sorted[0] || null;
       const ev2 = sorted[1] || null;
 
@@ -1331,7 +1297,6 @@ async function refreshWeek(){
 
       const entries = entry2 ? [entry1, entry2] : [entry1];
 
-      // right thumb stays driven by FIRST event
       const thumbUrl = entry1.thumbUrl || codeToImageUrl(OFF_THUMB_CODE);
 
       const isToday = (dayKey === todayKey);
@@ -1350,7 +1315,6 @@ async function refreshWeek(){
       if(isToday) rowEl.classList.add("today");
       listEl.appendChild(rowEl);
 
-      // ✅ Live targeting (today only), per-segment, only timed + no YT
       if(isToday){
         const segs = [];
 
