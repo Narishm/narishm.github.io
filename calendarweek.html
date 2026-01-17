@@ -531,6 +531,37 @@
     .bar.liveSeg .eventTime,
     .bar.liveSeg .ytIcons{ display: none; }
 
+    /* =========================
+       ✅ Split-bar typography (smaller so it fits)
+       ========================= */
+    .row.split .barSeg .content-layer{
+      padding: 0 14px; /* tighter than normal */
+    }
+
+    .row.split .barSeg .midContent{
+      gap: 10px; /* tighter than normal */
+    }
+
+    .row.split .barSeg .eventMain{
+      font-size: clamp(14px, 1.4vw, 30px);
+    }
+
+    .row.split .barSeg .eventEdition{
+      font-size: clamp(10px, 0.95vw, 14px);
+    }
+
+    .row.split .barSeg .eventTime{
+      font-size: clamp(11px, 0.95vw, 16px);
+    }
+
+    .row.split .barSeg .ytIcon{
+      height: 18px;
+    }
+
+    .row.split .barSeg .twitchIcon{
+      height: 28px;
+    }
+
     @media (max-width: 800px) {
       :root {
         --sideW: 200px;
@@ -544,6 +575,10 @@
       .dowWrap { transform: translateY(-3px); gap: 3px; }
       .ytIcon { height: 20px; }
       .twitchIcon { height: 20px; }
+
+      /* ✅ even smaller icons inside split segments on mobile */
+      .row.split .barSeg .ytIcon{ height: 16px; }
+      .row.split .barSeg .twitchIcon{ height: 22px; }
     }
   </style>
 </head>
@@ -1120,7 +1155,6 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
   const row = document.createElement("div");
   row.className = `row ${rowIndex % 2 === 0 ? 'shift-left' : 'shift-right'}`;
 
-  // ✅ mark split rows so CSS can tighten thumbnail join
   if(entries.length >= 2){
     row.classList.add("split");
   }
