@@ -207,8 +207,27 @@
       stroke-miterlimit: 4;
     }
 
+    /* Today highlight */
     .row.today .strokeSvg polygon{ stroke: url(#todayStroke); }
-    .row:hover .strokeSvg polygon{ stroke: url(#hoverStroke); }
+
+    /* =========================
+       ✅ Hover system (class-driven)
+       ========================= */
+
+    /* Hover-all: date or thumbnail hovered */
+    .row.hoverAll .strokeSvg polygon{ stroke: url(#hoverStroke); }
+
+    /* Hover-segment: only date + hovered segment (+ thumb only if not live) */
+    .row.hoverSeg .arrow .strokeSvg polygon{ stroke: url(#hoverStroke); }
+
+    .row.hoverSeg .barSeg.hovered .strokeSvg polygon,
+    .row.hoverSeg .bar.hovered .strokeSvg polygon{
+      stroke: url(#hoverStroke);
+    }
+
+    .row.hoverSeg:not(.live) .arrowR .strokeSvg polygon{
+      stroke: url(#hoverStroke);
+    }
 
     /* ✅ Live border: right thumbnail stroke becomes red gradient */
     .row.live .arrowR .strokeSvg polygon{
@@ -219,12 +238,6 @@
     .barSeg.liveSeg .strokeSvg polygon,
     .bar.liveSeg .strokeSvg polygon{
       stroke: url(#liveStroke) !important;
-    }
-
-    /* Hover highlight for bar segments */
-    .row:hover .bar .strokeSvg polygon,
-    .row:hover .barSeg .strokeSvg polygon{
-      stroke: url(#hoverStroke);
     }
 
     .content-layer {
@@ -702,6 +715,108 @@ function formatViewerLocalTime(date){
 let liveTicker = null;
 let liveTarget = null;
 
+/* =========================
+   ✅ Hover logic
+   ========================= */
+function setThumbUrlForRow(rowEl, thumbUrl){
+  if(!rowEl || !rowEl._arrowR) return;
+  if(!thumbUrl) return;
+  rowEl._arrowR.style.setProperty("--thumb", `url("${thumbUrl.replace(/"/g,'\\"')}")`);
+}
+
+function clearSegHover(rowEl){
+  if(!rowEl) return;
+  rowEl.classList.remove("hoverSeg");
+  if(Array.isArray(rowEl._segmentEls)){
+    for(const el of rowEl._segmentEls) el.classList.remove("hovered");
+  }
+  if(!rowEl.classList.contains("live")){
+    setThumbUrlForRow(rowEl, rowEl._origThumbUrl || "");
+  }
+}
+
+function setHoverAll(rowEl, on){
+  if(!rowEl) return;
+  if(on){
+    rowEl.classList.add("hoverAll");
+    // cancel seg-hover when full hover is active
+    clearSegHover(rowEl);
+  } else {
+    rowEl.classList.remove("hoverAll");
+  }
+}
+
+function setSegHover(rowEl, segEl){
+  if(!rowEl || !segEl) return;
+
+  // if you're moving from "hover all" into a segment, drop hoverAll
+  rowEl.classList.remove("hoverAll");
+
+  rowEl.classList.add("hoverSeg");
+
+  if(Array.isArray(rowEl._segmentEls)){
+    for(const el of rowEl._segmentEls){
+      el.classList.toggle("hovered", el === segEl);
+    }
+  } else {
+    segEl.classList.add("hovered");
+  }
+
+  if(!rowEl.classList.contains("live")){
+    const t = segEl.dataset.thumbUrl || "";
+    if(t) setThumbUrlForRow(rowEl, t);
+  }
+}
+
+function installHoverHandlers(rowEl, arrowEl, middleNode, arrowREl){
+  // Leaving the row clears everything (safety net)
+  rowEl.addEventListener("mouseleave", () => {
+    rowEl.classList.remove("hoverAll");
+    clearSegHover(rowEl);
+  });
+
+  // Hovering date box -> hoverAll
+  arrowEl.addEventListener("mouseenter", () => setHoverAll(rowEl, true));
+  arrowEl.addEventListener("mouseleave", (e) => {
+    const rt = e.relatedTarget;
+    if(rt && rt.closest && rt.closest(".row") === rowEl){
+      // if moving within row, let the next handler decide
+      setHoverAll(rowEl, false);
+      return;
+    }
+    setHoverAll(rowEl, false);
+  });
+
+  // Hovering thumbnail -> hoverAll
+  arrowREl.addEventListener("mouseenter", () => setHoverAll(rowEl, true));
+  arrowREl.addEventListener("mouseleave", (e) => {
+    const rt = e.relatedTarget;
+    if(rt && rt.closest && rt.closest(".row") === rowEl){
+      setHoverAll(rowEl, false);
+      return;
+    }
+    setHoverAll(rowEl, false);
+  });
+
+  // Hovering middle segments -> hoverSeg (selective)
+  const segs = Array.isArray(rowEl._segmentEls) ? rowEl._segmentEls : [];
+  for(const seg of segs){
+    seg.addEventListener("mouseenter", () => setSegHover(rowEl, seg));
+    seg.addEventListener("mouseleave", (e) => {
+      const rt = e.relatedTarget;
+      // If moving to another middle segment (or bar), don't clear (prevents flicker)
+      const nextMid = rt && rt.closest ? rt.closest(".barSeg, .bar") : null;
+      if(nextMid && nextMid.closest(".row") === rowEl) return;
+
+      // If moving to date or thumbnail, let their hoverAll handler take over
+      const nextSide = rt && rt.closest ? rt.closest(".arrow, .arrowR") : null;
+      if(nextSide && nextSide.closest(".row") === rowEl) return;
+
+      clearSegHover(rowEl);
+    });
+  }
+}
+
 function updateLiveState(){
   if(!liveTarget) return;
 
@@ -719,8 +834,15 @@ function updateLiveState(){
   if(liveTarget.arrowR){
     if(anyLive){
       liveTarget.arrowR.style.setProperty("--thumb", `url("${LIVE_THUMB_URL.replace(/"/g,'\\"')}")`);
-    } else if(liveTarget.origThumbUrl){
-      liveTarget.arrowR.style.setProperty("--thumb", `url("${liveTarget.origThumbUrl.replace(/"/g,'\\"')}")`);
+    } else {
+      // If not live, respect current segment-hover thumb (if any), else revert
+      const hovered = liveTarget.rowEl.querySelector(".barSeg.hovered, .bar.hovered");
+      const hoverThumb = hovered && hovered.dataset ? (hovered.dataset.thumbUrl || "") : "";
+      if(hoverThumb){
+        liveTarget.arrowR.style.setProperty("--thumb", `url("${hoverThumb.replace(/"/g,'\\"')}")`);
+      } else if(liveTarget.origThumbUrl){
+        liveTarget.arrowR.style.setProperty("--thumb", `url("${liveTarget.origThumbUrl.replace(/"/g,'\\"')}")`);
+      }
     }
   }
 }
@@ -940,7 +1062,6 @@ function queueStroke(shapeEl, kind){
   strokeJobs.push({ el: shapeEl, kind });
 }
 
-/* ✅ FIX: re-queue all visible shapes before applying strokes (needed for resize) */
 function queueAllStrokes(){
   document.querySelectorAll(".shape.arrow").forEach(el => queueStroke(el, "arrowL"));
   document.querySelectorAll(".shape.bar").forEach(el => queueStroke(el, "bar"));
@@ -1014,7 +1135,6 @@ function scheduleStrokeApply(){
   requestAnimationFrame(() => applyStrokes());
 }
 
-/* ✅ FIX: on resize, re-queue everything then recompute */
 window.addEventListener("resize", () => {
   queueAllStrokes();
   scheduleStrokeApply();
@@ -1212,12 +1332,14 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
 
     const seg1 = document.createElement("div");
     seg1.className = "barSeg";
+    seg1.dataset.thumbUrl = entries[0].thumbUrl || "";
     seg1.style.setProperty("--barPattern", `url("${entries[0].barPatternUrl.replace(/"/g,'\\"')}")`);
     seg1.appendChild(buildMiddleContent(entries[0], allowTwitch));
     wrap.appendChild(seg1);
 
     const seg2 = document.createElement("div");
     seg2.className = "barSeg";
+    seg2.dataset.thumbUrl = entries[1].thumbUrl || "";
     seg2.style.setProperty("--barPattern", `url("${entries[1].barPatternUrl.replace(/"/g,'\\"')}")`);
     seg2.appendChild(buildMiddleContent(entries[1], allowTwitch));
     wrap.appendChild(seg2);
@@ -1230,6 +1352,7 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
   } else {
     const bar = document.createElement("div");
     bar.className = "shape bar";
+    bar.dataset.thumbUrl = entries[0].thumbUrl || "";
     bar.style.setProperty("--barPattern", `url("${entries[0].barPatternUrl.replace(/"/g,'\\"')}")`);
     bar.appendChild(buildMiddleContent(entries[0], allowTwitch));
 
@@ -1255,6 +1378,9 @@ function makeRow(day, dateText, entries, rowIndex, leftPatternUrl, thumbUrl, all
 
   queueStroke(arrow, "arrowL");
   queueStroke(arrowR, "arrowR");
+
+  // ✅ Install hover behavior per row
+  installHoverHandlers(row, arrow, middleNode, arrowR);
 
   return row;
 }
@@ -1351,7 +1477,6 @@ async function refreshWeek(){
       }
     }
 
-    /* ✅ FIX: ensure strokes are recalculated for current layout */
     queueAllStrokes();
     scheduleStrokeApply();
 
