@@ -6,7 +6,7 @@
       "era": "FACTORY",
       "order": 1,
       "type": "CORE",
-      "name": "Factorio",
+      "title": "Factorio",
       "edition": "Space Age",
       "platform": ["PC"],
       "unlocks": []
@@ -16,7 +16,7 @@
       "era": "FACTORY",
       "order": 2,
       "type": "CORE",
-      "name": "Dyson Sphere Program",
+      "title": "Dyson Sphere Program",
       "edition": "",
       "platform": ["PC"],
       "unlocks": []
@@ -26,7 +26,7 @@
       "era": "FACTORY",
       "order": 3,
       "type": "CORE",
-      "name": "Satisfactory",
+      "title": "Satisfactory",
       "edition": "",
       "platform": ["PC"],
       "unlocks": []
@@ -36,7 +36,7 @@
       "era": "FACTORY",
       "order": 4,
       "type": "CORE",
-      "name": "Planet Crafter",
+      "title": "Planet Crafter",
       "edition": "",
       "platform": ["PC"],
       "unlocks": []
@@ -46,7 +46,7 @@
       "era": "FACTORY",
       "order": 5,
       "type": "CORE",
-      "name": "StarRupture",
+      "title": "StarRupture",
       "edition": "",
       "platform": ["PC"],
       "unlocks": []
