@@ -17,7 +17,7 @@
       "order": 2,
       "type": "CORE",
       "name": "Dyson Sphere Program",
-      "edition": "Base Game",
+      "edition": "",
       "platform": ["PC"],
       "unlocks": []
     },
@@ -27,17 +27,17 @@
       "order": 3,
       "type": "CORE",
       "name": "Satisfactory",
-      "edition": "Base Game",
+      "edition": "",
       "platform": ["PC"],
       "unlocks": []
     },
-        {
-      "id": "pc",
+    {
+      "id": "pcp",
       "era": "FACTORY",
       "order": 4,
       "type": "CORE",
       "name": "Planet Crafter",
-      "edition": "Base Game",
+      "edition": "",
       "platform": ["PC"],
       "unlocks": []
     },
@@ -47,7 +47,7 @@
       "order": 4,
       "type": "CORE",
       "name": "StarRupture",
-      "edition": "Base Game",
+      "edition": "",
       "platform": ["PC"],
       "unlocks": []
     }
