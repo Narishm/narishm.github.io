@@ -2,7 +2,7 @@
   "eras": ["FACTORY"],
   "adventures": [
     {
-      "id": "FSA",
+      "id": "fsa",
       "era": "FACTORY",
       "order": 1,
       "type": "CORE",
@@ -12,7 +12,7 @@
       "unlocks": []
     },
     {
-      "id": "DSP",
+      "id": "dsp",
       "era": "FACTORY",
       "order": 2,
       "type": "CORE",
@@ -22,7 +22,7 @@
       "unlocks": []
     },
     {
-      "id": "SAT",
+      "id": "sat",
       "era": "FACTORY",
       "order": 3,
       "type": "CORE",
@@ -31,8 +31,18 @@
       "platform": ["PC"],
       "unlocks": []
     },
+        {
+      "id": "pc",
+      "era": "FACTORY",
+      "order": 4,
+      "type": "CORE",
+      "name": "Planet Crafter",
+      "edition": "Base Game",
+      "platform": ["PC"],
+      "unlocks": []
+    },
     {
-      "id": "STAR",
+      "id": "star",
       "era": "FACTORY",
       "order": 4,
       "type": "CORE",
