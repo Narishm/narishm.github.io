@@ -22,49 +22,25 @@
           "platform": ["NES"],
           "unlocks": [
             {
-              "id": "lozbs",
+              "id": "lozbs3q",
               "era": "Early",
               "order": 3,
               "type": "ALTERNATE",
               "title": "The Legend of Zelda BS",
               "locked": true,
-              "edition": "",
+              "edition": "The Third Quest",
               "platform": ["SATELLAVIEW"],
               "unlocks": [
                 {
-                  "id": "lozbs2q",
+                  "id": "lozbs4q",
                   "era": "Early",
                   "order": 4,
                   "type": "ALTERNATE",
                   "title": "The Legend of Zelda BS",
                   "locked": true,
-                  "edition": "The Second Quest",
+                  "edition": "The Fourth Quest",
                   "platform": ["SATELLAVIEW"],
-                  "unlocks": [
-                    {
-                      "id": "lozbs3q",
-                      "era": "Early",
-                      "order": 5,
-                      "type": "ALTERNATE",
-                      "title": "The Legend of Zelda BS",
-                      "locked": true,
-                      "edition": "The Third Quest",
-                      "platform": ["SATELLAVIEW"],
-                      "unlocks": [
-                        {
-                          "id": "lozbs4q",
-                          "era": "Early",
-                          "order": 6,
-                          "type": "ALTERNATE",
-                          "title": "The Legend of Zelda BS",
-                          "locked": true,
-                          "edition": "The Fourth Quest",
-                          "platform": ["SATELLAVIEW"],
-                          "unlocks": []
-                        }
-                      ]
-                    }
-                  ]
+                  "unlocks": []
                 }
               ]
             },
