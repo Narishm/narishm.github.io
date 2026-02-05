@@ -1,787 +1,950 @@
 {
-  "eras": ["CDOOM", "HDOOM", "MDOOM", "CWOLF", "NWOLF", "MWOLF", "CDUKE", "3DUKE", "HDUKE", "MDUKE", "Q1", "Q2", "Q3", "Q4", "HEX", "SIDE"],
+  "eras": [
+    "CDOOM",
+    "HDOOM",
+    "MDOOM",
+    "CWOLF",
+    "NWOLF",
+    "MWOLF",
+    "CDUKE",
+    "3DUKE",
+    "HDUKE",
+    "MDUKE",
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4",
+    "HEX",
+    "SIDE"
+  ],
   "adventures": [
     {
-      "id": "DOOM93",
+      "id": "doom93",
       "era": "CDOOM",
       "order": 1,
       "type": "CORE",
-      "name": "DOOM",
       "edition": "DOOM + DOOM II",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "DOOM2",
+          "id": "doom2",
           "era": "CDOOM",
           "order": 2,
           "type": "CORE",
-          "name": "DOOM II",
           "edition": "DOOM + DOOM II",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "DM2ML",
+              "id": "dm2ml",
               "era": "CDOOM",
               "order": 3,
               "type": "CORE",
-              "name": "Master Levels for DOOM II",
               "edition": "DOOM + DOOM II",
-              "platform": ["STEAM"],
+              "platform": [
+                "STEAM"
+              ],
               "unlocks": [
                 {
-                  "id": "DTNT",
+                  "id": "dtnt",
                   "era": "CDOOM",
                   "order": 4,
                   "type": "CORE",
-                  "name": "TNT: Evilution",
                   "edition": "DOOM + DOOM II",
-                  "platform": ["STEAM"],
+                  "platform": [
+                    "STEAM"
+                  ],
                   "unlocks": [
                     {
-                      "id": "DPLU",
+                      "id": "dplu",
                       "era": "CDOOM",
                       "order": 5,
                       "type": "CORE",
-                      "name": "The Plutonia Experiment",
                       "edition": "DOOM + DOOM II",
-                      "platform": ["STEAM"],
+                      "platform": [
+                        "STEAM"
+                      ],
                       "unlocks": [
                         {
-                          "id": "DNRFTL",
+                          "id": "dnrftl",
                           "era": "CDOOM",
                           "order": 6,
                           "type": "CORE",
-                          "name": "No Rest for the Living",
                           "edition": "DOOM + DOOM II",
-                          "platform": ["STEAM"],
+                          "platform": [
+                            "STEAM"
+                          ],
                           "unlocks": [
                             {
-                              "id": "DSIG1",
+                              "id": "dsig1",
                               "era": "CDOOM",
                               "order": 7,
                               "type": "CORE",
-                              "name": "SIGIL",
                               "edition": "DOOM + DOOM II",
-                              "platform": ["STEAM"],
+                              "platform": [
+                                "STEAM"
+                              ],
                               "unlocks": [
                                 {
-                                  "id": "DSIG2",
+                                  "id": "dsig2",
                                   "era": "CDOOM",
                                   "order": 8,
                                   "type": "CORE",
-                                  "name": "SIGIL II",
                                   "edition": "DOOM + DOOM II",
-                                  "platform": ["STEAM"],
+                                  "platform": [
+                                    "STEAM"
+                                  ],
                                   "unlocks": [
                                     {
-                                      "id": "DLOR",
+                                      "id": "dlor",
                                       "era": "CDOOM",
                                       "order": 9,
                                       "type": "CORE",
-                                      "name": "Legacy of Rust",
                                       "edition": "DOOM + DOOM II",
-                                      "platform": ["STEAM"],
+                                      "platform": [
+                                        "STEAM"
+                                      ],
                                       "unlocks": [
                                         {
-                                          "id": "D64",
+                                          "id": "d64",
                                           "era": "CDOOM",
                                           "order": 10,
                                           "type": "CORE",
-                                          "name": "DOOM 64",
                                           "edition": "Enhanced",
-                                          "platform": ["STEAM"],
+                                          "platform": [
+                                            "STEAM"
+                                          ],
                                           "unlocks": [
                                             {
-                                              "id": "D64LL",
+                                              "id": "d64ll",
                                               "era": "CDOOM",
                                               "order": 11,
                                               "type": "BONUS",
-                                              "name": "The Lost Levels",
                                               "edition": "DOOM 64",
-                                              "platform": ["STEAM"],
-                                              "unlocks": []
+                                              "platform": [
+                                                "STEAM"
+                                              ],
+                                              "unlocks": [],
+                                              "title": "The Lost Levels"
                                             }
-                                          ]
+                                          ],
+                                          "title": "DOOM 64"
                                         }
-                                      ]
+                                      ],
+                                      "title": "Legacy of Rust"
                                     }
-                                  ]
+                                  ],
+                                  "title": "SIGIL II"
                                 }
-                              ]
+                              ],
+                              "title": "SIGIL"
                             }
-                          ]
+                          ],
+                          "title": "No Rest for the Living"
                         }
-                      ]
+                      ],
+                      "title": "The Plutonia Experiment"
                     }
-                  ]
+                  ],
+                  "title": "TNT: Evilution"
                 }
-              ]
+              ],
+              "title": "Master Levels for DOOM II"
             }
-          ]
+          ],
+          "title": "DOOM II"
         }
-      ]
+      ],
+      "title": "DOOM"
     },
     {
-      "id": "DOOM3",
+      "id": "doom3",
       "era": "HDOOM",
       "order": 12,
       "type": "CORE",
-      "name": "DOOM 3",
       "edition": "BFG Edition",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "D3ROE",
+          "id": "d3roe",
           "era": "HDOOM",
           "order": 13,
           "type": "CORE",
-          "name": "Resurrection of Evil",
           "edition": "DOOM 3",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "D3LM",
+              "id": "d3lm",
               "era": "HDOOM",
               "order": 14,
               "type": "CORE",
-              "name": "The Lost Mission",
               "edition": "DOOM 3",
-              "platform": ["STEAM"],
-              "unlocks": []
+              "platform": [
+                "STEAM"
+              ],
+              "unlocks": [],
+              "title": "The Lost Mission"
             }
-          ]
+          ],
+          "title": "Resurrection of Evil"
         }
-      ]
+      ],
+      "title": "DOOM 3"
     },
     {
-      "id": "DOOM16",
+      "id": "doom16",
       "era": "MDOOM",
       "order": 15,
       "type": "CORE",
-      "name": "DOOM",
       "edition": "2016",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "DOOMET",
+          "id": "doomet",
           "era": "MDOOM",
           "order": 16,
           "type": "CORE",
-          "name": "DOOM Eternal",
           "edition": "Standard",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "DOOMTAG1",
+              "id": "doomtag1",
               "era": "MDOOM",
               "order": 17,
               "type": "CORE",
-              "name": "DOOM Eternal",
               "edition": "The Ancient Gods - Part One",
-              "platform": ["STEAM"],
+              "platform": [
+                "STEAM"
+              ],
               "unlocks": [
                 {
-                  "id": "DOOMTAG2",
+                  "id": "doomtag2",
                   "era": "MDOOM",
                   "order": 18,
                   "type": "CORE",
-                  "name": "DOOM Eternal",
                   "edition": "The Ancient Gods - Part Two",
-                  "platform": ["STEAM"],
+                  "platform": [
+                    "STEAM"
+                  ],
                   "unlocks": [
                     {
-                      "id": "DOOMDA",
+                      "id": "doomda",
                       "era": "MDOOM",
                       "order": 19,
                       "type": "CORE",
-                      "name": "DOOM: The Dark Ages",
                       "edition": "Standard",
-                      "platform": ["STEAM"],
-                      "unlocks": []
+                      "platform": [
+                        "STEAM"
+                      ],
+                      "unlocks": [],
+                      "title": "DOOM: The Dark Ages"
                     }
-                  ]
+                  ],
+                  "title": "DOOM Eternal"
                 }
-              ]
+              ],
+              "title": "DOOM Eternal"
             }
-          ]
+          ],
+          "title": "DOOM Eternal"
         }
-      ]
+      ],
+      "title": "DOOM"
     },
     {
-      "id": "CWOLF81",
+      "id": "cwolf81",
       "era": "CWOLF",
       "order": 20,
       "type": "CORE",
-      "name": "Castle Wolfenstein",
       "edition": "MS-DOS",
-      "platform": ["DOS"],
+      "platform": [
+        "DOS"
+      ],
       "unlocks": [
         {
-          "id": "BCW84",
+          "id": "bcw84",
           "era": "CWOLF",
           "order": 21,
           "type": "CORE",
-          "name": "Beyond Castle Wolfenstein",
           "edition": "MS-DOS",
-          "platform": ["DOS"],
+          "platform": [
+            "DOS"
+          ],
           "unlocks": [
             {
-              "id": "WOLF3D",
+              "id": "wolf3d",
               "era": "CWOLF",
               "order": 22,
               "type": "CORE",
-              "name": "Wolfenstein 3D",
               "edition": "MS-DOS",
-              "platform": ["DOS"],
+              "platform": [
+                "DOS"
+              ],
               "unlocks": [
                 {
-                  "id": "SOD",
+                  "id": "sod",
                   "era": "CWOLF",
                   "order": 23,
                   "type": "CORE",
-                  "name": "Spear of Destiny",
                   "edition": "MS-DOS",
-                  "platform": ["DOS"],
-                  "unlocks": []
+                  "platform": [
+                    "DOS"
+                  ],
+                  "unlocks": [],
+                  "title": "Spear of Destiny"
                 }
-              ]
+              ],
+              "title": "Wolfenstein 3D"
             }
-          ]
+          ],
+          "title": "Beyond Castle Wolfenstein"
         }
-      ]
+      ],
+      "title": "Castle Wolfenstein"
     },
     {
-      "id": "RTCW",
+      "id": "rtcw",
       "era": "NWOLF",
       "order": 24,
       "type": "CORE",
-      "name": "Return to Castle Wolfenstein",
       "edition": "PC",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "ET",
+          "id": "et",
           "era": "NWOLF",
           "order": 25,
           "type": "CORE",
-          "name": "Wolfenstein: Enemy Territory",
           "edition": "PC",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "WOLF09",
+              "id": "wolf09",
               "era": "NWOLF",
               "order": 26,
               "type": "CORE",
-              "name": "Wolfenstein",
               "edition": "2009",
-              "platform": ["PC"],
-              "unlocks": []
+              "platform": [
+                "PC"
+              ],
+              "unlocks": [],
+              "title": "Wolfenstein"
             }
-          ]
+          ],
+          "title": "Wolfenstein: Enemy Territory"
         }
-      ]
+      ],
+      "title": "Return to Castle Wolfenstein"
     },
     {
-      "id": "TNO",
+      "id": "tno",
       "era": "MWOLF",
       "order": 27,
       "type": "CORE",
-      "name": "Wolfenstein: The New Order",
       "edition": "Standard",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "TOB",
+          "id": "tob",
           "era": "MWOLF",
           "order": 28,
           "type": "CORE",
-          "name": "Wolfenstein: The Old Blood",
           "edition": "Standard",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "TNC",
+              "id": "tnc",
               "era": "MWOLF",
               "order": 29,
               "type": "CORE",
-              "name": "Wolfenstein II: The New Colossus",
               "edition": "Standard",
-              "platform": ["STEAM"],
+              "platform": [
+                "STEAM"
+              ],
               "unlocks": [
                 {
-                  "id": "FC0",
+                  "id": "fc0",
                   "era": "MWOLF",
                   "order": 30,
                   "type": "DLC",
-                  "name": "The Freedom Chronicles: Episode Zero",
                   "edition": "Wolfenstein II: The New Colossus",
-                  "platform": ["STEAM"],
+                  "platform": [
+                    "STEAM"
+                  ],
                   "unlocks": [
                     {
-                      "id": "FCGJ",
+                      "id": "fcgj",
                       "era": "MWOLF",
                       "order": 31,
                       "type": "DLC",
-                      "name": "The Adventures of Gunslinger Joe",
                       "edition": "Wolfenstein II: The New Colossus",
-                      "platform": ["STEAM"],
+                      "platform": [
+                        "STEAM"
+                      ],
                       "unlocks": [
                         {
-                          "id": "FCSD",
+                          "id": "fcsd",
                           "era": "MWOLF",
                           "order": 32,
                           "type": "DLC",
-                          "name": "The Diaries of Agent Silent Death",
                           "edition": "Wolfenstein II: The New Colossus",
-                          "platform": ["STEAM"],
+                          "platform": [
+                            "STEAM"
+                          ],
                           "unlocks": [
                             {
-                              "id": "FCW",
+                              "id": "fcw",
                               "era": "MWOLF",
                               "order": 33,
                               "type": "DLC",
-                              "name": "The Deeds of Captain Wilkins",
                               "edition": "Wolfenstein II: The New Colossus",
-                              "platform": ["STEAM"],
+                              "platform": [
+                                "STEAM"
+                              ],
                               "unlocks": [
                                 {
-                                  "id": "YB",
+                                  "id": "yb",
                                   "era": "MWOLF",
                                   "order": 34,
                                   "type": "CORE",
-                                  "name": "Wolfenstein: Youngblood",
                                   "edition": "Standard",
-                                  "platform": ["STEAM"],
-                                  "unlocks": []
+                                  "platform": [
+                                    "STEAM"
+                                  ],
+                                  "unlocks": [],
+                                  "title": "Wolfenstein: Youngblood"
                                 }
-                              ]
+                              ],
+                              "title": "The Deeds of Captain Wilkins"
                             }
-                          ]
+                          ],
+                          "title": "The Diaries of Agent Silent Death"
                         }
-                      ]
+                      ],
+                      "title": "The Adventures of Gunslinger Joe"
                     }
-                  ]
+                  ],
+                  "title": "The Freedom Chronicles: Episode Zero"
                 }
-              ]
+              ],
+              "title": "Wolfenstein II: The New Colossus"
             }
-          ]
+          ],
+          "title": "Wolfenstein: The Old Blood"
         }
-      ]
+      ],
+      "title": "Wolfenstein: The New Order"
     },
     {
-      "id": "DN1",
+      "id": "dn1",
       "era": "CDUKE",
       "order": 35,
       "type": "CORE",
-      "name": "Duke Nukem",
       "edition": "MS-DOS",
-      "platform": ["GOG"],
+      "platform": [
+        "GOG"
+      ],
       "unlocks": [
         {
-          "id": "DN2",
+          "id": "dn2",
           "era": "CDUKE",
           "order": 36,
           "type": "CORE",
-          "name": "Duke Nukem II",
           "edition": "MS-DOS",
-          "platform": ["GOG"],
-          "unlocks": []
+          "platform": [
+            "GOG"
+          ],
+          "unlocks": [],
+          "title": "Duke Nukem II"
         }
-      ]
+      ],
+      "title": "Duke Nukem"
     },
     {
-      "id": "DN3DWT",
+      "id": "dn3dwt",
       "era": "3DUKE",
       "order": 37,
       "type": "CORE",
-      "name": "Duke Nukem 3D",
       "edition": "20th Anniversary World Tour",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "DNPNP",
+          "id": "dnpnp",
           "era": "3DUKE",
           "order": 38,
           "type": "BONUS",
-          "name": "Plug n' Pray",
           "edition": "Total Meltdown",
-          "platform": ["PS1"],
+          "platform": [
+            "PS1"
+          ],
           "unlocks": [
             {
-              "id": "DNDC",
+              "id": "dndc",
               "era": "3DUKE",
               "order": 39,
               "type": "EXPANSION",
-              "name": "Duke It Out in D.C.",
               "edition": "Megaton",
-              "platform": ["STEAM"],
+              "platform": [
+                "STEAM"
+              ],
               "unlocks": [
                 {
-                  "id": "DNCLAB",
+                  "id": "dnclab",
                   "era": "3DUKE",
                   "order": 40,
                   "type": "EXPANSION",
-                  "name": "Duke Caribbean: Life's a Beach",
                   "edition": "Megaton",
-                  "platform": ["STEAM"],
+                  "platform": [
+                    "STEAM"
+                  ],
                   "unlocks": [
                     {
-                      "id": "DNNW",
+                      "id": "dnnw",
                       "era": "3DUKE",
                       "order": 41,
                       "type": "EXPANSION",
-                      "name": "Duke: Nuclear Winter",
                       "edition": "Megaton",
-                      "platform": ["STEAM"],
-                      "unlocks": []
+                      "platform": [
+                        "STEAM"
+                      ],
+                      "unlocks": [],
+                      "title": "Duke: Nuclear Winter"
                     }
-                  ]
+                  ],
+                  "title": "Duke Caribbean: Life's a Beach"
                 }
-              ]
+              ],
+              "title": "Duke It Out in D.C."
             }
-          ]
+          ],
+          "title": "Plug n' Pray"
         }
-      ]
+      ],
+      "title": "Duke Nukem 3D"
     },
     {
-      "id": "DNTTK",
+      "id": "dnttk",
       "era": "3DUKE",
       "order": 42,
       "type": "CORE",
-      "name": "Duke Nukem: Time to Kill",
       "edition": "Standard",
-      "platform": ["PS1"],
-      "unlocks": []
+      "platform": [
+        "PS1"
+      ],
+      "unlocks": [],
+      "title": "Duke Nukem: Time to Kill"
     },
     {
-      "id": "DNLOB",
+      "id": "dnlob",
       "era": "3DUKE",
       "order": 43,
       "type": "CORE",
-      "name": "Duke Nukem: Land of the Babes",
       "edition": "Standard",
-      "platform": ["PS1"],
-      "unlocks": []
+      "platform": [
+        "PS1"
+      ],
+      "unlocks": [],
+      "title": "Duke Nukem: Land of the Babes"
     },
     {
-      "id": "DNZH",
+      "id": "dnzh",
       "era": "3DUKE",
       "order": 44,
       "type": "CORE",
-      "name": "Duke Nukem: Zero Hour",
       "edition": "Standard",
-      "platform": ["N64"],
+      "platform": [
+        "N64"
+      ],
       "unlocks": [
         {
-          "id": "DNMP",
+          "id": "dnmp",
           "era": "3DUKE",
           "order": 45,
           "type": "CORE",
-          "name": "Duke Nukem: Manhattan Project",
           "edition": "PC",
-          "platform": ["STEAM"],
-          "unlocks": []
+          "platform": [
+            "STEAM"
+          ],
+          "unlocks": [],
+          "title": "Duke Nukem: Manhattan Project"
         }
-      ]
+      ],
+      "title": "Duke Nukem: Zero Hour"
     },
     {
-      "id": "DN64",
+      "id": "dn64",
       "era": "3DUKE",
       "order": 46,
       "type": "CORE",
-      "name": "Duke Nukem 64",
       "edition": "Standard",
-      "platform": ["N64"],
-      "unlocks": []
+      "platform": [
+        "N64"
+      ],
+      "unlocks": [],
+      "title": "Duke Nukem 64"
     },
     {
-      "id": "DNADV",
+      "id": "dnadv",
       "era": "HDUKE",
       "order": 47,
       "type": "CORE",
-      "name": "Duke Nukem Advance",
       "edition": "Standard",
-      "platform": ["GBA"],
-      "unlocks": []
+      "platform": [
+        "GBA"
+      ],
+      "unlocks": [],
+      "title": "Duke Nukem Advance"
     },
     {
-      "id": "DNCM",
+      "id": "dncm",
       "era": "HDUKE",
       "order": 48,
       "type": "CORE",
-      "name": "Duke Nukem: Critical Mass",
       "edition": "Standard",
-      "platform": ["DS"],
-      "unlocks": []
+      "platform": [
+        "DS"
+      ],
+      "unlocks": [],
+      "title": "Duke Nukem: Critical Mass"
     },
     {
-      "id": "DNF",
+      "id": "dnf",
       "era": "MDUKE",
       "order": 49,
       "type": "CORE",
-      "name": "Duke Nukem Forever",
       "edition": "Standard",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "DNFDTWCM",
+          "id": "dnfdtwcm",
           "era": "MDUKE",
           "order": 50,
           "type": "DLC",
-          "name": "Duke Nukem Forever",
           "edition": "The Doctor Who Cloned Me",
-          "platform": ["STEAM"],
-          "unlocks": []
+          "platform": [
+            "STEAM"
+          ],
+          "unlocks": [],
+          "title": "Duke Nukem Forever"
         }
-      ]
+      ],
+      "title": "Duke Nukem Forever"
     },
     {
-      "id": "Q1QUAKE",
+      "id": "q1quake",
       "era": "Q1",
       "order": 51,
       "type": "CORE",
-      "name": "Quake",
       "edition": "Enhanced",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "Q1SOA",
+          "id": "q1soa",
           "era": "Q1",
           "order": 52,
           "type": "EXPANSION",
-          "name": "Scourge of Armagon",
           "edition": "Quake",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "Q1DOE",
+              "id": "q1doe",
               "era": "Q1",
               "order": 53,
               "type": "EXPANSION",
-              "name": "Dissolution of Eternity",
               "edition": "Quake",
-              "platform": ["STEAM"],
+              "platform": [
+                "STEAM"
+              ],
               "unlocks": [
                 {
-                  "id": "Q1DOTP",
+                  "id": "q1dotp",
                   "era": "Q1",
                   "order": 54,
                   "type": "BONUS",
-                  "name": "Dimension of the Past",
                   "edition": "Quake",
-                  "platform": ["STEAM"],
+                  "platform": [
+                    "STEAM"
+                  ],
                   "unlocks": [
                     {
-                      "id": "Q1DOTM",
+                      "id": "q1dotm",
                       "era": "Q1",
                       "order": 55,
                       "type": "BONUS",
-                      "name": "Dimension of the Machine",
                       "edition": "Quake",
-                      "platform": ["STEAM"],
+                      "platform": [
+                        "STEAM"
+                      ],
                       "unlocks": [
                         {
-                          "id": "Q1Q64",
+                          "id": "q1q64",
                           "era": "Q1",
                           "order": 56,
                           "type": "BONUS",
-                          "name": "Quake 64",
                           "edition": "Quake 64",
-                          "platform": ["STEAM"],
-                          "unlocks": []
+                          "platform": [
+                            "STEAM"
+                          ],
+                          "unlocks": [],
+                          "title": "Quake 64"
                         }
-                      ]
+                      ],
+                      "title": "Dimension of the Machine"
                     }
-                  ]
+                  ],
+                  "title": "Dimension of the Past"
                 }
-              ]
+              ],
+              "title": "Dissolution of Eternity"
             }
-          ]
+          ],
+          "title": "Scourge of Armagon"
         }
-      ]
+      ],
+      "title": "Quake"
     },
     {
-      "id": "Q2QUAKE2",
+      "id": "q2quake2",
       "era": "Q2",
       "order": 57,
       "type": "CORE",
-      "name": "Quake II",
       "edition": "Enhanced",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "Q2RECK",
+          "id": "q2reck",
           "era": "Q2",
           "order": 58,
           "type": "EXPANSION",
-          "name": "The Reckoning",
           "edition": "Quake II",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "Q2GZ",
+              "id": "q2gz",
               "era": "Q2",
               "order": 59,
               "type": "EXPANSION",
-              "name": "Ground Zero",
               "edition": "Quake II",
-              "platform": ["STEAM"],
+              "platform": [
+                "STEAM"
+              ],
               "unlocks": [
                 {
-                  "id": "Q2COTM",
+                  "id": "q2cotm",
                   "era": "Q2",
                   "order": 60,
                   "type": "EXPANSION",
-                  "name": "Call of the Machine",
                   "edition": "Quake II",
-                  "platform": ["STEAM"],
+                  "platform": [
+                    "STEAM"
+                  ],
                   "unlocks": [
                     {
-                      "id": "Q2Q264",
+                      "id": "q2q264",
                       "era": "Q2",
                       "order": 61,
                       "type": "BONUS",
-                      "name": "Quake II 64",
                       "edition": "Quake II 64",
-                      "platform": ["STEAM"],
-                      "unlocks": []
+                      "platform": [
+                        "STEAM"
+                      ],
+                      "unlocks": [],
+                      "title": "Quake II 64"
                     }
-                  ]
+                  ],
+                  "title": "Call of the Machine"
                 }
-              ]
+              ],
+              "title": "Ground Zero"
             }
-          ]
+          ],
+          "title": "The Reckoning"
         }
-      ]
+      ],
+      "title": "Quake II"
     },
     {
-      "id": "Q3ARENA",
+      "id": "q3arena",
       "era": "Q3",
       "order": 62,
       "type": "CORE",
-      "name": "Quake III Arena",
       "edition": "Standard",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "Q3TA",
+          "id": "q3ta",
           "era": "Q3",
           "order": 63,
           "type": "EXPANSION",
-          "name": "Team Arena",
           "edition": "Quake III Arena",
-          "platform": ["STEAM"],
-          "unlocks": []
+          "platform": [
+            "STEAM"
+          ],
+          "unlocks": [],
+          "title": "Team Arena"
         }
-      ]
+      ],
+      "title": "Quake III Arena"
     },
     {
-      "id": "Q4QUAKE4",
+      "id": "q4quake4",
       "era": "Q4",
       "order": 64,
       "type": "CORE",
-      "name": "Quake 4",
       "edition": "Standard",
-      "platform": ["STEAM"],
-      "unlocks": []
+      "platform": [
+        "STEAM"
+      ],
+      "unlocks": [],
+      "title": "Quake 4"
     },
     {
-      "id": "HER1",
+      "id": "her1",
       "era": "HEX",
       "order": 65,
       "type": "CORE",
-      "name": "Heretic",
       "edition": "Shadow of the Serpent Riders",
-      "platform": ["STEAM"],
+      "platform": [
+        "STEAM"
+      ],
       "unlocks": [
         {
-          "id": "HERFR",
+          "id": "herfr",
           "era": "HEX",
           "order": 66,
           "type": "BONUS",
-          "name": "Heretic",
           "edition": "Faith Renewed",
-          "platform": ["STEAM"],
+          "platform": [
+            "STEAM"
+          ],
           "unlocks": [
             {
-              "id": "HEX1",
+              "id": "hex1",
               "era": "HEX",
               "order": 67,
               "type": "CORE",
-              "name": "Hexen",
               "edition": "Beyond Heretic (Enhanced)",
-              "platform": ["STEAM"],
+              "platform": [
+                "STEAM"
+              ],
               "unlocks": [
                 {
-                  "id": "HEXDK",
+                  "id": "hexdk",
                   "era": "HEX",
                   "order": 68,
                   "type": "EXPANSION",
-                  "name": "Hexen",
                   "edition": "Deathkings of the Dark Citadel",
-                  "platform": ["STEAM"],
+                  "platform": [
+                    "STEAM"
+                  ],
                   "unlocks": [
                     {
-                      "id": "HEXVG",
+                      "id": "hexvg",
                       "era": "HEX",
                       "order": 69,
                       "type": "BONUS",
-                      "name": "Hexen",
                       "edition": "Vestiges of Grandeur",
-                      "platform": ["STEAM"],
+                      "platform": [
+                        "STEAM"
+                      ],
                       "unlocks": [
                         {
-                          "id": "HEX2",
+                          "id": "hex2",
                           "era": "HEX",
                           "order": 70,
                           "type": "CORE",
-                          "name": "Hexen II",
                           "edition": "Standard",
-                          "platform": ["PC"],
+                          "platform": [
+                            "PC"
+                          ],
                           "unlocks": [
                             {
-                              "id": "HEX2PP",
+                              "id": "hex2pp",
                               "era": "HEX",
                               "order": 71,
                               "type": "EXPANSION",
-                              "name": "Hexen II",
                               "edition": "Portal of Praevus",
-                              "platform": ["PC"],
+                              "platform": [
+                                "PC"
+                              ],
                               "unlocks": [
                                 {
-                                  "id": "HER2",
+                                  "id": "her2",
                                   "era": "HEX",
                                   "order": 72,
                                   "type": "CORE",
-                                  "name": "Heretic II",
                                   "edition": "Standard",
-                                  "platform": ["PC"],
-                                  "unlocks": []
+                                  "platform": [
+                                    "PC"
+                                  ],
+                                  "unlocks": [],
+                                  "title": "Heretic II"
                                 }
-                              ]
+                              ],
+                              "title": "Hexen II"
                             }
-                          ]
+                          ],
+                          "title": "Hexen II"
                         }
-                      ]
+                      ],
+                      "title": "Hexen"
                     }
-                  ]
+                  ],
+                  "title": "Hexen"
                 }
-              ]
+              ],
+              "title": "Hexen"
             }
-          ]
+          ],
+          "title": "Heretic"
         }
-      ]
+      ],
+      "title": "Heretic"
     },
     {
-      "id": "STR",
+      "id": "str",
       "era": "SIDE",
       "order": 73,
       "type": "CORE",
-      "name": "Strife",
       "edition": "Veteran Edition",
-      "platform": ["STEAM"],
-      "unlocks": []
+      "platform": [
+        "STEAM"
+      ],
+      "unlocks": [],
+      "title": "Strife"
     }
   ]
 }
