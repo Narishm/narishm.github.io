@@ -6,7 +6,7 @@
       "era": "CHANNEL",
       "order": 1,
       "type": "BIRTHDAY",
-      "name": "The Deadly Tower of Monsters",
+      "title": "The Deadly Tower of Monsters",
       "edition": "Birthday Special",
       "platform": ["STEAM"],
       "unlocks": []
@@ -16,9 +16,9 @@
       "era": "CHANNEL",
       "order": 1,
       "type": "NINTENDO",
-      "name": "Nintendo Direct",
+      "title": "Nintendo Direct",
       "edition": "",
-      "platform": ["VIDEO"],
+      "platform": ["SPECIAL"],
       "unlocks": []
     }
   ]
