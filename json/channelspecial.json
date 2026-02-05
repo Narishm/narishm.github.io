@@ -1,0 +1,25 @@
+{
+  "eras": ["CHANNEL"],
+  "adventures": [
+    {
+      "id": "tdtom",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "BIRTHDAY",
+      "name": "The Deadly Tower of Monsters",
+      "edition": "Birthday Special",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "nd",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "NINTENDO",
+      "name": "NINTENDO DIRECT",
+      "edition": "",
+      "platform": ["VIDEO"],
+      "unlocks": []
+    }
+  ]
+}
