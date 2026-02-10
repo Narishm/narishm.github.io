@@ -2,20 +2,20 @@
   "eras": ["RPG", "PAPER", "MNL"],
   "adventures": [
     {
-      "id": "SMRPGR",
+      "id": "smrpgr",
       "era": "RPG",
       "order": 1,
       "type": "CORE",
-      "name": "Super Mario RPG",
+      "title": "Super Mario RPG",
       "edition": "Remake",
       "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "SMRPG",
+          "id": "smrpg",
           "era": "RPG",
           "order": 2,
           "type": "SIDE",
-          "name": "Super Mario RPG",
+          "title": "Super Mario RPG",
           "edition": "Original",
           "platform": ["SNES"],
           "unlocks": []
@@ -23,66 +23,66 @@
       ]
     },
     {
-      "id": "PM64",
+      "id": "pm64",
       "era": "PAPER",
       "order": 3,
       "type": "CORE",
-      "name": "Paper Mario",
+      "title": "Paper Mario",
       "edition": "Original",
       "platform": ["N64", "SWITCH"],
       "unlocks": [
         {
-          "id": "PMTTYDR",
+          "id": "pmttydr",
           "era": "PAPER",
           "order": 4,
           "type": "CORE",
-          "name": "Paper Mario: The Thousand-Year Door",
+          "title": "Paper Mario: The Thousand-Year Door",
           "edition": "Remake",
           "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "PMTTYD",
+              "id": "pmttyd",
               "era": "PAPER",
               "order": 5,
               "type": "SIDE",
-              "name": "Paper Mario: The Thousand-Year Door",
+              "title": "Paper Mario: The Thousand-Year Door",
               "edition": "Original",
               "platform": ["GCN"],
               "unlocks": []
             },
             {
-              "id": "SPM",
+              "id": "spm",
               "era": "PAPER",
               "order": 6,
               "type": "CORE",
-              "name": "Super Paper Mario",
+              "title": "Super Paper Mario",
               "edition": "Original",
               "platform": ["WII"],
               "unlocks": [
                 {
-                  "id": "PMSS",
+                  "id": "pmss",
                   "era": "PAPER",
                   "order": 7,
                   "type": "CORE",
-                  "name": "Paper Mario: Sticker Star",
+                  "title": "Paper Mario: Sticker Star",
                   "edition": "Original",
                   "platform": ["3DS"],
                   "unlocks": [
                     {
-                      "id": "PMCS",
+                      "id": "pmcs",
                       "era": "PAPER",
                       "order": 8,
                       "type": "CORE",
-                      "name": "Paper Mario: Color Splash",
+                      "title": "Paper Mario: Color Splash",
                       "edition": "Original",
                       "platform": ["WIIU"],
                       "unlocks": [
                         {
-                          "id": "PMTOK",
+                          "id": "pmtok",
                           "era": "PAPER",
                           "order": 9,
                           "type": "CORE",
-                          "name": "Paper Mario: The Origami King",
+                          "title": "Paper Mario: The Origami King",
                           "edition": "Original",
                           "platform": ["SWITCH"],
                           "unlocks": []
@@ -98,76 +98,76 @@
       ]
     },
     {
-      "id": "MLSSBM",
+      "id": "mlssbm",
       "era": "MNL",
       "order": 10,
       "type": "CORE",
-      "name": "Mario & Luigi: Superstar Saga",
+      "title": "Mario & Luigi: Superstar Saga",
       "edition": "+ Bowser's Minions",
       "platform": ["3DS"],
       "unlocks": [
         {
-          "id": "MLSS",
+          "id": "mlss",
           "era": "MNL",
           "order": 11,
           "type": "SIDE",
-          "name": "Mario & Luigi: Superstar Saga",
+          "title": "Mario & Luigi: Superstar Saga",
           "edition": "Original",
           "platform": ["GBA"],
           "unlocks": []
         },
         {
-          "id": "MLPIT",
+          "id": "mlpit",
           "era": "MNL",
           "order": 12,
           "type": "CORE",
-          "name": "Mario & Luigi: Partners in Time",
+          "title": "Mario & Luigi: Partners in Time",
           "edition": "Original",
           "platform": ["NDS"],
           "unlocks": [
             {
-              "id": "MLBISR",
+              "id": "mlbisr",
               "era": "MNL",
               "order": 13,
               "type": "CORE",
-              "name": "Mario & Luigi: Bowser's Inside Story",
+              "title": "Mario & Luigi: Bowser's Inside Story",
               "edition": "+ Bowser Jr.'s Journey",
               "platform": ["3DS"],
               "unlocks": [
                 {
-                  "id": "MLBIS",
+                  "id": "mlbis",
                   "era": "MNL",
                   "order": 14,
                   "type": "SIDE",
-                  "name": "Mario & Luigi: Bowser's Inside Story",
+                  "title": "Mario & Luigi: Bowser's Inside Story",
                   "edition": "Original",
                   "platform": ["NDS"],
                   "unlocks": []
                 },
                 {
-                  "id": "MLDT",
+                  "id": "mldt",
                   "era": "MNL",
                   "order": 15,
                   "type": "CORE",
-                  "name": "Mario & Luigi: Dream Team",
+                  "title": "Mario & Luigi: Dream Team",
                   "edition": "Original",
                   "platform": ["3DS"],
                   "unlocks": [
                     {
-                      "id": "MLPJ",
+                      "id": "mlpj",
                       "era": "MNL",
                       "order": 16,
                       "type": "CORE",
-                      "name": "Mario & Luigi: Paper Jam",
+                      "title": "Mario & Luigi: Paper Jam",
                       "edition": "Original",
                       "platform": ["3DS"],
                       "unlocks": [
                         {
-                          "id": "MLBRO",
+                          "id": "mlbro",
                           "era": "MNL",
                           "order": 17,
                           "type": "CORE",
-                          "name": "Mario & Luigi: Brothership",
+                          "title": "Mario & Luigi: Brothership",
                           "edition": "Original",
                           "platform": ["SWITCH"],
                           "unlocks": []
