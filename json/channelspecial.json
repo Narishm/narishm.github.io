@@ -20,6 +20,16 @@
       "edition": "",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "sop",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "SONY",
+      "title": "State of Play",
+      "edition": "",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
