@@ -30,6 +30,16 @@
       "edition": "",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "mtga",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "MTG",
+      "title": "Magic The Gathering",
+      "edition": "Arena",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
