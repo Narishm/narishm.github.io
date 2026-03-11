@@ -1,5 +1,5 @@
 {
-  "eras": ["FACTORY"],
+  "eras": ["FACTORY", "SIM"],
   "adventures": [
     {
       "id": "fsa",
@@ -47,6 +47,16 @@
       "order": 5,
       "type": "CORE",
       "title": "StarRupture",
+      "edition": "",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "bnb",
+      "era": "SIM",
+      "order": 6,
+      "type": "CORE",
+      "title": "Bear and Breakfast",
       "edition": "",
       "platform": ["PC"],
       "unlocks": []
