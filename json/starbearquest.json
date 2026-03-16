@@ -1,0 +1,25 @@
+{
+  "eras": ["STAR", "BEAR"],
+  "adventures": [
+    {
+      "id": "sdv",
+      "era": "STAR",
+      "order": 1,
+      "type": "CORE",
+      "title": "Stardew Valley",
+      "edition": "",
+      "platform": ["PC"],
+      "unlocks": []
+    },
+    {
+      "id": "bnb",
+      "era": "BEAR",
+      "order": 2,
+      "type": "CORE",
+      "title": "Bear and Breakfast",
+      "edition": "",
+      "platform": ["PC"],
+      "unlocks": []
+    }
+  ]
+}
