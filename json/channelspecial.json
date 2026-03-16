@@ -12,6 +12,16 @@
       "unlocks": []
     },
     {
+      "id": "spds",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "ST. PATRICK'S DAY",
+      "title": "Final Fantasy XIV",
+      "edition": "Chat & Chill - St. Patrick's Day Special",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
       "id": "nd",
       "era": "CHANNEL",
       "order": 1,
