@@ -50,16 +50,6 @@
       "edition": "",
       "platform": ["PC"],
       "unlocks": []
-    },
-    {
-      "id": "bnb",
-      "era": "SIM",
-      "order": 6,
-      "type": "CORE",
-      "title": "Bear and Breakfast",
-      "edition": "",
-      "platform": ["PC"],
-      "unlocks": []
     }
   ]
 }
