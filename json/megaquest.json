@@ -2,7 +2,7 @@
   "eras": ["CLASSIC", "WORLD", "X", "Z", "BATTLE", "STAR", "3D", "SIDE"],
   "adventures": [
     {
-      "id": "MM1",
+      "id": "mm1",
       "era": "CLASSIC",
       "order": 1,
       "type": "CORE",
@@ -11,7 +11,7 @@
       "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "MM2",
+          "id": "mm2",
           "era": "CLASSIC",
           "order": 2,
           "type": "CORE",
@@ -20,7 +20,7 @@
           "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "MM3",
+              "id": "mm3",
               "era": "CLASSIC",
               "order": 3,
               "type": "CORE",
@@ -29,7 +29,7 @@
               "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "MM4",
+                  "id": "mm4",
                   "era": "CLASSIC",
                   "order": 4,
                   "type": "CORE",
@@ -38,7 +38,7 @@
                   "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "MM5",
+                      "id": "mm5",
                       "era": "CLASSIC",
                       "order": 5,
                       "type": "CORE",
@@ -47,7 +47,7 @@
                       "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "MM6",
+                          "id": "mm6",
                           "era": "CLASSIC",
                           "order": 6,
                           "type": "CORE",
@@ -56,7 +56,7 @@
                           "platform": ["SWITCH"],
                           "unlocks": [
                             {
-                              "id": "MM7",
+                              "id": "mm7",
                               "era": "CLASSIC",
                               "order": 7,
                               "type": "CORE",
@@ -65,7 +65,7 @@
                               "platform": ["SWITCH"],
                               "unlocks": [
                                 {
-                                  "id": "MM8",
+                                  "id": "mm8",
                                   "era": "CLASSIC",
                                   "order": 8,
                                   "type": "CORE",
@@ -74,7 +74,7 @@
                                   "platform": ["SWITCH"],
                                   "unlocks": [
                                     {
-                                      "id": "MM9",
+                                      "id": "mm9",
                                       "era": "CLASSIC",
                                       "order": 9,
                                       "type": "CORE",
@@ -83,7 +83,7 @@
                                       "platform": ["SWITCH"],
                                       "unlocks": [
                                         {
-                                          "id": "MM10",
+                                          "id": "mm10",
                                           "era": "CLASSIC",
                                           "order": 10,
                                           "type": "CORE",
@@ -92,7 +92,7 @@
                                           "platform": ["SWITCH"],
                                           "unlocks": [
                                             {
-                                              "id": "MM11",
+                                              "id": "mm11",
                                               "era": "CLASSIC",
                                               "order": 11,
                                               "type": "CORE",
@@ -101,7 +101,7 @@
                                               "platform": ["SWITCH"],
                                               "unlocks": [
                                                 {
-                                                  "id": "MM12",
+                                                  "id": "mm12",
                                                   "era": "CLASSIC",
                                                   "order": 12,
                                                   "type": "CORE",
@@ -133,7 +133,7 @@
       ]
     },
     {
-      "id": "DWR",
+      "id": "dwr",
       "era": "WORLD",
       "order": 13,
       "type": "CORE",
@@ -142,7 +142,7 @@
       "platform": ["GB"],
       "unlocks": [
         {
-          "id": "MMW2",
+          "id": "mmw2",
           "era": "WORLD",
           "order": 14,
           "type": "CORE",
@@ -151,7 +151,7 @@
           "platform": ["GB"],
           "unlocks": [
             {
-              "id": "MMW3",
+              "id": "mmw3",
               "era": "WORLD",
               "order": 15,
               "type": "CORE",
@@ -160,7 +160,7 @@
               "platform": ["GB"],
               "unlocks": [
                 {
-                  "id": "MMW4",
+                  "id": "mmw4",
                   "era": "WORLD",
                   "order": 16,
                   "type": "CORE",
@@ -169,7 +169,7 @@
                   "platform": ["GB"],
                   "unlocks": [
                     {
-                      "id": "MMW5",
+                      "id": "mmw5",
                       "era": "WORLD",
                       "order": 17,
                       "type": "CORE",
@@ -187,7 +187,7 @@
       ]
     },
     {
-      "id": "XT1",
+      "id": "xt1",
       "era": "WORLD",
       "order": 18,
       "type": "CORE",
@@ -196,7 +196,7 @@
       "platform": ["GBC"],
       "unlocks": [
         {
-          "id": "XT2",
+          "id": "xt2",
           "era": "WORLD",
           "order": 19,
           "type": "CORE",
@@ -208,7 +208,7 @@
       ]
     },
     {
-      "id": "X1",
+      "id": "x1",
       "era": "X",
       "order": 20,
       "type": "CORE",
@@ -217,7 +217,7 @@
       "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "X2",
+          "id": "x2",
           "era": "X",
           "order": 21,
           "type": "CORE",
@@ -226,7 +226,7 @@
           "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "X3",
+              "id": "x3",
               "era": "X",
               "order": 22,
               "type": "CORE",
@@ -235,7 +235,7 @@
               "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "X4",
+                  "id": "x4",
                   "era": "X",
                   "order": 23,
                   "type": "CORE",
@@ -244,7 +244,7 @@
                   "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "X5",
+                      "id": "x5",
                       "era": "X",
                       "order": 24,
                       "type": "CORE",
@@ -253,7 +253,7 @@
                       "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "X6",
+                          "id": "x6",
                           "era": "X",
                           "order": 25,
                           "type": "CORE",
@@ -262,7 +262,7 @@
                           "platform": ["SWITCH"],
                           "unlocks": [
                             {
-                              "id": "X7",
+                              "id": "x7",
                               "era": "X",
                               "order": 26,
                               "type": "CORE",
@@ -271,7 +271,7 @@
                               "platform": ["SWITCH"],
                               "unlocks": [
                                 {
-                                  "id": "X8",
+                                  "id": "x8",
                                   "era": "X",
                                   "order": 27,
                                   "type": "CORE",
@@ -295,7 +295,7 @@
       ]
     },
     {
-      "id": "Z1",
+      "id": "z1",
       "era": "Z",
       "order": 28,
       "type": "CORE",
@@ -304,7 +304,7 @@
       "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "Z2",
+          "id": "z2",
           "era": "Z",
           "order": 29,
           "type": "CORE",
@@ -313,7 +313,7 @@
           "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "Z3",
+              "id": "z3",
               "era": "Z",
               "order": 30,
               "type": "CORE",
@@ -322,7 +322,7 @@
               "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "Z4",
+                  "id": "z4",
                   "era": "Z",
                   "order": 31,
                   "type": "CORE",
@@ -331,7 +331,7 @@
                   "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "ZX",
+                      "id": "zx",
                       "era": "Z",
                       "order": 32,
                       "type": "CORE",
@@ -340,7 +340,7 @@
                       "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "ZXA",
+                          "id": "zxa",
                           "era": "Z",
                           "order": 33,
                           "type": "CORE",
@@ -360,7 +360,7 @@
       ]
     },
     {
-      "id": "BN1",
+      "id": "bn1",
       "era": "BATTLE",
       "order": 34,
       "type": "CORE",
@@ -369,7 +369,7 @@
       "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "BN2",
+          "id": "bn2",
           "era": "BATTLE",
           "order": 35,
           "type": "CORE",
@@ -378,7 +378,7 @@
           "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "BN3W",
+              "id": "bn3w",
               "era": "BATTLE",
               "order": 36,
               "type": "CORE",
@@ -387,7 +387,7 @@
               "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "BN3B",
+                  "id": "bn3b",
                   "era": "BATTLE",
                   "order": 37,
                   "type": "CORE",
@@ -396,7 +396,7 @@
                   "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "BN4RS",
+                      "id": "bn4rs",
                       "era": "BATTLE",
                       "order": 38,
                       "type": "CORE",
@@ -405,7 +405,7 @@
                       "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "BN4BM",
+                          "id": "bn4bm",
                           "era": "BATTLE",
                           "order": 39,
                           "type": "CORE",
@@ -414,7 +414,7 @@
                           "platform": ["SWITCH"],
                           "unlocks": [
                             {
-                              "id": "BN5TP",
+                              "id": "bn5tp",
                               "era": "BATTLE",
                               "order": 40,
                               "type": "CORE",
@@ -423,7 +423,7 @@
                               "platform": ["SWITCH"],
                               "unlocks": [
                                 {
-                                  "id": "BN5TC",
+                                  "id": "bn5tc",
                                   "era": "BATTLE",
                                   "order": 41,
                                   "type": "CORE",
@@ -432,7 +432,7 @@
                                   "platform": ["SWITCH"],
                                   "unlocks": [
                                     {
-                                      "id": "BN6CG",
+                                      "id": "bn6cg",
                                       "era": "BATTLE",
                                       "order": 42,
                                       "type": "CORE",
@@ -441,7 +441,7 @@
                                       "platform": ["SWITCH"],
                                       "unlocks": [
                                         {
-                                          "id": "BN6CF",
+                                          "id": "bn6cf",
                                           "era": "BATTLE",
                                           "order": 43,
                                           "type": "CORE",
@@ -469,7 +469,7 @@
       ]
     },
     {
-      "id": "NT",
+      "id": "nt",
       "era": "BATTLE",
       "order": 44,
       "type": "SIDE",
@@ -479,7 +479,7 @@
       "unlocks": []
     },
     {
-      "id": "BCC",
+      "id": "bcc",
       "era": "BATTLE",
       "order": 45,
       "type": "SIDE",
@@ -489,7 +489,7 @@
       "unlocks": []
     },
     {
-      "id": "BN45",
+      "id": "bn45",
       "era": "BATTLE",
       "order": 46,
       "type": "SIDE",
@@ -499,7 +499,7 @@
       "unlocks": []
     },
     {
-      "id": "SF1P",
+      "id": "sf1p",
       "era": "STAR",
       "order": 47,
       "type": "CORE",
@@ -508,7 +508,7 @@
       "platform": ["DS"],
       "unlocks": [
         {
-          "id": "SF1L",
+          "id": "sf1l",
           "era": "STAR",
           "order": 48,
           "type": "CORE",
@@ -517,7 +517,7 @@
           "platform": ["DS"],
           "unlocks": [
             {
-              "id": "SF1D",
+              "id": "sf1d",
               "era": "STAR",
               "order": 49,
               "type": "CORE",
@@ -526,7 +526,7 @@
               "platform": ["DS"],
               "unlocks": [
                 {
-                  "id": "SF2ZN",
+                  "id": "sf2zn",
                   "era": "STAR",
                   "order": 50,
                   "type": "CORE",
@@ -535,7 +535,7 @@
                   "platform": ["DS"],
                   "unlocks": [
                     {
-                      "id": "SF2ZS",
+                      "id": "sf2zs",
                       "era": "STAR",
                       "order": 51,
                       "type": "CORE",
@@ -544,7 +544,7 @@
                       "platform": ["DS"],
                       "unlocks": [
                         {
-                          "id": "SF3BA",
+                          "id": "sf3ba",
                           "era": "STAR",
                           "order": 52,
                           "type": "CORE",
@@ -553,7 +553,7 @@
                           "platform": ["DS"],
                           "unlocks": [
                             {
-                              "id": "SF3RJ",
+                              "id": "sf3rj",
                               "era": "STAR",
                               "order": 53,
                               "type": "CORE",
@@ -575,7 +575,7 @@
       ]
     },
     {
-      "id": "L1",
+      "id": "l1",
       "era": "3D",
       "order": 54,
       "type": "CORE",
@@ -584,7 +584,7 @@
       "platform": ["PS1"],
       "unlocks": [
         {
-          "id": "TB",
+          "id": "tb",
           "era": "3D",
           "order": 55,
           "type": "SIDE",
@@ -593,7 +593,7 @@
           "platform": ["PS1"],
           "unlocks": [
             {
-              "id": "L2",
+              "id": "l2",
               "era": "3D",
               "order": 56,
               "type": "CORE",
@@ -607,7 +607,7 @@
       ]
     },
     {
-      "id": "MM64",
+      "id": "mm64",
       "era": "3D",
       "order": 57,
       "type": "SIDE",
@@ -617,7 +617,7 @@
       "unlocks": []
     },
     {
-      "id": "WW",
+      "id": "ww",
       "era": "SIDE",
       "order": 58,
       "type": "SIDE",
@@ -627,7 +627,7 @@
       "unlocks": []
     },
     {
-      "id": "MMB",
+      "id": "mmb",
       "era": "SIDE",
       "order": 59,
       "type": "SIDE",
@@ -637,7 +637,7 @@
       "unlocks": []
     },
     {
-      "id": "MHC",
+      "id": "mhc",
       "era": "SIDE",
       "order": 60,
       "type": "SIDE",
@@ -647,7 +647,7 @@
       "unlocks": []
     },
     {
-      "id": "MHX",
+      "id": "mhx",
       "era": "SIDE",
       "order": 61,
       "type": "SIDE",
@@ -657,7 +657,7 @@
       "unlocks": []
     },
     {
-      "id": "MPU",
+      "id": "mpu",
       "era": "SIDE",
       "order": 62,
       "type": "SIDE",
@@ -667,7 +667,7 @@
       "unlocks": []
     },
     {
-      "id": "RFMC",
+      "id": "rfmc",
       "era": "SIDE",
       "order": 63,
       "type": "SIDE",
