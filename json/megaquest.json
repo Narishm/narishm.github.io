@@ -1,813 +1,680 @@
 {
-  "eras": [
-    "CLASSIC",
-    "WORLD",
-    "X",
-    "Z",
-    "BATTLE",
-    "STAR",
-    "3D",
-    "SIDE"
-  ],
+  "eras": ["CLASSIC", "WORLD", "X", "Z", "BATTLE", "STAR", "3D", "SIDE"],
   "adventures": [
     {
-      "id": "mm1",
+      "id": "MM1",
       "era": "CLASSIC",
       "order": 1,
       "type": "CORE",
+      "name": "Mega Man",
       "edition": "Legacy Collection 1",
-      "platform": [
-        "SWITCH"
-      ],
+      "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "mm2",
+          "id": "MM2",
           "era": "CLASSIC",
           "order": 2,
           "type": "CORE",
+          "name": "Mega Man 2",
           "edition": "Legacy Collection 1",
-          "platform": [
-            "SWITCH"
-          ],
+          "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "mm3",
+              "id": "MM3",
               "era": "CLASSIC",
               "order": 3,
               "type": "CORE",
+              "name": "Mega Man 3",
               "edition": "Legacy Collection 1",
-              "platform": [
-                "SWITCH"
-              ],
+              "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "mm4",
+                  "id": "MM4",
                   "era": "CLASSIC",
                   "order": 4,
                   "type": "CORE",
+                  "name": "Mega Man 4",
                   "edition": "Legacy Collection 1",
-                  "platform": [
-                    "SWITCH"
-                  ],
+                  "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "mm5",
+                      "id": "MM5",
                       "era": "CLASSIC",
                       "order": 5,
                       "type": "CORE",
+                      "name": "Mega Man 5",
                       "edition": "Legacy Collection 1",
-                      "platform": [
-                        "SWITCH"
-                      ],
+                      "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "mm6",
+                          "id": "MM6",
                           "era": "CLASSIC",
                           "order": 6,
                           "type": "CORE",
+                          "name": "Mega Man 6",
                           "edition": "Legacy Collection 1",
-                          "platform": [
-                            "SWITCH"
-                          ],
+                          "platform": ["SWITCH"],
                           "unlocks": [
                             {
-                              "id": "mm7",
+                              "id": "MM7",
                               "era": "CLASSIC",
                               "order": 7,
                               "type": "CORE",
+                              "name": "Mega Man 7",
                               "edition": "Legacy Collection 2",
-                              "platform": [
-                                "SWITCH"
-                              ],
+                              "platform": ["SWITCH"],
                               "unlocks": [
                                 {
-                                  "id": "mm8",
+                                  "id": "MM8",
                                   "era": "CLASSIC",
                                   "order": 8,
                                   "type": "CORE",
+                                  "name": "Mega Man 8",
                                   "edition": "Legacy Collection 2",
-                                  "platform": [
-                                    "SWITCH"
-                                  ],
+                                  "platform": ["SWITCH"],
                                   "unlocks": [
                                     {
-                                      "id": "mm9",
+                                      "id": "MM9",
                                       "era": "CLASSIC",
                                       "order": 9,
                                       "type": "CORE",
+                                      "name": "Mega Man 9",
                                       "edition": "Legacy Collection 2",
-                                      "platform": [
-                                        "SWITCH"
-                                      ],
+                                      "platform": ["SWITCH"],
                                       "unlocks": [
                                         {
-                                          "id": "mm10",
+                                          "id": "MM10",
                                           "era": "CLASSIC",
                                           "order": 10,
                                           "type": "CORE",
+                                          "name": "Mega Man 10",
                                           "edition": "Legacy Collection 2",
-                                          "platform": [
-                                            "SWITCH"
-                                          ],
+                                          "platform": ["SWITCH"],
                                           "unlocks": [
                                             {
-                                              "id": "mm11",
+                                              "id": "MM11",
                                               "era": "CLASSIC",
                                               "order": 11,
                                               "type": "CORE",
+                                              "name": "Mega Man 11",
                                               "edition": "Original",
-                                              "platform": [
-                                                "SWITCH"
-                                              ],
+                                              "platform": ["SWITCH"],
                                               "unlocks": [
                                                 {
-                                                  "id": "mm12",
+                                                  "id": "MM12",
                                                   "era": "CLASSIC",
                                                   "order": 12,
                                                   "type": "CORE",
+                                                  "name": "Mega Man: Dual Override",
                                                   "edition": "Original",
                                                   "platform": [],
-                                                  "unlocks": [],
-                                                  "title": "Mega Man: Dual Override"
+                                                  "unlocks": []
                                                 }
-                                              ],
-                                              "title": "Mega Man 11"
+                                              ]
                                             }
-                                          ],
-                                          "title": "Mega Man 10"
+                                          ]
                                         }
-                                      ],
-                                      "title": "Mega Man 9"
+                                      ]
                                     }
-                                  ],
-                                  "title": "Mega Man 8"
+                                  ]
                                 }
-                              ],
-                              "title": "Mega Man 7"
+                              ]
                             }
-                          ],
-                          "title": "Mega Man 6"
+                          ]
                         }
-                      ],
-                      "title": "Mega Man 5"
+                      ]
                     }
-                  ],
-                  "title": "Mega Man 4"
+                  ]
                 }
-              ],
-              "title": "Mega Man 3"
+              ]
             }
-          ],
-          "title": "Mega Man 2"
+          ]
         }
-      ],
-      "title": "Mega Man"
+      ]
     },
     {
-      "id": "dwr",
+      "id": "DWR",
       "era": "WORLD",
       "order": 13,
       "type": "CORE",
+      "name": "Dr. Wily’s Revenge",
       "edition": "Original",
-      "platform": [
-        "GB"
-      ],
+      "platform": ["GB"],
       "unlocks": [
         {
-          "id": "mmw2",
+          "id": "MMW2",
           "era": "WORLD",
           "order": 14,
           "type": "CORE",
+          "name": "Mega Man II",
           "edition": "Original",
-          "platform": [
-            "GB"
-          ],
+          "platform": ["GB"],
           "unlocks": [
             {
-              "id": "mmw3",
+              "id": "MMW3",
               "era": "WORLD",
               "order": 15,
               "type": "CORE",
+              "name": "Mega Man III",
               "edition": "Original",
-              "platform": [
-                "GB"
-              ],
+              "platform": ["GB"],
               "unlocks": [
                 {
-                  "id": "mmw4",
+                  "id": "MMW4",
                   "era": "WORLD",
                   "order": 16,
                   "type": "CORE",
+                  "name": "Mega Man IV",
                   "edition": "Original",
-                  "platform": [
-                    "GB"
-                  ],
+                  "platform": ["GB"],
                   "unlocks": [
                     {
-                      "id": "mmw5",
+                      "id": "MMW5",
                       "era": "WORLD",
                       "order": 17,
                       "type": "CORE",
+                      "name": "Mega Man V",
                       "edition": "Original",
-                      "platform": [
-                        "GB"
-                      ],
-                      "unlocks": [],
-                      "title": "Mega Man V"
+                      "platform": ["GB"],
+                      "unlocks": []
                     }
-                  ],
-                  "title": "Mega Man IV"
+                  ]
                 }
-              ],
-              "title": "Mega Man III"
+              ]
             }
-          ],
-          "title": "Mega Man II"
+          ]
         }
-      ],
-      "title": "Dr. Wily\u2019s Revenge"
+      ]
     },
     {
-      "id": "xt1",
+      "id": "XT1",
       "era": "WORLD",
       "order": 18,
       "type": "CORE",
+      "name": "Mega Man Xtreme",
       "edition": "Original",
-      "platform": [
-        "GBC"
-      ],
+      "platform": ["GBC"],
       "unlocks": [
         {
-          "id": "xt2",
+          "id": "XT2",
           "era": "WORLD",
           "order": 19,
           "type": "CORE",
+          "name": "Mega Man Xtreme 2",
           "edition": "Original",
-          "platform": [
-            "GBC"
-          ],
-          "unlocks": [],
-          "title": "Mega Man Xtreme 2"
+          "platform": ["GBC"],
+          "unlocks": []
         }
-      ],
-      "title": "Mega Man Xtreme"
+      ]
     },
     {
-      "id": "x1",
+      "id": "X1",
       "era": "X",
       "order": 20,
       "type": "CORE",
+      "name": "Mega Man X",
       "edition": "X Legacy Collection 1",
-      "platform": [
-        "SWITCH"
-      ],
+      "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "x2",
+          "id": "X2",
           "era": "X",
           "order": 21,
           "type": "CORE",
+          "name": "Mega Man X2",
           "edition": "X Legacy Collection 1",
-          "platform": [
-            "SWITCH"
-          ],
+          "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "x3",
+              "id": "X3",
               "era": "X",
               "order": 22,
               "type": "CORE",
+              "name": "Mega Man X3",
               "edition": "X Legacy Collection 1",
-              "platform": [
-                "SWITCH"
-              ],
+              "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "x4",
+                  "id": "X4",
                   "era": "X",
                   "order": 23,
                   "type": "CORE",
+                  "name": "Mega Man X4",
                   "edition": "X Legacy Collection 1",
-                  "platform": [
-                    "SWITCH"
-                  ],
+                  "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "x5",
+                      "id": "X5",
                       "era": "X",
                       "order": 24,
                       "type": "CORE",
+                      "name": "Mega Man X5",
                       "edition": "X Legacy Collection 2",
-                      "platform": [
-                        "SWITCH"
-                      ],
+                      "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "x6",
+                          "id": "X6",
                           "era": "X",
                           "order": 25,
                           "type": "CORE",
+                          "name": "Mega Man X6",
                           "edition": "X Legacy Collection 2",
-                          "platform": [
-                            "SWITCH"
-                          ],
+                          "platform": ["SWITCH"],
                           "unlocks": [
                             {
-                              "id": "x7",
+                              "id": "X7",
                               "era": "X",
                               "order": 26,
                               "type": "CORE",
+                              "name": "Mega Man X7",
                               "edition": "X Legacy Collection 2",
-                              "platform": [
-                                "SWITCH"
-                              ],
+                              "platform": ["SWITCH"],
                               "unlocks": [
                                 {
-                                  "id": "x8",
+                                  "id": "X8",
                                   "era": "X",
                                   "order": 27,
                                   "type": "CORE",
+                                  "name": "Mega Man X8",
                                   "edition": "X Legacy Collection 2",
-                                  "platform": [
-                                    "SWITCH"
-                                  ],
-                                  "unlocks": [],
-                                  "title": "Mega Man X8"
+                                  "platform": ["SWITCH"],
+                                  "unlocks": []
                                 }
-                              ],
-                              "title": "Mega Man X7"
+                              ]
                             }
-                          ],
-                          "title": "Mega Man X6"
+                          ]
                         }
-                      ],
-                      "title": "Mega Man X5"
+                      ]
                     }
-                  ],
-                  "title": "Mega Man X4"
+                  ]
                 }
-              ],
-              "title": "Mega Man X3"
+              ]
             }
-          ],
-          "title": "Mega Man X2"
+          ]
         }
-      ],
-      "title": "Mega Man X"
+      ]
     },
     {
-      "id": "z1",
+      "id": "Z1",
       "era": "Z",
       "order": 28,
       "type": "CORE",
+      "name": "Mega Man Zero",
       "edition": "Zero/ZX Legacy Collection",
-      "platform": [
-        "SWITCH"
-      ],
+      "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "z2",
+          "id": "Z2",
           "era": "Z",
           "order": 29,
           "type": "CORE",
+          "name": "Mega Man Zero 2",
           "edition": "Zero/ZX Legacy Collection",
-          "platform": [
-            "SWITCH"
-          ],
+          "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "z3",
+              "id": "Z3",
               "era": "Z",
               "order": 30,
               "type": "CORE",
+              "name": "Mega Man Zero 3",
               "edition": "Zero/ZX Legacy Collection",
-              "platform": [
-                "SWITCH"
-              ],
+              "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "z4",
+                  "id": "Z4",
                   "era": "Z",
                   "order": 31,
                   "type": "CORE",
+                  "name": "Mega Man Zero 4",
                   "edition": "Zero/ZX Legacy Collection",
-                  "platform": [
-                    "SWITCH"
-                  ],
+                  "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "zx",
+                      "id": "ZX",
                       "era": "Z",
                       "order": 32,
                       "type": "CORE",
+                      "name": "Mega Man ZX",
                       "edition": "Zero/ZX Legacy Collection",
-                      "platform": [
-                        "SWITCH"
-                      ],
+                      "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "zxa",
+                          "id": "ZXA",
                           "era": "Z",
                           "order": 33,
                           "type": "CORE",
+                          "name": "ZX Advent",
                           "edition": "Zero/ZX Legacy Collection",
-                          "platform": [
-                            "SWITCH"
-                          ],
-                          "unlocks": [],
-                          "title": "ZX Advent"
+                          "platform": ["SWITCH"],
+                          "unlocks": []
                         }
-                      ],
-                      "title": "Mega Man ZX"
+                      ]
                     }
-                  ],
-                  "title": "Mega Man Zero 4"
+                  ]
                 }
-              ],
-              "title": "Mega Man Zero 3"
+              ]
             }
-          ],
-          "title": "Mega Man Zero 2"
+          ]
         }
-      ],
-      "title": "Mega Man Zero"
+      ]
     },
     {
-      "id": "bn1",
+      "id": "BN1",
       "era": "BATTLE",
       "order": 34,
       "type": "CORE",
+      "name": "Battle Network",
       "edition": "BN Legacy Collection Vol. 1",
-      "platform": [
-        "SWITCH"
-      ],
+      "platform": ["SWITCH"],
       "unlocks": [
         {
-          "id": "bn2",
+          "id": "BN2",
           "era": "BATTLE",
           "order": 35,
           "type": "CORE",
+          "name": "Battle Network 2",
           "edition": "BN Legacy Collection Vol. 1",
-          "platform": [
-            "SWITCH"
-          ],
+          "platform": ["SWITCH"],
           "unlocks": [
             {
-              "id": "bn3w",
+              "id": "BN3W",
               "era": "BATTLE",
               "order": 36,
               "type": "CORE",
+              "name": "Battle Network 3 (White)",
               "edition": "BN Legacy Collection Vol. 1",
-              "platform": [
-                "SWITCH"
-              ],
+              "platform": ["SWITCH"],
               "unlocks": [
                 {
-                  "id": "bn3b",
+                  "id": "BN3B",
                   "era": "BATTLE",
                   "order": 37,
                   "type": "CORE",
+                  "name": "Battle Network 3 (Blue)",
                   "edition": "BN Legacy Collection Vol. 1",
-                  "platform": [
-                    "SWITCH"
-                  ],
+                  "platform": ["SWITCH"],
                   "unlocks": [
                     {
-                      "id": "bn4rs",
+                      "id": "BN4RS",
                       "era": "BATTLE",
                       "order": 38,
                       "type": "CORE",
+                      "name": "Battle Network 4 (Red Sun)",
                       "edition": "BN Legacy Collection Vol. 2",
-                      "platform": [
-                        "SWITCH"
-                      ],
+                      "platform": ["SWITCH"],
                       "unlocks": [
                         {
-                          "id": "bn4bm",
+                          "id": "BN4BM",
                           "era": "BATTLE",
                           "order": 39,
                           "type": "CORE",
+                          "name": "Battle Network 4 (Blue Moon)",
                           "edition": "BN Legacy Collection Vol. 2",
-                          "platform": [
-                            "SWITCH"
-                          ],
+                          "platform": ["SWITCH"],
                           "unlocks": [
                             {
-                              "id": "bn5tp",
+                              "id": "BN5TP",
                               "era": "BATTLE",
                               "order": 40,
                               "type": "CORE",
+                              "name": "Battle Network 5 (Team ProtoMan)",
                               "edition": "BN Legacy Collection Vol. 2",
-                              "platform": [
-                                "SWITCH"
-                              ],
+                              "platform": ["SWITCH"],
                               "unlocks": [
                                 {
-                                  "id": "bn5tc",
+                                  "id": "BN5TC",
                                   "era": "BATTLE",
                                   "order": 41,
                                   "type": "CORE",
+                                  "name": "Battle Network 5 (Team Colonel)",
                                   "edition": "BN Legacy Collection Vol. 2",
-                                  "platform": [
-                                    "SWITCH"
-                                  ],
+                                  "platform": ["SWITCH"],
                                   "unlocks": [
                                     {
-                                      "id": "bn6cg",
+                                      "id": "BN6CG",
                                       "era": "BATTLE",
                                       "order": 42,
                                       "type": "CORE",
+                                      "name": "Battle Network 6 (Cybeast Gregar)",
                                       "edition": "BN Legacy Collection Vol. 2",
-                                      "platform": [
-                                        "SWITCH"
-                                      ],
+                                      "platform": ["SWITCH"],
                                       "unlocks": [
                                         {
-                                          "id": "bn6cf",
+                                          "id": "BN6CF",
                                           "era": "BATTLE",
                                           "order": 43,
                                           "type": "CORE",
+                                          "name": "Battle Network 6 (Cybeast Falzar)",
                                           "edition": "BN Legacy Collection Vol. 2",
-                                          "platform": [
-                                            "SWITCH"
-                                          ],
-                                          "unlocks": [],
-                                          "title": "Battle Network 6 (Cybeast Falzar)"
+                                          "platform": ["SWITCH"],
+                                          "unlocks": []
                                         }
-                                      ],
-                                      "title": "Battle Network 6 (Cybeast Gregar)"
+                                      ]
                                     }
-                                  ],
-                                  "title": "Battle Network 5 (Team Colonel)"
+                                  ]
                                 }
-                              ],
-                              "title": "Battle Network 5 (Team ProtoMan)"
+                              ]
                             }
-                          ],
-                          "title": "Battle Network 4 (Blue Moon)"
+                          ]
                         }
-                      ],
-                      "title": "Battle Network 4 (Red Sun)"
+                      ]
                     }
-                  ],
-                  "title": "Battle Network 3 (Blue)"
+                  ]
                 }
-              ],
-              "title": "Battle Network 3 (White)"
+              ]
             }
-          ],
-          "title": "Battle Network 2"
+          ]
         }
-      ],
-      "title": "Battle Network"
+      ]
     },
     {
-      "id": "nt",
+      "id": "NT",
       "era": "BATTLE",
       "order": 44,
       "type": "SIDE",
+      "name": "Network Transmission",
       "edition": "Original",
-      "platform": [
-        "GAMECUBE"
-      ],
-      "unlocks": [],
-      "title": "Network Transmission"
+      "platform": ["GAMECUBE"],
+      "unlocks": []
     },
     {
-      "id": "bcc",
+      "id": "BCC",
       "era": "BATTLE",
       "order": 45,
       "type": "SIDE",
+      "name": "Battle Chip Challenge",
       "edition": "Original",
-      "platform": [
-        "GBA"
-      ],
-      "unlocks": [],
-      "title": "Battle Chip Challenge"
+      "platform": ["GBA"],
+      "unlocks": []
     },
     {
-      "id": "bn45",
+      "id": "BN45",
       "era": "BATTLE",
       "order": 46,
       "type": "SIDE",
+      "name": "Battle Network 4.5: Real Operation",
       "edition": "Original",
-      "platform": [
-        "GBA"
-      ],
-      "unlocks": [],
-      "title": "Battle Network 4.5: Real Operation"
+      "platform": ["GBA"],
+      "unlocks": []
     },
     {
-      "id": "sf1p",
+      "id": "SF1P",
       "era": "STAR",
       "order": 47,
       "type": "CORE",
+      "name": "Star Force",
       "edition": "Pegasus",
-      "platform": [
-        "DS"
-      ],
+      "platform": ["DS"],
       "unlocks": [
         {
-          "id": "sf1l",
+          "id": "SF1L",
           "era": "STAR",
           "order": 48,
           "type": "CORE",
+          "name": "Star Force",
           "edition": "Leo",
-          "platform": [
-            "DS"
-          ],
+          "platform": ["DS"],
           "unlocks": [
             {
-              "id": "sf1d",
+              "id": "SF1D",
               "era": "STAR",
               "order": 49,
               "type": "CORE",
+              "name": "Star Force",
               "edition": "Dragon",
-              "platform": [
-                "DS"
-              ],
+              "platform": ["DS"],
               "unlocks": [
                 {
-                  "id": "sf2zn",
+                  "id": "SF2ZN",
                   "era": "STAR",
                   "order": 50,
                   "type": "CORE",
-                  "edition": "Zerker \u00d7 Ninja",
-                  "platform": [
-                    "DS"
-                  ],
+                  "name": "Star Force 2",
+                  "edition": "Zerker × Ninja",
+                  "platform": ["DS"],
                   "unlocks": [
                     {
-                      "id": "sf2zs",
+                      "id": "SF2ZS",
                       "era": "STAR",
                       "order": 51,
                       "type": "CORE",
-                      "edition": "Zerker \u00d7 Saurian",
-                      "platform": [
-                        "DS"
-                      ],
+                      "name": "Star Force 2",
+                      "edition": "Zerker × Saurian",
+                      "platform": ["DS"],
                       "unlocks": [
                         {
-                          "id": "sf3ba",
+                          "id": "SF3BA",
                           "era": "STAR",
                           "order": 52,
                           "type": "CORE",
+                          "name": "Star Force 3",
                           "edition": "Black Ace",
-                          "platform": [
-                            "DS"
-                          ],
+                          "platform": ["DS"],
                           "unlocks": [
                             {
-                              "id": "sf3rj",
+                              "id": "SF3RJ",
                               "era": "STAR",
                               "order": 53,
                               "type": "CORE",
+                              "name": "Star Force 3",
                               "edition": "Red Joker",
-                              "platform": [
-                                "DS"
-                              ],
-                              "unlocks": [],
-                              "title": "Star Force 3"
+                              "platform": ["DS"],
+                              "unlocks": []
                             }
-                          ],
-                          "title": "Star Force 3"
+                          ]
                         }
-                      ],
-                      "title": "Star Force 2"
+                      ]
                     }
-                  ],
-                  "title": "Star Force 2"
+                  ]
                 }
-              ],
-              "title": "Star Force"
+              ]
             }
-          ],
-          "title": "Star Force"
+          ]
         }
-      ],
-      "title": "Star Force"
+      ]
     },
     {
-      "id": "l1",
+      "id": "L1",
       "era": "3D",
       "order": 54,
       "type": "CORE",
+      "name": "Mega Man Legends",
       "edition": "Original",
-      "platform": [
-        "PS1"
-      ],
+      "platform": ["PS1"],
       "unlocks": [
         {
-          "id": "tb",
+          "id": "TB",
           "era": "3D",
           "order": 55,
           "type": "SIDE",
+          "name": "The Misadventures of Tron Bonne",
           "edition": "Original",
-          "platform": [
-            "PS1"
-          ],
+          "platform": ["PS1"],
           "unlocks": [
             {
-              "id": "l2",
+              "id": "L2",
               "era": "3D",
               "order": 56,
               "type": "CORE",
+              "name": "Legends 2",
               "edition": "Original",
-              "platform": [
-                "PS1"
-              ],
-              "unlocks": [],
-              "title": "Legends 2"
+              "platform": ["PS1"],
+              "unlocks": []
             }
-          ],
-          "title": "The Misadventures of Tron Bonne"
+          ]
         }
-      ],
-      "title": "Mega Man Legends"
+      ]
     },
     {
-      "id": "mm64",
+      "id": "MM64",
       "era": "3D",
       "order": 57,
       "type": "SIDE",
+      "name": "Mega Man 64",
       "edition": "Original",
-      "platform": [
-        "N64"
-      ],
-      "unlocks": [],
-      "title": "Mega Man 64"
+      "platform": ["N64"],
+      "unlocks": []
     },
     {
-      "id": "ww",
+      "id": "WW",
       "era": "SIDE",
       "order": 58,
       "type": "SIDE",
+      "name": "Mega Man: The Wily Wars",
       "edition": "Original",
-      "platform": [
-        "GENESIS"
-      ],
-      "unlocks": [],
-      "title": "Mega Man: The Wily Wars"
+      "platform": ["GENESIS"],
+      "unlocks": []
     },
     {
-      "id": "mmb",
+      "id": "MMB",
       "era": "SIDE",
       "order": 59,
       "type": "SIDE",
+      "name": "Mega Man & Bass",
       "edition": "Original",
-      "platform": [
-        "SNES"
-      ],
-      "unlocks": [],
-      "title": "Mega Man & Bass"
+      "platform": ["SNES"],
+      "unlocks": []
     },
     {
-      "id": "mhc",
+      "id": "MHC",
       "era": "SIDE",
       "order": 60,
       "type": "SIDE",
+      "name": "Command Mission",
       "edition": "Original",
-      "platform": [
-        "GAMECUBE"
-      ],
-      "unlocks": [],
-      "title": "Command Mission"
+      "platform": ["GAMECUBE"],
+      "unlocks": []
     },
     {
-      "id": "mhx",
+      "id": "MHX",
       "era": "SIDE",
       "order": 61,
       "type": "SIDE",
+      "name": "Maverick Hunter X",
       "edition": "Original",
-      "platform": [
-        "PSP"
-      ],
-      "unlocks": [],
-      "title": "Maverick Hunter X"
+      "platform": ["PSP"],
+      "unlocks": []
     },
     {
-      "id": "mpu",
+      "id": "MPU",
       "era": "SIDE",
       "order": 62,
       "type": "SIDE",
+      "name": "Powered Up",
       "edition": "Original",
-      "platform": [
-        "PSP"
-      ],
-      "unlocks": [],
-      "title": "Powered Up"
+      "platform": ["PSP"],
+      "unlocks": []
     },
     {
-      "id": "rfmc",
+      "id": "RFMC",
       "era": "SIDE",
       "order": 63,
       "type": "SIDE",
+      "name": "Mirai kara no Chōsensha",
       "edition": "Original",
-      "platform": [
-        "WONDERSWAN"
-      ],
-      "unlocks": [],
-      "title": "Mirai kara no Ch\u014dsensha"
+      "platform": ["WONDERSWAN"],
+      "unlocks": []
     }
   ]
 }
