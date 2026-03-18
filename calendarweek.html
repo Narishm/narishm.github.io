@@ -716,7 +716,7 @@ function formatMMDD(d){
 function parseCalendarTitle(raw){
   let rest = String(raw || "").trim();
   const t = rest.match(/\s*-\s*([^-]+)$/);
-  if(t) rest = rest.slice(0, t.index).trim();
+  if(t) rest = t[1].trim();
   return { slot: null, main: rest.trim() };
 }
 
