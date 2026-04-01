@@ -50,6 +50,16 @@
       "edition": "Diablo 30th Spotlight",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "ootrando",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "April Fools Day",
+      "title": "Ocarina of Time Randomizer",
+      "edition": "April Fools Day Special",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
