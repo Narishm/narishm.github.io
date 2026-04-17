@@ -60,6 +60,16 @@
       "edition": "April Fools Day Special",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "ff14ll417",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "Live Letter",
+      "title": "Final Fantasy XIV",
+      "edition": "Live Letter Breakdown",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
