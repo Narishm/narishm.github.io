@@ -70,6 +70,16 @@
       "edition": "Live Letter Breakdown",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "ff14ff2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "Fan Fest April 2026",
+      "title": "Final Fantasy XIV",
+      "edition": "Fan Fest Watchalong",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
