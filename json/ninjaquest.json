@@ -6,7 +6,7 @@
       "era": "CLASSIC",
       "order": 1,
       "type": "CORE",
-      "title": "Teenage Mutant Ninja Turtles",
+      "title": "TMNT NES",
       "edition": "Cowabunga Collection",
       "platform": ["STEAM"],
       "unlocks": [
@@ -24,7 +24,7 @@
               "era": "CLASSIC",
               "order": 3,
               "type": "CORE",
-              "title": "Teenage Mutant Ninja Turtles II: The Arcade Game",
+              "title": "TMNT II: The Arcade Game",
               "edition": "Cowabunga Collection",
               "platform": ["SWITCH"],
               "unlocks": [
@@ -33,7 +33,7 @@
                   "era": "CLASSIC",
                   "order": 4,
                   "type": "CORE",
-                  "title": "Teenage Mutant Ninja Turtles III: The Manhattan Project",
+                  "title": "TMNT III: The Manhattan Project",
                   "edition": "Cowabunga Collection",
                   "platform": ["SWITCH"],
                   "unlocks": [
