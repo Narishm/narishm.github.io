@@ -80,6 +80,16 @@
       "edition": "Fan Fest Watchalong",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "elementallis",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "Golden Week 2026",
+      "title": "Elementallis",
+      "edition": "Go Buy It!",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
