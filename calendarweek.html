@@ -1097,7 +1097,10 @@ async function buildEntryFromEvent(ev){
   }
 
   let timeText = "";
-  if(!ytIds.length){
+
+  const isDoctorVisit = thumbCode === "naridoc" || thumbCode === "momdoc";
+
+  if(!ytIds.length && !isDoctorVisit){
     if(ev.start?.dateTime){
       timeText = formatViewerLocalTime(new Date(ev.start.dateTime));
     } else if(ev.start?.date){
