@@ -52,6 +52,16 @@
       "unlocks": []
     },
     {
+      "id": "sgf652026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "SGF",
+      "title": "Summer Games Fest",
+      "edition": "6/5/2026",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
       "id": "mtgad30s",
       "era": "CHANNEL",
       "order": 1,
