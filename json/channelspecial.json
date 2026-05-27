@@ -52,6 +52,16 @@
       "unlocks": []
     },
     {
+      "id": "chat",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Just Chatting",
+      "edition": "",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
       "id": "sgf652026",
       "era": "CHANNEL",
       "order": 1,
