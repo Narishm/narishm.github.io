@@ -32,12 +32,22 @@
       "unlocks": []
     },
     {
-      "id": "sop",
+      "id": "sop2122026",
       "era": "CHANNEL",
       "order": 1,
       "type": "SONY",
       "title": "State of Play",
-      "edition": "",
+      "edition": "2/12/2026",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "sop622026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "SONY",
+      "title": "State of Play",
+      "edition": "6/2/2026",
       "platform": ["SPECIAL"],
       "unlocks": []
     },
