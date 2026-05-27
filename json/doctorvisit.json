@@ -1,0 +1,25 @@
+{
+  "eras": ["NARISHM, NARIMOM"],
+  "adventures": [
+    {
+      "id": "narishm",
+      "era": "NARISHM",
+      "order": 1,
+      "type": "Day Off",
+      "title": "Doctor Visit",
+      "edition": "Narishm",
+      "platform": ["NONE"],
+      "unlocks": []
+    },
+    {
+      "id": "narimom",
+      "era": "NARIMOM",
+      "order": 1,
+      "type": "Day Off",
+      "title": "Doctor Visit",
+      "edition": "NariMom",
+      "platform": ["NONE"],
+      "unlocks": []
+    }
+  ]
+}
