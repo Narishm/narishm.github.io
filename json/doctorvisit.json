@@ -2,7 +2,7 @@
   "eras": ["NARISHM, NARIMOM"],
   "adventures": [
     {
-      "id": "narishm",
+      "id": "naridoc",
       "era": "NARISHM",
       "order": 1,
       "type": "Day Off",
@@ -12,7 +12,7 @@
       "unlocks": []
     },
     {
-      "id": "narimom",
+      "id": "momdoc",
       "era": "NARIMOM",
       "order": 1,
       "type": "Day Off",
