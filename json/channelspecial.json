@@ -120,6 +120,46 @@
       "edition": "Golden Week Special",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "vtss2026dhi",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "VTuber Summer Slam 2026",
+      "title": ".hack//INFECTION",
+      "edition": "VTuber Summer Slam 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "vtss2026dhm",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "VTuber Summer Slam 2026",
+      "title": ".hack//MUTATION",
+      "edition": "VTuber Summer Slam 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "vtss2026dho",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "VTuber Summer Slam 2026",
+      "title": ".hack//OUTBREAK",
+      "edition": "VTuber Summer Slam 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "vtss2026dhq",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "VTuber Summer Slam 2026",
+      "title": ".hack//QUARANTINE",
+      "edition": "VTuber Summer Slam 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
