@@ -160,6 +160,26 @@
       "edition": "VTuber Summer Slam 2026",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "dho",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "VTuber Summer Slam 2026",
+      "title": ".hack//OUTBREAK",
+      "edition": "VTuber Summer Slam 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "dhq",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "VTuber Summer Slam 2026",
+      "title": ".hack//QUARANTINE",
+      "edition": "VTuber Summer Slam 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
