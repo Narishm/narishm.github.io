@@ -20,6 +20,16 @@
       "edition": "Collaboration",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "mc",
+      "era": "COLLAB",
+      "order": 1,
+      "type": "",
+      "title": "Meccha Chameleon",
+      "edition": "Collaboration",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
