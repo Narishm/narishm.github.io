@@ -180,6 +180,16 @@
       "edition": "",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "sgdq2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "Channel Update",
+      "title": "Summer Games Done Quick 2026",
+      "edition": "Watchalong",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
