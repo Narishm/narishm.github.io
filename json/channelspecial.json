@@ -162,6 +162,16 @@
       "unlocks": []
     },
     {
+      "id": "dhm",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": ".hack//MUTATION",
+      "edition": "",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
       "id": "dho",
       "era": "CHANNEL",
       "order": 1,
