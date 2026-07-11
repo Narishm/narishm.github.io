@@ -14,7 +14,7 @@
     {
       "id": "cpc",
       "era": "COLLAB",
-      "order": 1,
+      "order": 2,
       "type": "",
       "title": "Planet Crafter",
       "edition": "Collaboration",
@@ -24,9 +24,19 @@
     {
       "id": "mc",
       "era": "COLLAB",
-      "order": 1,
+      "order": 3,
       "type": "",
       "title": "Meccha Chameleon",
+      "edition": "Collaboration",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "pw",
+      "era": "COLLAB",
+      "order": 4,
+      "type": "",
+      "title": "Palworld",
       "edition": "Collaboration",
       "platform": ["STEAM"],
       "unlocks": []
