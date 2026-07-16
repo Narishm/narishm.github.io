@@ -40,6 +40,16 @@
       "edition": "Collaboration",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "ffv",
+      "era": "COLLAB",
+      "order": 4,
+      "type": "",
+      "title": "FF Villainous",
+      "edition": "Collaboration",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
