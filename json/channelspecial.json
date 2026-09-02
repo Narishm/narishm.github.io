@@ -51,6 +51,16 @@
       "platform": ["SPECIAL"],
       "unlocks": []
     },
+        {
+      "id": "sop932026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "SONY",
+      "title": "State of Play",
+      "edition": "9/3/2026",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
     {
       "id": "chat",
       "era": "CHANNEL",
