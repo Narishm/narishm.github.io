@@ -32,6 +32,16 @@
       "unlocks": []
     },
     {
+      "id": "zd",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "NINTENDO",
+      "title": "Zelda Direct",
+      "edition": "",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
       "id": "sop2122026",
       "era": "CHANNEL",
       "order": 1,
