@@ -61,13 +61,23 @@
       "platform": ["SPECIAL"],
       "unlocks": []
     },
-        {
+    {
       "id": "sop932026",
       "era": "CHANNEL",
       "order": 1,
       "type": "SONY",
       "title": "State of Play",
       "edition": "9/3/2026",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "bc2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "Blizzard",
+      "title": "Blizzcon",
+      "edition": "Opening Ceremony 2026",
       "platform": ["SPECIAL"],
       "unlocks": []
     },
