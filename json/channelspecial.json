@@ -230,6 +230,52 @@
       "edition": "Watch Party",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "dh1",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Diablo + Hellfire",
+      "edition": "Halloween Marathon 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },    {
+      "id": "d2",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Diablo II: Reign of the Warlock",
+      "edition": "Halloween Marathon 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },    {
+      "id": "di",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Diablo Immortal",
+      "edition": "Halloween Marathon 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },    {
+      "id": "d3",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Diablo III: Eternal Collection",
+      "edition": "Halloween Marathon 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
+    },    {
+      "id": "d4",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Diablo IV: Lord of Hatred",
+      "edition": "Halloween Marathon 2026",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
