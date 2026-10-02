@@ -50,6 +50,16 @@
       "edition": "Collaboration",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "esc",
+      "era": "COLLAB",
+      "order": 4,
+      "type": "",
+      "title": "Enshrouded",
+      "edition": "Collaboration",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
