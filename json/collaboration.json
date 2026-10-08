@@ -60,6 +60,16 @@
       "edition": "Collaboration",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "s2c",
+      "era": "COLLAB",
+      "order": 4,
+      "type": "",
+      "title": "Shapez 2 Factory",
+      "edition": "Collaboration",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
