@@ -70,6 +70,16 @@
       "edition": "Collaboration",
       "platform": ["STEAM"],
       "unlocks": []
+    },
+    {
+      "id": "sc",
+      "era": "COLLAB",
+      "order": 4,
+      "type": "",
+      "title": "Satisfactory",
+      "edition": "Collaboration",
+      "platform": ["STEAM"],
+      "unlocks": []
     }
   ]
 }
