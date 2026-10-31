@@ -132,12 +132,12 @@
       "unlocks": []
     },
     {
-      "id": "ff14ff2026",
+      "id": "ff14ff2026a",
       "era": "CHANNEL",
       "order": 1,
       "type": "Fan Fest April 2026",
       "title": "Final Fantasy XIV",
-      "edition": "Fan Fest Watchalong",
+      "edition": "Fan Fest 2026 Anaheim Watchalong",
       "platform": ["SPECIAL"],
       "unlocks": []
     },
@@ -275,6 +275,16 @@
       "title": "Diablo IV: Lord of Hatred",
       "edition": "Halloween Marathon 2026",
       "platform": ["STEAM"],
+      "unlocks": []
+    },
+    {
+      "id": "ff14ff2026t",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "Fan Fest April 2026",
+      "title": "Final Fantasy XIV",
+      "edition": "Fan Fest 2026 Tokyo Watchalong",
+      "platform": ["SPECIAL"],
       "unlocks": []
     }
   ]
