@@ -1,0 +1,23 @@
+{
+  "channel": "Narishm 🎋",
+  "channelId": "UCzmc7qvfe-v-hH8X4azd_hg",
+  "exportedAt": "2026-11-01T14:02:05.760436+00:00",
+  "splitYear": 2013,
+  "yearRule": "actualStartTime UTC, otherwise publishedAt UTC",
+  "count": 1,
+  "videos": [
+    {
+      "videoId": "XxqbVlb258M",
+      "title": "Bonus :: Samus' Mission",
+      "description": "Wherein Nari reveals a portion of a long lost top ten video game music video. \n\nFeaturing footage from Metroid: Other M and Super Metroid.\n\n~ Navigation ~\n\nMetroid Playlist - https://www.youtube.com/playlist?list=PLD367F10077AA5F82\n\n~ Social Media ~\n\nTwitter: http://www.twitter.com/narishm\nTwitch: http://www.twitch.tv/narishm\nFacebook: http://www.facebook.com/narigames\n\n~ Join Maker ~\n\nInterested in a YouTube Partnership? Join Maker Studios!\n\nClick here to see if your channel qualifies for Maker Gen: \n\nhttp://awe.sm/gJons",
+      "publishedAt": "2013-01-01T15:23:48Z",
+      "actualStartTime": null,
+      "actualEndTime": null,
+      "scheduledStartTime": null,
+      "duration": "PT1M50S",
+      "liveBroadcastContent": "none",
+      "privacyStatus": "public",
+      "url": "https://www.youtube.com/watch?v=XxqbVlb258M"
+    }
+  ]
+}
