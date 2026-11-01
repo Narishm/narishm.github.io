@@ -296,6 +296,136 @@
       "edition": "Fan Fest 2026 Berlin Watchalong",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "tgs2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "Thanksgiving Special 2026",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "ab2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Diablo IV: Lord of Hatred",
+      "edition": "Anniversary Bonanza 2026",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "tsa2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "The Streamer Awards 2026",
+      "edition": "Watchalong",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "tga2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "The Game Awards 2026",
+      "edition": "Watchalong",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "gja2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Golden Joystick Awards 2026",
+      "edition": "Watchalong",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "ce2s2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "Christmas Eve² Special",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "ces2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "Christmas Eve Special",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "cs2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "Christmas Special",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "nys2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "New Year's Special 2026",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "agdq2027",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Awesome Games Done Quick 2027",
+      "edition": "Watchalong",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "",
+      "platform": ["SPECIAL"],
+      "unlocks": []
+    },
+    {
+      "id": "",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "",
+      "edition": "",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
