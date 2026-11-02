@@ -388,42 +388,22 @@
       "unlocks": []
     },
     {
-      "id": "",
+      "id": "ab2026d4",
       "era": "CHANNEL",
       "order": 1,
       "type": "",
-      "title": "",
-      "edition": "",
+      "title": "Diablo IV: Lord of Hatred",
+      "edition": "Anniversary Bonanza 2026",
       "platform": ["SPECIAL"],
       "unlocks": []
     },
     {
-      "id": "agdq2027",
+      "id": "ab2026ootr",
       "era": "CHANNEL",
       "order": 1,
       "type": "",
-      "title": "Awesome Games Done Quick 2027",
-      "edition": "Watchalong",
-      "platform": ["SPECIAL"],
-      "unlocks": []
-    },
-    {
-      "id": "",
-      "era": "CHANNEL",
-      "order": 1,
-      "type": "",
-      "title": "",
-      "edition": "",
-      "platform": ["SPECIAL"],
-      "unlocks": []
-    },
-    {
-      "id": "",
-      "era": "CHANNEL",
-      "order": 1,
-      "type": "",
-      "title": "",
-      "edition": "",
+      "title": "Ocarina of Time Randomizer",
+      "edition": "Anniversary Bonanza 2026",
       "platform": ["SPECIAL"],
       "unlocks": []
     }
