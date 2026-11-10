@@ -406,6 +406,16 @@
       "edition": "Anniversary Bonanza 2026",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "ootr",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Ocarina of Time Randomizer",
+      "edition": "",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
