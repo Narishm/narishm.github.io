@@ -416,6 +416,16 @@
       "edition": "",
       "platform": ["SPECIAL"],
       "unlocks": []
+    },
+    {
+      "id": "gja2026",
+      "era": "CHANNEL",
+      "order": 1,
+      "type": "",
+      "title": "Golden Joystick Awards 2026",
+      "edition": "Watchalong",
+      "platform": ["SPECIAL"],
+      "unlocks": []
     }
   ]
 }
